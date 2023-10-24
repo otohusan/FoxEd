@@ -1,7 +1,7 @@
 import { HiMiniVideoCamera } from "react-icons/hi2";
 import { HiMiniVideoCameraSlash } from "react-icons/hi2";
 
-export const StartCamera = () => {
+export const StartCameraBtn = () => {
   return (
     <div>
       <span className="material-icons">
@@ -11,7 +11,7 @@ export const StartCamera = () => {
   );
 };
 
-export const StopCamera = () => {
+export const StopCameraBtn = () => {
   return (
     <div>
       <span className="material-icons">
