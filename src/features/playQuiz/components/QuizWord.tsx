@@ -1,4 +1,4 @@
-import SpeakQuizWord from "./SpeakQuizWord";
+import SpeakQuizWord from "./SpeakQuizWordBtn";
 import "../style/quizWord.css";
 
 function QuizWord() {
