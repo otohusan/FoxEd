@@ -1,0 +1,7 @@
+.speakQuizWordBtn {
+  position: absolute;
+  color: aliceblue;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

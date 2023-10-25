@@ -1,0 +1,10 @@
+.quizWord {
+  color: rgb(234, 234, 234);
+  position: absolute;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 8vw;
+  text-shadow: 2px 2px 1px #f09038, 2px 2px 4px rgba(0, 0, 0, 0.7);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -2,6 +2,7 @@ import "../style/video.css"; // CSSをインポート
 import { useVideo } from "../hooks";
 import { StartVideoBtn, StopVideoBtn } from "./VideoBtn";
 import QuizChoices from "./QuizChoices ";
+import QuizWord from "./QuizWord";
 
 function Video() {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
@@ -20,6 +21,8 @@ function Video() {
       <div>
         <QuizChoices />
       </div>
+
+      <QuizWord />
     </div>
   );
 }
