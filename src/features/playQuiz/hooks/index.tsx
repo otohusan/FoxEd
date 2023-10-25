@@ -1,1 +1,1 @@
-export { default as useCamera } from "./useCamera";
+export { default as useVideo } from "./useVideo";

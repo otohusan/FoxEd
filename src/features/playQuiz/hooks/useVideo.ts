@@ -1,14 +1,15 @@
 // useCamera.ts
 import { useState, useRef, useCallback } from "react";
 
-const useCamera = () => {
+const useVideo = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [videoStream, setVideoStream] = useState<MediaStream | null>(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const startCamera = useCallback(async () => {
+  const startVideo = useCallback(async () => {
     try {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        //ビデオに割り当てる値を保持する
         const stream = await navigator.mediaDevices.getUserMedia({
           video: {
             facingMode: "environment",
@@ -18,7 +19,9 @@ const useCamera = () => {
             frameRate: { ideal: 60 },
           },
         });
+
         setVideoStream(stream);
+
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
@@ -30,7 +33,7 @@ const useCamera = () => {
     }
   }, []); // useCallbackを使用して関数をメモ化
 
-  const stopCamera = useCallback(() => {
+  const stopVideo = useCallback(() => {
     if (videoStream) {
       videoStream.getTracks().forEach((track) => track.stop());
       setIsVideoPlaying(false);
@@ -40,9 +43,9 @@ const useCamera = () => {
   return {
     videoRef,
     isVideoPlaying,
-    startCamera,
-    stopCamera,
+    startVideo,
+    stopVideo,
   };
 };
 
-export default useCamera;
+export default useVideo;

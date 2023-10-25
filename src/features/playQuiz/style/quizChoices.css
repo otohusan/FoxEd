@@ -1,0 +1,8 @@
+.quizChoices {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  position: absolute;
+  width: full;
+  top: 5%;
+}

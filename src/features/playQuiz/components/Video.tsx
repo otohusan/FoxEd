@@ -1,18 +1,24 @@
-import "../style/videoStyles.css"; // CSSをインポート
-import { useCamera } from "../hooks";
-import { StartCameraBtn, StopCameraBtn } from "./CameraBtn";
+import "../style/video.css"; // CSSをインポート
+import { useVideo } from "../hooks";
+import { StartVideoBtn, StopVideoBtn } from "./VideoBtn";
+import QuizChoices from "./QuizChoices ";
 
 function Video() {
-  const { videoRef, isVideoPlaying, startCamera, stopCamera } = useCamera();
+  const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
 
   return (
     <div id="videoContainer">
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
+
       <div
-        style={{ position: "absolute" }}
-        onClick={isVideoPlaying ? stopCamera : startCamera}
+        className="videoBtn"
+        onClick={isVideoPlaying ? stopVideo : startVideo}
       >
-        {isVideoPlaying ? <StopCameraBtn /> : <StartCameraBtn />}
+        {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
+      </div>
+
+      <div>
+        <QuizChoices />
       </div>
     </div>
   );

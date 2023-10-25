@@ -1,21 +1,26 @@
 import { HiMiniVideoCamera } from "react-icons/hi2";
 import { HiMiniVideoCameraSlash } from "react-icons/hi2";
 
-export const StartCameraBtn = () => {
+const videoIconStyle = {
+  size: 40,
+  color: "white",
+};
+
+export const StartVideoBtn = () => {
   return (
     <div>
       <span className="material-icons">
-        <HiMiniVideoCameraSlash size={30} color={"white"} />
+        <HiMiniVideoCameraSlash {...videoIconStyle} />
       </span>
     </div>
   );
 };
 
-export const StopCameraBtn = () => {
+export const StopVideoBtn = () => {
   return (
     <div>
       <span className="material-icons">
-        <HiMiniVideoCamera size={30} color={"white"} />
+        <HiMiniVideoCamera {...videoIconStyle} />
       </span>
     </div>
   );

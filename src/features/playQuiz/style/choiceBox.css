@@ -1,0 +1,20 @@
+.container {
+  width: 100px;
+  height: 30px;
+  border: 2px solid #f09038;
+  outline: 1px solid #fff;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 6vw;
+  flex: 5 1 30%;
+}
+
+.choice_value {
+  color: white;
+  font-size: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 600;
+}

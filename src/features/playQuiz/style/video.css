@@ -20,6 +20,12 @@ video {
   object-fit: cover;
 }
 
+.videoBtn {
+  position: absolute;
+  top: 90%;
+  left: 80%;
+}
+
 .overlayText {
   position: absolute;
   /* transform: translate(-50%, -50%); */
