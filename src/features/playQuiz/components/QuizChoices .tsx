@@ -3,18 +3,28 @@ import "../style/quizChoices.css";
 import Feedback from "./Feedback";
 import useFeedback from "../hooks/useFeedBack";
 
-function QuizChoices() {
-  const times = [1, 2, 3, 4];
+interface QuizChoicesProps {
+  choices: string[];
+  answer: string;
+}
+
+function QuizChoices({ choices, answer }: QuizChoicesProps) {
   const { FeedbackRef, feedbackFunc } = useFeedback();
 
   return (
     <>
       <div className="quizChoices">
-        {times.map((_, index) => (
-          <ChoiceBox key={index} feedbackFunc={feedbackFunc} />
+        {choices.map((choiceValue, index) => (
+          // ChoiceBoxコンポーネントで正解不正解の判定を行うから、答えと関数を渡す
+          <ChoiceBox
+            key={index}
+            feedbackFunc={feedbackFunc}
+            choiceValue={choiceValue}
+            answer={answer}
+          />
         ))}
       </div>
-      <Feedback myDivRef={FeedbackRef} feedbackValue="saa" />
+      <Feedback myDivRef={FeedbackRef} />
     </>
   );
 }

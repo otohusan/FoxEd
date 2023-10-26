@@ -1,0 +1,16 @@
+.darkOverlay {
+  position: absolute;
+  width: 100%;
+  height: 50%; /* 画面の半分の高さを指定 */
+  z-index: 1;
+}
+
+.aboveDarkOverlay {
+  height: 45%;
+  background-color: rgba(0, 0, 0, 0.2); /* 半透明の背景色を設定 */
+}
+
+.underDarkOverlay {
+  height: 20%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+}

@@ -1,13 +1,20 @@
 import "../style/choiceBox.css";
 
 interface ChoiceBoxProps {
+  choiceValue: string;
+  answer: string;
   feedbackFunc: (answer: string, clickedChoice: string) => void;
 }
 
-function ChoiceBox({ feedbackFunc }: ChoiceBoxProps) {
+function ChoiceBox({ choiceValue, feedbackFunc, answer }: ChoiceBoxProps) {
   return (
-    <div className="container" onClick={() => feedbackFunc("s", "b")}>
-      <div className="choice_value">難易度の高い文字数</div>
+    //クリックされると、選ばれた選択と、答えを比較してフィードバックを表示する
+    <div
+      className="container"
+      //クリックされると正解不正解の関数を呼び出す
+      onClick={() => feedbackFunc(answer, choiceValue)}
+    >
+      <div className="choice_value">{choiceValue}</div>
     </div>
   );
 }

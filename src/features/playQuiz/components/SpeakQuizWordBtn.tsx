@@ -2,9 +2,12 @@ import "../style/speakQuizWord.css";
 import { GiSoundWaves } from "react-icons/gi";
 import { speakWord } from "../../../api";
 
-function SpeakQuizWord() {
+function SpeakQuizWord(props: { questionWord: string }) {
   return (
-    <div className="speakQuizWordBtn" onClick={() => speakWord("what")}>
+    <div
+      className="speakQuizWordBtn"
+      onClick={() => speakWord(props.questionWord)}
+    >
       <GiSoundWaves
         size={50}
         style={{

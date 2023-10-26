@@ -1,11 +1,11 @@
 import SpeakQuizWord from "./SpeakQuizWordBtn";
 import "../style/quizWord.css";
 
-function QuizWord() {
+function QuizWord(props: { questionWord: string }) {
   return (
     <div>
-      <div className="quizWord">QuizWord</div>
-      <SpeakQuizWord />
+      <div className="quizWord">{props.questionWord}</div>
+      <SpeakQuizWord questionWord={props.questionWord} />
     </div>
   );
 }
