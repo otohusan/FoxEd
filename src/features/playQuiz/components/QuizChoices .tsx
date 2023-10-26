@@ -6,10 +6,18 @@ import useFeedback from "../hooks/useFeedBack";
 interface QuizChoicesProps {
   choices: string[];
   answer: string;
+  quizSize: number;
+  quizIndex: number;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function QuizChoices({ choices, answer, setQuizIndex }: QuizChoicesProps) {
+function QuizChoices({
+  choices,
+  answer,
+  setQuizIndex,
+  quizSize,
+  quizIndex,
+}: QuizChoicesProps) {
   const { FeedbackRef, feedbackFunc } = useFeedback();
 
   return (
@@ -24,6 +32,8 @@ function QuizChoices({ choices, answer, setQuizIndex }: QuizChoicesProps) {
             choiceValue={choiceValue}
             answer={answer}
             setQuizIndex={setQuizIndex}
+            quizSize={quizSize}
+            quizIndex={quizIndex}
           />
         ))}
       </div>

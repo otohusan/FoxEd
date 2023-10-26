@@ -3,6 +3,8 @@ import "../style/choiceBox.css";
 interface ChoiceBoxProps {
   choiceValue: string;
   answer: string;
+  quizSize: number;
+  quizIndex: number;
   feedbackFunc: (answer: string, clickedChoice: string) => void;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -12,21 +14,29 @@ function ChoiceBox({
   feedbackFunc,
   answer,
   setQuizIndex,
+  quizIndex,
+  quizSize,
 }: ChoiceBoxProps) {
-  //それぞれの関数の独立性を保持するため、ここでそれぞれ関数を発動させる
-  //この関数の役割が大きくなり過ぎるのは懸念点
-  function assortmentFunc(answer: string, choiceValue: string) {
+  //何秒、フィードバックを表示するか決める変数
+  const TimeDuration: number = 1500;
+
+  //クイズインデックスを更新する関数
+  function updateQuizIndex() {
+    const nextIndex = quizIndex === quizSize - 1 ? 0 : quizIndex + 1;
+    setTimeout(() => setQuizIndex(nextIndex), TimeDuration);
+  }
+
+  //選択肢がクリックされた時に発動する関数
+  function handleClick(answer: string, choiceValue: string) {
+    // フィードバック関数を呼び出す
     feedbackFunc(answer, choiceValue);
-    setQuizIndex((prevCount) => prevCount + 1);
+
+    //クイズを更新する
+    updateQuizIndex();
   }
 
   return (
-    //クリックされると、選ばれた選択と、答えを比較してフィードバックを表示する
-    <div
-      className="container"
-      //クリックされると正解不正解の関数を呼び出す
-      onClick={() => assortmentFunc(answer, choiceValue)}
-    >
+    <div className="container" onClick={() => handleClick(answer, choiceValue)}>
       <div className="choice_value">{choiceValue}</div>
     </div>
   );
