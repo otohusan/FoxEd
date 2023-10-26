@@ -17,7 +17,7 @@ function Video() {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
   const [QuizIndex, setQuizIndex] = useState(0);
 
-  const quiz: Quiz = quizzes[0];
+  const quiz: Quiz = quizzes[QuizIndex];
   const questionWord: string = quiz.question;
   const choices: string[] = quiz.choices;
   const answer: string = quiz.answer;
@@ -37,10 +37,16 @@ function Video() {
 
       <div>
         {/* 選択肢のボックスから、正解不正解を判定する関数を読んでるから、アンサーをこのコンポーネントに渡す */}
-        <QuizChoices choices={choices} answer={answer} />
+        <QuizChoices
+          choices={choices}
+          answer={answer}
+          setQuizIndex={setQuizIndex}
+        />
       </div>
 
-      <QuizWord questionWord={questionWord} />
+      <div>
+        <QuizWord questionWord={questionWord} />
+      </div>
     </div>
   );
 }
