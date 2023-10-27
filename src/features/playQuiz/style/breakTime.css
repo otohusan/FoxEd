@@ -1,0 +1,14 @@
+.breakTimeContainer {
+  position: absolute;
+  padding: 10px 20px;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.breakTimeValue {
+  color: white;
+  font-size: 24px;
+}

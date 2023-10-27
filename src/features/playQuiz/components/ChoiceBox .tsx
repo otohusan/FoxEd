@@ -7,6 +7,7 @@ interface ChoiceBoxProps {
   quizIndex: number;
   feedbackFunc: (answer: string, clickedChoice: string) => void;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
+  setWithinAnswer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ChoiceBox({
@@ -14,6 +15,7 @@ function ChoiceBox({
   feedbackFunc,
   answer,
   setQuizIndex,
+  setWithinAnswer,
   quizIndex,
   quizSize,
 }: ChoiceBoxProps) {
@@ -26,6 +28,11 @@ function ChoiceBox({
     setTimeout(() => setQuizIndex(nextIndex), TimeDuration);
   }
 
+  function hideChoices() {
+    setWithinAnswer(false);
+    setTimeout(() => setWithinAnswer(true), TimeDuration);
+  }
+
   //選択肢がクリックされた時に発動する関数
   function handleClick(answer: string, choiceValue: string) {
     // フィードバック関数を呼び出す
@@ -33,6 +40,8 @@ function ChoiceBox({
 
     //クイズを更新する
     updateQuizIndex();
+
+    hideChoices();
   }
 
   return (

@@ -5,4 +5,5 @@
   position: absolute;
   width: full;
   top: 2%;
+  z-index: 3;
 }

@@ -2,6 +2,7 @@ import ChoiceBox from "./ChoiceBox ";
 import "../style/quizChoices.css";
 import Feedback from "./Feedback";
 import useFeedback from "../hooks/useFeedBack";
+import { useState } from "react";
 
 interface QuizChoicesProps {
   choices: string[];
@@ -19,6 +20,7 @@ function QuizChoices({
   quizIndex,
 }: QuizChoicesProps) {
   const { FeedbackRef, feedbackFunc } = useFeedback();
+  const [withinAnswer, setWithinAnswer] = useState(true);
 
   return (
     <>
@@ -26,18 +28,23 @@ function QuizChoices({
         {choices.map((choiceValue, index) => (
           // ChoiceBoxコンポーネントで正解不正解の判定を行うから、答えと関数を渡す
           //次のクイズに更新する関数も渡している
-          <ChoiceBox
-            key={index}
-            feedbackFunc={feedbackFunc}
-            choiceValue={choiceValue}
-            answer={answer}
-            setQuizIndex={setQuizIndex}
-            quizSize={quizSize}
-            quizIndex={quizIndex}
-          />
+          <div style={{ display: withinAnswer ? "block" : "none" }}>
+            <ChoiceBox
+              key={index}
+              feedbackFunc={feedbackFunc}
+              choiceValue={choiceValue}
+              answer={answer}
+              setQuizIndex={setQuizIndex}
+              setWithinAnswer={setWithinAnswer}
+              quizSize={quizSize}
+              quizIndex={quizIndex}
+            />
+          </div>
         ))}
       </div>
-      <Feedback myDivRef={FeedbackRef} />
+      <div style={{ display: withinAnswer ? "none" : "block" }}>
+        <Feedback myDivRef={FeedbackRef} />
+      </div>
     </>
   );
 }

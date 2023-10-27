@@ -26,6 +26,7 @@ function Video() {
   // 休憩を入れることに関するコード
   const breakTimeDuration: number = 1500;
   const [isComponentsVisible, setIsComponentsVisible] = useState(true);
+
   useEffect(() => {
     if (QuizIndex != 0 && QuizIndex % 7 === 0) {
       setIsComponentsVisible(false); // Hide the components
