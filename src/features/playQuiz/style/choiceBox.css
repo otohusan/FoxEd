@@ -8,8 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.8);
   z-index: 2;
+  transition: transform 0.2s;
 
   /* この二つの値で、端に２つずつ表示してる、どうやってるかはよくわからん */
   margin: 16px 6vw;

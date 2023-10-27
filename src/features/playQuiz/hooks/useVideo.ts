@@ -6,7 +6,8 @@ const useVideo = () => {
   const [videoStream, setVideoStream] = useState<MediaStream | null>(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const startVideo = useCallback(async () => {
+  const startVideo = useCallback(async (event: React.MouseEvent) => {
+    event.preventDefault();
     try {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         //ビデオに割り当てる値を保持する

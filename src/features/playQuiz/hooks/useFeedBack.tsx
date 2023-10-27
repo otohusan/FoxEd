@@ -13,8 +13,8 @@ function useFeedback(): UseFeedbackReturnType {
     if (FeedbackRef.current) {
       FeedbackRef.current.innerHTML =
         answer === clickedChoice
-          ? `<span style="font-size: 26px;">Right ⭕️</span><br> <br> A. ${answer}`
-          : `<span style="font-size: 26px;  ">Wrong ❌</span> <br> <br>A. ${answer}`;
+          ? `<span style="font-size: 24px;">Right ⭕️</span><br> <br> A. ${answer}`
+          : `<span style="font-size: 24px;  ">Wrong ❌</span> <br> <br>A. ${answer}`;
     }
   }, []);
 

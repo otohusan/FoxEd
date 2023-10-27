@@ -25,7 +25,7 @@ function Video() {
   const answer: string = quiz.answer;
 
   // 休憩を入れることに関するコード
-  const breakTimeDuration: number = 1500;
+  const breakTimeDuration: number = 7000;
   const breakTimePerQuiz: number = 7;
   const [isComponentsVisible, setIsComponentsVisible] = useState(true);
 
@@ -38,18 +38,20 @@ function Video() {
 
   return (
     <div id="videoContainer">
+      {/* ここにあるコンポーネントは常に表示される */}
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
 
-      {/* ブレークタイムの時とプレイの時で表示するコンポーネントを変える */}
+      <div
+        className="videoBtn"
+        onClick={isVideoPlaying ? stopVideo : startVideo}
+      >
+        {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
+      </div>
+
+      {/* 以下のコンポーネントはブレークタイムの時とプレイの時で表示するコンポーネントが変わる */}
       {isComponentsVisible ? (
         <div className="componentsWithPlaying">
           <DarkOverlay />
-          <div
-            className="videoBtn"
-            onClick={isVideoPlaying ? stopVideo : startVideo}
-          >
-            {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
-          </div>
           <div>
             {/* 選択肢のボックスから、正解不正解を判定する関数を読んでるから、アンサーをこのコンポーネントに渡す */}
             <QuizChoices

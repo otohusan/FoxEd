@@ -29,7 +29,10 @@ function QuizChoices({
         {choices.map((choiceValue, index) => (
           // ChoiceBoxコンポーネントで正解不正解の判定を行うから、答えと関数を渡す
           //次のクイズに更新する関数も渡している
-          <div style={{ display: withinAnswer ? "block" : "none" }}>
+          <div
+            style={{ display: withinAnswer ? "block" : "none" }}
+            className="choiceBoxBehavior"
+          >
             <ChoiceBox
               key={index}
               feedbackFunc={feedbackFunc}
