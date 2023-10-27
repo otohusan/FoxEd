@@ -13,7 +13,15 @@
 
   /* この二つの値で、端に２つずつ表示してる、どうやってるかはよくわからん */
   margin: 16px 6vw;
+  /* margin: 16px 13vw; */
   flex: 5 1 20%;
+  /* flex: 4 3 20%; */
+}
+
+@media (min-width: 569px) {
+  .container {
+    margin: 16px 13vw;
+  }
 }
 
 .choice_value {

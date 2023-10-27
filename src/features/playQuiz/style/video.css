@@ -20,100 +20,30 @@ video {
   object-fit: cover;
 }
 
-.videoBtn {
-  position: absolute;
-  top: 90%;
-  left: 80%;
-}
-
-.overlayText {
-  position: absolute;
-  /* transform: translate(-50%, -50%); */
-  color: white;
-}
-
-#stopButton,
-#startButton,
-#speakButton,
-#minaoshiButton {
+.videoBtnContainer {
+  width: 55px;
+  height: 50px;
+  background: linear-gradient(146deg, #ff891bcd 30%, #85f1ff 120%);
+  box-shadow: -3px 4px 5px rgba(240.12, 144.4, 56.03, 0.34),
+    3px 4px 5px rgba(80, 214, 255, 0.34), 0px 0px 5px rgba(0, 0, 0, 0.34);
+  border-radius: 9999px;
+  border: 0.5px solid rgba(255, 255, 255, 0.5);
+  padding: 3px;
+  padding-top: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 5%;
+  top: 90%;
   left: 85%;
-  /* transform: translate(-50%, -50%); */
-  color: white;
-  background-color: rgb(0, 115, 90, 0.5);
-  padding: 5px;
-  border-radius: 3px;
-  /* border-color: rgba(202, 202, 202, 0.7); */
-  border: 1px solid rgba(56, 93, 59, 0.7);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
-}
-
-#minaoshiButton {
-  bottom: 90%;
-  left: 75%;
+  transform: translate(-50%, -50%);
 }
 
 .material-icons {
-  /* margin-top: 5px; */
-  color: aliceblue;
-  size: 3vw;
-}
-
-#backButton {
-  position: absolute;
-  color: white;
-  background-color: rgb(0, 115, 90, 0.5);
-  padding: 5px;
-  border-radius: 3px;
-  /* border-color: rgba(202, 202, 202, 0.7); */
-  border: 1px solid rgba(56, 93, 59, 0.7);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
-  bottom: 5%;
-  left: 7%;
-}
-
-#question {
-  position: absolute;
-  z-index: 5;
-  top: 45%; /* 中央より少し上に変更 */
-  left: 50%; /* 横方向の中央揃え */
-  color: white;
-  text-shadow: 3px 3px 1px rgb(0, 115, 90);
-  font-family: "Roboto", sans-serif;
-  padding: 5px;
-  letter-spacing: 2px;
-  font-size: 30px;
-  border-radius: 3px;
-  transform: translate(-50%, -50%); /* 要素自体の中央を基準に配置を調整 */
-}
-
-ul {
-  list-style-type: none;
   padding: 0;
-  position: absolute; /* 固定位置にするためのプロパティ */
-  top: 25%; /* 垂直方向の中央 */
-  left: 50%; /* 水平方向の中央 */
-  transform: translate(-50%, -50%); /* ulの中心を基準に移動 */
-  display: flex; /* 選択肢 (li) を横並びにする */
-  justify-content: center; /* 選択肢を中央に揃える */
+  margin: 0;
+  /* border: 2px solid #000; */
 }
 
-li {
-  margin-bottom: 15px; /* 各選択肢の下に隙間を追加 */
-  background-color: rgb(0, 115, 90, 0.5);
-  font-size: 3.5vw;
-  padding: 5px 3px;
-  border-radius: 5px;
-  border: 2px solid rgba(56, 93, 59, 0.7);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
-  display: block; /* 選択肢を横並びに */
-  margin-left: 20px; /* 右側の隙間を追加 */
-}
-
-li:first-child {
-  margin-left: 0; /* 最初の選択肢には左側の隙間を追加しない */
+.videoBtn {
 }

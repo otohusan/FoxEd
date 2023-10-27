@@ -1,12 +1,13 @@
+import { useState, useEffect } from "react";
 import "../style/video.css"; // CSSをインポート
+import { quizzes } from "../../../assets/quizzes";
 import { useVideo } from "../hooks";
 import { StartVideoBtn, StopVideoBtn } from "./VideoBtn";
 import QuizChoices from "./QuizChoices ";
 import QuizWord from "./QuizWord";
 import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
-import { quizzes } from "../../../assets/quizzes";
-import { useState, useEffect } from "react";
+import { hideComponentForFixedTime } from "../api";
 
 type Quiz = {
   question: string;
@@ -25,14 +26,13 @@ function Video() {
 
   // 休憩を入れることに関するコード
   const breakTimeDuration: number = 1500;
+  const breakTimePerQuiz: number = 7;
   const [isComponentsVisible, setIsComponentsVisible] = useState(true);
 
+  //ブレークタイムを入れるタイミングを図る
   useEffect(() => {
-    if (QuizIndex != 0 && QuizIndex % 7 === 0) {
-      setIsComponentsVisible(false); // Hide the components
-      setTimeout(() => {
-        setIsComponentsVisible(true); // Show the components again after 1 second
-      }, breakTimeDuration);
+    if (QuizIndex != 0 && QuizIndex % breakTimePerQuiz === 0) {
+      hideComponentForFixedTime(breakTimeDuration, setIsComponentsVisible);
     }
   }, [QuizIndex]);
 
