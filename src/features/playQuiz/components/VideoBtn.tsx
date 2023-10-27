@@ -11,7 +11,7 @@ const videoIconStyle = {
 export const StartVideoBtn = () => {
   return (
     <div className="videoBtnContainer">
-      <span className="material-icons">
+      <span>
         <HiMiniVideoCameraSlash {...videoIconStyle} />
       </span>
     </div>
@@ -21,7 +21,7 @@ export const StartVideoBtn = () => {
 export const StopVideoBtn = () => {
   return (
     <div className="videoBtnContainer">
-      <span className="material-icons">
+      <span>
         <HiMiniVideoCamera {...videoIconStyle} />
       </span>
     </div>

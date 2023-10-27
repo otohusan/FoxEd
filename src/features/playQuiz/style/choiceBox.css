@@ -1,8 +1,8 @@
 .container {
   width: 100px;
   height: 30px;
-  border: 2px solid #f09038;
-  outline: 1px solid #fff;
+  border: 2px solid var(--secondary-color);
+  outline: 1px solid var(--primary-color);
   padding: 15px;
   border-radius: 7px;
   display: flex;
@@ -25,7 +25,8 @@
 }
 
 .choice_value {
-  color: white;
+  color: var(--primary-color);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
   font-size: 14px;
   font-family: "Noto Sans JP", sans-serif;
   font-weight: 600;

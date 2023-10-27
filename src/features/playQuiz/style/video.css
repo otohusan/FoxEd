@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(4, 4, 4, 0.6);
+  background-color: rgb(54, 53, 53);
   z-index: 1; /* 必要に応じて他の要素の上に表示させるため */
 }
 
@@ -23,27 +23,19 @@ video {
 .videoBtnContainer {
   width: 55px;
   height: 50px;
-  background: linear-gradient(146deg, #ff891bcd 30%, #85f1ff 120%);
-  box-shadow: -3px 4px 5px rgba(240.12, 144.4, 56.03, 0.34),
-    3px 4px 5px rgba(80, 214, 255, 0.34), 0px 0px 5px rgba(0, 0, 0, 0.34);
+  background: linear-gradient(146deg, #dd6f07f1 30%, #53ebff 130%);
+  background-color: black;
+  box-shadow: -2px 2px 3px rgba(240.12, 144.4, 56.03, 0.34),
+    2px 2px 3px rgba(80, 214, 255, 0.34), 0px 0px 5px rgba(0, 0, 0, 0.34);
   border-radius: 9999px;
-  border: 0.5px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 3px;
   padding-top: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 90%;
-  left: 85%;
+  top: 92%;
+  left: 86%;
   transform: translate(-50%, -50%);
-}
-
-.material-icons {
-  padding: 0;
-  margin: 0;
-  /* border: 2px solid #000; */
-}
-
-.videoBtn {
 }

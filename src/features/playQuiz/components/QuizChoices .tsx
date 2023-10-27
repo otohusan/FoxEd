@@ -20,6 +20,7 @@ function QuizChoices({
   quizIndex,
 }: QuizChoicesProps) {
   const { FeedbackRef, feedbackFunc } = useFeedback();
+  //選択肢かフィードバックのどちらを表示するかを制御するState
   const [withinAnswer, setWithinAnswer] = useState(true);
 
   return (
