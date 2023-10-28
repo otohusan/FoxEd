@@ -9,7 +9,8 @@ import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
 import { hideComponentForFixedTime } from "../api";
 
-import { useSwipe } from "../hooks";
+import useClickSide from "../hooks/useClickSide";
+import { returnNextQuizIndex } from "../../../api";
 
 type Quiz = {
   question: string;
@@ -27,15 +28,15 @@ function Video() {
   const answer: string = quiz.answer;
 
   // 休憩を入れることに関するコード
-  const breakTimeDuration: number = 7000;
+  const breakTimeDuration: number = 1000;
   const breakTimePerQuiz: number = 7;
   const [isComponentsVisible, setIsComponentsVisible] = useState(true);
 
-  // スワイプで、前後の問題にいけるように、フックを呼び出してる
-  const { handleTouchStart, handleTouchEnd } = useSwipe({
-    functionActivated: setQuizIndex,
-    quizIndex: QuizIndex,
-    quizSize: quizSize,
+  const { handleClick } = useClickSide({
+    onLeftEdgeClick: () =>
+      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, -1)),
+    onRightEdgeClick: () =>
+      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, 1)),
   });
 
   //ブレークタイムを入れるタイミングを図る
@@ -49,8 +50,7 @@ function Video() {
     <div
       id="videoContainer"
       // スワイプ機能を割り当ててる
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
+      onClick={handleClick}
     >
       {/* ここにあるコンポーネントは常に表示される */}
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
