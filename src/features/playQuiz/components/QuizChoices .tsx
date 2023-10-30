@@ -10,12 +10,14 @@ interface QuizChoicesProps {
   quizSize: number;
   quizIndex: number;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
+  setSolvedQuizzes: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function QuizChoices({
   choices,
   answer,
   setQuizIndex,
+  setSolvedQuizzes,
   quizSize,
   quizIndex,
 }: QuizChoicesProps) {
@@ -39,6 +41,7 @@ function QuizChoices({
               choiceValue={choiceValue}
               answer={answer}
               setQuizIndex={setQuizIndex}
+              setSolvedQuizzes={setSolvedQuizzes}
               setWithinAnswer={setWithinAnswer}
               quizSize={quizSize}
               quizIndex={quizIndex}

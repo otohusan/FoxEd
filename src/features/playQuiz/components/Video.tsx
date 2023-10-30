@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import "../style/video.css"; // CSSをインポート
 import { quizzes } from "../../../assets/quizzes";
-import { useVideo } from "../hooks";
+import { useVideo, useClickSide } from "../hooks";
 import { StartVideoBtn, StopVideoBtn } from "./VideoBtn";
 import QuizChoices from "./QuizChoices ";
 import QuizWord from "./QuizWord";
 import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
 import { hideComponentForFixedTime } from "../api";
-
-import useClickSide from "../hooks/useClickSide";
 import { returnNextQuizIndex } from "../../../api";
 
 type Quiz = {
@@ -30,8 +28,11 @@ function Video() {
   // 休憩を入れることに関するコード
   const breakTimeDuration: number = 1000;
   const breakTimePerQuiz: number = 7;
+  //解かれた問題の数を管理する
+  const [solvedQuizzes, setSolvedQuizzes] = useState(0);
   const [isComponentsVisible, setIsComponentsVisible] = useState(true);
 
+  //クリックされた画面の場所によって発動する関数を選べるフックを呼んでいる
   const { handleClick } = useClickSide({
     onLeftEdgeClick: () =>
       setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, -1)),
@@ -41,10 +42,11 @@ function Video() {
 
   //ブレークタイムを入れるタイミングを図る
   useEffect(() => {
-    if (QuizIndex != 0 && QuizIndex % breakTimePerQuiz === 0) {
+    if (solvedQuizzes === breakTimePerQuiz) {
+      setSolvedQuizzes(0);
       hideComponentForFixedTime(breakTimeDuration, setIsComponentsVisible);
     }
-  }, [QuizIndex]);
+  }, [solvedQuizzes]);
 
   return (
     <div
@@ -72,6 +74,7 @@ function Video() {
               setQuizIndex={setQuizIndex}
               quizSize={quizSize}
               quizIndex={QuizIndex}
+              setSolvedQuizzes={setSolvedQuizzes}
             />
           </div>
           <div>
