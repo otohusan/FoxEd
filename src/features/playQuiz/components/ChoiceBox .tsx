@@ -25,7 +25,7 @@ function ChoiceBox({
   quizSize,
 }: ChoiceBoxProps) {
   //何秒、フィードバックを表示するか決める変数
-  const timeDuration: number = 1200;
+  const timeDuration: number = 1700;
 
   //クイズインデックスを更新する関数
   function updateQuizIndex() {

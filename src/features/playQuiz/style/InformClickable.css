@@ -1,0 +1,44 @@
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.InformClickable {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.InformClickable-hidden {
+  opacity: 0;
+}
+
+.InformClickableRightContainer {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  top: 54%;
+  left: 92%;
+}
+
+.InformClickableLeftContainer {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(25deg);
+  top: 54.5%;
+  left: 10%;
+}
+
+.clickableArea {
+  position: absolute;
+  top: -90%;
+  left: -15%;
+  background-color: rgba(0, 0, 0, 0.566);
+  width: 45px;
+  height: 50px;
+  border-radius: 9999px;
+  z-index: -1;
+  animation: blink 1.3s linear infinite;
+}

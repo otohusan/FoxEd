@@ -7,6 +7,7 @@ import QuizChoices from "./QuizChoices ";
 import QuizWord from "./QuizWord";
 import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
+import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
 
@@ -26,7 +27,7 @@ function Video() {
   const answer: string = quiz.answer;
 
   // 休憩を入れることに関するコード
-  const breakTimeDuration: number = 1000;
+  const breakTimeDuration: number = 7000;
   const breakTimePerQuiz: number = 7;
   //解かれた問題の数を管理する
   const [solvedQuizzes, setSolvedQuizzes] = useState(0);
@@ -51,7 +52,7 @@ function Video() {
   return (
     <div
       id="videoContainer"
-      // スワイプ機能を割り当ててる
+      // クリック機能を割り当ててる
       onClick={handleClick}
     >
       {/* ここにあるコンポーネントは常に表示される */}
@@ -62,6 +63,10 @@ function Video() {
       >
         {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
       </div>
+
+      {/* 起動した時だけ表示される、クリックできることをお知らせするコンポーネント */}
+      <InformClickable />
+
       {/* 以下のコンポーネントはブレークタイムの時とプレイの時で表示するコンポーネントが変わる */}
       {isComponentsVisible ? (
         <div className="componentsWithPlaying">

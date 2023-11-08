@@ -1,6 +1,13 @@
 import { Video } from "../features/playQuiz";
+import { SetStateAction, Dispatch } from "react";
+// import { Link } from "react-router-dom";
 
-function PlayQuiz() {
+type PlayQuizProps = {
+  // 復習問題を管理する
+  setReviewQuizzes: Dispatch<SetStateAction<number[]>>;
+};
+
+function PlayQuiz({ setReviewQuizzes }: PlayQuizProps) {
   return (
     <div>
       <Video />

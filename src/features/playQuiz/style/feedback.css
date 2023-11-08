@@ -1,6 +1,6 @@
 .feedback-container {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   color: var(--primary-color);
   padding: 20px 40px;
   border-radius: 10%;
