@@ -10,7 +10,7 @@ type PlayQuizProps = {
 function PlayQuiz({ setReviewQuizzes }: PlayQuizProps) {
   return (
     <div>
-      <Video />
+      <Video setReviewQuizzes={setReviewQuizzes} />
     </div>
   );
 }

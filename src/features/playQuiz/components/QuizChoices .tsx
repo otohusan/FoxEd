@@ -11,6 +11,8 @@ interface QuizChoicesProps {
   quizIndex: number;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   setSolvedQuizzes: React.Dispatch<React.SetStateAction<number>>;
+  // 間違った問題の更新
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 function QuizChoices({
@@ -20,6 +22,7 @@ function QuizChoices({
   setSolvedQuizzes,
   quizSize,
   quizIndex,
+  setReviewQuizzes,
 }: QuizChoicesProps) {
   const { FeedbackRef, feedbackFunc } = useFeedback();
   //選択肢かフィードバックのどちらを表示するかを制御するState
@@ -45,6 +48,7 @@ function QuizChoices({
               setWithinAnswer={setWithinAnswer}
               quizSize={quizSize}
               quizIndex={quizIndex}
+              setReviewQuizzes={setReviewQuizzes}
             />
           </div>
         ))}

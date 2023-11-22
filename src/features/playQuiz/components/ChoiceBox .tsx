@@ -12,6 +12,8 @@ interface ChoiceBoxProps {
   setSolvedQuizzes: React.Dispatch<React.SetStateAction<number>>;
   //選択肢を表示するか、フィードバックを表示するかを操作する関数
   setWithinAnswer: React.Dispatch<React.SetStateAction<boolean>>;
+  // 間違った問題の更新
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 function ChoiceBox({
@@ -23,6 +25,7 @@ function ChoiceBox({
   setWithinAnswer,
   quizIndex,
   quizSize,
+  setReviewQuizzes,
 }: ChoiceBoxProps) {
   //何秒、フィードバックを表示するか決める変数
   const timeDuration: number = 1700;
@@ -47,6 +50,10 @@ function ChoiceBox({
 
     //選択肢を隠す
     hideComponentForFixedTime(timeDuration, setWithinAnswer);
+
+    if (answer !== choiceValue) {
+      setReviewQuizzes((prevValues) => [...prevValues, quizIndex]);
+    }
   }
 
   return (

@@ -18,7 +18,12 @@ type Quiz = {
   answer: string;
 };
 
-function Video() {
+type VideoProps = {
+  // 復習問題の管理
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
+};
+
+function Video({ setReviewQuizzes }: VideoProps) {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
   const [QuizIndex, setQuizIndex] = useState(0);
   const quizSize: number = quizzes.length;
@@ -81,6 +86,8 @@ function Video() {
               quizSize={quizSize}
               quizIndex={QuizIndex}
               setSolvedQuizzes={setSolvedQuizzes}
+              // 間違った問題を更新する関数
+              setReviewQuizzes={setReviewQuizzes}
             />
           </div>
           <div>
