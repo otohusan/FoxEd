@@ -6,21 +6,27 @@ import "../style/reviewQuiz.css";
 
 type ReviewQuizProps = {
   reviewQuizzesIndex: number[];
+  setReviewQuizzesIndex: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-function ReviewQuizzes({ reviewQuizzesIndex }: ReviewQuizProps) {
-  //   const deleteRandomQuiz = () => {
-  //     const randomIndex = Math.floor(Math.random() * quizzes.length);
-  //     setQuizzes((prevQuizzes) =>
-  //       prevQuizzes.filter((_, index) => index !== randomIndex)
-  //     );
-  //   };
+function ReviewQuizzes({
+  reviewQuizzesIndex,
+  setReviewQuizzesIndex,
+}: ReviewQuizProps) {
+  // 復習からクイズを削除する関数
+  const deleteReviewQuiz = (quizIndex: number) => {
+    setReviewQuizzesIndex((prevQuizzes) =>
+      prevQuizzes.filter((index) => index !== quizIndex)
+    );
+  };
 
   const ReviewQuizList = reviewQuizzesIndex.map((index) => (
     <ReviewQuiz
       key={index}
+      QuizIndex={index}
       QuizName={quizzes[index].question}
       QuizAnswer={quizzes[index].answer}
+      deleteReviewQuiz={deleteReviewQuiz}
     />
   ));
 

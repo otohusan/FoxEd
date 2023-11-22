@@ -19,7 +19,12 @@ function App() {
 
         <Route
           path="/ReviewQuiz"
-          element={<ReviewQuiz reviewQuizzes={reviewQuizzes} />}
+          element={
+            <ReviewQuiz
+              reviewQuizzes={reviewQuizzes}
+              setReviewQuizzes={setReviewQuizzes}
+            />
+          }
         />
       </Routes>
     </>

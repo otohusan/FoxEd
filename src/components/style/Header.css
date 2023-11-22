@@ -11,6 +11,7 @@
   display: flex; /* Flexboxを有効化 */
   align-items: center; /* 縦方向の中央揃え */
   justify-content: flex-start; /* 水平方向の左端揃え */
+  z-index: 2;
 }
 
 .HeaderTitle {
