@@ -1,0 +1,34 @@
+.ReviewQuizList {
+  /* TODO: なんか上に寄ってるから無理矢理対処、原因の特定必要 */
+  margin-top: 25%;
+}
+
+.ReviewQuizContainer {
+  color: black;
+  margin-bottom: 10%;
+  margin-top: 5%;
+}
+
+.ReviewQuizContent {
+  margin-left: 5%;
+}
+
+.ReviewQuizName {
+  font-family: "DM Serif Text", serif;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+.ReviewQuizAnswer {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: rgb(44, 44, 44);
+  /* margin-left: 15%; */
+}
+
+.ReviewQuizBorder {
+  background-color: rgb(245, 245, 245);
+  width: 100%;
+  height: 2px;
+  margin-top: 10%;
+}

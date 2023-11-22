@@ -1,13 +1,14 @@
 // import { useState } from "react";
 import { quizzes } from "../../../assets/quizzes";
+import { Header } from "../../../components";
+import ReviewQuiz from "./ReviewQuiz";
+import "../style/reviewQuiz.css";
 
 type ReviewQuizProps = {
-  reviewQuizzes1: number[];
+  reviewQuizzesIndex: number[];
 };
 
-function ReviewQuizzes({ reviewQuizzes1 }: ReviewQuizProps) {
-  //   const [quizzes, setQuizzes] = useState<Quiz[]>(reviewQuizzes);
-
+function ReviewQuizzes({ reviewQuizzesIndex }: ReviewQuizProps) {
   //   const deleteRandomQuiz = () => {
   //     const randomIndex = Math.floor(Math.random() * quizzes.length);
   //     setQuizzes((prevQuizzes) =>
@@ -15,14 +16,18 @@ function ReviewQuizzes({ reviewQuizzes1 }: ReviewQuizProps) {
   //     );
   //   };
 
-  const listItem = reviewQuizzes1.map((value) => (
-    <li key={value}> {quizzes[value].answer}</li>
+  const ReviewQuizList = reviewQuizzesIndex.map((index) => (
+    <ReviewQuiz
+      key={index}
+      QuizName={quizzes[index].question}
+      QuizAnswer={quizzes[index].answer}
+    />
   ));
 
   return (
     <div>
-      <ul>{listItem}</ul>
-      {/* <button onClick={deleteRandomQuiz}>Delete Random Quiz</button> */}
+      <Header HeaderTitle="Review" />
+      <div className="ReviewQuizList">{ReviewQuizList}</div>
     </div>
   );
 }
