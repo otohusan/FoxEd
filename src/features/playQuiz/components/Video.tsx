@@ -7,6 +7,7 @@ import QuizChoices from "./QuizChoices ";
 import QuizWord from "./QuizWord";
 import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
+import GoReviewBtn from "./GoReviewBtn";
 import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
@@ -85,6 +86,7 @@ function Video() {
           <div>
             <QuizWord questionWord={questionWord} />
           </div>
+          <GoReviewBtn />
         </div>
       ) : (
         <BreakTime />

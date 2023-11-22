@@ -1,5 +1,5 @@
 // import { useState } from "react";
-// import { reviewQuizzes } from "../../../assets/reviewQuizzes";
+import { reviewQuizzesIndex } from "../../../assets/reviewQuizzes";
 import { quizzes } from "../../../assets/quizzes";
 
 // type Quiz = {
@@ -22,7 +22,7 @@ function ReviewQuizzes({ reviewQuizzes1 }: ReviewQuizProps) {
   //     );
   //   };
 
-  const listItem = reviewQuizzes1.map((value) => (
+  const listItem = reviewQuizzesIndex.map((value) => (
     <li> {quizzes[value].answer}</li>
   ));
 
@@ -37,7 +37,6 @@ function ReviewQuizzes({ reviewQuizzes1 }: ReviewQuizProps) {
         ))} */}
         {listItem}
       </ul>
-      <div>sas</div>
       {/* <button onClick={deleteRandomQuiz}>Delete Random Quiz</button> */}
     </div>
   );
