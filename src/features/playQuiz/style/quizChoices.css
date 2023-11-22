@@ -1,0 +1,16 @@
+.quizChoices {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 5%;
+  z-index: 3;
+}
+
+.choiceBoxBehavior {
+  transition: transform 0.01s;
+}
+
+.choiceBoxBehavior :active {
+  transform: scale(0.95);
+}

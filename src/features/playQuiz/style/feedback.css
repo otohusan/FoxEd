@@ -1,0 +1,17 @@
+.feedback-container {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--primary-color);
+  padding: 20px 40px;
+  border-radius: 10%;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* display: none; */
+  /* line-height: 45px; */
+  z-index: 3;
+}
+
+.feedback-value {
+  color: var(--primary-color);
+}
