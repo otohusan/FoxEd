@@ -21,11 +21,13 @@ type Quiz = {
 type VideoProps = {
   // 復習問題の管理
   setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
+  QuizIndex: number;
+  setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
-function Video({ setReviewQuizzes }: VideoProps) {
+function Video({ setReviewQuizzes, QuizIndex, setQuizIndex }: VideoProps) {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
-  const [QuizIndex, setQuizIndex] = useState(0);
+  // const [QuizIndex, setQuizIndex] = useState(0);
   const quizSize: number = quizzes.length;
   const quiz: Quiz = quizzes[QuizIndex];
   const questionWord: string = quiz.question;

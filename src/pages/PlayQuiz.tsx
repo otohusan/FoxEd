@@ -5,12 +5,22 @@ import { SetStateAction, Dispatch } from "react";
 type PlayQuizProps = {
   // 復習問題を管理する
   setReviewQuizzes: Dispatch<SetStateAction<number[]>>;
+  QuizIndex: number;
+  setQuizIndex: Dispatch<SetStateAction<number>>;
 };
 
-function PlayQuiz({ setReviewQuizzes }: PlayQuizProps) {
+function PlayQuiz({
+  setReviewQuizzes,
+  QuizIndex,
+  setQuizIndex,
+}: PlayQuizProps) {
   return (
     <div>
-      <Video setReviewQuizzes={setReviewQuizzes} />
+      <Video
+        setReviewQuizzes={setReviewQuizzes}
+        QuizIndex={QuizIndex}
+        setQuizIndex={setQuizIndex}
+      />
     </div>
   );
 }

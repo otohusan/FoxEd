@@ -34,6 +34,7 @@ video {
   justify-content: center;
   align-items: center;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 
 .videoBtn {

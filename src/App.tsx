@@ -9,12 +9,20 @@ function App() {
   const [reviewQuizzes, setReviewQuizzes] =
     useState<number[]>(reviewQuizzesIndex);
 
+  const [QuizIndex, setQuizIndex] = useState<number>(0);
+
   return (
     <>
       <Routes>
         <Route
           path="/"
-          element={<PlayQuiz setReviewQuizzes={setReviewQuizzes} />}
+          element={
+            <PlayQuiz
+              setReviewQuizzes={setReviewQuizzes}
+              QuizIndex={QuizIndex}
+              setQuizIndex={setQuizIndex}
+            />
+          }
         />
 
         <Route
