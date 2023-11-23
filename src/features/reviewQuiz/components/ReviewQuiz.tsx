@@ -1,4 +1,5 @@
 import "../style/reviewQuiz.css";
+import { MdOutlineDelete } from "react-icons/md";
 
 type ReviewQuizProps = {
   QuizIndex: number;
@@ -24,7 +25,12 @@ function ReviewQuiz({
             deleteReviewQuiz(QuizIndex);
           }}
         >
-          delete this
+          <MdOutlineDelete
+            size={20}
+            style={{
+              filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2))",
+            }}
+          />
         </div>
       </div>
       <div className="ReviewQuizBorder"></div>

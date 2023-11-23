@@ -51,8 +51,14 @@ function ChoiceBox({
     //選択肢を隠す
     hideComponentForFixedTime(timeDuration, setWithinAnswer);
 
+    // 間違った問題をストック
     if (answer !== choiceValue) {
-      setReviewQuizzes((prevValues) => [...prevValues, quizIndex]);
+      setReviewQuizzes((prevValues) => {
+        // すでに間違ってる場合はそのまま返す
+        if (prevValues.includes(quizIndex)) return [...prevValues];
+        // 付け足して返す
+        return [...prevValues, quizIndex];
+      });
     }
   }
 
