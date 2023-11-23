@@ -1,5 +1,6 @@
 import "../style/goReviewBtn.css";
 import { useNavigate } from "react-router-dom";
+import { GoNote } from "react-icons/go";
 
 function GoReviewBtn(): JSX.Element {
   const navigate = useNavigate();
@@ -10,7 +11,8 @@ function GoReviewBtn(): JSX.Element {
 
   return (
     <div className="playQuiz-GoReviewBtn" onClick={handleClick}>
-      GoReviewBtn
+      <GoNote size={35} />
+      <div className="playQuiz-GoReviewBtnLabel">Review</div>
     </div>
   );
 }

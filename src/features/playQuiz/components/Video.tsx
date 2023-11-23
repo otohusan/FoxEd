@@ -8,7 +8,7 @@ import QuizWord from "./QuizWord";
 import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
 import GoReviewBtn from "./GoReviewBtn";
-import { InformClickable } from "./InformClickable";
+// import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
 
@@ -71,7 +71,7 @@ function Video({ setReviewQuizzes }: VideoProps) {
       </div>
 
       {/* 起動した時だけ表示される、クリックできることをお知らせするコンポーネント */}
-      <InformClickable />
+      {/* <InformClickable /> */}
 
       {/* 以下のコンポーネントはブレークタイムの時とプレイの時で表示するコンポーネントが変わる */}
       {isComponentsVisible ? (

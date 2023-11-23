@@ -1,4 +1,11 @@
 .playQuiz-GoReviewBtn {
   position: absolute;
+  top: 88.3%;
+  left: 13%;
   z-index: 2;
+  text-align: center; /* アイコンとテキストを中央揃えにする */
+}
+
+.playQuiz-GoReviewBtnLabel {
+  font-family: "Noto Sans JP", sans-serif;
 }
