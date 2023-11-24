@@ -1,5 +1,5 @@
 import "./style/Header.css";
-import MenuBar from "./menuBar";
+import { MenuBar } from ".";
 
 function Header({ HeaderTitle }: { HeaderTitle: string }): JSX.Element {
   return (

@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { PlayQuiz, ReviewQuiz } from "./pages";
+import { PlayQuiz, ReviewQuiz, PrepareQuiz } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
 
 function App() {
@@ -34,6 +34,8 @@ function App() {
             />
           }
         />
+
+        <Route path="/PrepareQuiz" element={<PrepareQuiz />} />
       </Routes>
     </>
   );

@@ -72,6 +72,8 @@ function Video({ setReviewQuizzes, QuizIndex, setQuizIndex }: VideoProps) {
         {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
       </div>
 
+      <GoReviewBtn />
+
       {/* 起動した時だけ表示される、クリックできることをお知らせするコンポーネント */}
       {/* <InformClickable /> */}
 
@@ -95,7 +97,6 @@ function Video({ setReviewQuizzes, QuizIndex, setQuizIndex }: VideoProps) {
           <div>
             <QuizWord questionWord={questionWord} />
           </div>
-          <GoReviewBtn />
         </div>
       ) : (
         <BreakTime />
