@@ -1,7 +1,9 @@
+import PrepareQuizzes from "../features/prepareQuiz/components/PrepareQuizzes";
+
 function PrepareQuiz() {
   return (
     <>
-      <div style={{ color: "black" }}>sasas</div>
+      <PrepareQuizzes />
     </>
   );
 }
