@@ -1,12 +1,12 @@
-.playQuiz-GoReviewBtn {
+.playQuiz-GoPrepareBtn {
   position: absolute;
   top: 88.3%;
-  right: 13%;
+  left: 13%;
   z-index: 2;
   text-align: center; /* アイコンとテキストを中央揃えにする */
   cursor: pointer;
 }
 
-.playQuiz-GoReviewBtnLabel {
+.playQuiz-GoPrepareBtnLabel {
   font-family: "Noto Sans JP", sans-serif;
 }

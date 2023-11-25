@@ -8,6 +8,7 @@ import QuizWord from "./QuizWord";
 import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
 import GoReviewBtn from "./GoReviewBtn";
+import GoPrepareBtn from "./GoPrepareBtn";
 // import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
@@ -73,6 +74,7 @@ function Video({ setReviewQuizzes, QuizIndex, setQuizIndex }: VideoProps) {
       </div>
 
       <GoReviewBtn />
+      <GoPrepareBtn />
 
       {/* 起動した時だけ表示される、クリックできることをお知らせするコンポーネント */}
       {/* <InformClickable /> */}
