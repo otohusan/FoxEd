@@ -1,0 +1,23 @@
+.HeaderContainer {
+  position: fixed; /* 固定位置を指定 */
+  top: 0; /* 画面の上端から0の位置に設定 */
+  left: 0; /* 画面の左端から0の位置に設定 */
+  width: 100%;
+  height: 10%;
+  box-shadow: 0px 4px 13px rgba(41, 41, 41, 0.22);
+  border-bottom-left-radius: 6px; /* 左下の角を丸くする */
+  border-bottom-right-radius: 6px;
+  background-color: #ee8625da;
+  display: flex; /* Flexboxを有効化 */
+  align-items: center; /* 縦方向の中央揃え */
+  justify-content: flex-start; /* 水平方向の左端揃え */
+  z-index: 2;
+}
+
+.HeaderTitle {
+  color: var(--primary-color);
+  font-size: 2.2em;
+  margin-left: 0.8em;
+  font-family: "DM Serif Text", serif;
+  font-weight: 700;
+}

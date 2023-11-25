@@ -7,7 +7,9 @@ import QuizChoices from "./QuizChoices ";
 import QuizWord from "./QuizWord";
 import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
-import { InformClickable } from "./InformClickable";
+import GoReviewBtn from "./GoReviewBtn";
+import GoPrepareBtn from "./GoPrepareBtn";
+// import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
 
@@ -17,9 +19,16 @@ type Quiz = {
   answer: string;
 };
 
-function Video() {
+type VideoProps = {
+  // 復習問題の管理
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
+  QuizIndex: number;
+  setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
+};
+
+function Video({ setReviewQuizzes, QuizIndex, setQuizIndex }: VideoProps) {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
-  const [QuizIndex, setQuizIndex] = useState(0);
+  // const [QuizIndex, setQuizIndex] = useState(0);
   const quizSize: number = quizzes.length;
   const quiz: Quiz = quizzes[QuizIndex];
   const questionWord: string = quiz.question;
@@ -64,8 +73,11 @@ function Video() {
         {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
       </div>
 
+      <GoReviewBtn />
+      <GoPrepareBtn />
+
       {/* 起動した時だけ表示される、クリックできることをお知らせするコンポーネント */}
-      <InformClickable />
+      {/* <InformClickable /> */}
 
       {/* 以下のコンポーネントはブレークタイムの時とプレイの時で表示するコンポーネントが変わる */}
       {isComponentsVisible ? (
@@ -80,6 +92,8 @@ function Video() {
               quizSize={quizSize}
               quizIndex={QuizIndex}
               setSolvedQuizzes={setSolvedQuizzes}
+              // 間違った問題を更新する関数
+              setReviewQuizzes={setReviewQuizzes}
             />
           </div>
           <div>

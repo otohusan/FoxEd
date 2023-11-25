@@ -1,44 +1,39 @@
 // import { useState } from "react";
-// import { reviewQuizzes } from "../../../assets/reviewQuizzes";
 import { quizzes } from "../../../assets/quizzes";
-
-// type Quiz = {
-//   question: string;
-//   choices: string[];
-//   answer: string;
-// };
+import { Header } from "../../../components";
+import ReviewQuiz from "./ReviewQuiz";
+import "../style/reviewQuiz.css";
 
 type ReviewQuizProps = {
-  reviewQuizzes1: number[];
+  reviewQuizzesIndex: number[];
+  setReviewQuizzesIndex: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-function ReviewQuizzes({ reviewQuizzes1 }: ReviewQuizProps) {
-  //   const [quizzes, setQuizzes] = useState<Quiz[]>(reviewQuizzes);
+function ReviewQuizzes({
+  reviewQuizzesIndex,
+  setReviewQuizzesIndex,
+}: ReviewQuizProps) {
+  // 復習からクイズを削除する関数
+  const deleteReviewQuiz = (quizIndex: number) => {
+    setReviewQuizzesIndex((prevQuizzes) =>
+      prevQuizzes.filter((index) => index !== quizIndex)
+    );
+  };
 
-  //   const deleteRandomQuiz = () => {
-  //     const randomIndex = Math.floor(Math.random() * quizzes.length);
-  //     setQuizzes((prevQuizzes) =>
-  //       prevQuizzes.filter((_, index) => index !== randomIndex)
-  //     );
-  //   };
-
-  const listItem = reviewQuizzes1.map((value) => (
-    <li> {quizzes[value].answer}</li>
+  const ReviewQuizList = reviewQuizzesIndex.map((index) => (
+    <ReviewQuiz
+      key={index}
+      QuizIndex={index}
+      QuizName={quizzes[index].question}
+      QuizAnswer={quizzes[index].answer}
+      deleteReviewQuiz={deleteReviewQuiz}
+    />
   ));
 
   return (
     <div>
-      <ul>
-        {/* {quizzes.map((item, index) => (
-          <li key={index}>
-            {item.question}
-            {item.answer}
-          </li>
-        ))} */}
-        {listItem}
-      </ul>
-      <div>sas</div>
-      {/* <button onClick={deleteRandomQuiz}>Delete Random Quiz</button> */}
+      <Header HeaderTitle="Review" />
+      <div className="ReviewQuizList">{ReviewQuizList}</div>
     </div>
   );
 }

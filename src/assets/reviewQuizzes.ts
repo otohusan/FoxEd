@@ -1,1 +1,1 @@
-export const reviewQuizzesIndex: number[] = [3, 4, 6, 8];
+export const reviewQuizzesIndex: number[] = [];

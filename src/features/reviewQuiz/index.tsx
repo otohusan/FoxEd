@@ -1,1 +1,1 @@
-export { default as ReviewQuizzes } from "./components/reviewQuizzes";
+export { default as ReviewQuizzes } from "./components/ReviewQuizzes";

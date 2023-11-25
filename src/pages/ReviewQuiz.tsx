@@ -1,14 +1,17 @@
 import { ReviewQuizzes } from "../features/reviewQuiz";
-// import { Link } from "react-router-dom";
 
 type ReviewQuizProps = {
   reviewQuizzes: number[];
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-function ReviewQuiz({ reviewQuizzes }: ReviewQuizProps) {
+function ReviewQuiz({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
   return (
     <>
-      <ReviewQuizzes reviewQuizzes1={reviewQuizzes} />
+      <ReviewQuizzes
+        reviewQuizzesIndex={reviewQuizzes}
+        setReviewQuizzesIndex={setReviewQuizzes}
+      />
     </>
   );
 }

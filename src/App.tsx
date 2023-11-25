@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { PlayQuiz, ReviewQuiz } from "./pages";
+import { PlayQuiz, ReviewQuiz, PrepareQuiz } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
 
 function App() {
@@ -9,18 +9,33 @@ function App() {
   const [reviewQuizzes, setReviewQuizzes] =
     useState<number[]>(reviewQuizzesIndex);
 
+  const [QuizIndex, setQuizIndex] = useState<number>(0);
+
   return (
     <>
       <Routes>
         <Route
           path="/"
-          element={<PlayQuiz setReviewQuizzes={setReviewQuizzes} />}
+          element={
+            <PlayQuiz
+              setReviewQuizzes={setReviewQuizzes}
+              QuizIndex={QuizIndex}
+              setQuizIndex={setQuizIndex}
+            />
+          }
         />
 
         <Route
           path="/ReviewQuiz"
-          element={<ReviewQuiz reviewQuizzes={reviewQuizzes} />}
+          element={
+            <ReviewQuiz
+              reviewQuizzes={reviewQuizzes}
+              setReviewQuizzes={setReviewQuizzes}
+            />
+          }
         />
+
+        <Route path="/PrepareQuiz" element={<PrepareQuiz />} />
       </Routes>
     </>
   );

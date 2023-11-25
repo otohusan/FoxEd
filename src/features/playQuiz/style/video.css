@@ -34,13 +34,15 @@ video {
   justify-content: center;
   align-items: center;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 
 .videoBtn {
   transition: transform 0.01s;
   position: absolute;
   top: 92%;
-  left: 86%;
+  /* left: 86%; */
+  left: 50%;
 }
 
 .videoBtnContainer :active {
