@@ -1,7 +1,7 @@
 .playQuiz-GoReviewBtn {
   position: absolute;
   top: 88.3%;
-  right: 13%;
+  right: 10%;
   z-index: 2;
   text-align: center; /* アイコンとテキストを中央揃えにする */
   cursor: pointer;
