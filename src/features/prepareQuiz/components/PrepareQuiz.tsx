@@ -13,7 +13,7 @@ function PrepareQuiz({ QuizName, QuizAnswer }: PrepareQuizProps) {
         <div className="PrepareQuizName">{QuizName}</div>
         <div className="PrepareQuizAnswer">{QuizAnswer}</div>
         <div className="PrepareQuizSpeakBtn">
-          <SpeakQuizWord questionWord={QuizName} />
+          <SpeakQuizWord questionWord={QuizName} wordBtnSize={40} />
         </div>
       </div>
       <div className="PrepareQuizBorder"></div>

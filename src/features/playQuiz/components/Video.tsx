@@ -9,6 +9,7 @@ import DarkOverlay from "./DarkOverlay";
 import BreakTime from "./BreakTime";
 import GoReviewBtn from "./GoReviewBtn";
 import GoPrepareBtn from "./GoPrepareBtn";
+import DisplayQuizNumber from "./DisplayQuizNumber";
 // import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
@@ -72,6 +73,11 @@ function Video({ setReviewQuizzes, QuizIndex, setQuizIndex }: VideoProps) {
       >
         {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
       </div>
+
+      <DisplayQuizNumber
+        currentQuizNumber={QuizIndex + 1}
+        QuizLength={quizSize}
+      />
 
       <GoReviewBtn />
       <GoPrepareBtn />
