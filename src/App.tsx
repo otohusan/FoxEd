@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { PlayQuiz, ReviewQuiz, PrepareQuiz } from "./pages";
+import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
 import { quizzes } from "./assets/allQuizData";
 
@@ -41,6 +41,8 @@ function App() {
           path="/PrepareQuiz"
           element={<PrepareQuiz quizzes={quizzes} />}
         />
+
+        <Route path="/ChooseQuizData" element={<ChooseQuizData />} />
       </Routes>
     </>
   );
