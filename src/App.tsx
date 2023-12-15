@@ -55,7 +55,9 @@ function App() {
         <Route
           path="/ChooseQuizData"
           // 全てのクイズのデータを渡して、選択させる
-          element={<ChooseQuizData quizzes={allQuizzes} />}
+          element={
+            <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
+          }
         />
       </Routes>
     </>
