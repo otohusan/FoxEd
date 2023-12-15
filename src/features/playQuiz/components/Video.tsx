@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "../style/video.css"; // CSSをインポート
-import { quizzes } from "../../../assets/quizzes";
 import { useVideo, useClickSide } from "../hooks";
 import { StartVideoBtn, StopVideoBtn } from "./VideoBtn";
 import QuizChoices from "./QuizChoices ";
@@ -25,9 +24,15 @@ type VideoProps = {
   setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
   QuizIndex: number;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
+  quizzes: Quiz[];
 };
 
-function Video({ setReviewQuizzes, QuizIndex, setQuizIndex }: VideoProps) {
+function Video({
+  setReviewQuizzes,
+  QuizIndex,
+  setQuizIndex,
+  quizzes,
+}: VideoProps) {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
   // const [QuizIndex, setQuizIndex] = useState(0);
   const quizSize: number = quizzes.length;

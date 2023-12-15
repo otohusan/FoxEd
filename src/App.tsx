@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PlayQuiz, ReviewQuiz, PrepareQuiz } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
+import { quizzes } from "./assets/allQuizData";
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
@@ -21,6 +22,7 @@ function App() {
               setReviewQuizzes={setReviewQuizzes}
               QuizIndex={QuizIndex}
               setQuizIndex={setQuizIndex}
+              quizzes={quizzes}
             />
           }
         />
@@ -35,7 +37,10 @@ function App() {
           }
         />
 
-        <Route path="/PrepareQuiz" element={<PrepareQuiz />} />
+        <Route
+          path="/PrepareQuiz"
+          element={<PrepareQuiz quizzes={quizzes} />}
+        />
       </Routes>
     </>
   );

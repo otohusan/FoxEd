@@ -1,9 +1,18 @@
 import "../style/PrepareQuiz.css";
-import { quizzes } from "../../../assets/quizzes";
 import PrepareQuiz from "./PrepareQuiz";
 import { Header } from "../../../components";
 
-function PrepareQuizzes() {
+type Quiz = {
+  question: string;
+  choices: string[];
+  answer: string;
+};
+
+type PrepareQuizProps = {
+  quizzes: Quiz[];
+};
+
+function PrepareQuizzes({ quizzes }: PrepareQuizProps) {
   const PrepareQuizList = quizzes.map((quiz, index) => (
     <PrepareQuiz
       key={index}
