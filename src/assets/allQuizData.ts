@@ -1,4 +1,4 @@
-import { quizData1 } from "./quizdata1";
+import { quizData1 } from "./quizData1";
 import { quizData2 } from "./quizData2";
 
-export const quizzes = [...quizData1, ...quizData2];
+export const allQuizzes = [...quizData1.body, ...quizData2.body];

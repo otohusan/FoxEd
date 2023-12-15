@@ -3,7 +3,14 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
-import { quizzes } from "./assets/allQuizData";
+import { allQuizzes } from "./assets/allQuizData";
+import { quizData1 } from "./assets/quizData1";
+
+type Quiz = {
+  question: string;
+  choices: string[];
+  answer: string;
+};
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
@@ -11,6 +18,9 @@ function App() {
     useState<number[]>(reviewQuizzesIndex);
 
   const [QuizIndex, setQuizIndex] = useState<number>(0);
+
+  // 利用するクイズのデータを保持
+  const [quizzes, setQuizzes] = useState<Quiz[]>(quizData1.body);
 
   return (
     <>
@@ -42,7 +52,11 @@ function App() {
           element={<PrepareQuiz quizzes={quizzes} />}
         />
 
-        <Route path="/ChooseQuizData" element={<ChooseQuizData />} />
+        <Route
+          path="/ChooseQuizData"
+          // 全てのクイズのデータを渡して、選択させる
+          element={<ChooseQuizData quizzes={allQuizzes} />}
+        />
       </Routes>
     </>
   );
