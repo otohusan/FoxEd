@@ -1,4 +1,15 @@
 import { quizData1 } from "./quizData1";
 import { quizData2 } from "./quizData2";
 
-export const allQuizzes = [...quizData1.body, ...quizData2.body];
+type Quiz = {
+  question: string;
+  choices: string[];
+  answer: string;
+};
+
+type QuizFormat = {
+  label: string;
+  body: Quiz[];
+};
+
+export const allQuizzes: QuizFormat[] = [quizData1, quizData2];

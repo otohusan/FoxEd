@@ -4,15 +4,22 @@ type Quiz = {
   answer: string;
 };
 
+type QuizFormat = {
+  label: string;
+  body: Quiz[];
+};
+
 type ChooseQuizDataProps = {
-  quizzes: Quiz[];
+  quizzes: QuizFormat[];
 };
 
 function ChooseQuizData({ quizzes }: ChooseQuizDataProps) {
   return (
     <div style={{ color: "black" }}>
-      {quizzes.map((quiz) => (
-        <>{quiz.answer}</>
+      {quizzes.map((quizFormat, index) => (
+        <div key={index}>
+          <h2>{quizFormat.label}</h2>
+        </div>
       ))}
     </div>
   );
