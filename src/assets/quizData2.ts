@@ -10,7 +10,7 @@ type QuizFormat = {
 };
 
 export const quizData2: QuizFormat = {
-  label: "ユメタン 360~480",
+  label: "ユメタン 361~480",
   body: [
     {
       question: "Resolve",

@@ -10,7 +10,7 @@ type QuizFormat = {
 };
 
 export const quizData1: QuizFormat = {
-  label: "ユメタン1",
+  label: "ユメタン 181~240",
   body: [
     {
       question: "Civil",

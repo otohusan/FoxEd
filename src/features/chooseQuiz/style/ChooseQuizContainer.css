@@ -1,0 +1,9 @@
+.ChooseQuizContainer {
+  margin-top: 25%;
+  text-align: start;
+  /* border: 2px solid black; */
+}
+
+.ChooseQuizContainerQuestion {
+  display: flex;
+}
