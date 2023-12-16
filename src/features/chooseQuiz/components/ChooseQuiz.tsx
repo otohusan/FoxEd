@@ -34,7 +34,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
   return (
     <div>
       <Header HeaderTitle="Choose" />
-      <div style={{ color: "black", marginTop: "20%" }}>
+      <div style={{ color: "black", marginTop: "25%" }}>
         {quizzes.map((quizFormat, index) => (
           <div
             key={index}

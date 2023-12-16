@@ -26,8 +26,10 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
             {quiz.question}
           </div>
         ))}
+        {/* 続きを示すための... */}
         ...
       </div>
+      <div className="ChooseQuizContainerOpen">開く</div>
     </div>
   );
 }
