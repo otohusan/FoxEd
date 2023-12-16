@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavigateFunction } from "react-router-dom";
+import { Header } from "../components";
 
 type Quiz = {
   question: string;
@@ -16,31 +17,35 @@ type ChooseQuizDataProps = {
   setQuizzes: React.Dispatch<React.SetStateAction<Quiz[]>>;
 };
 
+// データセットを選択すると、その問題がセットされる
 function labelOnClick(
   setQuizzes: React.Dispatch<React.SetStateAction<Quiz[]>>,
-  quizData: Quiz[]
+  quizData: Quiz[],
+  navigate: NavigateFunction
 ) {
-  alert("kuu");
   setQuizzes(quizData);
+  navigate("/PrepareQuiz");
 }
 
 function ChooseQuizData({ quizzes, setQuizzes }: ChooseQuizDataProps) {
   const navigate = useNavigate();
 
   return (
-    <div style={{ color: "black" }}>
-      {quizzes.map((quizFormat, index) => (
-        <div key={index}>
-          <h2
-            onClick={() => {
-              labelOnClick(setQuizzes, quizFormat.body);
-            }}
-          >
-            {quizFormat.label}
-          </h2>
-        </div>
-      ))}
-      <div onClick={() => navigate("/PrepareQuiz")}>単語を覚える 💡</div>
+    <div>
+      <Header HeaderTitle="Choose" />
+      <div style={{ color: "black", margin: "20%" }}>
+        {quizzes.map((quizFormat, index) => (
+          <div key={index}>
+            <h2
+              onClick={() => {
+                labelOnClick(setQuizzes, quizFormat.body, navigate);
+              }}
+            >
+              {quizFormat.label}
+            </h2>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
