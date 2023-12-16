@@ -12,6 +12,22 @@
   align-items: center; /* 縦方向の中央揃え */
   justify-content: flex-start; /* 水平方向の左端揃え */
   z-index: 2;
+
+  /* ここから試し */
+  width: 94%;
+  margin-left: 3%;
+  margin-top: 2%;
+  height: 7vh;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px rgba(41, 41, 41, 0.32);
+}
+
+.HeaderContainer {
+  transition: transform 0.3s ease;
+}
+
+.HeaderContainer.hidden {
+  transform: translateY(-130%);
 }
 
 .HeaderTitle {
@@ -20,4 +36,7 @@
   margin-left: 0.8em;
   font-family: "DM Serif Text", serif;
   font-weight: 700;
+
+  /* ここから試し */
+  font-size: 1.5em;
 }

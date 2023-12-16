@@ -25,7 +25,8 @@ function MenuBar() {
     <div>
       <div onClick={toggleMenu} className="MenuBar">
         <RiMenu2Fill
-          size={"2em"}
+          //   size={"2em"}
+          size={"1.5em"}
           style={{
             filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2))",
           }}
