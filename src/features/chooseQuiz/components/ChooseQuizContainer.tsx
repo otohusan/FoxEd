@@ -18,12 +18,15 @@ type ChooseQuizContainerProps = {
 function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
   return (
     <div className="ChooseQuizContainer">
-      <div>{quizFormat.label}</div>
+      <div className="ChooseQuizLabel">{quizFormat.label}</div>
       {/* 一覧の時に表示する単語を限定 */}
-      <div className="ChooseQuizContainerQuestion">
+      <div className="ChooseQuizContainerQuestions">
         {quizFormat.body.slice(0, 4).map((quiz) => (
-          <div key={quiz.question}>{quiz.question}</div>
+          <div key={quiz.question} className="ChooseQuizContainerQuestion">
+            {quiz.question}
+          </div>
         ))}
+        ...
       </div>
     </div>
   );
