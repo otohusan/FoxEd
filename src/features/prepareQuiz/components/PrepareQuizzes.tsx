@@ -1,5 +1,6 @@
 import "../style/PrepareQuiz.css";
 import PrepareQuiz from "./PrepareQuiz";
+import FootPrint from "./FootPrint";
 import { Header } from "../../../components";
 
 type Quiz = {
@@ -24,6 +25,7 @@ function PrepareQuizzes({ quizzes }: PrepareQuizProps) {
   return (
     <div>
       <Header HeaderTitle="Prepare" />
+      <FootPrint />
       <div className="PrepareQuizList">{PrepareQuizList}</div>
     </div>
   );
