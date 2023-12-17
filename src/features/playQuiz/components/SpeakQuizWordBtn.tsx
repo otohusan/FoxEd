@@ -12,7 +12,7 @@ function SpeakQuizWord(props: { questionWord: string; wordBtnSize: number }) {
         size={props.wordBtnSize}
         style={{
           filter:
-            "drop-shadow(1px 1.5px 0px #f09038) drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5))",
+            "drop-shadow(1px 1.5px 0px #f09038) drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3))",
         }}
       />
     </div>
