@@ -28,7 +28,7 @@
 }
 
 .HeaderContainer.hidden {
-  transform: translateY(-130%);
+  transform: translateY(-135%);
 }
 
 .HeaderTitle {
