@@ -3,6 +3,9 @@
   top: 30%;
   right: 8%;
   cursor: pointer;
+
+  /* ここから試し */
+  right: 6%;
 }
 
 .MenuContainer {

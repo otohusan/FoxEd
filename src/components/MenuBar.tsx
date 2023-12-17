@@ -25,7 +25,8 @@ function MenuBar() {
     <div>
       <div onClick={toggleMenu} className="MenuBar">
         <RiMenu2Fill
-          size={"2em"}
+          //   size={"2em"}
+          size={"1.5em"}
           style={{
             filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2))",
           }}
@@ -37,6 +38,9 @@ function MenuBar() {
             <div onClick={() => navigate("/")}>クイズをプレイ ⭕️❌</div>
             <div onClick={() => navigate("/PrepareQuiz")}>単語を覚える 💡</div>
             <div onClick={() => navigate("/ReviewQuiz")}>単語を復習 📝</div>
+            <div onClick={() => navigate("/ChooseQuizData")}>
+              単語データを選択 🔍
+            </div>
             <div onClick={toggleMenu}>メニューを閉じる</div>
           </div>
         </div>

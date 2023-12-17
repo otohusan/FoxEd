@@ -1,9 +1,19 @@
 import PrepareQuizzes from "../features/prepareQuiz/components/PrepareQuizzes";
 
-function PrepareQuiz() {
+type Quiz = {
+  question: string;
+  choices: string[];
+  answer: string;
+};
+
+type PrepareQuizProps = {
+  quizzes: Quiz[];
+};
+
+function PrepareQuiz({ quizzes }: PrepareQuizProps) {
   return (
     <>
-      <PrepareQuizzes />
+      <PrepareQuizzes quizzes={quizzes} />
     </>
   );
 }
