@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./style/MenuBar.css";
 import { RiMenu2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -6,12 +6,27 @@ import { useNavigate } from "react-router-dom";
 function MenuBar() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const navigate = useNavigate();
+  // メニューが開いているときはスクロールを無効にし、閉じているときは有効にする
+  useEffect(() => {
+    if (isOpen) {
+      // スクロールを無効にする
+      document.body.style.overflow = "hidden";
+    } else {
+      // スクロールを有効にする
+      document.body.style.overflow = "visible";
+    }
+
+    // コンポーネントのアンマウント時にスクロールを有効に戻す
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, [isOpen]);
 
   // メニューではない部分がクリックされたらメニューを閉じる
   function handleClickOutside(event: MouseEvent) {
