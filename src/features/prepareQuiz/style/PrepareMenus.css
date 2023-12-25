@@ -1,11 +1,11 @@
 .PrepareMenus {
   color: #949494;
   position: absolute;
-  top: 100%;
+  top: 110%;
   right: 3%;
   display: flex;
   justify-content: space-around;
-  width: 20vw;
+  width: 28vw;
 }
 
 .PrepareMenus > div {
@@ -14,4 +14,5 @@
 
 .PrepareQuizPlayBtn {
   color: #adadad;
+  margin-left: 1vw;
 }
