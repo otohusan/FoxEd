@@ -8,13 +8,10 @@
   width: 20vw;
 }
 
-.PrepareQuizMenu {
-  /* 中心に合わせるために無理やり */
+.PrepareMenus > div {
   cursor: pointer;
-  margin-top: -0.5em;
-  font-size: 4vw;
 }
 
-.PrepareQuizSpeakBtn {
-  cursor: pointer;
+.PrepareQuizPlayBtn {
+  color: #adadad;
 }
