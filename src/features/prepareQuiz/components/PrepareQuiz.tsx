@@ -1,4 +1,5 @@
 import "../style/PrepareQuiz.css";
+import "../style/PrepareMenus.css";
 import SpeakWordBtn from "./SpeakWordBtn";
 
 type PrepareQuizProps = {
@@ -12,8 +13,11 @@ function PrepareQuiz({ QuizName, QuizAnswer }: PrepareQuizProps) {
       <div className="PrepareQuizContent">
         <div className="PrepareQuizName">{QuizName}</div>
         <div className="PrepareQuizAnswer">{QuizAnswer}</div>
-        <div className="PrepareQuizSpeakBtn">
-          <SpeakWordBtn questionWord={QuizName} />
+        <div className="PrepareMenus">
+          <div className="PrepareQuizSpeakBtn">
+            <SpeakWordBtn questionWord={QuizName} />
+          </div>
+          <div className="PrepareQuizMenu">...</div>
         </div>
       </div>
       <div className="PrepareQuizBorder"></div>

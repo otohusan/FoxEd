@@ -1,0 +1,15 @@
+.PrepareMenus {
+  color: #949494;
+  position: absolute;
+  top: 100%;
+  right: 3%;
+  display: flex;
+  justify-content: space-around;
+  width: 20vw;
+}
+
+.PrepareQuizMenu {
+  /* 中心に合わせるために無理やり */
+  margin-top: -0.5em;
+  font-size: 4vw;
+}
