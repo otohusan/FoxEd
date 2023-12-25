@@ -1,6 +1,6 @@
 import "../style/PrepareMenus.css";
 import SpeakWordBtn from "./SpeakWordBtn";
-import { FaPlay } from "react-icons/fa6";
+import { PiPlayBold } from "react-icons/pi";
 import { MdIosShare } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
           text: "歩きながらも使える英単語帳",
           url: window.location.href,
         })
-        .catch((error) => console.log("シェアに失敗しました", error));
+        .catch(() => alert("エラーが発生"));
     } else {
       alert("このブラウザではシェアを利用できません。");
     }
@@ -34,7 +34,7 @@ function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
       </div>
       <div className="PrepareQuizPlayBtn" onClick={() => navigate("/")}>
         {/* 大きさ整えるためにサイズ指定している */}
-        <FaPlay size={iconSize} />
+        <PiPlayBold size={iconSize} />
       </div>
       <div>
         <MdIosShare size={iconSize} onClick={handleShare} />
