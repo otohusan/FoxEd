@@ -10,7 +10,23 @@ type PrepareQuizMenuProps = {
 
 function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
   const navigate = useNavigate();
-  const iconSize: string = "3vw";
+  const iconSize: string = "22px";
+
+  // share機能
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "FoxEd",
+          text: "歩きながらも使える英単語帳",
+          url: window.location.href,
+        })
+        .catch((error) => console.log("シェアに失敗しました", error));
+    } else {
+      alert("このブラウザではシェアを利用できません。");
+    }
+  };
+
   return (
     <div className="PrepareMenus">
       <div className="PrepareQuizSpeakBtn">
@@ -21,7 +37,7 @@ function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
         <FaPlay size={iconSize} />
       </div>
       <div>
-        <MdIosShare size={iconSize} />
+        <MdIosShare size={iconSize} onClick={handleShare} />
       </div>
     </div>
   );
