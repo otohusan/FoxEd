@@ -15,13 +15,11 @@ function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
   // share機能
   const handleShare = () => {
     if (navigator.share) {
-      navigator
-        .share({
-          title: "FoxEd",
-          text: "歩きながらも使える英単語帳",
-          url: window.location.href,
-        })
-        .catch(() => alert("エラーが発生"));
+      navigator.share({
+        title: "FoxEd",
+        text: "歩きながらも使える英単語帳",
+        url: window.location.href,
+      });
     } else {
       alert("このブラウザではシェアを利用できません。");
     }
