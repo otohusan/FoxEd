@@ -1,7 +1,7 @@
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Header } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
-import BacPic from "../../../assets/BacPic.png";
+// import BacPic from "../../../assets/BacPic.png";
 import "../style/WalkGirl.css";
 
 type Quiz = {
@@ -36,7 +36,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
   return (
     <div>
       <Header HeaderTitle="Choose" />
-      <img src={BacPic} className="WalkGirl" />
+      {/* <img src={BacPic} className="WalkGirl" /> */}
       <div style={{ color: "black", marginTop: "25%" }}>
         {quizzes.map((quizFormat, index) => (
           <div

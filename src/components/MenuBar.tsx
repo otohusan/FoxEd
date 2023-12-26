@@ -50,12 +50,12 @@ function MenuBar() {
       {isOpen && (
         <div className="MenuContainer">
           <div className="MenuContent" ref={menuRef}>
-            <div onClick={() => navigate("/")}>クイズをプレイ ⭕️❌</div>
-            <div onClick={() => navigate("/PrepareQuiz")}>単語を覚える 💡</div>
-            <div onClick={() => navigate("/ReviewQuiz")}>単語を復習 📝</div>
             <div onClick={() => navigate("/ChooseQuizData")}>
               単語データを選択 🔍
             </div>
+            <div onClick={() => navigate("/")}>クイズをプレイ ⭕️❌</div>
+            <div onClick={() => navigate("/PrepareQuiz")}>単語を覚える 💡</div>
+            <div onClick={() => navigate("/ReviewQuiz")}>単語を復習 📝</div>
             <div onClick={toggleMenu}>メニューを閉じる</div>
           </div>
         </div>
