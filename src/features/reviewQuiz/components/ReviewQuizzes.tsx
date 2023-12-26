@@ -3,6 +3,7 @@ import { quizzes } from "../../../assets/quizzes";
 import { Header } from "../../../components";
 import ReviewQuiz from "./ReviewQuiz";
 import "../style/reviewQuiz.css";
+import { useNavigate } from "react-router-dom";
 
 type ReviewQuizProps = {
   reviewQuizzesIndex: number[];
@@ -20,6 +21,8 @@ function ReviewQuizzes({
     );
   };
 
+  const navigate = useNavigate();
+
   const ReviewQuizList = reviewQuizzesIndex.map((index) => (
     <ReviewQuiz
       key={index}
@@ -34,6 +37,14 @@ function ReviewQuizzes({
     <div>
       <Header HeaderTitle="Review" />
       <div className="ReviewQuizList">{ReviewQuizList}</div>
+      <div
+        onClick={() => {
+          navigate("/");
+        }}
+        className="ReviewQuizBackQuizBtn"
+      >
+        クイズに戻る
+      </div>
     </div>
   );
 }
