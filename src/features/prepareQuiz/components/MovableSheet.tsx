@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../style/MovableSheet.css";
 
 function MovableSheet() {
   const [isDragging, setIsDragging] = useState(false);
@@ -6,50 +7,91 @@ function MovableSheet() {
   const [relPosition, setRelPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e: { pageX: number; pageY: number }) => {
+    const handleMove = (e: MouseEvent | TouchEvent) => {
       if (!isDragging) return;
+
+      let pageX, pageY;
+
+      if ("touches" in e) {
+        // タッチイベント
+        pageX = e.touches[0].pageX;
+        pageY = e.touches[0].pageY;
+      } else {
+        // マウスイベント
+        pageX = (e as MouseEvent).pageX;
+        pageY = (e as MouseEvent).pageY;
+      }
+
       setPosition({
-        x: e.pageX - relPosition.x,
-        y: e.pageY - relPosition.y,
+        x: pageX - relPosition.x,
+        y: pageY - relPosition.y,
       });
     };
 
-    const handleMouseUp = () => {
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDragging) {
+        e.preventDefault(); // ドラッグ中のスクロールを防止
+        const touch = e.touches[0];
+        setPosition({
+          x: touch.pageX - relPosition.x,
+          y: touch.pageY - relPosition.y,
+        });
+      }
+    };
+
+    const handleUp = () => {
       setIsDragging(false);
     };
 
     if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("mousemove", handleMove);
+      document.addEventListener("mouseup", handleUp);
+      document.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+      document.addEventListener("touchend", handleUp);
     }
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseup", handleUp);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleUp);
     };
   }, [isDragging, relPosition]);
 
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault(); // デフォルトのブラウザの動作を無効にする
+  const startDrag = (pageX: number, pageY: number) => {
     setIsDragging(true);
     setRelPosition({
-      x: e.pageX - position.x,
-      y: e.pageY - position.y,
+      x: pageX - position.x,
+      y: pageY - position.y,
     });
+  };
+
+  const onMouseDown = (e: {
+    preventDefault: () => void;
+    pageX: number;
+    pageY: number;
+  }) => {
+    e.preventDefault(); // デフォルトのブラウザの動作を無効にする
+    startDrag(e.pageX, e.pageY);
+  };
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    startDrag(touch.pageX, touch.pageY);
   };
 
   return (
     <div
       onMouseDown={onMouseDown}
+      onTouchStart={onTouchStart}
       style={{
-        position: "absolute",
         left: `${position.x}px`,
         top: `${position.y}px`,
-        width: "100px",
-        height: "100px",
-        backgroundColor: "blue",
         cursor: isDragging ? "grabbing" : "grab",
       }}
+      className="MovableSheet"
     />
   );
 }

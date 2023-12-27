@@ -25,7 +25,8 @@
 .PrepareQuizAnswer {
   font-size: 1.4em;
   font-weight: 600;
-  color: rgb(44, 44, 44);
+  /* color: rgb(44, 44, 44); */
+  color: #ffd6c0cb;
   margin-left: 0.5%;
 }
 

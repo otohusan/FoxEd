@@ -1,0 +1,7 @@
+.MovableSheet {
+  position: fixed;
+  background-color: #ff5e00d5;
+  border-radius: 10px;
+  width: 45%;
+  height: 60vh;
+}
