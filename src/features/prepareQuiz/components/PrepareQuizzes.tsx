@@ -2,6 +2,7 @@ import "../style/PrepareQuiz.css";
 import PrepareQuiz from "./PrepareQuiz";
 // import FootPrint from "./FootPrint";
 import { Header } from "../../../components";
+import MovableSheet from "./MovableSheet";
 
 type Quiz = {
   question: string;
@@ -28,6 +29,7 @@ function PrepareQuizzes({ quizzes }: PrepareQuizProps) {
 
       {/* <FootPrint /> */}
       <div className="PrepareQuizList">{PrepareQuizList}</div>
+      <MovableSheet />
     </div>
   );
 }
