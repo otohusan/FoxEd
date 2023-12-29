@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
-import { quizData1 } from "./assets/quizData1";
+import { quizData2 } from "./assets/quizData2";
 
 type Quiz = {
   question: string;
@@ -20,7 +20,7 @@ function App() {
   const [QuizIndex, setQuizIndex] = useState<number>(0);
 
   // 利用するクイズのデータを保持
-  const [quizzes, setQuizzes] = useState<Quiz[]>(quizData1.body);
+  const [quizzes, setQuizzes] = useState<Quiz[]>(quizData2.body);
 
   return (
     <>

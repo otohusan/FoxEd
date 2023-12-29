@@ -1,4 +1,5 @@
 import "../style/ChooseQuizContainer.css";
+import { MdArrowOutward } from "react-icons/md";
 
 type Quiz = {
   question: string;
@@ -31,7 +32,12 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
           ...
         </div>
       </div>
-      <div className="ChooseQuizContainerOpen">開く</div>
+      <div className="ChooseQuizContainerOpen">
+        <div>Choose This Data</div>
+        <div className="ChooseQuizContainerOpenMark">
+          <MdArrowOutward />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,38 @@
 .MovableSheet {
   position: fixed;
-  background-color: #ff5e00d5;
+  background-color: #ff5e00ce;
   border-radius: 10px;
-  width: 45%;
+  width: 48%;
   height: 60vh;
+  box-shadow: 0px 0px 3px 0px #ff5e00a1;
+}
+
+.MovableSheetCloseBtn {
+  text-align: start;
+  margin-left: 4%;
+  margin-top: 3%;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #f25900;
+}
+
+.MovableSheetWithClose {
+  position: fixed;
+  top: 20vh;
+  right: 0%;
+  width: 15%;
+  height: 5vh;
+  background-color: #ff8d23;
+  border-radius: 10px 0px 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.MovableSheetOpenBtn {
+  cursor: pointer;
+  color: #ffffffe9;
+  position: absolute;
+  top: 55%;
+  left: 10%;
+  transform: translate(0, -50%);
 }

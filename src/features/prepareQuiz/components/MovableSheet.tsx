@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import "../style/MovableSheet.css";
+import { CiCircleMinus } from "react-icons/ci";
+import { FaPlus } from "react-icons/fa6";
 
 function MovableSheet() {
   const [isDragging, setIsDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isOpening, setIsOpening] = useState(true);
+  const [position, setPosition] = useState({ x: 30, y: 100 });
   const [relPosition, setRelPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -78,11 +81,12 @@ function MovableSheet() {
   };
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.preventDefault(); // デフォルトのブラウザの動作を無効にする
     const touch = e.touches[0];
     startDrag(touch.pageX, touch.pageY);
   };
 
-  return (
+  return isOpening ? (
     <div
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
@@ -92,7 +96,27 @@ function MovableSheet() {
         cursor: isDragging ? "grabbing" : "grab",
       }}
       className="MovableSheet"
-    />
+    >
+      <div
+        className="MovableSheetCloseBtn"
+        onClick={() => {
+          setIsOpening(false);
+        }}
+      >
+        <CiCircleMinus />
+      </div>
+    </div>
+  ) : (
+    <div className="MovableSheetWithClose">
+      <div
+        className="MovableSheetOpenBtn"
+        onClick={() => {
+          setIsOpening(true);
+        }}
+      >
+        <FaPlus />
+      </div>
+    </div>
   );
 }
 
