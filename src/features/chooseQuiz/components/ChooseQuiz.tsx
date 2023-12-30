@@ -37,7 +37,8 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
     <div>
       <Header HeaderTitle="Choose" />
       {/* <img src={BacPic} className="WalkGirl" /> */}
-      <div style={{ color: "black", marginTop: "25%" }}>
+      <div className="ChooseQuizListTitle">単語データリスト</div>
+      <div style={{ marginTop: "5%" }}>
         {quizzes.map((quizFormat, index) => (
           <div
             key={index}
