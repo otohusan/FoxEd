@@ -17,13 +17,13 @@ type QuizFormat = {
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
-  setQuizzes: React.Dispatch<React.SetStateAction<Quiz[]>>;
+  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>;
 };
 
 // データセットを選択すると、その問題がセットされる
 function labelOnClick(
-  setQuizzes: React.Dispatch<React.SetStateAction<Quiz[]>>,
-  quizData: Quiz[],
+  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>,
+  quizData: QuizFormat,
   navigate: NavigateFunction
 ) {
   setQuizzes(quizData);
@@ -43,7 +43,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
           <div
             key={index}
             onClick={() => {
-              labelOnClick(setQuizzes, quizFormat.body, navigate);
+              labelOnClick(setQuizzes, quizFormat, navigate);
             }}
           >
             <ChooseQuizContainer quizFormat={quizFormat} />

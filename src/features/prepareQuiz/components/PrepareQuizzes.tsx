@@ -3,6 +3,8 @@ import PrepareQuiz from "./PrepareQuiz";
 // import FootPrint from "./FootPrint";
 import { Header } from "../../../components";
 import MovableSheet from "./MovableSheet";
+import { CgArrowsExchange } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 type Quiz = {
   question: string;
@@ -12,9 +14,11 @@ type Quiz = {
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
+  quizLabel: string;
 };
 
-function PrepareQuizzes({ quizzes }: PrepareQuizProps) {
+function PrepareQuizzes({ quizzes, quizLabel }: PrepareQuizProps) {
+  const navigate = useNavigate();
   const PrepareQuizList = quizzes.map((quiz, index) => (
     <PrepareQuiz
       key={index}
@@ -26,6 +30,17 @@ function PrepareQuizzes({ quizzes }: PrepareQuizProps) {
   return (
     <div>
       <Header HeaderTitle="Prepare" />
+      <div
+        className="PrepareQuizBackToChooseBtnAndLabel"
+        onClick={() => {
+          navigate("/ChooseQuizData");
+        }}
+      >
+        <div className="PrepareQuizBackToChooseBtn">
+          <CgArrowsExchange size={"1.5em"} />
+        </div>
+        <div className="PrepareQuizLabel">{quizLabel}</div>
+      </div>
 
       {/* <FootPrint /> */}
       <div className="PrepareQuizList">{PrepareQuizList}</div>

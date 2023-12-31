@@ -12,6 +12,11 @@ type Quiz = {
   answer: string;
 };
 
+type QuizFormat = {
+  label: string;
+  body: Quiz[];
+};
+
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
   const [reviewQuizzes, setReviewQuizzes] =
@@ -20,7 +25,7 @@ function App() {
   const [QuizIndex, setQuizIndex] = useState<number>(0);
 
   // 利用するクイズのデータを保持
-  const [quizzes, setQuizzes] = useState<Quiz[]>(quizData2.body);
+  const [quizzes, setQuizzes] = useState<QuizFormat>(quizData2);
 
   return (
     <>
@@ -32,7 +37,7 @@ function App() {
               setReviewQuizzes={setReviewQuizzes}
               QuizIndex={QuizIndex}
               setQuizIndex={setQuizIndex}
-              quizzes={quizzes}
+              quizzes={quizzes.body}
             />
           }
         />
@@ -49,7 +54,9 @@ function App() {
 
         <Route
           path="/PrepareQuiz"
-          element={<PrepareQuiz quizzes={quizzes} />}
+          element={
+            <PrepareQuiz quizzes={quizzes.body} quizLabel={quizzes.label} />
+          }
         />
 
         <Route

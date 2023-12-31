@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 function MovableSheet() {
   const [isDragging, setIsDragging] = useState(false);
   const [isOpening, setIsOpening] = useState(true);
-  const [position, setPosition] = useState({ x: 30, y: 100 });
+  const [position, setPosition] = useState({ x: 30, y: 200 });
   const [relPosition, setRelPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
