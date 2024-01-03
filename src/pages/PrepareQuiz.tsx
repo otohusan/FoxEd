@@ -8,12 +8,13 @@ type Quiz = {
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
+  quizLabel: string;
 };
 
-function PrepareQuiz({ quizzes }: PrepareQuizProps) {
+function PrepareQuiz({ quizzes, quizLabel }: PrepareQuizProps) {
   return (
     <>
-      <PrepareQuizzes quizzes={quizzes} />
+      <PrepareQuizzes quizzes={quizzes} quizLabel={quizLabel} />
     </>
   );
 }

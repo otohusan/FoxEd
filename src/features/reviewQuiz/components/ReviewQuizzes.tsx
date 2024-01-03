@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import { quizzes } from "../../../assets/quizzes";
-import { Header } from "../../../components";
+import { Header, Footer } from "../../../components";
 import ReviewQuiz from "./ReviewQuiz";
 import "../style/reviewQuiz.css";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,6 @@ function ReviewQuizzes({
   return (
     <div>
       <Header HeaderTitle="Review" />
-      <div className="ReviewQuizList">{ReviewQuizList}</div>
       <div
         onClick={() => {
           navigate("/");
@@ -45,6 +44,8 @@ function ReviewQuizzes({
       >
         クイズに戻る
       </div>
+      <div className="ReviewQuizList">{ReviewQuizList}</div>
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,35 @@
+.Footer {
+  color: rgb(255, 255, 255);
+  background-color: #f39b49;
+  border-radius: 3px;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  margin-top: 25%;
+  box-shadow: 0px 0px 4px rgba(41, 41, 41, 0.32);
+}
+
+.FooterContent {
+  text-align: start;
+}
+
+.FooterContent > div {
+  cursor: pointer;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  font-size: 1em;
+  display: block;
+}
+
+.FooterContent > p {
+  cursor: pointer;
+  margin-bottom: 6%;
+  margin-left: 5%;
+  font-size: 1.1em;
+  -webkit-text-stroke: 0.5px #ffffff;
+}
+
+.FooterCopyright {
+  margin-top: 20%;
+  text-align: center;
+  font-size: 1em;
+}

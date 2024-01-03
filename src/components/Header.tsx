@@ -27,7 +27,7 @@ function Header({ HeaderTitle }: { HeaderTitle: string }): JSX.Element {
 
   return (
     <div className={`HeaderContainer ${!isVisible ? "hidden" : ""}`}>
-      <div className="HeaderTitle">{HeaderTitle}</div>
+      <div className="HeaderTitle">{HeaderTitle} </div>
       <MenuBar />
     </div>
   );

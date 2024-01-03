@@ -13,7 +13,7 @@ type QuizFormat = {
 
 type ChooseQuizDataProps = {
   quizzes: QuizFormat[];
-  setQuizzes: React.Dispatch<React.SetStateAction<Quiz[]>>;
+  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>;
 };
 
 function ChooseQuizData({ quizzes, setQuizzes }: ChooseQuizDataProps) {

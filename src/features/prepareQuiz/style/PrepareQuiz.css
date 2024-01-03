@@ -1,6 +1,6 @@
 .PrepareQuizList {
   /* TODO: なんか上に寄ってるから無理矢理対処、原因の特定必要 */
-  margin-top: 25%;
+  /* margin-top: 25%; */
   text-align: start;
 }
 
@@ -25,15 +25,9 @@
 .PrepareQuizAnswer {
   font-size: 1.4em;
   font-weight: 600;
-  color: rgb(44, 44, 44);
+  /* color: rgb(44, 44, 44); */
+  color: #ffd6c0cb;
   margin-left: 0.5%;
-}
-
-.PrepareQuizDeleteBtn {
-  position: absolute;
-  cursor: pointer;
-  top: 110%;
-  right: 5%;
 }
 
 .PrepareQuizBorder {
@@ -41,4 +35,23 @@
   width: 100%;
   height: 2px;
   margin-top: 13%;
+}
+
+.PrepareQuizBackToChooseBtnAndLabel {
+  display: flex;
+  margin-top: 23%;
+  margin-bottom: 7%;
+  margin-left: 3%;
+  color: #717171;
+  cursor: pointer;
+}
+
+.PrepareQuizBackToChooseBtn {
+  text-align: start;
+  margin-right: 1%;
+}
+
+.PrepareQuizLabel {
+  font-size: 1em;
+  -webkit-text-stroke: 0.5px #717171;
 }
