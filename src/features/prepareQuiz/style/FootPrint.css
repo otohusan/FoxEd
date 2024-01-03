@@ -1,0 +1,42 @@
+.FootPrint1 {
+  position: fixed;
+  bottom: 0%;
+  right: 50%;
+  transform: rotate(20deg);
+}
+.FootPrint2 {
+  position: fixed;
+  bottom: 10%;
+  right: 35%;
+  transform: rotate(15deg);
+}
+.FootPrint3 {
+  position: fixed;
+  bottom: 20%;
+  right: 40%;
+  transform: rotate(20deg);
+}
+.FootPrint4 {
+  position: fixed;
+  bottom: 30%;
+  right: 30%;
+  transform: rotate(10deg);
+}
+.FootPrint5 {
+  position: fixed;
+  bottom: 42%;
+  right: 35%;
+  transform: rotate(15deg);
+}
+.FootPrint6 {
+  position: fixed;
+  bottom: 55%;
+  right: 25%;
+  transform: rotate(3deg);
+}
+.FootPrint7 {
+  position: fixed;
+  bottom: 68%;
+  right: 32%;
+  transform: rotate(3deg);
+}

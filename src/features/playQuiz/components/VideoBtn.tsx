@@ -1,4 +1,4 @@
-import { HiMiniVideoCamera } from "react-icons/hi2";
+import { IoFootstepsSharp } from "react-icons/io5";
 import { HiMiniVideoCameraSlash } from "react-icons/hi2";
 
 const videoIconStyle = {
@@ -11,7 +11,7 @@ const videoIconStyle = {
 export const StartVideoBtn = () => {
   return (
     <div className="videoBtnContainer">
-      <HiMiniVideoCamera {...videoIconStyle} />
+      <IoFootstepsSharp {...videoIconStyle} />
     </div>
   );
 };

@@ -1,0 +1,9 @@
+.WalkGirl {
+  position: fixed;
+  top: 60vh;
+  left: 50%;
+  width: 100%;
+  height: 95vh;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}

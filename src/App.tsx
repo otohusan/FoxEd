@@ -4,12 +4,17 @@ import { Routes, Route } from "react-router-dom";
 import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
-import { quizData1 } from "./assets/quizData1";
+import { quizData2 } from "./assets/quizData2";
 
 type Quiz = {
   question: string;
   choices: string[];
   answer: string;
+};
+
+type QuizFormat = {
+  label: string;
+  body: Quiz[];
 };
 
 function App() {
@@ -20,7 +25,7 @@ function App() {
   const [QuizIndex, setQuizIndex] = useState<number>(0);
 
   // 利用するクイズのデータを保持
-  const [quizzes, setQuizzes] = useState<Quiz[]>(quizData1.body);
+  const [quizzes, setQuizzes] = useState<QuizFormat>(quizData2);
 
   return (
     <>
@@ -32,7 +37,7 @@ function App() {
               setReviewQuizzes={setReviewQuizzes}
               QuizIndex={QuizIndex}
               setQuizIndex={setQuizIndex}
-              quizzes={quizzes}
+              quizzes={quizzes.body}
             />
           }
         />
@@ -49,7 +54,9 @@ function App() {
 
         <Route
           path="/PrepareQuiz"
-          element={<PrepareQuiz quizzes={quizzes} />}
+          element={
+            <PrepareQuiz quizzes={quizzes.body} quizLabel={quizzes.label} />
+          }
         />
 
         <Route

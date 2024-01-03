@@ -1,5 +1,5 @@
 import "../style/PrepareQuiz.css";
-import SpeakQuizWord from "../../playQuiz/components/SpeakQuizWordBtn";
+import PrepareQuizMenu from "./PrepareQuizMenu";
 
 type PrepareQuizProps = {
   QuizName: string;
@@ -12,9 +12,7 @@ function PrepareQuiz({ QuizName, QuizAnswer }: PrepareQuizProps) {
       <div className="PrepareQuizContent">
         <div className="PrepareQuizName">{QuizName}</div>
         <div className="PrepareQuizAnswer">{QuizAnswer}</div>
-        <div className="PrepareQuizSpeakBtn">
-          <SpeakQuizWord questionWord={QuizName} wordBtnSize={40} />
-        </div>
+        <PrepareQuizMenu QuizName={QuizName} />
       </div>
       <div className="PrepareQuizBorder"></div>
     </div>

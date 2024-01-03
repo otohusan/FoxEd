@@ -12,7 +12,7 @@ function Header({ HeaderTitle }: { HeaderTitle: string }): JSX.Element {
       const currentScrollY = window.scrollY;
 
       if (Math.abs(currentScrollY - lastScrollY) > threshold) {
-        if (currentScrollY < lastScrollY) {
+        if (currentScrollY < lastScrollY || currentScrollY < 5) {
           setIsVisible(true);
         } else {
           setIsVisible(false);
@@ -27,7 +27,7 @@ function Header({ HeaderTitle }: { HeaderTitle: string }): JSX.Element {
 
   return (
     <div className={`HeaderContainer ${!isVisible ? "hidden" : ""}`}>
-      <div className="HeaderTitle">{HeaderTitle}</div>
+      <div className="HeaderTitle">{HeaderTitle} </div>
       <MenuBar />
     </div>
   );
