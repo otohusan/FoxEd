@@ -1,5 +1,6 @@
 import { useNavigate, NavigateFunction } from "react-router-dom";
-import { Header } from "../../../components";
+import { useEffect } from "react";
+import { Header, Footer } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 // import BacPic from "../../../assets/BacPic.png";
 import "../style/WalkGirl.css";
@@ -33,6 +34,10 @@ function labelOnClick(
 function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Header HeaderTitle="Choose" />
@@ -50,6 +55,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

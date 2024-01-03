@@ -1,6 +1,4 @@
 .ReviewQuizList {
-  /* TODO: なんか上に寄ってるから無理矢理対処、原因の特定必要 */
-  margin-top: 25%;
   text-align: start;
 }
 
@@ -44,9 +42,11 @@
 }
 
 .ReviewQuizBackQuizBtn {
+  margin-top: 25%;
+  margin-bottom: 10%;
   cursor: pointer;
   color: rgb(122, 122, 122);
   text-align: start;
-  margin-left: 5%;
+  margin-left: 4%;
   font-weight: 700;
 }
