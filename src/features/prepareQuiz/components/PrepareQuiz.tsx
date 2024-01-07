@@ -1,5 +1,6 @@
 import "../style/PrepareQuiz.css";
 import PrepareQuizMenu from "./PrepareQuizMenu";
+import { partOfSpeechTable } from "../../../assets/partOfSpeechTable";
 
 type PrepareQuizProps = {
   QuizName: string;
@@ -18,7 +19,9 @@ function PrepareQuiz({
         <div className="PrepareQuizName">{QuizName}</div>
         <div className="PrepareQuizPartOfSpeechAndAnswer">
           <div className="PrepareQuizPartOfSpeechContainer">
-            <div className="PrepareQuizPartOfSpeech">{QuizPartOfSpeech}</div>
+            <div className="PrepareQuizPartOfSpeech">
+              {partOfSpeechTable[QuizPartOfSpeech - 1]}
+            </div>
           </div>
           <div className="PrepareQuizAnswer">{QuizAnswer}</div>
         </div>
