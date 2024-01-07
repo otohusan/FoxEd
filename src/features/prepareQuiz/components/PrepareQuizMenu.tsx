@@ -18,7 +18,7 @@ function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
       navigator.share({
         title: "FoxEd",
         text: "歩きながらも使える英単語帳",
-        url: window.location.href,
+        url: "https://otohusan.github.io/FoxEd/",
       });
     } else {
       alert("このブラウザではシェアを利用できません。");
