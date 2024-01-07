@@ -133,7 +133,6 @@ export const quizData1: QuizFormat = {
       answer: "不明瞭な",
       partOfSpeech: 3,
     },
-
     {
       question: "Threat",
       choices: ["保証", "友情", "脅威", "機会"],
@@ -254,7 +253,6 @@ export const quizData1: QuizFormat = {
       answer: "影響",
       partOfSpeech: 1,
     },
-
     {
       question: "Criticize",
       choices: ["褒める", "賛成する", "批判する", "疑問視する"],
@@ -369,7 +367,6 @@ export const quizData1: QuizFormat = {
       answer: "大切にする",
       partOfSpeech: 2,
     },
-
     {
       question: "Astonish",
       choices: ["驚かせる", "安心させる", "無視する", "悲しませる"],
