@@ -1,6 +1,6 @@
 import "../style/PrepareMenus.css";
 import SpeakWordBtn from "./SpeakWordBtn";
-import { PiPlayBold } from "react-icons/pi";
+import { IoFootstepsOutline } from "react-icons/io5";
 import { MdIosShare } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -32,7 +32,7 @@ function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
       </div>
       <div className="PrepareQuizPlayBtn" onClick={() => navigate("/")}>
         {/* 大きさ整えるためにサイズ指定している */}
-        <PiPlayBold size={iconSize} />
+        <IoFootstepsOutline size={iconSize} />
       </div>
       <div>
         <MdIosShare size={iconSize} onClick={handleShare} />
