@@ -10,6 +10,7 @@ type Quiz = {
   question: string;
   choices: string[];
   answer: string;
+  partOfSpeech: number;
 };
 
 type PrepareQuizProps = {
@@ -24,6 +25,7 @@ function PrepareQuizzes({ quizzes, quizLabel }: PrepareQuizProps) {
       key={index}
       QuizName={quiz.question}
       QuizAnswer={quiz.answer}
+      QuizPartOfSpeech={quiz.partOfSpeech}
     />
   ));
 
