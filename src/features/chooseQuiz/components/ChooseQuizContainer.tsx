@@ -1,17 +1,6 @@
 import "../style/ChooseQuizContainer.css";
 import { MdArrowOutward } from "react-icons/md";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-  partOfSpeech: number;
-};
-
-type QuizFormat = {
-  label: string;
-  body: Quiz[];
-};
+import { QuizFormat } from "../../../../type/index.ts";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;

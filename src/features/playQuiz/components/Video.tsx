@@ -12,12 +12,7 @@ import DisplayQuizNumber from "./DisplayQuizNumber";
 // import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-};
+import { Quiz } from "../../../../type/index.ts";
 
 type VideoProps = {
   // 復習問題の管理

@@ -1,12 +1,6 @@
 import { Video } from "../features/playQuiz";
 import { SetStateAction, Dispatch } from "react";
-// import { Link } from "react-router-dom";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-};
+import { Quiz } from "../../type/index.ts";
 
 type PlayQuizProps = {
   // 復習問題を管理する

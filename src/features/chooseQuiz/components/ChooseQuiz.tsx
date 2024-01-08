@@ -4,18 +4,7 @@ import { Header, Footer } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 // import BacPic from "../../../assets/BacPic.png";
 import "../style/WalkGirl.css";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-  partOfSpeech: number;
-};
-
-type QuizFormat = {
-  label: string;
-  body: Quiz[];
-};
+import { QuizFormat } from "../../../../type/index.ts";
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
