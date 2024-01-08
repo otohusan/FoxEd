@@ -61,11 +61,12 @@ function ChoiceBox({
       setReviewQuizzes((prevValues) => {
         // すでに間違ってる場合はそのまま返す
         if (
-          prevValues.includes({
-            question: question,
-            answer: answer,
-            partOfSpeech: partOfSpeech,
-          })
+          prevValues.some(
+            (item) =>
+              item.question === question &&
+              item.answer === answer &&
+              item.partOfSpeech === partOfSpeech
+          )
         )
           return [...prevValues];
         // 付け足して返す
