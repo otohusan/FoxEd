@@ -1,10 +1,10 @@
 import { Video } from "../features/playQuiz";
 import { SetStateAction, Dispatch } from "react";
-import { Quiz } from "../../type/index.ts";
+import { Quiz, ReviewQuizType } from "../../type/index.ts";
 
 type PlayQuizProps = {
   // 復習問題を管理する
-  setReviewQuizzes: Dispatch<SetStateAction<number[]>>;
+  setReviewQuizzes: Dispatch<SetStateAction<ReviewQuizType[]>>;
   QuizIndex: number;
   setQuizIndex: Dispatch<SetStateAction<number>>;
   quizzes: Quiz[];

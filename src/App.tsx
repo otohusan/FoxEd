@@ -2,15 +2,19 @@ import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
-import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
+import {
+  reviewQuizzesIndex,
+  reviewQuizInitialValue,
+} from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
-import { QuizFormat } from "../type/index.ts";
+import { QuizFormat, ReviewQuizType } from "../type/index.ts";
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
-  const [reviewQuizzes, setReviewQuizzes] =
-    useState<number[]>(reviewQuizzesIndex);
+  const [reviewQuizzes, setReviewQuizzes] = useState<ReviewQuizType[]>(
+    reviewQuizInitialValue
+  );
 
   const [QuizIndex, setQuizIndex] = useState<number>(0);
 

@@ -1,34 +1,32 @@
 // import { useState } from "react";
-import { quizzes } from "../../../assets/quizzes";
+// import { quizzes } from "../../../assets/quizzes";
 import { Header, Footer } from "../../../components";
+import { useNavigate } from "react-router-dom";
+import { ReviewQuizType } from "../../../../type";
 import ReviewQuiz from "./ReviewQuiz";
 import "../style/reviewQuiz.css";
-import { useNavigate } from "react-router-dom";
 
 type ReviewQuizProps = {
-  reviewQuizzesIndex: number[];
-  setReviewQuizzesIndex: React.Dispatch<React.SetStateAction<number[]>>;
+  reviewQuizzes: ReviewQuizType[];
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<ReviewQuizType[]>>;
 };
 
-function ReviewQuizzes({
-  reviewQuizzesIndex,
-  setReviewQuizzesIndex,
-}: ReviewQuizProps) {
+function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
   // 復習からクイズを削除する関数
   const deleteReviewQuiz = (quizIndex: number) => {
-    setReviewQuizzesIndex((prevQuizzes) =>
-      prevQuizzes.filter((index) => index !== quizIndex)
+    setReviewQuizzes((prevQuizzes) =>
+      prevQuizzes.filter((_content, index) => index !== quizIndex)
     );
   };
 
   const navigate = useNavigate();
 
-  const ReviewQuizList = reviewQuizzesIndex.map((index) => (
+  const ReviewQuizList = reviewQuizzes.map((content, index) => (
     <ReviewQuiz
       key={index}
       QuizIndex={index}
-      QuizName={quizzes[index].question}
-      QuizAnswer={quizzes[index].answer}
+      QuizName={content.question}
+      QuizAnswer={content.answer}
       deleteReviewQuiz={deleteReviewQuiz}
     />
   ));

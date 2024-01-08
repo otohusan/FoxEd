@@ -1,9 +1,5 @@
 export const reviewQuizzesIndex: number[] = [];
 
-export type reviewQuiz = {
-  question: string;
-  answer: string;
-  partOfSpeech: number;
-};
+import { ReviewQuizType } from "../../type";
 
-export const reviewQuizzes: reviewQuiz[] = [];
+export const reviewQuizInitialValue: ReviewQuizType[] = [];

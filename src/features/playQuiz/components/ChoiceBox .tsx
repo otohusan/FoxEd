@@ -1,22 +1,27 @@
 import "../style/choiceBox.css";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
+import { ReviewQuizType } from "../../../../type";
 
 interface ChoiceBoxProps {
+  question: string;
   choiceValue: string;
   answer: string;
   quizSize: number;
   quizIndex: number;
+  partOfSpeech: number;
   feedbackFunc: (answer: string, clickedChoice: string) => void;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   setSolvedQuizzes: React.Dispatch<React.SetStateAction<number>>;
   //選択肢を表示するか、フィードバックを表示するかを操作する関数
   setWithinAnswer: React.Dispatch<React.SetStateAction<boolean>>;
   // 間違った問題の更新
-  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<ReviewQuizType[]>>;
 }
 
 function ChoiceBox({
+  question,
+  partOfSpeech,
   choiceValue,
   feedbackFunc,
   answer,
@@ -55,9 +60,19 @@ function ChoiceBox({
     if (answer !== choiceValue) {
       setReviewQuizzes((prevValues) => {
         // すでに間違ってる場合はそのまま返す
-        if (prevValues.includes(quizIndex)) return [...prevValues];
+        if (
+          prevValues.includes({
+            question: question,
+            answer: answer,
+            partOfSpeech: partOfSpeech,
+          })
+        )
+          return [...prevValues];
         // 付け足して返す
-        return [...prevValues, quizIndex];
+        return [
+          ...prevValues,
+          { question: question, answer: answer, partOfSpeech: partOfSpeech },
+        ];
       });
     }
   }
