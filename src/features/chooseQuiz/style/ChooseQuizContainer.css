@@ -1,23 +1,23 @@
 .ChooseQuizListTitle {
-  color: #606367;
-  -webkit-text-stroke: 0.5px #606367;
+  color: #333333;
+  -webkit-text-stroke: 0.7px #333333;
   text-align: start;
   margin-left: 6.5%;
   margin-top: 16vh;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .ChooseQuizContainer {
   position: relative;
   cursor: pointer;
-  color: #000000;
   margin: 5%;
   margin-top: 5%;
   text-align: start;
   border-radius: 10px;
   padding: 7% 0% 5vh 8%;
   box-shadow: 0px 6px 5px rgba(130, 130, 130, 0.3);
-  background-color: #fdfdfd;
+  background-color: #fcfcfc;
+  border: 0.5px solid #f6f6f6;
 }
 
 .ChooseQuizContainer:active {
@@ -30,15 +30,16 @@
 }
 
 .ChooseQuizLabel {
-  -webkit-text-stroke: 1px #000000;
+  color: #333333;
+  -webkit-text-stroke: 1px #333333;
   margin: 3% 0 4% 0;
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 500;
 }
 
 .ChooseQuizContainerQuestions {
   display: flex;
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   color: #a4a8af;
@@ -54,7 +55,7 @@
   position: relative;
   display: flex;
   margin-top: 12%;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #f39c19;
   -webkit-text-stroke: 0.5px #f39c19;
 }
