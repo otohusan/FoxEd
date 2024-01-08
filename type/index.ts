@@ -1,2 +1,2 @@
-export { Quiz } from "./Quiz.type";
-export { QuizFormat } from "./QuizFormat.type";
+export type { Quiz } from "./Quiz.type";
+export type { QuizFormat } from "./QuizFormat.type";
