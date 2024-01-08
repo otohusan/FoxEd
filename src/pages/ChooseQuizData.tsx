@@ -1,16 +1,5 @@
 import ChooseQuiz from "../features/chooseQuiz/components/ChooseQuiz";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-  partOfSpeech: number;
-};
-
-type QuizFormat = {
-  label: string;
-  body: Quiz[];
-};
+import { QuizFormat } from "../../type/index.ts";
 
 type ChooseQuizDataProps = {
   quizzes: QuizFormat[];

@@ -5,13 +5,7 @@ import { Header, Footer } from "../../../components";
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-  partOfSpeech: number;
-};
+import { Quiz } from "../../../../type/index.ts";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];

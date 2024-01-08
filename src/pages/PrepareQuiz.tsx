@@ -1,11 +1,5 @@
 import PrepareQuizzes from "../features/prepareQuiz/components/PrepareQuizzes";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-  partOfSpeech: number;
-};
+import { Quiz } from "../../type/index.ts";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];

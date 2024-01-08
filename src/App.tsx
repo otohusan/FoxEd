@@ -5,18 +5,7 @@ import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
 import { reviewQuizzesIndex } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
-
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-  partOfSpeech: number;
-};
-
-type QuizFormat = {
-  label: string;
-  body: Quiz[];
-};
+import { QuizFormat } from "../type/index.ts";
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる

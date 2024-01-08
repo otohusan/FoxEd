@@ -1,14 +1,4 @@
-type Quiz = {
-  question: string;
-  choices: string[];
-  answer: string;
-  partOfSpeech: number;
-};
-
-type QuizFormat = {
-  label: string;
-  body: Quiz[];
-};
+import { QuizFormat } from "../../type/index.ts";
 
 export const quizData1: QuizFormat = {
   label: "ユメタン 181-240",
