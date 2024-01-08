@@ -2,10 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
-import {
-  reviewQuizzesIndex,
-  reviewQuizInitialValue,
-} from "./assets/reviewQuizzes";
+import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
 import { QuizFormat, ReviewQuizType } from "../type/index.ts";

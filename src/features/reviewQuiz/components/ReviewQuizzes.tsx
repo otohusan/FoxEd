@@ -27,6 +27,7 @@ function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
       QuizIndex={index}
       QuizName={content.question}
       QuizAnswer={content.answer}
+      QuizPartOfSpeech={content.partOfSpeech}
       deleteReviewQuiz={deleteReviewQuiz}
     />
   ));
@@ -40,7 +41,7 @@ function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
         }}
         className="ReviewQuizBackQuizBtn"
       >
-        クイズに戻る
+        ＜ クイズに戻る
       </div>
       <div className="ReviewQuizList">{ReviewQuizList}</div>
       <Footer />
