@@ -1,6 +1,4 @@
 .PrepareQuizList {
-  /* TODO: なんか上に寄ってるから無理矢理対処、原因の特定必要 */
-  /* margin-top: 25%; */
   text-align: start;
 }
 
@@ -34,7 +32,7 @@
   justify-content: center; /* 横方向の中央揃え */
   align-items: center; /* 縦方向の中央揃え */
   padding: 0% 0.2em;
-  margin: 0.1% 1% 0% 0.5%;
+  margin: 0% 1% 0% 0.5%;
   height: 1.25em;
 }
 
