@@ -46,7 +46,11 @@ function App() {
         <Route
           path="/PrepareQuiz"
           element={
-            <PrepareQuiz quizzes={quizzes.body} quizLabel={quizzes.label} />
+            <PrepareQuiz
+              quizzes={quizzes.body}
+              quizLabel={quizzes.label}
+              setCurrentQuizIndex={setQuizIndex}
+            />
           }
         />
 

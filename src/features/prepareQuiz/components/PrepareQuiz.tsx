@@ -6,12 +6,16 @@ type PrepareQuizProps = {
   QuizName: string;
   QuizAnswer: string;
   QuizPartOfSpeech: number;
+  setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
+  QuizIndex: number;
 };
 
 function PrepareQuiz({
   QuizName,
   QuizAnswer,
   QuizPartOfSpeech,
+  setCurrentQuizIndex,
+  QuizIndex,
 }: PrepareQuizProps) {
   return (
     <div className="PrepareQuizContainer">
@@ -25,7 +29,11 @@ function PrepareQuiz({
           </div>
           <div className="PrepareQuizAnswer">{QuizAnswer}</div>
         </div>
-        <PrepareQuizMenu QuizName={QuizName} />
+        <PrepareQuizMenu
+          QuizName={QuizName}
+          setCurrentQuizIndex={setCurrentQuizIndex}
+          QuizIndex={QuizIndex}
+        />
       </div>
       <div className="PrepareQuizBorder"></div>
     </div>

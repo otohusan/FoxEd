@@ -10,9 +10,14 @@ import { Quiz } from "../../../../type/index.ts";
 type PrepareQuizProps = {
   quizzes: Quiz[];
   quizLabel: string;
+  setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
-function PrepareQuizzes({ quizzes, quizLabel }: PrepareQuizProps) {
+function PrepareQuizzes({
+  quizzes,
+  quizLabel,
+  setCurrentQuizIndex,
+}: PrepareQuizProps) {
   const navigate = useNavigate();
   const PrepareQuizList = quizzes.map((quiz, index) => (
     <PrepareQuiz
@@ -20,6 +25,8 @@ function PrepareQuizzes({ quizzes, quizLabel }: PrepareQuizProps) {
       QuizName={quiz.question}
       QuizAnswer={quiz.answer}
       QuizPartOfSpeech={quiz.partOfSpeech}
+      QuizIndex={index}
+      setCurrentQuizIndex={setCurrentQuizIndex}
     />
   ));
 
