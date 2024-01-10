@@ -12,11 +12,11 @@ import DisplayQuizNumber from "./DisplayQuizNumber";
 // import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
-import { Quiz } from "../../../../type/index.ts";
+import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 
 type VideoProps = {
   // 復習問題の管理
-  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<ReviewQuizType[]>>;
   QuizIndex: number;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   quizzes: Quiz[];
@@ -35,6 +35,7 @@ function Video({
   const questionWord: string = quiz.question;
   const choices: string[] = quiz.choices;
   const answer: string = quiz.answer;
+  const partOfSpeech: number = quiz.partOfSpeech;
 
   // 休憩を入れることに関するコード
   const breakTimeDuration: number = 7000;
@@ -92,6 +93,8 @@ function Video({
           <div>
             {/* 選択肢のボックスから、正解不正解を判定する関数を読んでるから、アンサーをこのコンポーネントに渡す */}
             <QuizChoices
+              partOfSpeech={partOfSpeech}
+              question={questionWord}
               choices={choices}
               answer={answer}
               setQuizIndex={setQuizIndex}

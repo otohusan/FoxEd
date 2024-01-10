@@ -1,16 +1,17 @@
 import { ReviewQuizzes } from "../features/reviewQuiz";
+import { ReviewQuizType } from "../../type";
 
 type ReviewQuizProps = {
-  reviewQuizzes: number[];
-  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
+  reviewQuizzes: ReviewQuizType[];
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<ReviewQuizType[]>>;
 };
 
 function ReviewQuiz({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
   return (
     <>
       <ReviewQuizzes
-        reviewQuizzesIndex={reviewQuizzes}
-        setReviewQuizzesIndex={setReviewQuizzes}
+        reviewQuizzes={reviewQuizzes}
+        setReviewQuizzes={setReviewQuizzes}
       />
     </>
   );

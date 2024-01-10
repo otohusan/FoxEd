@@ -3,20 +3,25 @@ import "../style/quizChoices.css";
 import Feedback from "./Feedback";
 import useFeedback from "../hooks/useFeedBack";
 import { useState } from "react";
+import { ReviewQuizType } from "../../../../type";
 
 interface QuizChoicesProps {
+  question: string;
   choices: string[];
+  partOfSpeech: number;
   answer: string;
   quizSize: number;
   quizIndex: number;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   setSolvedQuizzes: React.Dispatch<React.SetStateAction<number>>;
   // 間違った問題の更新
-  setReviewQuizzes: React.Dispatch<React.SetStateAction<number[]>>;
+  setReviewQuizzes: React.Dispatch<React.SetStateAction<ReviewQuizType[]>>;
 }
 
 function QuizChoices({
+  question,
   choices,
+  partOfSpeech,
   answer,
   setQuizIndex,
   setSolvedQuizzes,
@@ -39,6 +44,8 @@ function QuizChoices({
             className="choiceBoxBehavior"
           >
             <ChoiceBox
+              question={question}
+              partOfSpeech={partOfSpeech}
               key={index}
               feedbackFunc={feedbackFunc}
               choiceValue={choiceValue}

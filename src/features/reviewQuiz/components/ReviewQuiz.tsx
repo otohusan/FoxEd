@@ -1,10 +1,12 @@
 import "../style/reviewQuiz.css";
 import { MdOutlineDelete } from "react-icons/md";
+import { partOfSpeechTable } from "../../../assets/partOfSpeechTable";
 
 type ReviewQuizProps = {
   QuizIndex: number;
   QuizName: string;
   QuizAnswer: string;
+  QuizPartOfSpeech: number;
   deleteReviewQuiz: (quizIndex: number) => void;
 };
 
@@ -12,13 +14,21 @@ function ReviewQuiz({
   QuizIndex,
   QuizName,
   QuizAnswer,
+  QuizPartOfSpeech,
   deleteReviewQuiz,
 }: ReviewQuizProps) {
   return (
     <div className="ReviewQuizContainer">
       <div className="ReviewQuizContent">
         <div className="ReviewQuizName">{QuizName}</div>
-        <div className="ReviewQuizAnswer">{QuizAnswer}</div>
+        <div className="ReviewQuizPartOfSpeechAndAnswer">
+          <div className="ReviewQuizPartOfSpeechContainer">
+            <div className="ReviewQuizPartOfSpeech">
+              {partOfSpeechTable[QuizPartOfSpeech - 1]}
+            </div>
+          </div>
+          <div className="ReviewQuizAnswer">{QuizAnswer}</div>
+        </div>
         <div
           className="ReviewQuizDeleteBtn"
           onClick={() => {

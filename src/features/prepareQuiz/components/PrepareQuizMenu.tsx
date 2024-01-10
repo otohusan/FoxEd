@@ -6,9 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 type PrepareQuizMenuProps = {
   QuizName: string;
+  setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
+  QuizIndex: number;
 };
 
-function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
+function PrepareQuizMenu({
+  QuizName,
+  setCurrentQuizIndex,
+  QuizIndex,
+}: PrepareQuizMenuProps) {
   const navigate = useNavigate();
   const iconSize: string = "22px";
 
@@ -30,7 +36,14 @@ function PrepareQuizMenu({ QuizName }: PrepareQuizMenuProps) {
       <div className="PrepareQuizSpeakBtn">
         <SpeakWordBtn questionWord={QuizName} />
       </div>
-      <div className="PrepareQuizPlayBtn" onClick={() => navigate("/")}>
+      <div
+        className="PrepareQuizPlayBtn"
+        onClick={() => {
+          // クリックされた単語からクイズをスタートするためにcurrentQuizIndexを変更している
+          setCurrentQuizIndex(QuizIndex);
+          navigate("/");
+        }}
+      >
         {/* 大きさ整えるためにサイズ指定している */}
         <IoFootstepsOutline size={iconSize} />
       </div>
