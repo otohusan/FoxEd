@@ -134,7 +134,7 @@ export const toeicStandard: QuizFormat = {
       question: "Rate",
       choices: ["忍者", "上昇", "割合", "減少"],
       answer: "割合",
-      partOfSpeech: 2,
+      partOfSpeech: 1,
     },
     {
       question: "Local",

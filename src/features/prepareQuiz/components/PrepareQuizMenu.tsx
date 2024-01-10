@@ -39,6 +39,7 @@ function PrepareQuizMenu({
       <div
         className="PrepareQuizPlayBtn"
         onClick={() => {
+          // クリックされた単語からクイズをスタートするためにcurrentQuizIndexを変更している
           setCurrentQuizIndex(QuizIndex);
           navigate("/");
         }}
