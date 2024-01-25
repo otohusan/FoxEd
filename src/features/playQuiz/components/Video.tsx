@@ -80,8 +80,8 @@ function Video({
         QuizLength={quizSize}
       />
 
-      <GoReviewBtn />
-      <GoPrepareBtn />
+      <GoReviewBtn stopVideo={stopVideo} />
+      <GoPrepareBtn stopVideo={stopVideo} />
 
       {/* 起動した時だけ表示される、クリックできることをお知らせするコンポーネント */}
       {/* <InformClickable /> */}
