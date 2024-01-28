@@ -17,7 +17,7 @@ const HeadDataHelmet = ({ pageTitle }: HeadDataHelmetProps) => {
         <meta property="og:site_name" content="Konwalk" />
         <meta
           property="og:image"
-          content="https://otohusan.github.io/FoxEd/Konwalk_favicon.svg"
+          content={import.meta.env.VITE_IMAGE_WITH_SHARE_URL}
         />
       </Helmet>
     </>
