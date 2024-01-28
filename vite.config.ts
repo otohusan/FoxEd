@@ -4,6 +4,11 @@ import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    "process.env.VITE_IMAGE_WITH_SHARE_URL": JSON.stringify(
+      process.env.VITE_IMAGE_WITH_SHARE_URL
+    ),
+  },
   plugins: [react()],
   base: process.env.GITHUB_PAGES
     ? "/FoxEd/" // レポジトリ名を設定
