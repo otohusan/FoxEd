@@ -1,6 +1,6 @@
 // import { useState } from "react";
 // import { quizzes } from "../../../assets/quizzes";
-import { Header, Footer } from "../../../components";
+import { Header, Footer, HeadDataHelmet } from "../../../components";
 import { useNavigate } from "react-router-dom";
 import { ReviewQuizType } from "../../../../type";
 import ReviewQuiz from "./ReviewQuiz";
@@ -34,6 +34,7 @@ function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
 
   return (
     <div>
+      <HeadDataHelmet pageTitle="予習ページ" />
       <Header HeaderTitle="Review" />
       <div
         onClick={() => {

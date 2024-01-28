@@ -13,6 +13,7 @@ import DisplayQuizNumber from "./DisplayQuizNumber";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
 import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
+import { HeadDataHelmet } from "../../../components/index.ts";
 
 type VideoProps = {
   // 復習問題の管理
@@ -66,6 +67,7 @@ function Video({
       // クリック機能を割り当ててる
       onClick={handleClick}
     >
+      <HeadDataHelmet pageTitle="クイズページ" />
       {/* ここにあるコンポーネントは常に表示される */}
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
       <div

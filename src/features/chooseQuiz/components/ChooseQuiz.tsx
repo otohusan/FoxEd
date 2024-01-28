@@ -1,6 +1,6 @@
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { useEffect } from "react";
-import { Header, Footer } from "../../../components";
+import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 // import BacPic from "../../../assets/BacPic.png";
 import "../style/WalkGirl.css";
@@ -30,6 +30,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
 
   return (
     <div>
+      <HeadDataHelmet pageTitle="選択ページ" />
       <Header HeaderTitle="Choose" />
       {/* <img src={BacPic} className="WalkGirl" /> */}
       <div className="ChooseQuizListTitle">単語データリスト</div>
