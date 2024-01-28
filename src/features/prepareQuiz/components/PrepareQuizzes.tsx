@@ -1,7 +1,7 @@
 import "../style/PrepareQuiz.css";
 import PrepareQuiz from "./PrepareQuiz";
 // import FootPrint from "./FootPrint";
-import { Header, Footer } from "../../../components";
+import { Header, Footer, HeadDataHelmet } from "../../../components";
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +32,8 @@ function PrepareQuizzes({
 
   return (
     <div>
+      <HeadDataHelmet pageTitle="予習ページ" />
+
       <Header HeaderTitle="Prepare" />
       <div
         className="PrepareQuizBackToChooseBtnAndLabel"
