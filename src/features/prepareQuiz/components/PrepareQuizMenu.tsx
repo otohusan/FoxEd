@@ -22,8 +22,8 @@ function PrepareQuizMenu({
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: "FoxEd",
-        text: "歩きながらも使える英単語帳",
+        title: "Konwalk",
+        text: "歩く時間を無駄にしない単語帳",
         url: "https://otohusan.github.io/FoxEd/",
       });
     } else {

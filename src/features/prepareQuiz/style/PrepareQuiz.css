@@ -16,7 +16,7 @@
 
 .PrepareQuizName {
   font-family: "DM Serif Text", serif;
-  font-size: 2.1em;
+  font-size: 2em;
   font-weight: 700;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .PrepareQuizAnswer {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: 600;
   color: #ffd6c0cb;
   margin-left: 0.5%;

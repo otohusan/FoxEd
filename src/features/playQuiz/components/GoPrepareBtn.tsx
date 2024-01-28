@@ -2,11 +2,16 @@ import "../style/goPrepareBtn.css";
 import { useNavigate } from "react-router-dom";
 import { FaRegLightbulb } from "react-icons/fa6";
 
-function GoPrepareBtn(): JSX.Element {
+type GoPrepareBtnProps = {
+  stopVideo: () => void;
+};
+
+function GoPrepareBtn({ stopVideo }: GoPrepareBtnProps): JSX.Element {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/PrepareQuiz");
+    stopVideo();
   };
 
   return (

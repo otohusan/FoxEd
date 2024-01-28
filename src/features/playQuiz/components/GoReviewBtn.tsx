@@ -2,11 +2,16 @@ import "../style/goReviewBtn.css";
 import { useNavigate } from "react-router-dom";
 import { GoNote } from "react-icons/go";
 
-function GoReviewBtn(): JSX.Element {
+type GoReviewBtnProps = {
+  stopVideo: () => void;
+};
+
+function GoReviewBtn({ stopVideo }: GoReviewBtnProps): JSX.Element {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/ReviewQuiz");
+    stopVideo();
   };
 
   return (
