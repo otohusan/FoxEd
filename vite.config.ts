@@ -10,9 +10,10 @@ export default defineConfig({
     ),
   },
   plugins: [react()],
-  base: process.env.GITHUB_PAGES
-    ? "/FoxEd/" // レポジトリ名を設定
-    : "./",
+  base:
+    process.env.VITE_GITHUB_PAGES === "true"
+      ? "/FoxEd/" // レポジトリ名を設定
+      : "./",
   build: {
     rollupOptions: {
       input: {
