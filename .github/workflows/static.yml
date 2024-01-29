@@ -41,6 +41,7 @@ jobs:
         run: npm run build
         env:
           VITE_IMAGE_WITH_SHARE_URL: ${{ secrets.VITE_IMAGE_WITH_SHARE_URL }}
+          VITE_GITHUB_PAGES: ${{vars.VITE_GITHUB_PAGES}}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
