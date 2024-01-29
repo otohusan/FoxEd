@@ -24,7 +24,7 @@ function PrepareQuizMenu({
       navigator.share({
         title: "Konwalk",
         text: "歩く時間を無駄にしない単語帳",
-        url: "https://otohusan.github.io/FoxEd/",
+        url: "https://konwalk.jp",
       });
     } else {
       alert("このブラウザではシェアを利用できません。");
