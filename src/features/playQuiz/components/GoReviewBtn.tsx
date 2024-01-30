@@ -30,7 +30,7 @@ function GoReviewBtn({ stopVideo }: GoReviewBtnProps): JSX.Element {
             "drop-shadow(0px 1px 0px #f09038) drop-shadow(2px 0px 2px rgba(0, 0, 0, 0.5))",
         }}
       >
-        Review
+        <div style={{ fontSize: "0.8em" }}>復習</div>
       </div>
     </div>
   );
