@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "hono": "^3.12.8",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0"
