@@ -5,7 +5,7 @@ function QuizWord(props: { questionWord: string }) {
   return (
     <div className="quizWordContainer">
       <div className="quizWord">{props.questionWord}</div>
-      <SpeakQuizWord questionWord={props.questionWord} wordBtnSize={50} />
+      <SpeakQuizWord questionWord={props.questionWord} wordBtnSize={40} />
     </div>
   );
 }

@@ -5,18 +5,27 @@ import { MenuBar } from ".";
 function Header({ HeaderTitle }: { HeaderTitle: string }): JSX.Element {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
-  const threshold = 50; // スクロールのしきい値
+  const threshold = 50;
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      let currentScrollY = window.scrollY;
+      const pageHeight = document.body.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      const bottomPosition = pageHeight - viewportHeight;
 
       if (Math.abs(currentScrollY - lastScrollY) > threshold) {
-        if (currentScrollY < lastScrollY || currentScrollY < 5) {
+        // ページの最下部近くでのスクロールでは状態を変更しない
+        if (currentScrollY >= bottomPosition - threshold) {
+          return;
+        }
+
+        if (currentScrollY < lastScrollY || currentScrollY < 10) {
           setIsVisible(true);
         } else {
           setIsVisible(false);
         }
+
         setLastScrollY(currentScrollY);
       }
     };

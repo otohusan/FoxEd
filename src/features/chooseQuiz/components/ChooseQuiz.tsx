@@ -4,6 +4,7 @@ import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 // import BacPic from "../../../assets/BacPic.png";
 import "../style/WalkGirl.css";
+import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
 
 type ChooseQuizProps = {
@@ -34,13 +35,14 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
       <Header HeaderTitle="Choose" />
       {/* <img src={BacPic} className="WalkGirl" /> */}
       <div className="ChooseQuizListTitle">単語データリスト</div>
-      <div style={{ marginTop: "5%" }}>
+      <div className="ChooseQuizDataList">
         {quizzes.map((quizFormat, index) => (
           <div
             key={index}
             onClick={() => {
               labelOnClick(setQuizzes, quizFormat, navigate);
             }}
+            className="ChooseQuizContainerWrapper"
           >
             <ChooseQuizContainer quizFormat={quizFormat} />
           </div>

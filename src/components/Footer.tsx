@@ -22,7 +22,7 @@ function Footer() {
         </div>
         <div onClick={() => navigate("/")}>クイズに挑戦</div>
       </div>
-      <div className="FooterCopyright">Copyright ©︎ FoxEd</div>
+      <div className="FooterCopyright">Copyright ©︎ Konwalk</div>
     </div>
   );
 }
