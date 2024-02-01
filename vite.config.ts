@@ -22,4 +22,7 @@ export default defineConfig({
       },
     },
   },
+  ssr: {
+    noExternal: ["react-icons", "react-helmet-async"],
+  },
 });

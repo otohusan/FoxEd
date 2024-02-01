@@ -6,6 +6,8 @@ import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
 import { QuizFormat, ReviewQuizType } from "../type/index.ts";
+import FootPrint from "./features/prepareQuiz/components/FootPrint.tsx";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
@@ -20,48 +22,56 @@ function App() {
 
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PlayQuiz
-              setReviewQuizzes={setReviewQuizzes}
-              QuizIndex={QuizIndex}
-              setQuizIndex={setQuizIndex}
-              quizzes={quizzes.body}
-            />
-          }
-        />
+      <HelmetProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PlayQuiz
+                setReviewQuizzes={setReviewQuizzes}
+                QuizIndex={QuizIndex}
+                setQuizIndex={setQuizIndex}
+                quizzes={quizzes.body}
+              />
+            }
+          />
 
-        <Route
-          path="/ReviewQuiz"
-          element={
-            <ReviewQuiz
-              reviewQuizzes={reviewQuizzes}
-              setReviewQuizzes={setReviewQuizzes}
-            />
-          }
-        />
+          <Route
+            path="/ReviewQuiz"
+            element={
+              <ReviewQuiz
+                reviewQuizzes={reviewQuizzes}
+                setReviewQuizzes={setReviewQuizzes}
+              />
+            }
+          />
 
-        <Route
-          path="/PrepareQuiz"
-          element={
-            <PrepareQuiz
-              quizzes={quizzes.body}
-              quizLabel={quizzes.label}
-              setCurrentQuizIndex={setQuizIndex}
-            />
-          }
-        />
+          <Route
+            path="/PrepareQuiz"
+            element={
+              <PrepareQuiz
+                quizzes={quizzes.body}
+                quizLabel={quizzes.label}
+                setCurrentQuizIndex={setQuizIndex}
+              />
+            }
+          />
 
-        <Route
-          path="/ChooseQuizData"
-          // 全てのクイズのデータを渡して、選択させる
-          element={
-            <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
-          }
-        />
-      </Routes>
+          <Route
+            path="/ChooseQuizData"
+            // 全てのクイズのデータを渡して、選択させる
+            element={
+              <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
+            }
+          />
+
+          <Route
+            path="/test"
+            // 全てのクイズのデータを渡して、選択させる
+            element={<FootPrint />}
+          />
+        </Routes>
+      </HelmetProvider>
     </>
   );
 }

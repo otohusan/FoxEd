@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 type HeadDataHelmetProps = {
   pageTitle: string;
@@ -15,10 +15,7 @@ const HeadDataHelmet = ({
         <title>{`${pageTitle} - Konwalk`}</title>
         <meta
           name="description"
-          content={
-            pageDescription ||
-            "授業中に宿題をしたように、歩く時間も有効に使う。その手助けを行う英単語帳 | 高校英語・TOEIC対応"
-          }
+          content={pageDescription || "変わらない | 高校英語・TOEIC対応"}
         />
         <meta
           property="og:title"
