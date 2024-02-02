@@ -48,7 +48,7 @@ async function createServer() {
     try {
       // 1. index.html を読み込む
       let template = fs.readFileSync(
-        path.resolve(__dirname, "../client/index.html"),
+        path.resolve(__dirname, "../client/index-SSR.html"),
         "utf-8"
       );
 

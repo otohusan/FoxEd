@@ -30,9 +30,13 @@ function PrepareQuizzes({
     />
   ));
 
+  const pageDescription: string = `『${quizLabel}』をbasicな英単語帳から学べます。赤シートを有効に使って、英単語を覚えましょう。`;
   return (
     <div>
-      <HeadDataHelmet pageTitle="予習ページ" />
+      <HeadDataHelmet
+        pageTitle="予習ページ"
+        pageDescription={pageDescription}
+      />
 
       <Header HeaderTitle="Prepare" />
       <div

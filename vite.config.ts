@@ -17,7 +17,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),
+        main:
+          process.env.SSR === "true"
+            ? resolve(__dirname, "index.html")
+            : resolve(__dirname, "index-SSR.html"),
         404: resolve(__dirname, "404.html"),
       },
     },
