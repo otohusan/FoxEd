@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "tsc && server.ts",
+    "dev:server": "node dist/server/entry-server",
     "build": "tsc && vite build",
     "build:client": "tsc && vite build --outDir dist/client",
     "build:server": "tsc && vite build --ssr src/entry-server.tsx --outDir dist/server && node dist/server/entry-server.js",
+    "build:SSR": "npm run build:client && npm run build:server",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
