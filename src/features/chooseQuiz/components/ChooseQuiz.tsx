@@ -31,7 +31,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
 
   return (
     <div>
-      <HeadDataHelmet pageTitle="選択ページ" pageDescription="Helmetの詳細" />
+      <HeadDataHelmet pageTitle="選択ページ" pagePath="ChooseQuizData" />
       <Header HeaderTitle="Choose" />
       {/* <img src={BacPic} className="WalkGirl" /> */}
       <div className="ChooseQuizListTitle">単語データリスト</div>

@@ -3,11 +3,13 @@ import { Helmet } from "react-helmet-async";
 type HeadDataHelmetProps = {
   pageTitle: string;
   pageDescription?: string;
+  pagePath?: string;
 };
 
 const HeadDataHelmet = ({
   pageTitle,
   pageDescription,
+  pagePath,
 }: HeadDataHelmetProps) => {
   return (
     <div>
@@ -24,7 +26,7 @@ const HeadDataHelmet = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* ここからOGP */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://Konwalk.jp" />
+        <meta property="og:url" content={`https://Konwalk.jp/${pagePath}`} />
         <meta property="og:site_name" content="Konwalk" />
         <meta
           property="og:title"
@@ -47,6 +49,7 @@ const HeadDataHelmet = ({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
         />
+        <meta name="twitter:card" content="summary_large_image"></meta>
       </Helmet>
     </div>
   );

@@ -61,13 +61,18 @@ function Video({
     }
   }, [solvedQuizzes]);
 
+  const pageHeadDescription =
+    "Konwalk(コンウォーク)の歩きながら使える英単語帳です。日々の歩く時間を勉強する時間に変身させよう。";
   return (
     <div
       id="videoContainer"
       // クリック機能を割り当ててる
       onClick={handleClick}
     >
-      <HeadDataHelmet pageTitle="クイズページ" />
+      <HeadDataHelmet
+        pageTitle="クイズページ"
+        pageDescription={pageHeadDescription}
+      />
       {/* ここにあるコンポーネントは常に表示される */}
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
       <div
