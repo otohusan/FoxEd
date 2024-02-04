@@ -18,12 +18,14 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PORT = process.env.PORT || 8787;
 
 async function createServer() {
   const app = express();
 
   // 例: 'dist/client' ディレクトリ内の静的ファイルを提供
-  app.use(express.static(path.join(__dirname, "../client")));
+  const staticFilesPath = path.join(__dirname, "../client");
+  app.use(express.static(staticFilesPath));
 
   // ミドルウェアモードで Vite サーバーを作成し、app type を 'custom' に指定します。
   // これにより、Vite 自体の HTML 配信ロジックが無効になり、親サーバーが
@@ -42,8 +44,8 @@ async function createServer() {
   app.use(vite.middlewares);
 
   //TODO: 型定義をする
-  app.use("*", async (request: any, reply: any, next: any) => {
-    const url = request.originalUrl;
+  app.use("*", async (req: any, res: any, next: any) => {
+    const url = req.originalUrl;
 
     try {
       // 1. index.html を読み込む
@@ -66,16 +68,23 @@ async function createServer() {
       const html = template.replace(`<!--outlet-->`, appHtml);
 
       // 6. レンダリングされた HTML をクライアントに送ります。
-      reply.status(200).set({ "Content-Type": "text/html" }).end(html);
+      res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (e: any) {
       // エラーが検出された場合は、Vite にスタックトレースを修正させ、実際のソースコードに
       // マップし直します。
       vite.ssrFixStacktrace(e);
+      const notFoundPath = path.resolve(__dirname, "../client/404.html");
+      if (fs.existsSync(notFoundPath)) {
+        const notFoundHtml = fs.readFileSync(notFoundPath, "utf-8");
+        res.status(404).send(notFoundHtml);
+      } else {
+        res.status(404).send("Page Not Found");
+      }
       next(e);
     }
   });
 
-  app.listen({ port: 8787 }, () => {
+  app.listen({ port: PORT }, () => {
     console.log("server is running");
   });
 }

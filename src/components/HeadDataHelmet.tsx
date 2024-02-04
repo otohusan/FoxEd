@@ -49,7 +49,7 @@ const HeadDataHelmet = ({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
         />
-        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:card" content="summary"></meta>
       </Helmet>
     </div>
   );
