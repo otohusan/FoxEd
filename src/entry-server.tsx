@@ -2,13 +2,22 @@ import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { Location } from "react-router-dom";
 import App from "./App";
+import { HelmetProvider } from "react-helmet-async";
 
-export function render(url: string | Partial<Location<any>>) {
-  return ReactDOMServer.renderToString(
-    <StaticRouter location={url}>
-      <App />
-    </StaticRouter>
+export async function render(url: string | Partial<Location<any>>) {
+  const helmetContext: any = {};
+
+  const appHtml = ReactDOMServer.renderToString(
+    <HelmetProvider context={helmetContext}>
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
+    </HelmetProvider>
   );
+
+  const { helmet } = helmetContext;
+
+  return { appHtml, helmet };
 }
 
 import fs from "fs";
@@ -62,7 +71,7 @@ async function createServer() {
       // 4. アプリケーションの HTML をレンダリングします。これは entry-server.js から
       //    エクスポートされた `render` 関数が、ReactDOMServer.renderToString() などの
       //    適切なフレームワークの SSR API を呼び出すことを想定しています。
-      const appHtml = render(url);
+      const { appHtml } = await render(url);
 
       // 5. アプリケーションのレンダリングされた HTML をテンプレートに挿入します。
       const html = template.replace(`<!--outlet-->`, appHtml);

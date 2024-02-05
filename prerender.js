@@ -5,11 +5,6 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const toAbsolute = (p) => path.resolve(__dirname, p);
 
-const template = fs.readFileSync(
-  toAbsolute("dist/client/index-SSR.html"),
-  "utf-8"
-);
-
 const { render } = await import("./dist/server/entry-server.js");
 
 // determine routes to pre-render from src/pages
@@ -22,15 +17,30 @@ const routesToPrerender = fs
     }
     const name = file.replace(/\.tsx$/, "").toLowerCase();
     // ここでrootをどれにするか指定できる
-    return name === "choosequizdata" ? `/` : `/${name}`;
+    // return name === "choosequizdata" ? `/` : `/${name}`;
+    return name === "playquiz" ? `/` : `/${name}`;
   });
 
 (async () => {
   // pre-render each route...
   for (const url of routesToPrerender) {
-    const appHtml = render(url);
+    const template = fs.readFileSync(
+      toAbsolute("dist/static/index-SSR.html"),
+      "utf-8"
+    );
 
-    const html = template.replace(`<!--outlet-->`, appHtml);
+    const { appHtml, helmet } = await render(url);
+
+    const html = template
+      .replace(
+        `<!--head-outlet-->`,
+        `
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
+    ${helmet.link.toString()}
+  `
+      )
+      .replace(`<!--outlet-->`, appHtml);
 
     const filePath = `dist/static${url === "/" ? "/index" : url}.html`;
 
