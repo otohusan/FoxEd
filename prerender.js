@@ -17,13 +17,16 @@ const routesToPrerender = fs
     }
     const name = file.replace(/\.tsx$/, "").toLowerCase();
     // ここでrootをどれにするか指定できる
-    // return name === "choosequizdata" ? `/` : `/${name}`;
     return name === "playquiz" ? `/` : `/${name}`;
   });
 
 (async () => {
   // pre-render each route...
   for (const url of routesToPrerender) {
+    // const template = fs.readFileSync(
+    //   toAbsolute("dist/static/index-SSR.html"),
+    //   "utf-8"
+    // );
     const template = fs.readFileSync(
       toAbsolute("dist/static/index-SSR.html"),
       "utf-8"

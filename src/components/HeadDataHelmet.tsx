@@ -26,7 +26,12 @@ const HeadDataHelmet = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* ここからOGP */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://Konwalk.jp/${pagePath}`} />
+        <meta
+          property="og:url"
+          content={
+            pagePath ? `https://Konwalk.jp/${pagePath}` : "https://Konwalk.jp"
+          }
+        />
         <meta property="og:site_name" content="Konwalk" />
         <meta
           property="og:title"
