@@ -23,10 +23,10 @@ const routesToPrerender = fs
 (async () => {
   // pre-render each route...
   for (const url of routesToPrerender) {
-    // const template = fs.readFileSync(
-    //   toAbsolute("dist/static/index-SSR.html"),
-    //   "utf-8"
-    // );
+    if (!url) {
+      return;
+    }
+
     const template = fs.readFileSync(
       toAbsolute("dist/static/index-SSR.html"),
       "utf-8"

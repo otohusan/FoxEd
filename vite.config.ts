@@ -24,6 +24,7 @@ export default defineConfig({
         404: resolve(__dirname, "404.html"),
       },
     },
+    outDir: "dist/static",
   },
   ssr: {
     noExternal: ["react-icons", "react-helmet-async"],
