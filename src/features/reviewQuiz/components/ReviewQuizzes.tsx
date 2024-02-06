@@ -32,9 +32,14 @@ function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
     />
   ));
 
+  const pageHeadDescription: string = `間違った英単語を復習することができる。見直しをして、苦手単語を克服しよう。`;
   return (
     <div>
-      <HeadDataHelmet pageTitle="予習ページ" />
+      <HeadDataHelmet
+        pageTitle="予習ページ"
+        pageDescription={pageHeadDescription}
+        pagePath="ReviewQuiz"
+      />
       <Header HeaderTitle="Review" />
       <div
         onClick={() => {
