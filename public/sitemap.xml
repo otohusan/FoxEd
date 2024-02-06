@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://www.konwalk.jp/</loc>
+    <lastmod>2024-02-06</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://www.konwalk.jp/ReviewQuiz</loc>
+    <lastmod>2024-02-06</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://www.konwalk.jp/PrepareQuiz</loc>
+    <lastmod>2024-02-06</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://www.konwalk.jp/ChooseQuizData</loc>
+    <lastmod>2024-02-06</lastmod>
+    <priority>1.0</priority>
+  </url>
+</urlset>
