@@ -1,5 +1,5 @@
 import { useNavigate, NavigateFunction } from "react-router-dom";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 // import BacPic from "../../../assets/BacPic.png";
@@ -25,13 +25,13 @@ function labelOnClick(
 function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div>
-      <HeadDataHelmet pageTitle="選択ページ" />
+      <HeadDataHelmet pageTitle="選択ページ" pagePath="ChooseQuizData" />
       <Header HeaderTitle="Choose" />
       {/* <img src={BacPic} className="WalkGirl" /> */}
       <div className="ChooseQuizListTitle">単語データリスト</div>

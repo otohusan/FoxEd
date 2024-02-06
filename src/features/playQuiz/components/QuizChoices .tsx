@@ -42,6 +42,7 @@ function QuizChoices({
           <div
             style={{ display: withinAnswer ? "block" : "none" }}
             className="choiceBoxBehavior"
+            key={choiceValue}
           >
             <ChoiceBox
               question={question}

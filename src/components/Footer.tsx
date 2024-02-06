@@ -8,12 +8,12 @@ function Footer() {
     <div className="Footer">
       <div className="FooterContent">
         <p
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-          }}
+        // onClick={() => {
+        //   window.scrollTo({
+        //     top: 0,
+        //     behavior: "smooth",
+        //   });
+        // }}
         >
           TOPに戻る
         </p>
