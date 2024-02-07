@@ -15,9 +15,9 @@ const routesToPrerender = fs
     if (file == "index.tsx") {
       return;
     }
-    const name = file.replace(/\.tsx$/, "").toLowerCase();
+    const name = file.replace(/\.tsx$/, "");
     // ここでrootをどれにするか指定できる
-    return name === "playquiz" ? `/` : `/${name}`;
+    return name === "PlayQuiz" ? `/` : `/${name}`;
   });
 
 (async () => {
