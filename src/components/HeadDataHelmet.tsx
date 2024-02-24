@@ -14,12 +14,12 @@ const HeadDataHelmet = ({
   return (
     <div>
       <Helmet>
-        <title>{`${pageTitle} - Konwalk`}</title>
+        <title>{`${pageTitle} - Konwalk(コンウォーク)`}</title>
         <meta
           name="description"
           content={
             pageDescription ||
-            "授業中に宿題をしたように、歩く時間も有効に使いたい。Konwalkはその手助けを行う英単語帳です。 | 高校英語・TOEIC対応"
+            "授業中に宿題をしたように、歩く時間も有効に使いたい。Konwalk(コンウォーク)はその手助けを行う英単語帳です。 | 高校英語・TOEIC対応"
           }
         />
 
@@ -32,7 +32,7 @@ const HeadDataHelmet = ({
             pagePath ? `https://Konwalk.jp/${pagePath}` : "https://Konwalk.jp"
           }
         />
-        <meta property="og:site_name" content="Konwalk" />
+        <meta property="og:site_name" content="Konwalk(コンウォーク)" />
         <meta
           property="og:title"
           content="Konwalk(コンウォーク) - 歩く時間を無駄にしない英単語帳"
@@ -41,7 +41,7 @@ const HeadDataHelmet = ({
           property="og:description"
           content={
             pageDescription ||
-            "授業中に宿題をしたように、歩く時間も有効に使いたい。Konwalkはその手助けを行う英単語帳です。 | 高校英語・TOEIC対応"
+            "授業中に宿題をしたように、歩く時間も有効に使いたい。Konwalk(コンウォーク)はその手助けを行う英単語帳です。 | 高校英語・TOEIC対応"
           }
         />
         <meta
