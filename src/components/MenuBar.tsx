@@ -66,13 +66,17 @@
 
 // export default MenuBar;
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import "./style/MenuBar.css";
 import { RiMenu2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-function MenuBar() {
-  const [isOpen, setIsOpen] = useState(false);
+type MenuBarProps = {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -104,7 +108,7 @@ function MenuBar() {
       document.body.style.overflow = "visible";
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   return (
     <div>
