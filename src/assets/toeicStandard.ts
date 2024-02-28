@@ -119,7 +119,7 @@ export const toeicStandard: QuizFormat = {
     },
     {
       question: "Pursue",
-      choices: ["怒る", "避ける", "停止する", "追及する"],
+      choices: ["怒る", "避ける", "停止する", "追求する"],
       answer: "追求する",
       partOfSpeech: 2,
     },
