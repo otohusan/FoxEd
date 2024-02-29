@@ -6,6 +6,15 @@
   bottom: 0;
   background-color: rgb(54, 53, 53);
   z-index: 1; /* 必要に応じて他の要素の上に表示させるため */
+  max-width: 600px;
+}
+
+@media (min-width: 600px) {
+  #videoContainer {
+    left: 50%;
+    transform: translate(-50%, 0%);
+    min-width: 600px;
+  }
 }
 
 video {
