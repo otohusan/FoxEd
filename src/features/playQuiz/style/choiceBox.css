@@ -20,9 +20,9 @@
   cursor: pointer;
 }
 
-@media (min-width: 569px) {
+@media (min-width: 600px) {
   .container {
-    margin: 16px 13vw;
+    margin: 16px 35px;
   }
 }
 
