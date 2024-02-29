@@ -1800,5 +1800,17 @@ export const toeicStandard: QuizFormat = {
       answer: "推定で",
       partOfSpeech: 4,
     },
+    {
+      question: "Informative",
+      choices: ["誤解を招く", "有益な", "無関係な", "混乱させる"],
+      answer: "有益な",
+      partOfSpeech: 3,
+    },
+    {
+      question: "Dedicated",
+      choices: ["献身的な", "無関心な", "分散した", "多目的な"],
+      answer: "献身的な",
+      partOfSpeech: 1,
+    },
   ],
 };
