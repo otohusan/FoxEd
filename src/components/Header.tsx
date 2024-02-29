@@ -72,11 +72,12 @@ function useScroll(onScroll: ScrollEventHandler) {
 function Header({ HeaderTitle }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const threshold = 50;
 
   // スクロールイベントハンドラー
   const handleScroll = () => {
-    let currentScrollY = window.scrollY;
+    const currentScrollY = window.scrollY;
     const pageHeight = document.body.scrollHeight;
     const viewportHeight = window.innerHeight;
     const bottomPosition = pageHeight - viewportHeight;
@@ -95,9 +96,15 @@ function Header({ HeaderTitle }: HeaderProps) {
   useScroll(handleScroll);
 
   return (
-    <div className={`HeaderContainer ${!isVisible ? "hidden" : ""}`}>
-      <div className="HeaderTitle">{HeaderTitle}</div>
-      <MenuBar />
+    <div
+      className={`HeaderContainer ${!isVisible ? "hidden" : ""} ${
+        isMenuOpen ? "MenuOpen" : ""
+      }`}
+    >
+      <div className={`HeaderTitle ${isMenuOpen ? "MenuOpen" : ""}`}>
+        {HeaderTitle}
+      </div>
+      <MenuBar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
     </div>
   );
 }

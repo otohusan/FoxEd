@@ -1,7 +1,10 @@
 .HeaderContainer {
   position: fixed; /* 固定位置を指定 */
   top: 0; /* 画面の上端から0の位置に設定 */
-  left: 0; /* 画面の左端から0の位置に設定 */
+  left: 50%; /* 画面の左端から0の位置に設定 */
+
+  /* menuが開いた時のずれを作ってしまっている */
+  transform: translate(-50%, 0%);
   width: 100%;
   height: 10vh; /*ブラウザが原因の画面高さの変更の影響を受けないように、vhで高さを指定*/
   box-shadow: 0px 4px 13px rgba(41, 41, 41, 0.22);
@@ -15,7 +18,7 @@
 
   /* ここから試し */
   width: 94%;
-  margin-left: 3%;
+  max-width: 560px;
   margin-top: 2%;
   height: 50px;
   border-radius: 6px;
@@ -28,7 +31,17 @@
 }
 
 .HeaderContainer.hidden {
-  transform: translateY(-135%);
+  transform: translateY(-235%) translateX(-50%);
+}
+
+/* menuがずれて表示してしまうから、それを治したい */
+/* 無理やりすぎるから、どうにかしたいけど */
+.HeaderContainer.MenuOpen {
+  transition: none;
+  color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+  transform: none;
 }
 
 .HeaderTitle {
@@ -40,4 +53,8 @@
 
   /* ここから試し */
   font-size: 1.5em;
+}
+
+.HeaderTitle.MenuOpen {
+  color: transparent;
 }
