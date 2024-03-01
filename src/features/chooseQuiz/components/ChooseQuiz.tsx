@@ -6,6 +6,7 @@ import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/WalkGirl.css";
 import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
+import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
@@ -34,9 +35,25 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
       <HeadDataHelmet pageTitle="選択ページ" pagePath="ChooseQuizData" />
       <Header HeaderTitle="Choose" />
       {/* <img src={BacPic} className="WalkGirl" /> */}
-      <div className="ChooseQuizListTitle">単語データリスト</div>
+      <div className="ChooseQuizListTitle">TOIEC英単語</div>
       <div className="ChooseQuizDataList">
         {quizzes.map((quizFormat, index) => (
+          <div
+            key={index}
+            onClick={() => {
+              labelOnClick(setQuizzes, quizFormat, navigate);
+            }}
+            className="ChooseQuizContainerWrapper"
+          >
+            <ChooseQuizContainer quizFormat={quizFormat} />
+          </div>
+        ))}
+      </div>
+      <div className="ChooseQuizListTitle" style={{ marginTop: "10vh" }}>
+        高校英単語
+      </div>
+      <div className="ChooseQuizDataList">
+        {yumetan.map((quizFormat, index) => (
           <div
             key={index}
             onClick={() => {
