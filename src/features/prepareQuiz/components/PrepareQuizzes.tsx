@@ -34,7 +34,7 @@ function PrepareQuizzes({
   return (
     <div>
       <HeadDataHelmet
-        pageTitle="復習ページ"
+        pageTitle="予習ページ"
         pageDescription={pageHeadDescription}
         pagePath="PrepareQuiz"
       />
@@ -43,7 +43,7 @@ function PrepareQuizzes({
       <div
         className="PrepareQuizBackToChooseBtnAndLabel"
         onClick={() => {
-          navigate("/ChooseQuizData");
+          navigate("/");
         }}
       >
         <div className="PrepareQuizBackToChooseBtn">

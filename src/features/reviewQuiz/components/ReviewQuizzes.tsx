@@ -36,14 +36,14 @@ function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
   return (
     <div>
       <HeadDataHelmet
-        pageTitle="予習ページ"
+        pageTitle="復習ページ"
         pageDescription={pageHeadDescription}
         pagePath="ReviewQuiz"
       />
       <Header HeaderTitle="Review" />
       <div
         onClick={() => {
-          navigate("/");
+          navigate("/PlayQuiz");
         }}
         className="ReviewQuizBackQuizBtn"
       >

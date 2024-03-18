@@ -41,7 +41,7 @@ function PrepareQuizMenu({
         onClick={() => {
           // クリックされた単語からクイズをスタートするためにcurrentQuizIndexを変更している
           setCurrentQuizIndex(QuizIndex);
-          navigate("/");
+          navigate("/PlayQuiz");
         }}
       >
         {/* 大きさ整えるためにサイズ指定している */}
