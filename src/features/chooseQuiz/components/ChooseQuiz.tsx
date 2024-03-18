@@ -32,7 +32,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
 
   return (
     <div>
-      <HeadDataHelmet pageTitle="選択ページ" pagePath="ChooseQuizData" />
+      <HeadDataHelmet pageTitle="選択ページ" />
       <Header HeaderTitle="Choose" />
       {/* <img src={BacPic} className="WalkGirl" /> */}
       <div className="ChooseQuizListTitle">TOIEC英単語</div>
