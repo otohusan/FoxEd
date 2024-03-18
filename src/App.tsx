@@ -27,7 +27,7 @@ function App() {
         <Route
           // SSRの場合とそうでない場合のrootを分けている、試し
           // path={import.meta.env.SSR ? "/playQuiz" : "/"}
-          path="/"
+          path="/PlayQuiz"
           element={
             <PlayQuiz
               setReviewQuizzes={setReviewQuizzes}
@@ -61,7 +61,7 @@ function App() {
 
         <Route
           // path={import.meta.env.SSR ? "/" : "/chooseQuizData"}
-          path="/ChooseQuizData"
+          path="/"
           // 全てのクイズのデータを渡して、選択させる
           element={
             <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />

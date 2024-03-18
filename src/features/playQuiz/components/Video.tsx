@@ -72,6 +72,7 @@ function Video({
       <HeadDataHelmet
         pageTitle="クイズページ"
         pageDescription={pageHeadDescription}
+        pagePath="PlayQuiz"
       />
       {/* ここにあるコンポーネントは常に表示される */}
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
