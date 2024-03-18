@@ -20,7 +20,7 @@ function Footer() {
         <div onClick={() => navigate("/ChooseQuizData")}>
           異なる単語データを選択
         </div>
-        <div onClick={() => navigate("/")}>クイズに挑戦</div>
+        <div onClick={() => navigate("/PlayQuiz")}>クイズに挑戦</div>
       </div>
       <div className="FooterCopyright">Copyright ©︎ Konwalk</div>
     </div>

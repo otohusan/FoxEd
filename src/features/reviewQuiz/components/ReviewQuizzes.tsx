@@ -43,7 +43,7 @@ function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
       <Header HeaderTitle="Review" />
       <div
         onClick={() => {
-          navigate("/");
+          navigate("/PlayQuiz");
         }}
         className="ReviewQuizBackQuizBtn"
       >

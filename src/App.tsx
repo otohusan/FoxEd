@@ -27,7 +27,7 @@ function App() {
         <Route
           // SSRの場合とそうでない場合のrootを分けている、試し
           // path={import.meta.env.SSR ? "/playQuiz" : "/"}
-          path="/"
+          path="/PlayQuiz"
           element={
             <PlayQuiz
               setReviewQuizzes={setReviewQuizzes}
