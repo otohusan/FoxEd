@@ -61,7 +61,7 @@ function App() {
 
         <Route
           // path={import.meta.env.SSR ? "/" : "/chooseQuizData"}
-          path="/ChooseQuizData"
+          path="/"
           // 全てのクイズのデータを渡して、選択させる
           element={
             <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />

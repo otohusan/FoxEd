@@ -43,7 +43,7 @@ function PrepareQuizzes({
       <div
         className="PrepareQuizBackToChooseBtnAndLabel"
         onClick={() => {
-          navigate("/ChooseQuizData");
+          navigate("/");
         }}
       >
         <div className="PrepareQuizBackToChooseBtn">

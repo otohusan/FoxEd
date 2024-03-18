@@ -121,9 +121,7 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
       {isOpen && (
         <div className="MenuContainer">
           <div className="MenuContent" ref={menuRef}>
-            <div onClick={() => navigate("/ChooseQuizData")}>
-              単語データを選択 🔍
-            </div>
+            <div onClick={() => navigate("/")}>単語データを選択 🔍</div>
             <div onClick={() => navigate("/PlayQuiz")}>
               クイズをプレイ ⭕️❌
             </div>
