@@ -1,12 +1,24 @@
 import "../style/ChooseQuizContainer.css";
 import { MdArrowOutward } from "react-icons/md";
 import { QuizFormat } from "../../../../type/index.ts";
+import { useEffect } from "react";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;
 };
 
 function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
+  // iosのアドレスバーによる高さの変更を防ぐために、画面の高さをはじめに取得して固定する
+  useEffect(() => {
+    const updateVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--app-vh", `${vh}px`);
+    };
+
+    // 初期設定
+    updateVH();
+  }, []);
+
   return (
     <div className="ChooseQuizContainer">
       <div className="ChooseQuizContent">
@@ -27,7 +39,7 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
         </div>
       </div>
       <div className="ChooseQuizContainerOpen">
-        <div>Choose This Data</div>
+        <div>この単語を覚える</div>
         <div className="ChooseQuizContainerOpenMark">
           <MdArrowOutward />
         </div>
