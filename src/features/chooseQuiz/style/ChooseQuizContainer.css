@@ -7,6 +7,15 @@
   font-size: 1.1em;
 }
 
+.ChooseQuizListTitleKoukou {
+  color: #4a4a4a;
+  -webkit-text-stroke: 0.7px #4a4a4a;
+  text-align: start;
+  margin-left: 6.5%;
+  margin-top: calc(10 * var(--app-vh, 1vh));
+  font-size: 1.1em;
+}
+
 .ChooseQuizDataList {
   color: #4a4a4a;
   overflow-x: auto; /* 横方向のスクロールを許可 */
@@ -34,7 +43,7 @@
   margin: 5%;
   text-align: start;
   border-radius: 13px;
-  padding: calc(3.5 * var(--app-vh, 1vh)) 2% calc(10 * var(--app-vh, 1vh)) 8%;
+  padding: calc(3.5 * var(--app-vh, 1vh)) 2% calc(13 * var(--app-vh, 1vh)) 8%;
   box-shadow: 0px 4px 3px rgba(130, 130, 130, 0.2);
   background-color: #fdfdfd;
   border: 1px solid #f0f0f0;

@@ -9,6 +9,7 @@ type ChooseQuizContainerProps = {
 
 function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
   // iosのアドレスバーによる高さの変更を防ぐために、画面の高さをはじめに取得して固定する
+  // CSSではそれを使う
   useEffect(() => {
     const updateVH = () => {
       const vh = window.innerHeight * 0.01;
