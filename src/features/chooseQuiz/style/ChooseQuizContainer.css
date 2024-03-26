@@ -37,7 +37,7 @@
 }
 
 .ChooseQuizContainer {
-  height: 180px;
+  height: calc(26 * var(--app-vh, 1vh));
   position: relative;
   cursor: pointer;
   margin: 5%;
