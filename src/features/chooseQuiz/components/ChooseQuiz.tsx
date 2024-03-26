@@ -49,9 +49,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
           </div>
         ))}
       </div>
-      <div className="ChooseQuizListTitle" style={{ marginTop: "10vh" }}>
-        高校英単語
-      </div>
+      <div className="ChooseQuizListTitleKoukou">高校英単語</div>
       <div className="ChooseQuizDataList">
         {yumetan.map((quizFormat, index) => (
           <div
