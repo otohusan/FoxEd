@@ -1,7 +1,7 @@
 import { QuizFormat } from "../../type";
 
 export const toeicStandard: QuizFormat = {
-  label: "TOEIC スタンダード",
+  label: "TOEIC 中級",
   body: [
     {
       question: "Consequence",
