@@ -107,7 +107,7 @@
   margin-top: calc(3.5 * var(--app-vh, 1vh));
   font-size: 0.9em;
   color: #f39c19;
-  -webkit-text-stroke: 0.7px #f39c19;
+  -webkit-text-stroke: 0.5px #f39c19;
 }
 
 .ChooseQuizContainerOpenMark {
