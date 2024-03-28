@@ -49,7 +49,6 @@ const HeadDataHelmet = ({
           content={import.meta.env.VITE_IMAGE_WITH_SHARE_URL}
         />
 
-        <link rel="icon" type="image/svg+xml" href="/Konwalk_favicon.svg" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
