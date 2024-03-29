@@ -1,0 +1,4 @@
+.introductionContainer {
+  color: #000;
+  margin-top: calc(20 * var(--app-vh, 1vh));
+}
