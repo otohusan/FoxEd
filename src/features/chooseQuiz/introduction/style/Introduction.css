@@ -1,4 +1,7 @@
 .introductionContainer {
-  color: #000;
+  color: #3b3b3b;
   margin-top: calc(20 * var(--app-vh, 1vh));
+  text-align: left;
+  white-space: pre-wrap;
+  margin-left: 6vw;
 }
