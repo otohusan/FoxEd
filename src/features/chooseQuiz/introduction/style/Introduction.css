@@ -25,6 +25,11 @@
   margin-left: 5vw;
   line-height: 2;
   font-family: "M PLUS Rounded 1c", sans-serif;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%; /* または任意の幅 */
 }
 
 .introductionComment {
@@ -52,7 +57,7 @@
   .introductionContainer {
     margin-top: calc(8 * var(--app-vh, 1vh));
     margin-top: calc(18 * var(--app-vh, 1vh));
-    margin-left: 2.4em;
+    /* margin-left: 2.4em; */
   }
 
   .introductionComment {
