@@ -4,4 +4,15 @@
   text-align: left;
   white-space: pre-wrap;
   margin-left: 6vw;
+  line-height: 2;
+  font-size: 0.8em;
+}
+
+.introductionBold {
+  color: #ffb766;
+  font-size: 1.2em;
+}
+
+.introductionBig {
+  font-size: 1.4em;
 }
