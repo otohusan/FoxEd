@@ -6,6 +6,7 @@ import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { Quiz } from "../../../../type/index.ts";
+import { useEffect } from "react";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
@@ -29,6 +30,10 @@ function PrepareQuizzes({
       setCurrentQuizIndex={setCurrentQuizIndex}
     />
   ));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const pageHeadDescription: string = `無料で『${quizLabel}』をbasicな英単語帳から学べます。赤シートを有効に使って、英単語を覚えましょう。`;
   return (
