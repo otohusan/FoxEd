@@ -3,15 +3,20 @@ import "./style/Introduction.css";
 function Introduction() {
   return (
     <div className="introductionContainer">
-      <h1>
+      <h1 className="introductionComment">
         <span className="introductionBig">Konwalk(コンウォーク)</span>
         を<br />
         知ってくれて
         <br />
         <span className="introductionBold">ありがとう!</span>
       </h1>
-      <h2>
-        <span className="introductionBold">下の単語データ</span>から
+      <img
+        src="/Konwalk_char.svg"
+        alt="Konwalk Character"
+        className="konwalk_char"
+      />
+      <h2 className="introductionNavigateComment">
+        下にある <span className="introductionBold">単語データ</span> から
         <br />
         覚えたい単語を選んでね
       </h2>
