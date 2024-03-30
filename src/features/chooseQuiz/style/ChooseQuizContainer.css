@@ -1,9 +1,56 @@
+.ChooseTopTitle {
+  color: #ffb056;
+  -webkit-text-stroke: 1px #ffb056;
+  text-align: start;
+  margin-top: calc(15 * var(--app-vh, 1vh));
+  margin-left: 5%;
+  font-size: 1.7em;
+  /* margin-bottom: calc(3 * var(--app-vh, 1vh)); */
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+.IntroductionTopTitle {
+  color: #ffb056;
+  -webkit-text-stroke: 1px #ffb056;
+  text-align: start;
+  margin-top: calc(25 * var(--app-vh, 1vh));
+  margin-left: 5%;
+  font-size: 1.7em;
+  /* margin-bottom: calc(3 * var(--app-vh, 1vh)); */
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+@media (max-width: 600px) {
+  .IntroductionTopTitle {
+    margin-top: calc(18 * var(--app-vh, 1vh));
+  }
+
+  .ChooseTopTitle {
+    margin-top: calc(11 * var(--app-vh, 1vh));
+  }
+}
+
+.hr-line {
+  border-top: 5px solid #ffb056; /* 上辺に黒色の1pxの線を引く */
+  width: 100%; /* 幅を指定 */
+  margin-top: calc(0.5 * var(--app-vh, 1vh));
+  margin-bottom: calc(7 * var(--app-vh, 1vh));
+  margin-left: 1.5vw;
+}
+
+@media (max-width: 600px) {
+  .hr-line {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 .ChooseQuizListTitle {
   color: #4a4a4a;
   -webkit-text-stroke: 0.7px #4a4a4a;
   text-align: start;
   margin-left: 6.5%;
-  margin-top: calc(18 * var(--app-vh, 1vh));
+  /* margin-top: calc(18 * var(--app-vh, 1vh)); */
   font-size: 1.1em;
 }
 

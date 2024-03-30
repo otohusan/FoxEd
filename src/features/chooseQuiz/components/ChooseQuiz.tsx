@@ -7,6 +7,7 @@ import "../style/WalkGirl.css";
 import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
+import Introduction from "../introduction/Introduction.tsx";
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
@@ -34,6 +35,11 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
       <Header HeaderTitle="Choose" />
+      {/* <div className="IntroductionTopTitle">あいさつ</div>
+      <div className="hr-line"></div> */}
+      <Introduction />
+      <div className="ChooseTopTitle">単語データ</div>
+      <div className="hr-line"></div>
       {/* <img src={BacPic} className="WalkGirl" /> */}
       <div className="ChooseQuizListTitle">TOIEC英単語</div>
       <div className="ChooseQuizDataList">
