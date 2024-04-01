@@ -16,9 +16,9 @@ function Introduction() {
         className="konwalk_char"
       />
       <h2 className="introductionNavigateComment">
-        下にある <span className="introductionBold">単語データ</span> から
+        下にある <span className="introductionBold">英単語データ</span> から
         <br />
-        覚えたい英単語を選んでね
+        覚えたい単語を選んでね
       </h2>
       {/* <h2>{`Konwalk(コンウォーク)は\n歩く時間を、勉強ができる時間に\n変える単語帳だよ`}</h2> */}
     </div>
