@@ -38,7 +38,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
       {/* <div className="IntroductionTopTitle">あいさつ</div>
       <div className="hr-line"></div> */}
       <Introduction />
-      <div className="ChooseTopTitle">単語データ</div>
+      <div className="ChooseTopTitle">英単語データ</div>
       <div className="hr-line"></div>
       {/* <img src={BacPic} className="WalkGirl" /> */}
       <div className="ChooseQuizListTitle">TOIEC英単語</div>
