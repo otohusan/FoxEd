@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="Footer">
       <div className="FooterContent">
-        <button
+        <div
           onClick={() => {
             if (typeof window !== "undefined") {
               window.scrollTo({
@@ -17,7 +17,7 @@ function Footer() {
           className="BackToTop"
         >
           <p>TOPに戻る</p>
-        </button>
+        </div>
         <Link to={"/"} className="FooterLink">
           異なる単語データを選択
         </Link>
