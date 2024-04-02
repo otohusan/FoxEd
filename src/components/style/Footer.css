@@ -26,12 +26,16 @@
 .BackToTop {
   color: rgb(255, 255, 255);
   cursor: pointer;
-  margin-bottom: 6%;
+  margin-bottom: 2%;
   margin-left: 4%;
-  font-size: 1.1em;
   -webkit-text-stroke: 0.5px #ffffff;
   border: none;
   background-color: transparent;
+  padding-right: 1em;
+}
+
+.BackToTop > p {
+  font-size: 1.1em;
 }
 
 .FooterCopyright {
