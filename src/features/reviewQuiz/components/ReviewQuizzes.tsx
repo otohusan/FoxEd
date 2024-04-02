@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ReviewQuizType } from "../../../../type";
 import ReviewQuiz from "./ReviewQuiz";
 import "../style/reviewQuiz.css";
+import { Link } from "react-router-dom";
 
 type ReviewQuizProps = {
   reviewQuizzes: ReviewQuizType[];
@@ -41,13 +42,16 @@ function ReviewQuizzes({ reviewQuizzes, setReviewQuizzes }: ReviewQuizProps) {
         pagePath="ReviewQuiz"
       />
       <Header HeaderTitle="Review" />
-      <div
-        onClick={() => {
-          navigate("/PlayQuiz");
-        }}
-        className="ReviewQuizBackQuizBtn"
-      >
-        ＜ クイズに戻る
+      <div className="ReviewQuizBackQuizBtn">
+        <Link
+          to={"/PlayQuiz"}
+          onClick={() => {
+            navigate("/PlayQuiz");
+          }}
+          className="ReviewQuizBackQuizLink"
+        >
+          ＜ クイズに戻る
+        </Link>
       </div>
       <div className="ReviewQuizList">{ReviewQuizList}</div>
       <Footer />

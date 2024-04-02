@@ -54,6 +54,8 @@
   cursor: pointer;
   top: 120%;
   right: 5%;
+  background-color: transparent;
+  border: none;
 }
 
 .ReviewQuizBorder {
@@ -71,4 +73,9 @@
   text-align: start;
   margin-left: 4%;
   font-weight: 700;
+}
+
+.ReviewQuizBackQuizLink {
+  color: #717171;
+  text-decoration: none;
 }
