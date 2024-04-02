@@ -77,7 +77,7 @@ type MenuBarProps = {
 };
 
 function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
-  const menuRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -120,23 +120,31 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
       </button>
       {isOpen && (
         <div className="MenuContainer">
-          <div className="MenuContent" ref={menuRef}>
-            <Link to={"/"} className="MenuLink">
-              <p className="MenuLink">単語データを選択 🔍</p>
-            </Link>
-            <Link to={"/PlayQuiz"} className="MenuLink">
-              <p className="MenuLink">クイズをプレイ ⭕️❌</p>
-            </Link>
-            <Link to={"/PrepareQuiz"} className="MenuLink">
-              <p className="MenuLink">単語を覚える 💡</p>
-            </Link>
-            <Link to={"/ReviewQuiz"} className="MenuLink">
-              <p className="MenuLink">単語を復習 📝</p>
-            </Link>
+          <ul className="MenuContent" ref={menuRef}>
+            <li className="MenuLink">
+              <Link to={"/"} className="MenuLink">
+                単語データを選択 🔍
+              </Link>
+            </li>
+            <li className="MenuLink">
+              <Link to={"/PlayQuiz"} className="MenuLink">
+                クイズをプレイ ⭕️❌
+              </Link>
+            </li>
+            <li className="MenuLink">
+              <Link to={"/PrepareQuiz"} className="MenuLink">
+                単語を覚える 💡
+              </Link>
+            </li>
+            <li className="MenuLink">
+              <Link to={"/ReviewQuiz"} className="MenuLink">
+                単語を復習 📝
+              </Link>
+            </li>
             <button onClick={toggleMenu} className="menuCloseBtn">
               メニューを閉じる
             </button>
-          </div>
+          </ul>
         </div>
       )}
     </div>

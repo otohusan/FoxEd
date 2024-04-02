@@ -96,7 +96,7 @@ function Header({ HeaderTitle }: HeaderProps) {
   useScroll(handleScroll);
 
   return (
-    <div
+    <header
       className={`HeaderContainer ${!isVisible ? "hidden" : ""} ${
         isMenuOpen ? "MenuOpen" : ""
       }`}
@@ -105,7 +105,7 @@ function Header({ HeaderTitle }: HeaderProps) {
         {HeaderTitle}
       </div>
       <MenuBar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
-    </div>
+    </header>
   );
 }
 
