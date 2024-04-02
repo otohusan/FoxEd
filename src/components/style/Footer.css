@@ -12,12 +12,14 @@
   text-align: start;
 }
 
-.FooterContent > div {
+.FooterLink {
+  color: rgb(255, 255, 255);
   cursor: pointer;
   margin-bottom: 5%;
   margin-left: 5%;
   font-size: 1em;
   display: block;
+  text-decoration: none;
 }
 
 .FooterContent > p {
