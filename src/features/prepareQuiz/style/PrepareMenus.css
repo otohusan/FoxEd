@@ -7,13 +7,21 @@
   justify-content: space-around;
   width: 140px;
   margin-right: 2%;
+  background-color: transparent;
 }
 
-.PrepareMenus > div {
+.PrepareMenus > button {
+  color: #949494;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .PrepareQuizPlayBtn {
   color: #989898;
-  margin-left: 4px;
+  margin-left: 0.1em;
+}
+
+.PrepareQuizSpeakBtn {
+  margin-top: 0.2em;
 }

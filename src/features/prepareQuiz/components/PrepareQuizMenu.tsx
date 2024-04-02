@@ -15,8 +15,9 @@ function PrepareQuizMenu({
   setCurrentQuizIndex,
   QuizIndex,
 }: PrepareQuizMenuProps) {
-  const navigate = useNavigate();
   const iconSize: string = "22px";
+
+  const navigate = useNavigate();
 
   // share機能
   const handleShare = () => {
@@ -36,7 +37,7 @@ function PrepareQuizMenu({
       <div className="PrepareQuizSpeakBtn">
         <SpeakWordBtn questionWord={QuizName} />
       </div>
-      <div
+      <button
         className="PrepareQuizPlayBtn"
         onClick={() => {
           // クリックされた単語からクイズをスタートするためにcurrentQuizIndexを変更している
@@ -46,10 +47,10 @@ function PrepareQuizMenu({
       >
         {/* 大きさ整えるためにサイズ指定している */}
         <IoFootstepsOutline size={iconSize} />
-      </div>
-      <div>
-        <MdIosShare size={iconSize} onClick={handleShare} />
-      </div>
+      </button>
+      <button onClick={handleShare}>
+        <MdIosShare size={iconSize} />
+      </button>
     </div>
   );
 }

@@ -4,9 +4,9 @@ import PrepareQuiz from "./PrepareQuiz";
 import { Header, Footer, HeadDataHelmet } from "../../../components";
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
-import { useNavigate } from "react-router-dom";
 import { Quiz } from "../../../../type/index.ts";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
@@ -19,7 +19,6 @@ function PrepareQuizzes({
   quizLabel,
   setCurrentQuizIndex,
 }: PrepareQuizProps) {
-  const navigate = useNavigate();
   const PrepareQuizList = quizzes.map((quiz, index) => (
     <PrepareQuiz
       key={index}
@@ -30,6 +29,8 @@ function PrepareQuizzes({
       setCurrentQuizIndex={setCurrentQuizIndex}
     />
   ));
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,7 +46,8 @@ function PrepareQuizzes({
       />
 
       <Header HeaderTitle="Prepare" />
-      <div
+
+      <button
         className="PrepareQuizBackToChooseBtnAndLabel"
         onClick={() => {
           navigate("/");
@@ -55,7 +57,7 @@ function PrepareQuizzes({
           <CgArrowsExchange size={"1.5em"} />
         </div>
         <div className="PrepareQuizLabel">{quizLabel}</div>
-      </div>
+      </button>
 
       {/* <FootPrint /> */}
       <div className="PrepareQuizList">{PrepareQuizList}</div>
