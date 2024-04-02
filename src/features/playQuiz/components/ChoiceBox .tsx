@@ -79,9 +79,14 @@ function ChoiceBox({
   }
 
   return (
-    <div className="container" onClick={() => handleClick(answer, choiceValue)}>
-      <div className="choice_value">{choiceValue}</div>
-    </div>
+    <button
+      className="ChoiceBoxBtn"
+      onClick={() => handleClick(answer, choiceValue)}
+    >
+      <div className="container">
+        <div className="choice_value">{choiceValue}</div>
+      </div>
+    </button>
   );
 }
 

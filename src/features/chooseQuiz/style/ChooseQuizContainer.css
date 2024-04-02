@@ -34,7 +34,7 @@
   border-top: 5px solid #ffb056; /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
   margin-top: calc(0.5 * var(--app-vh, 1vh));
-  margin-bottom: calc(3.5 * var(--app-vh, 1vh));
+  margin-bottom: calc(4 * var(--app-vh, 1vh));
   margin-left: 1.5vw;
 }
 
@@ -80,7 +80,10 @@
 .ChooseQuizContainerWrapper {
   /* これを外すだけで、縦スクロールに戻せる */
   display: inline-block;
-  width: 85%;
+  width: 88%;
+  /* border: none;
+  background-color: transparent; */
+  padding: 0;
 }
 
 .ChooseQuizContainer {
@@ -155,6 +158,7 @@
   font-size: 0.9em;
   color: #f39c19;
   -webkit-text-stroke: 0.4px #f39c19;
+  text-decoration: none;
 }
 
 .ChooseQuizContainerOpenMark {

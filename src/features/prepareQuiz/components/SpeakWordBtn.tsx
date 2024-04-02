@@ -4,9 +4,12 @@ import "../style/SpeakWordBtn.css";
 
 function SpeakWordBtn(props: { questionWord: string }) {
   return (
-    <div className="SpeakWordBtn" onClick={() => speakWord(props.questionWord)}>
+    <button
+      className="SpeakWordBtn"
+      onClick={() => speakWord(props.questionWord)}
+    >
       <BsSoundwave size={"22px"} />
-    </div>
+    </button>
   );
 }
 

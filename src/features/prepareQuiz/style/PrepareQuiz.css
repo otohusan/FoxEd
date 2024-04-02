@@ -63,6 +63,7 @@
   margin-left: 3%;
   color: #717171;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .PrepareQuizBackToChooseBtn {
@@ -71,6 +72,5 @@
 }
 
 .PrepareQuizLabel {
-  font-size: 1em;
   -webkit-text-stroke: 0.5px #717171;
 }

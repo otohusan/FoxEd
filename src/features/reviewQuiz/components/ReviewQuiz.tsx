@@ -29,7 +29,7 @@ function ReviewQuiz({
           </div>
           <div className="ReviewQuizAnswer">{QuizAnswer}</div>
         </div>
-        <div
+        <button
           className="ReviewQuizDeleteBtn"
           onClick={() => {
             deleteReviewQuiz(QuizIndex);
@@ -41,7 +41,7 @@ function ReviewQuiz({
               filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2))",
             }}
           />
-        </div>
+        </button>
       </div>
       <div className="ReviewQuizBorder"></div>
     </div>

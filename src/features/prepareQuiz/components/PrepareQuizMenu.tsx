@@ -2,6 +2,7 @@ import "../style/PrepareMenus.css";
 import SpeakWordBtn from "./SpeakWordBtn";
 import { IoFootstepsOutline } from "react-icons/io5";
 import { MdIosShare } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 type PrepareQuizMenuProps = {
@@ -15,8 +16,9 @@ function PrepareQuizMenu({
   setCurrentQuizIndex,
   QuizIndex,
 }: PrepareQuizMenuProps) {
-  const navigate = useNavigate();
   const iconSize: string = "22px";
+
+  const navigate = useNavigate();
 
   // share機能
   const handleShare = () => {
@@ -36,20 +38,22 @@ function PrepareQuizMenu({
       <div className="PrepareQuizSpeakBtn">
         <SpeakWordBtn questionWord={QuizName} />
       </div>
-      <div
+      <Link
+        to={"/PlayQuiz"}
         className="PrepareQuizPlayBtn"
-        onClick={() => {
+        onClick={(e) => {
           // クリックされた単語からクイズをスタートするためにcurrentQuizIndexを変更している
+          e.preventDefault();
           setCurrentQuizIndex(QuizIndex);
           navigate("/PlayQuiz");
         }}
       >
         {/* 大きさ整えるためにサイズ指定している */}
         <IoFootstepsOutline size={iconSize} />
-      </div>
-      <div>
-        <MdIosShare size={iconSize} onClick={handleShare} />
-      </div>
+      </Link>
+      <button onClick={handleShare}>
+        <MdIosShare size={iconSize} />
+      </button>
     </div>
   );
 }

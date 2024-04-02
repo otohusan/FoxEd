@@ -107,16 +107,16 @@ function MovableSheet() {
       </div>
     </div>
   ) : (
-    <div className="MovableSheetWithClose">
-      <div
-        className="MovableSheetOpenBtn"
-        onClick={() => {
-          setIsOpening(true);
-        }}
-      >
+    <button
+      className="MovableSheetWithClose"
+      onClick={() => {
+        setIsOpening(true);
+      }}
+    >
+      <div className="MovableSheetOpenBtn">
         <FaPlus />
       </div>
-    </div>
+    </button>
   );
 }
 

@@ -2,12 +2,22 @@ import "../style/ChooseQuizContainer.css";
 import { MdArrowOutward } from "react-icons/md";
 import { QuizFormat } from "../../../../type/index.ts";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;
+  labelOnClick: (
+    setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>,
+    quizData: QuizFormat
+  ) => void;
+  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>;
 };
 
-function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
+function ChooseQuizContainer({
+  quizFormat,
+  labelOnClick,
+  setQuizzes,
+}: ChooseQuizContainerProps) {
   // iosのアドレスバーによる高さの変更を防ぐために、画面の高さをはじめに取得して固定する
   // CSSではそれを使う
   useEffect(() => {
@@ -39,12 +49,19 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
           収録数: {quizFormat.body.length} Words
         </div>
       </div>
-      <div className="ChooseQuizContainerOpen">
-        <div>この単語を覚える</div>
+      <Link
+        className="ChooseQuizContainerOpen"
+        to={"/PrepareQuiz"}
+        onClick={(e) => {
+          e.preventDefault();
+          labelOnClick(setQuizzes, quizFormat);
+        }}
+      >
+        <div className="ChooseQuizContainerOpenSentence">この単語を覚える</div>
         <div className="ChooseQuizContainerOpenMark">
           <MdArrowOutward />
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
