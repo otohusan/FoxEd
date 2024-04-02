@@ -69,7 +69,7 @@
 import { useRef, useEffect } from "react";
 import "./style/MenuBar.css";
 import { RiMenu2Fill } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type MenuBarProps = {
   isOpen: boolean;
@@ -78,7 +78,6 @@ type MenuBarProps = {
 
 function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
   const menuRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -121,12 +120,18 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
       {isOpen && (
         <div className="MenuContainer">
           <div className="MenuContent" ref={menuRef}>
-            <div onClick={() => navigate("/")}>単語データを選択 🔍</div>
-            <div onClick={() => navigate("/PlayQuiz")}>
-              クイズをプレイ ⭕️❌
-            </div>
-            <div onClick={() => navigate("/PrepareQuiz")}>単語を覚える 💡</div>
-            <div onClick={() => navigate("/ReviewQuiz")}>単語を復習 📝</div>
+            <Link to={"/"} className="MenuLink">
+              <div className="MenuLink">単語データを選択 🔍</div>
+            </Link>
+            <Link to={"/PlayQuiz"} className="MenuLink">
+              <div className="MenuLink">クイズをプレイ ⭕️❌</div>
+            </Link>
+            <Link to={"/PrepareQuiz"} className="MenuLink">
+              <div className="MenuLink">単語を覚える 💡</div>
+            </Link>
+            <Link to={"/ReviewQuiz"} className="MenuLink">
+              <div className="MenuLink">単語を復習 📝</div>
+            </Link>
             <div onClick={toggleMenu}>メニューを閉じる</div>
           </div>
         </div>
