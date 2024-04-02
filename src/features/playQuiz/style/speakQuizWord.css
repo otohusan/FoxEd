@@ -1,4 +1,6 @@
 .speakQuizWordBtn {
   color: var(--primary-color);
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }

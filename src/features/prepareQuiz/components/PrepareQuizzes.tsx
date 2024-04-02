@@ -45,16 +45,18 @@ function PrepareQuizzes({
 
       <Header HeaderTitle="Prepare" />
 
-      <Link to={"/"} className="PrepareQuizBackToChooseBtnAndLabel">
-        <div className="PrepareQuizBackToChooseBtn">
-          <CgArrowsExchange size={"1.5em"} />
-        </div>
-        <div className="PrepareQuizLabel">{quizLabel}</div>
-      </Link>
+      <main>
+        <Link to={"/"} className="PrepareQuizBackToChooseBtnAndLabel">
+          <div className="PrepareQuizBackToChooseBtn">
+            <CgArrowsExchange size={"1.5em"} />
+          </div>
+          <div className="PrepareQuizLabel">{quizLabel}</div>
+        </Link>
+        {/* <FootPrint /> */}
+        <div className="PrepareQuizList">{PrepareQuizList}</div>
+        <MovableSheet />
+      </main>
 
-      {/* <FootPrint /> */}
-      <div className="PrepareQuizList">{PrepareQuizList}</div>
-      <MovableSheet />
       <Footer />
     </div>
   );

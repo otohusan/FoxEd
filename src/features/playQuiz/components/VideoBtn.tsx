@@ -10,16 +10,16 @@ const videoIconStyle = {
 
 export const StartVideoBtn = () => {
   return (
-    <div className="videoBtnContainer">
+    <button className="videoBtnContainer">
       <IoFootstepsSharp {...videoIconStyle} />
-    </div>
+    </button>
   );
 };
 
 export const StopVideoBtn = () => {
   return (
-    <div className="videoBtnContainer">
+    <button className="videoBtnContainer">
       <HiMiniVideoCameraSlash {...videoIconStyle} />
-    </div>
+    </button>
   );
 };
