@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div className="Footer">
       <div className="FooterContent">
-        <p
+        <button
           onClick={() => {
             if (typeof window !== "undefined") {
               window.scrollTo({
@@ -14,17 +14,18 @@ function Footer() {
               });
             }
           }}
+          className="BackToTop"
         >
           TOPに戻る
-        </p>
+        </button>
         <Link to={"/"} className="FooterLink">
-          <div>異なる単語データを選択</div>
+          <p>異なる単語データを選択</p>
         </Link>
         <Link to={"/PlayQuiz"} className="FooterLink">
-          <div>クイズに挑戦</div>
+          <p>クイズに挑戦</p>
         </Link>
       </div>
-      <div className="FooterCopyright">Copyright ©︎ Konwalk</div>
+      <p className="FooterCopyright">Copyright ©︎ Konwalk</p>
     </div>
   );
 }

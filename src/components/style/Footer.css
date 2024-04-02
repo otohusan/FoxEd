@@ -22,12 +22,15 @@
   text-decoration: none;
 }
 
-.FooterContent > p {
+.BackToTop {
+  color: rgb(255, 255, 255);
   cursor: pointer;
   margin-bottom: 6%;
-  margin-left: 5%;
+  margin-left: 4%;
   font-size: 1.1em;
   -webkit-text-stroke: 0.5px #ffffff;
+  border: none;
+  background-color: transparent;
 }
 
 .FooterCopyright {
