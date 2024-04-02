@@ -133,7 +133,9 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
             <Link to={"/ReviewQuiz"} className="MenuLink">
               <p className="MenuLink">単語を復習 📝</p>
             </Link>
-            <p onClick={toggleMenu}>メニューを閉じる</p>
+            <button onClick={toggleMenu} className="menuCloseBtn">
+              メニューを閉じる
+            </button>
           </div>
         </div>
       )}

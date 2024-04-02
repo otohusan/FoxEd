@@ -38,7 +38,12 @@
   margin: 25px 0;
 }
 
-.MenuContent > div {
+.MenuContent > button {
+  color: rgb(64, 64, 64); /* リンクのテキスト色 */
   cursor: pointer;
   margin: 25px 0;
+  border: none;
+  background-color: transparent;
+  font-weight: 600;
+  margin-right: 0.1em;
 }
