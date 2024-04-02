@@ -36,3 +36,8 @@
   cursor: pointer;
   margin: 25px 0;
 }
+
+.MenuContent > div {
+  cursor: pointer;
+  margin: 25px 0;
+}
