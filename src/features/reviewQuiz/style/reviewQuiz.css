@@ -50,6 +50,7 @@
 }
 
 .ReviewQuizDeleteBtn {
+  color: #717171;
   position: absolute;
   cursor: pointer;
   top: 120%;
