@@ -89,6 +89,7 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleClickOutside = (event: any) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -121,18 +122,18 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
         <div className="MenuContainer">
           <div className="MenuContent" ref={menuRef}>
             <Link to={"/"} className="MenuLink">
-              <div className="MenuLink">単語データを選択 🔍</div>
+              <p className="MenuLink">単語データを選択 🔍</p>
             </Link>
             <Link to={"/PlayQuiz"} className="MenuLink">
-              <div className="MenuLink">クイズをプレイ ⭕️❌</div>
+              <p className="MenuLink">クイズをプレイ ⭕️❌</p>
             </Link>
             <Link to={"/PrepareQuiz"} className="MenuLink">
-              <div className="MenuLink">単語を覚える 💡</div>
+              <p className="MenuLink">単語を覚える 💡</p>
             </Link>
             <Link to={"/ReviewQuiz"} className="MenuLink">
-              <div className="MenuLink">単語を復習 📝</div>
+              <p className="MenuLink">単語を復習 📝</p>
             </Link>
-            <div onClick={toggleMenu}>メニューを閉じる</div>
+            <p onClick={toggleMenu}>メニューを閉じる</p>
           </div>
         </div>
       )}
