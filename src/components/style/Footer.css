@@ -15,7 +15,8 @@
 .FooterLink {
   color: rgb(255, 255, 255);
   cursor: pointer;
-  margin-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 6%;
   margin-left: 5%;
   font-size: 1em;
   display: block;

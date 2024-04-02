@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="Footer">
+    <footer className="Footer">
       <div className="FooterContent">
         <button
           onClick={() => {
@@ -19,14 +19,14 @@ function Footer() {
           TOPに戻る
         </button>
         <Link to={"/"} className="FooterLink">
-          <p>異なる単語データを選択</p>
+          異なる単語データを選択
         </Link>
         <Link to={"/PlayQuiz"} className="FooterLink">
-          <p>クイズに挑戦</p>
+          クイズに挑戦
         </Link>
       </div>
       <p className="FooterCopyright">Copyright ©︎ Konwalk</p>
-    </div>
+    </footer>
   );
 }
 
