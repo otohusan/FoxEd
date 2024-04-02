@@ -15,7 +15,7 @@
 .FooterLink {
   color: rgb(255, 255, 255);
   cursor: pointer;
-  margin-top: 5%;
+  margin-top: 6%;
   margin-bottom: 6%;
   margin-left: 5%;
   font-size: 1em;
@@ -26,8 +26,8 @@
 .BackToTop {
   color: rgb(255, 255, 255);
   cursor: pointer;
-  margin-bottom: 2%;
-  margin-left: 4%;
+  margin-bottom: 6%;
+  margin-left: 5%;
   -webkit-text-stroke: 0.5px #ffffff;
   border: none;
   background-color: transparent;
@@ -35,7 +35,7 @@
 }
 
 .BackToTop > p {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .FooterCopyright {

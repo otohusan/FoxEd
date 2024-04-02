@@ -112,12 +112,12 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
 
   return (
     <div>
-      <button onClick={toggleMenu} className="MenuBar">
+      <div onClick={toggleMenu} className="MenuBar">
         <RiMenu2Fill
           size={"1.5em"}
           style={{ filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2))" }}
         />
-      </button>
+      </div>
       {isOpen && (
         <div className="MenuContainer">
           <ul className="MenuContent" ref={menuRef}>
