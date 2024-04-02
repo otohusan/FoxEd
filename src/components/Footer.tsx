@@ -16,7 +16,7 @@ function Footer() {
           }}
           className="BackToTop"
         >
-          TOPに戻る
+          <p>TOPに戻る</p>
         </button>
         <Link to={"/"} className="FooterLink">
           異なる単語データを選択
