@@ -2,6 +2,7 @@ import "../style/PrepareMenus.css";
 import SpeakWordBtn from "./SpeakWordBtn";
 import { IoFootstepsOutline } from "react-icons/io5";
 import { MdIosShare } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 type PrepareQuizMenuProps = {
@@ -37,17 +38,19 @@ function PrepareQuizMenu({
       <div className="PrepareQuizSpeakBtn">
         <SpeakWordBtn questionWord={QuizName} />
       </div>
-      <button
+      <Link
+        to={"/PlayQuiz"}
         className="PrepareQuizPlayBtn"
-        onClick={() => {
+        onClick={(e) => {
           // クリックされた単語からクイズをスタートするためにcurrentQuizIndexを変更している
+          e.preventDefault();
           setCurrentQuizIndex(QuizIndex);
           navigate("/PlayQuiz");
         }}
       >
         {/* 大きさ整えるためにサイズ指定している */}
         <IoFootstepsOutline size={iconSize} />
-      </button>
+      </Link>
       <button onClick={handleShare}>
         <MdIosShare size={iconSize} />
       </button>

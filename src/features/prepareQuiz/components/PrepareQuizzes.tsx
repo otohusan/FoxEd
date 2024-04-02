@@ -6,7 +6,7 @@ import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
 import { Quiz } from "../../../../type/index.ts";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
@@ -30,8 +30,6 @@ function PrepareQuizzes({
     />
   ));
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -47,17 +45,12 @@ function PrepareQuizzes({
 
       <Header HeaderTitle="Prepare" />
 
-      <button
-        className="PrepareQuizBackToChooseBtnAndLabel"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
+      <Link to={"/"} className="PrepareQuizBackToChooseBtnAndLabel">
         <div className="PrepareQuizBackToChooseBtn">
           <CgArrowsExchange size={"1.5em"} />
         </div>
         <div className="PrepareQuizLabel">{quizLabel}</div>
-      </button>
+      </Link>
 
       {/* <FootPrint /> */}
       <div className="PrepareQuizList">{PrepareQuizList}</div>
