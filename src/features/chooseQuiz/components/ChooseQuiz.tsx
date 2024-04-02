@@ -1,4 +1,4 @@
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { useEffect } from "react";
 import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
@@ -17,16 +17,12 @@ type ChooseQuizProps = {
 // データセットを選択すると、その問題がセットされる
 function labelOnClick(
   setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>,
-  quizData: QuizFormat,
-  navigate: NavigateFunction
+  quizData: QuizFormat
 ) {
   setQuizzes(quizData);
-  navigate("/PrepareQuiz");
 }
 
 function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
-  const navigate = useNavigate();
-
   // useEffect(() => {
   //   window.scrollTo(0, 0);
   // }, []);
@@ -44,29 +40,33 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
       <div className="ChooseQuizListTitle">TOIEC英単語</div>
       <div className="ChooseQuizDataList">
         {quizzes.map((quizFormat, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              labelOnClick(setQuizzes, quizFormat, navigate);
-            }}
-            className="ChooseQuizContainerWrapper"
-          >
-            <ChooseQuizContainer quizFormat={quizFormat} />
-          </div>
+          <Link to={"/PrepareQuiz"}>
+            <div
+              key={index}
+              onClick={() => {
+                labelOnClick(setQuizzes, quizFormat);
+              }}
+              className="ChooseQuizContainerWrapper"
+            >
+              <ChooseQuizContainer quizFormat={quizFormat} />
+            </div>
+          </Link>
         ))}
       </div>
       <div className="ChooseQuizListTitleKoukou">高校英単語</div>
       <div className="ChooseQuizDataList">
         {yumetan.map((quizFormat, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              labelOnClick(setQuizzes, quizFormat, navigate);
-            }}
-            className="ChooseQuizContainerWrapper"
-          >
-            <ChooseQuizContainer quizFormat={quizFormat} />
-          </div>
+          <Link to={"/PrepareQuiz"}>
+            <div
+              key={index}
+              onClick={() => {
+                labelOnClick(setQuizzes, quizFormat);
+              }}
+              className="ChooseQuizContainerWrapper"
+            >
+              <ChooseQuizContainer quizFormat={quizFormat} />
+            </div>
+          </Link>
         ))}
       </div>
       <Footer />
