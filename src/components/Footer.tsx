@@ -1,27 +1,32 @@
-import { useNavigate } from "react-router-dom";
 import "./style/Footer.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
-  const navigate = useNavigate();
-
   return (
-    <div className="Footer">
+    <footer className="Footer">
       <div className="FooterContent">
-        <p
-        // onClick={() => {
-        //   window.scrollTo({
-        //     top: 0,
-        //     behavior: "smooth",
-        //   });
-        // }}
+        <button
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }
+          }}
+          className="BackToTop"
         >
           TOPに戻る
-        </p>
-        <div onClick={() => navigate("/")}>異なる単語データを選択</div>
-        <div onClick={() => navigate("/PlayQuiz")}>クイズに挑戦</div>
+        </button>
+        <Link to={"/"} className="FooterLink">
+          異なる単語データを選択
+        </Link>
+        <Link to={"/PlayQuiz"} className="FooterLink">
+          クイズに挑戦
+        </Link>
       </div>
-      <div className="FooterCopyright">Copyright ©︎ Konwalk</div>
-    </div>
+      <p className="FooterCopyright">Copyright ©︎ Konwalk</p>
+    </footer>
   );
 }
 

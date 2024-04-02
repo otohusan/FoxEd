@@ -1,21 +1,22 @@
 import "../style/goPrepareBtn.css";
-import { useNavigate } from "react-router-dom";
 import { FaRegLightbulb } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 type GoPrepareBtnProps = {
   stopVideo: () => void;
 };
 
 function GoPrepareBtn({ stopVideo }: GoPrepareBtnProps): JSX.Element {
-  const navigate = useNavigate();
-
   const handleClick = () => {
-    navigate("/PrepareQuiz");
     stopVideo();
   };
 
   return (
-    <div className="playQuiz-GoPrepareBtn" onClick={handleClick}>
+    <Link
+      to={"/PrepareQuiz"}
+      className="playQuiz-GoPrepareBtn"
+      onClick={handleClick}
+    >
       <FaRegLightbulb
         size={30}
         style={{
@@ -32,7 +33,7 @@ function GoPrepareBtn({ stopVideo }: GoPrepareBtnProps): JSX.Element {
       >
         <div style={{ fontSize: "0.8em" }}>予習</div>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -1,21 +1,22 @@
 import "../style/goReviewBtn.css";
-import { useNavigate } from "react-router-dom";
 import { GoNote } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 type GoReviewBtnProps = {
   stopVideo: () => void;
 };
 
 function GoReviewBtn({ stopVideo }: GoReviewBtnProps): JSX.Element {
-  const navigate = useNavigate();
-
   const handleClick = () => {
-    navigate("/ReviewQuiz");
     stopVideo();
   };
 
   return (
-    <div className="playQuiz-GoReviewBtn" onClick={handleClick}>
+    <Link
+      to={"/ReviewQuiz"}
+      className="playQuiz-GoReviewBtn"
+      onClick={handleClick}
+    >
       <GoNote
         size={30}
         style={{
@@ -32,7 +33,7 @@ function GoReviewBtn({ stopVideo }: GoReviewBtnProps): JSX.Element {
       >
         <div style={{ fontSize: "0.8em" }}>復習</div>
       </div>
-    </div>
+    </Link>
   );
 }
 

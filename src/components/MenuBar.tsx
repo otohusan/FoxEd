@@ -69,7 +69,7 @@
 import { useRef, useEffect } from "react";
 import "./style/MenuBar.css";
 import { RiMenu2Fill } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type MenuBarProps = {
   isOpen: boolean;
@@ -77,8 +77,7 @@ type MenuBarProps = {
 };
 
 function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
-  const menuRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const menuRef = useRef<HTMLUListElement>(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -90,6 +89,7 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleClickOutside = (event: any) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -112,23 +112,39 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
 
   return (
     <div>
-      <div onClick={toggleMenu} className="MenuBar">
+      <button onClick={toggleMenu} className="MenuBar">
         <RiMenu2Fill
           size={"1.5em"}
           style={{ filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2))" }}
         />
-      </div>
+      </button>
       {isOpen && (
         <div className="MenuContainer">
-          <div className="MenuContent" ref={menuRef}>
-            <div onClick={() => navigate("/")}>単語データを選択 🔍</div>
-            <div onClick={() => navigate("/PlayQuiz")}>
-              クイズをプレイ ⭕️❌
-            </div>
-            <div onClick={() => navigate("/PrepareQuiz")}>単語を覚える 💡</div>
-            <div onClick={() => navigate("/ReviewQuiz")}>単語を復習 📝</div>
-            <div onClick={toggleMenu}>メニューを閉じる</div>
-          </div>
+          <ul className="MenuContent" ref={menuRef}>
+            <li className="MenuLink">
+              <Link to={"/"} className="MenuLink">
+                単語データを選択 🔍
+              </Link>
+            </li>
+            <li className="MenuLink">
+              <Link to={"/PlayQuiz"} className="MenuLink">
+                クイズをプレイ ⭕️❌
+              </Link>
+            </li>
+            <li className="MenuLink">
+              <Link to={"/PrepareQuiz"} className="MenuLink">
+                単語を覚える 💡
+              </Link>
+            </li>
+            <li className="MenuLink">
+              <Link to={"/ReviewQuiz"} className="MenuLink">
+                単語を復習 📝
+              </Link>
+            </li>
+            <button onClick={toggleMenu} className="menuCloseBtn">
+              メニューを閉じる
+            </button>
+          </ul>
         </div>
       )}
     </div>

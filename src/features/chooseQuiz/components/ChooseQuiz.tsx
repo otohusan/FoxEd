@@ -1,4 +1,4 @@
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useEffect } from "react";
 import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
@@ -17,19 +17,17 @@ type ChooseQuizProps = {
 // データセットを選択すると、その問題がセットされる
 function labelOnClick(
   setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>,
-  quizData: QuizFormat,
-  navigate: NavigateFunction
-) {
+  quizData: QuizFormat
+): void {
   setQuizzes(quizData);
-  navigate("/PrepareQuiz");
 }
 
 function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
-  const navigate = useNavigate();
-
   // useEffect(() => {
   //   window.scrollTo(0, 0);
   // }, []);
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -37,38 +35,50 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
       <Header HeaderTitle="Choose" />
       {/* <div className="IntroductionTopTitle">あいさつ</div>
       <div className="hr-line"></div> */}
-      <Introduction />
-      <div className="ChooseTopTitle">英単語データ</div>
-      <div className="hr-line"></div>
-      {/* <img src={BacPic} className="WalkGirl" /> */}
-      <div className="ChooseQuizListTitle">TOIEC英単語</div>
-      <div className="ChooseQuizDataList">
-        {quizzes.map((quizFormat, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              labelOnClick(setQuizzes, quizFormat, navigate);
-            }}
-            className="ChooseQuizContainerWrapper"
-          >
-            <ChooseQuizContainer quizFormat={quizFormat} />
-          </div>
-        ))}
-      </div>
-      <div className="ChooseQuizListTitleKoukou">高校英単語</div>
-      <div className="ChooseQuizDataList">
-        {yumetan.map((quizFormat, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              labelOnClick(setQuizzes, quizFormat, navigate);
-            }}
-            className="ChooseQuizContainerWrapper"
-          >
-            <ChooseQuizContainer quizFormat={quizFormat} />
-          </div>
-        ))}
-      </div>
+      <main>
+        <Introduction />
+        <div className="ChooseTopTitle">英単語データ</div>
+        <div className="hr-line"></div>
+        {/* <img src={BacPic} className="WalkGirl" /> */}
+        <div className="ChooseQuizListTitle">TOIEC英単語</div>
+        <div className="ChooseQuizDataList">
+          {quizzes.map((quizFormat, index) => (
+            <div
+              key={index}
+              onClick={() => {
+                labelOnClick(setQuizzes, quizFormat);
+                navigate("/PrepareQuiz");
+              }}
+              className="ChooseQuizContainerWrapper"
+            >
+              <ChooseQuizContainer
+                quizFormat={quizFormat}
+                labelOnClick={labelOnClick}
+                setQuizzes={setQuizzes}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="ChooseQuizListTitleKoukou">高校英単語</div>
+        <div className="ChooseQuizDataList">
+          {yumetan.map((quizFormat, index) => (
+            <div
+              key={index}
+              onClick={() => {
+                labelOnClick(setQuizzes, quizFormat);
+                navigate("/PrepareQuiz");
+              }}
+              className="ChooseQuizContainerWrapper"
+            >
+              <ChooseQuizContainer
+                quizFormat={quizFormat}
+                labelOnClick={labelOnClick}
+                setQuizzes={setQuizzes}
+              />
+            </div>
+          ))}
+        </div>
+      </main>
       <Footer />
     </div>
   );
