@@ -2,8 +2,6 @@
   "name": "Konwalk(コンウォーク)",
   "short_name": "Konwalk",
   "description": "歩く時間を無駄にしない英単語帳",
-  "theme_color": "#ff9430",
-  "background_color": "#f6f6f6",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
