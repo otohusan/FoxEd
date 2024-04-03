@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.konwalk.jp/</loc>
-    <lastmod>2024-02-06</lastmod>
+    <lastmod>2024-04-03</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.konwalk.jp/ReviewQuiz</loc>
-    <lastmod>2024-02-06</lastmod>
+    <lastmod>2024-04-03</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.konwalk.jp/PrepareQuiz</loc>
-    <lastmod>2024-02-06</lastmod>
+    <lastmod>2024-04-03</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.konwalk.jp/PlayQuiz</loc>
-    <lastmod>2024-03-29</lastmod>
-    <priority>1.0</priority>
+    <lastmod>2024-04-03</lastmod>
+    <priority>0.9</priority>
   </url>
 </urlset>
