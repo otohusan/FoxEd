@@ -96,7 +96,7 @@
   border-radius: 13px;
   padding: calc(3.5 * var(--app-vh, 1vh)) 2% calc(13 * var(--app-vh, 1vh)) 8%;
   box-shadow: 0px 4px 3px rgba(130, 130, 130, 0.2);
-  background-color: #fdfdfd;
+  background-color: #fcfcfc;
   border: 1px solid #f0f0f0;
 }
 
@@ -109,7 +109,7 @@
 
 .ChooseQuizContainer:active {
   transform: scale(0.98);
-  background-color: #fafafa;
+  background-color: #f4f4f4;
 }
 
 .ChooseQuizContent {
