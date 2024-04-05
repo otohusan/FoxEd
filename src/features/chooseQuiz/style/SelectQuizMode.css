@@ -1,0 +1,30 @@
+.SelectQuizModeContainer {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column; /* 子要素を縦方向に並べる */
+  align-items: start; /* 子要素を中央揃えにする */
+  background-color: #6a6e72;
+  border-radius: 8px;
+}
+
+.SelectMode {
+  color: #fdfdfd;
+  text-decoration: none;
+  font-size: 0.8em;
+  width: 35vw;
+  max-width: 150px;
+  text-align: start; /* テキストを中央揃えにする */
+  margin: 7px;
+}
+
+.SelectMode-hr-line {
+  border-top: 1px solid #7c8185; /* 上辺に黒色の1pxの線を引く */
+  width: 100%; /* 幅を指定 */
+}
+
+.SelectMode:hover {
+  color: #fee09a;
+}
