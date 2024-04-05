@@ -8,6 +8,7 @@ import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import Introduction from "../introduction/Introduction.tsx";
+import SelectQuizModeContainer from "./SelectQuizModeContainer.tsx";
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
@@ -37,6 +38,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
       <div className="hr-line"></div> */}
       <main>
         <Introduction />
+        <SelectQuizModeContainer />
         <div className="ChooseTopTitle">英単語データ</div>
         <div className="hr-line"></div>
         {/* <img src={BacPic} className="WalkGirl" /> */}

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;
+  // データが選択された際に発火する関数
   labelOnClick: (
     setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>,
     quizData: QuizFormat
