@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
+import "../style/SelectQuizMode.css";
 
 function SelectQuizModeContainer() {
   return (
     <div className="SelectQuizModeContainer">
       <Link to={"/"} className="SelectMode">
-        歩く時の
+        歩いて使う
       </Link>
+      <div className="SelectMode-hr-line"></div>
       <Link to={"/"} className="SelectMode">
-        普通の
+        普通に使う
       </Link>
     </div>
   );
