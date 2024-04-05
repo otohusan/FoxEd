@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,7 +10,14 @@ export default defineConfig({
       process.env.VITE_IMAGE_WITH_SHARE_URL
     ),
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: "autoUpdate",
+      injectRegister: "auto", // 追加
+      manifest: false,
+    }),
+  ],
   base:
     process.env.VITE_GITHUB_PAGES === "true"
       ? "/FoxEd/" // レポジトリ名を設定
