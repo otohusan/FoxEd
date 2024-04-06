@@ -8,6 +8,7 @@
   align-items: start; /* 子要素を中央揃えにする */
   background-color: #6a6e72;
   border-radius: 8px;
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
 
 .SelectMode {
