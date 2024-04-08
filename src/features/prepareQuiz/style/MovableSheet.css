@@ -31,12 +31,6 @@
   border: none;
 }
 
-/* @media (min-width: 600px) {
-  .MovableSheetWithClose {
-    margin-right: 15em;
-  }
-} */
-
 .MovableSheetOpenBtn {
   cursor: pointer;
   color: #ffffffe9;
