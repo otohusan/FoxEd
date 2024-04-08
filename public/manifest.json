@@ -6,6 +6,10 @@
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/?utm_source=pwa",
+  "theme_color": "#fdfdfd",
+  "background_color": "#fdfdfd",
+  "lang": "ja-JP",
+  "dir": "ltr",
   "icons": [
     {
       "src": "icons/icon-48x48.jpg",
@@ -30,7 +34,7 @@
     {
       "src": "icons/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ]
 }

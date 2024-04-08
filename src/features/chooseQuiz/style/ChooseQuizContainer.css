@@ -9,22 +9,7 @@
   font-family: "M PLUS Rounded 1c", sans-serif;
 }
 
-.IntroductionTopTitle {
-  color: #ffb056;
-  -webkit-text-stroke: 1px #ffb056;
-  text-align: start;
-  margin-top: calc(25 * var(--app-vh, 1vh));
-  margin-left: 5%;
-  font-size: 1.7em;
-  /* margin-bottom: calc(3 * var(--app-vh, 1vh)); */
-  font-family: "M PLUS Rounded 1c", sans-serif;
-}
-
 @media (max-width: 600px) {
-  .IntroductionTopTitle {
-    margin-top: calc(18 * var(--app-vh, 1vh));
-  }
-
   .ChooseTopTitle {
     margin-top: calc(11 * var(--app-vh, 1vh));
   }
