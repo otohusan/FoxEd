@@ -6,7 +6,6 @@ import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
 import { QuizFormat, ReviewQuizType } from "../type/index.ts";
-import FootPrint from "./features/prepareQuiz/components/FootPrint.tsx";
 // import { HelmetProvider } from "react-helmet-async";
 
 function App() {
@@ -25,8 +24,6 @@ function App() {
       {/* <HelmetProvider> */}
       <Routes>
         <Route
-          // SSRの場合とそうでない場合のrootを分けている、試し
-          // path={import.meta.env.SSR ? "/playQuiz" : "/"}
           path="/PlayQuiz"
           element={
             <PlayQuiz
@@ -60,18 +57,11 @@ function App() {
         />
 
         <Route
-          // path={import.meta.env.SSR ? "/" : "/chooseQuizData"}
           path="/"
           // 全てのクイズのデータを渡して、選択させる
           element={
             <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
           }
-        />
-
-        <Route
-          path="/test"
-          // 全てのクイズのデータを渡して、選択させる
-          element={<FootPrint />}
         />
       </Routes>
       {/* </HelmetProvider> */}

@@ -1,7 +1,6 @@
 .MenuBar {
   position: absolute;
   top: 28%;
-  right: 8%;
   cursor: pointer;
 
   background-color: transparent;
@@ -10,7 +9,6 @@
   outline: none;
   padding: 0;
   appearance: none;
-  color: #000;
 
   /* ここから試し */
   right: 6%;
