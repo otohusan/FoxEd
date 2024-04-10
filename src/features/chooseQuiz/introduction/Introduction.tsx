@@ -5,6 +5,7 @@ function Introduction() {
     <div className="introductionContainer">
       <h1 className="introductionComment">
         <span className="introductionBig">Konwalk(コンウォーク)</span>
+        <br />
         を<br />
         知ってくれて
         <br />
