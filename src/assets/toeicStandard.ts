@@ -757,12 +757,6 @@ export const toeicStandard: QuizFormat = {
       partOfSpeech: 3,
     },
     {
-      question: "Resume",
-      choices: ["終了する", "開始する", "再開する", "キャンセルする"],
-      answer: "再開する",
-      partOfSpeech: 2,
-    },
-    {
       question: "Implement",
       choices: ["実行する", "計画する", "廃止する", "検討する"],
       answer: "実行する",
