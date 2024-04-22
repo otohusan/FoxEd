@@ -27,6 +27,7 @@ video {
   height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;
+  filter: brightness(100%) contrast(130%) saturate(130%);
 }
 
 .videoBtnContainer {
