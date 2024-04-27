@@ -1069,8 +1069,8 @@ export const toeicEntry: QuizFormat = {
     },
     {
       question: "Application",
-      choices: ["無視", "理論", "応答", "拒絶"],
-      answer: "応用",
+      choices: ["無視", "理論", "応募", "拒絶"],
+      answer: "応募",
       partOfSpeech: 1,
     },
     {

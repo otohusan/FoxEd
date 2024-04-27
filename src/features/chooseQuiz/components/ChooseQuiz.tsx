@@ -1,7 +1,5 @@
-// import { useEffect } from "react";
 import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
-// import BacPic from "../../../assets/BacPic.png";
 import "../style/WalkGirl.css";
 import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
@@ -24,9 +22,9 @@ function labelOnClick(
 }
 
 function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
   // selectModeコンポーネントの位置を設定するステート（例）
@@ -55,7 +53,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
     }
 
     // スクロール量を追加
-    y += window.scrollY;
+    y += window.scrollY - 50;
 
     setIsSelectModeOpen(true);
     setSelectModePosition({ x, y });

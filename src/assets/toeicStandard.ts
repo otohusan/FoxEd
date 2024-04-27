@@ -450,7 +450,7 @@ export const toeicStandard: QuizFormat = {
     },
     {
       question: "Proof",
-      choices: ["推測", "疑問", "仮説", "照明"],
+      choices: ["推測", "疑問", "仮説", "証明"],
       answer: "証明",
       partOfSpeech: 1,
     },
@@ -528,7 +528,7 @@ export const toeicStandard: QuizFormat = {
     },
     {
       question: "Resolve",
-      choices: ["無視する", "拡大する", "混乱させる", "陥る"],
+      choices: ["無視する", "拡大する", "混乱させる", "解決する"],
       answer: "解決する",
       partOfSpeech: 2,
     },
@@ -757,12 +757,6 @@ export const toeicStandard: QuizFormat = {
       partOfSpeech: 3,
     },
     {
-      question: "Resume",
-      choices: ["終了する", "開始する", "再開する", "キャンセルする"],
-      answer: "再開する",
-      partOfSpeech: 2,
-    },
-    {
       question: "Implement",
       choices: ["実行する", "計画する", "廃止する", "検討する"],
       answer: "実行する",
@@ -971,7 +965,7 @@ export const toeicStandard: QuizFormat = {
     {
       question: "Stem",
       choices: ["食べる", "由来する", "葉", "生きる"],
-      answer: "茎",
+      answer: "由来する",
       partOfSpeech: 1,
     },
     {
@@ -1514,7 +1508,7 @@ export const toeicStandard: QuizFormat = {
     {
       question: "Boost",
       choices: ["減少する", "増加する", "強化する", "抑制する"],
-      answer: "強化",
+      answer: "強化する",
       partOfSpeech: 2,
     },
     {
