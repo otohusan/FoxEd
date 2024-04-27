@@ -53,7 +53,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
     }
 
     // スクロール量を追加
-    y += window.scrollY;
+    y += window.scrollY - 50;
 
     setIsSelectModeOpen(true);
     setSelectModePosition({ x, y });
