@@ -1,0 +1,41 @@
+.dpad {
+  display: flex;
+  position: absolute;
+  transform: translate(-50%, 0%);
+  top: 70%;
+  left: 150%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.dpad-button {
+  background-color: #666;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 2px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dpad-center {
+  display: flex;
+  align-items: center;
+}
+
+.dpad-middle {
+  width: 40px; /* Adjust size as necessary */
+  height: 40px; /* Adjust size as necessary */
+  background-color: #444; /* Center block color */
+}
+
+.dpad-button:hover {
+  background-color: #555;
+}
+
+.dpad-button:active {
+  background-color: #777;
+}
