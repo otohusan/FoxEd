@@ -2,7 +2,8 @@ import "../../style/dpad/dpad.css";
 
 const Dpad = () => {
   function onDirection(s: string) {
-    alert(s);
+    // alert(`${s}がクリックされた`);
+    return s;
   }
   return (
     <div className="dpad">
