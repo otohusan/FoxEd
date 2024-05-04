@@ -6,6 +6,7 @@ import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
 import { QuizFormat, ReviewQuizType } from "../type/index.ts";
+import Test from "./pages/Test.tsx";
 // import { HelmetProvider } from "react-helmet-async";
 
 function App() {
@@ -62,6 +63,11 @@ function App() {
           element={
             <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
           }
+        />
+        <Route
+          path="/Test"
+          // 全てのクイズのデータを渡して、選択させる
+          element={<Test />}
         />
       </Routes>
       {/* </HelmetProvider> */}
