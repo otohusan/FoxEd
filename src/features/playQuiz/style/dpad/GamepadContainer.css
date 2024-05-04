@@ -28,6 +28,7 @@
   top: 90%;
   left: 85%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .gamepadPiconBtn {
@@ -38,6 +39,7 @@
   top: 67%;
   left: 13%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .gamepadNoteBtn {
@@ -48,6 +50,7 @@
   top: 60%;
   left: 28%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .gamepadVideoBtn {
@@ -58,14 +61,18 @@
   top: 75%;
   left: 23%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .KonwalkLogo {
   color: rgb(211, 211, 211);
   position: absolute;
-  top: 88.3%;
-  left: 6.5%;
+  top: 88%;
+  left: 6.7%;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  font-weight: 700;
   font-size: 20px;
+  text-shadow: 1px 1px 3px rgba(39, 39, 39, 0.7),
+    /* ソフトな黒の影 */ 0 0 20px rgba(255, 255, 255, 0.8),
+    /* 光沢感を出す白い光 */ 0 0 5px rgba(221, 221, 221, 0.5); /* より広がりのある軽い光 */
+  font-weight: bold; /* フォントを太く */
 }
