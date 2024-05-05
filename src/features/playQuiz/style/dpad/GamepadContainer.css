@@ -8,6 +8,18 @@
   display: flex;
   justify-content: center; /* 水平方向の中心寄せ */
   background-color: rgb(186, 186, 186);
+  border-bottom: 8px solid rgb(65, 65, 65);
+  box-shadow: 0 8px 25px rgba(57, 57, 57, 0.557),
+    /* 深い影 */ 0 0 20px rgba(255, 255, 255, 0.7),
+    /* 強い白い光 */ 0 0 10px rgba(255, 255, 255, 0.3); /* 広がりのある光 */
+}
+
+.runningMan {
+  position: absolute;
+  top: 85%;
+  left: 5%;
+  color: rgba(0, 0, 0, 0.745);
+  transition: all 0.6s ease;
 }
 
 .GamePlayView {
@@ -17,7 +29,18 @@
   position: absolute;
   top: 1%;
   border-radius: 5px;
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(246, 246, 246);
+}
+
+.GamepadContainer > button {
+  transition: all 0.2s ease;
+}
+.GamepadContainer > button:hover {
+  background-color: rgb(188, 188, 188);
+}
+
+.GamepadContainer > button:active {
+  background-color: rgb(225, 225, 225);
 }
 
 .gamepadHomeBtn {
@@ -28,6 +51,7 @@
   top: 90%;
   left: 85%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .gamepadPiconBtn {
@@ -38,6 +62,7 @@
   top: 67%;
   left: 13%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .gamepadNoteBtn {
@@ -48,6 +73,7 @@
   top: 60%;
   left: 28%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .gamepadVideoBtn {
@@ -58,14 +84,19 @@
   top: 75%;
   left: 23%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .KonwalkLogo {
   color: rgb(211, 211, 211);
   position: absolute;
-  top: 88.3%;
+  top: 88.1%;
   left: 6.5%;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  font-weight: 700;
   font-size: 20px;
+
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7),
+    /* ソフトな黒の影 */ 0 0 20px rgba(255, 255, 255, 0.8),
+    /* 光沢感を出す白い光 */ 0 0 5px rgba(255, 255, 255, 0.5); /* より広がりのある軽い光 */
+  font-weight: bold; /* フォントを太く */
 }
