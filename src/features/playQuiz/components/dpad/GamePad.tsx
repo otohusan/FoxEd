@@ -35,6 +35,31 @@ function GamePad() {
     }, 200);
   }
 
+  function animateMovingCloud() {
+    const cloud = document.getElementById("gameViewCloud");
+    const gameView = document.getElementById("gamePlayView");
+    const GamepadContainer = document.getElementById("GamepadContainer");
+    if (!cloud || !gameView || !GamepadContainer) return;
+
+    const gameViewWidth = gameView.offsetWidth;
+    const CLOUD_WIDTH = 60;
+    let currentPos = gameViewWidth - CLOUD_WIDTH;
+
+    const speed = 3; // 雲の移動速度（ピクセル単位）
+
+    const move = () => {
+      currentPos -= speed; // 速度を調整
+      cloud.style.left = `${currentPos}px`;
+
+      if (currentPos + CLOUD_WIDTH * 2 <= cloud.offsetWidth) {
+        currentPos = gameViewWidth + CLOUD_WIDTH;
+      }
+      requestAnimationFrame(move);
+    };
+
+    move();
+  }
+
   // パラパラ漫画用の変数
   let currentFrame = 0;
   const [animeFlag, setAnimeFlag] = useState(false);
@@ -60,6 +85,7 @@ function GamePad() {
     if (animeFlag) {
       // animeFlagがtrueの場合のみアニメーションを開始
       intervalId = setInterval(animateRunning, 300);
+      animateMovingCloud();
     } else {
       // animeFlagがfalseの場合には既存のインターバルをクリア
       clearInterval(intervalId);
@@ -69,21 +95,16 @@ function GamePad() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animeFlag]);
 
+  const runningManSize = 45;
+
   return (
-    <div className="GamepadContainer">
-      <div className="GamePlayView">
+    <div className="GamepadContainer" id="GamepadContainer">
+      <div className="GamePlayView" id="gamePlayView">
+        <div className="gameViewCloud" id="gameViewCloud"></div>
         <div className="runningMan" id="runningMan">
-          <RiRunLine size={40} onClick={moveRunningManRight} />
-          <BiRun
-            size={40}
-            onClick={moveRunningManRight}
-            style={{ display: "none" }}
-          />
-          <GrRun
-            size={40}
-            onClick={moveRunningManRight}
-            style={{ display: "none" }}
-          />
+          <RiRunLine size={runningManSize} />
+          <GrRun size={runningManSize} style={{ display: "none" }} />
+          <BiRun size={runningManSize} style={{ display: "none" }} />
         </div>
       </div>
       <button className="gamepadPiconBtn">
