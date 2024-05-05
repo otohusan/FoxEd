@@ -108,7 +108,7 @@ function GamePad() {
 
       <p className="KonwalkLogo">Konwalk</p>
 
-      <Dpad />
+      <Dpad moveRunningManRight={moveRunningManRight} />
     </div>
   );
 }

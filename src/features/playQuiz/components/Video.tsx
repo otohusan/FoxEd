@@ -14,7 +14,6 @@ import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
 import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 import { HeadDataHelmet } from "../../../components/index.ts";
-import Dpad from "./dpad/Dpad.tsx";
 
 type VideoProps = {
   // 復習問題の管理
@@ -92,7 +91,6 @@ function Video({
 
       <GoReviewBtn stopVideo={stopVideo} />
       <GoPrepareBtn stopVideo={stopVideo} />
-      <Dpad />
 
       {/* 起動した時だけ表示される、クリックできることをお知らせするコンポーネント */}
       {/* <InformClickable /> */}
