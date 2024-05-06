@@ -1,6 +1,9 @@
 import "../../style/dpad/dpad.css";
 
-const Dpad = (props: { moveRunningManRight: () => void }) => {
+const Dpad = (props: {
+  moveRunningManRight: () => void;
+  moveRunningMan: (pix: number) => void;
+}) => {
   function onDirection(s: string) {
     // alert(`${s}がクリックされた`);
     return s;
@@ -13,14 +16,14 @@ const Dpad = (props: { moveRunningManRight: () => void }) => {
       <div className="dpad-center">
         <button
           className="dpad-button left"
-          onClick={() => onDirection("left")}
+          onClick={() => props.moveRunningMan(-30)}
         >
           ←
         </button>
         <div className="dpad-middle"></div>
         <button
           className="dpad-button right"
-          onClick={() => onDirection("right")}
+          onClick={() => props.moveRunningMan(30)}
         >
           →
         </button>

@@ -35,6 +35,21 @@ function GamePad() {
     }, 200);
   }
 
+  function moveRunningMan(pix: number) {
+    const runningMan = document.getElementById("runningMan");
+    if (!runningMan) return; // 要素がない場合は何もしない
+
+    // getComputedStyleを使って現在のleftの値を取得し、整数値に変換
+    const currentLeftPosition = parseInt(
+      window.getComputedStyle(runningMan).left,
+      10
+    );
+
+    const newLeftPosition = currentLeftPosition + pix; // 右に10ピクセル移動
+
+    runningMan.style.left = newLeftPosition + "px"; // 新しい位置を設定
+  }
+
   function animateMovingCloud() {
     const cloud = document.getElementById("gameViewCloud");
     const gameView = document.getElementById("gamePlayView");
@@ -51,7 +66,7 @@ function GamePad() {
       currentPos -= speed; // 速度を調整
       cloud.style.left = `${currentPos}px`;
 
-      if (currentPos + CLOUD_WIDTH * 2 <= cloud.offsetWidth) {
+      if (currentPos + CLOUD_WIDTH * 2 + 70 <= cloud.offsetWidth) {
         currentPos = gameViewWidth + CLOUD_WIDTH;
       }
       requestAnimationFrame(move);
@@ -129,7 +144,10 @@ function GamePad() {
 
       <p className="KonwalkLogo">Konwalk</p>
 
-      <Dpad moveRunningManRight={moveRunningManRight} />
+      <Dpad
+        moveRunningManRight={moveRunningManRight}
+        moveRunningMan={moveRunningMan}
+      />
     </div>
   );
 }
