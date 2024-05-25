@@ -4,6 +4,7 @@ type returnNextQuizIndexProps = {
   next: number;
 };
 
+// クイズのサイズに対して適切な値を返す
 function returnNextQuizIndex(
   quizIndex: returnNextQuizIndexProps["quizIndex"],
   quizSize: returnNextQuizIndexProps["quizSize"],
