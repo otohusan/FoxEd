@@ -11,7 +11,11 @@ import GoPrepareBtn from "./GoPrepareBtn";
 import DisplayQuizNumber from "./DisplayQuizNumber";
 // import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
-import { generateRandomInteger, returnNextQuizIndex } from "../../../api";
+import {
+  generateRandomInteger,
+  returnNextQuizIndex,
+  shuffleArray,
+} from "../../../api";
 import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 import { HeadDataHelmet } from "../../../components/index.ts";
 
@@ -29,18 +33,6 @@ function Video({
   setQuizIndex,
   quizzes,
 }: VideoProps) {
-  function shuffleArray<T>(array: T[]): T[] {
-    const shuffledArray = array.slice(); // 元の配列をコピーして新しい配列を作成
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
-    return shuffledArray;
-  }
-
   function allocateChoices(
     quizLength: number,
     quizIndex: number,
