@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../style/video.css"; // CSSをインポート
 import { useVideo, useClickSide } from "../hooks";
 import { StartVideoBtn, StopVideoBtn } from "./VideoBtn";
@@ -14,6 +14,7 @@ import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
 import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 import { HeadDataHelmet } from "../../../components/index.ts";
+import allocateChoices from "../api/allocateChoices.ts";
 
 type VideoProps = {
   // 復習問題の管理
@@ -30,12 +31,16 @@ function Video({
   quizzes,
 }: VideoProps) {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
-  // const [QuizIndex, setQuizIndex] = useState(0);
   const quizSize: number = quizzes.length;
   const quiz: Quiz = quizzes[QuizIndex];
   const questionWord: string = quiz.question;
-  const choices: string[] = quiz.choices;
   const answer: string = quiz.answer;
+  const choices: string[] = allocateChoices(
+    quizSize,
+    QuizIndex,
+    answer,
+    quizzes
+  );
   const partOfSpeech: number = quiz.partOfSpeech;
 
   // 休憩を入れることに関するコード
@@ -54,12 +59,10 @@ function Video({
   });
 
   //ブレークタイムを入れるタイミングを図る
-  useEffect(() => {
-    if (solvedQuizzes === breakTimePerQuiz) {
-      setSolvedQuizzes(0);
-      hideComponentForFixedTime(breakTimeDuration, setIsComponentsVisible);
-    }
-  }, [solvedQuizzes]);
+  if (solvedQuizzes === breakTimePerQuiz) {
+    setSolvedQuizzes(0);
+    hideComponentForFixedTime(breakTimeDuration, setIsComponentsVisible);
+  }
 
   const pageHeadDescription =
     "Konwalk(コンウォーク)の歩きながら使える英単語帳です。日々の歩く時間を勉強する時間に変身させよう。";
