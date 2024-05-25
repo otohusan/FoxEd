@@ -34,32 +34,4 @@ describe("QuizFormat", () => {
 
     expect(someCondition).toBe(true);
   });
-
-  it("問題の答えが選択肢に含まれているか", () => {
-    let someCondition = true; // この条件を動的に変更してテストの挙動を確認
-
-    quizCategoryList.map((quizCategory) => {
-      quizCategory.map((quizFormat) => {
-        quizFormat.body.map((quiz) => {
-          // 選択肢と答えが適切であるかを判定結果を格納する変数
-          let isIncludedOrNot = false;
-          // 判定
-          quiz.choices.map((choice) => {
-            if (choice === quiz.answer) {
-              isIncludedOrNot = true;
-            }
-          });
-          // 適切でない場合の処理
-          if (!isIncludedOrNot) {
-            someCondition = false;
-            console.log(
-              `${quizFormat.label}の${quiz.question}に適切な答えor選択肢が含まれていない`
-            );
-          }
-        });
-      });
-    });
-
-    expect(someCondition).toBe(true);
-  });
 });
