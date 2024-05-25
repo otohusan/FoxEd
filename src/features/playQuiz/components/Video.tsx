@@ -29,13 +29,50 @@ function Video({
   setQuizIndex,
   quizzes,
 }: VideoProps) {
+  function getRandomInt(min: number, max: number): number {
+    // Math.random() は 0 以上 1 未満の浮動小数点の擬似乱数を返すため、
+    // 最小値と最大倂との差を乗じ、最小値を足すことで目的の範囲を生成
+    // Math.floor() を使用して整数に丸める
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function shuffleArray<T>(array: T[]): T[] {
+    const shuffledArray = array.slice(); // 元の配列をコピーして新しい配列を作成
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    return shuffledArray;
+  }
+
+  function allocateChoices(
+    quizLength: number,
+    quizIndex: number,
+    quizTrueAnswer: string
+  ): string[] {
+    const res: string[] = [];
+    res.push(quizTrueAnswer);
+
+    while (res.length < 4) {
+      const randomInt = getRandomInt(0, quizLength - 1);
+      if (randomInt == quizIndex || res.includes(quizzes[randomInt].answer))
+        continue; // 同じ回答が追加されないように
+
+      res.push(quizzes[randomInt].answer);
+    }
+
+    return shuffleArray(res);
+  }
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
   // const [QuizIndex, setQuizIndex] = useState(0);
   const quizSize: number = quizzes.length;
   const quiz: Quiz = quizzes[QuizIndex];
   const questionWord: string = quiz.question;
-  const choices: string[] = quiz.choices;
   const answer: string = quiz.answer;
+  const choices: string[] = allocateChoices(quizSize, QuizIndex, answer);
   const partOfSpeech: number = quiz.partOfSpeech;
 
   // 休憩を入れることに関するコード
