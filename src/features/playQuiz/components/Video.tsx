@@ -11,7 +11,7 @@ import GoPrepareBtn from "./GoPrepareBtn";
 import DisplayQuizNumber from "./DisplayQuizNumber";
 // import { InformClickable } from "./InformClickable";
 import { hideComponentForFixedTime } from "../api";
-import { returnNextQuizIndex } from "../../../api";
+import { generateRandomInteger, returnNextQuizIndex } from "../../../api";
 import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 import { HeadDataHelmet } from "../../../components/index.ts";
 
@@ -29,13 +29,6 @@ function Video({
   setQuizIndex,
   quizzes,
 }: VideoProps) {
-  function getRandomInt(min: number, max: number): number {
-    // Math.random() は 0 以上 1 未満の浮動小数点の擬似乱数を返すため、
-    // 最小値と最大倂との差を乗じ、最小値を足すことで目的の範囲を生成
-    // Math.floor() を使用して整数に丸める
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
   function shuffleArray<T>(array: T[]): T[] {
     const shuffledArray = array.slice(); // 元の配列をコピーして新しい配列を作成
     for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -53,13 +46,20 @@ function Video({
     quizIndex: number,
     quizTrueAnswer: string
   ): string[] {
+    // クイズの総量が5未満だとダミー問題が作れなくて無限ループになるから
+    if (quizLength < 5) {
+      return [];
+    }
+
     const res: string[] = [];
     res.push(quizTrueAnswer);
 
+    // 選択肢が4つ出来るまで、配列に追加
     while (res.length < 4) {
-      const randomInt = getRandomInt(0, quizLength - 1);
+      const randomInt = generateRandomInteger(0, quizLength - 1);
+      // 同じ回答が追加されないように
       if (randomInt == quizIndex || res.includes(quizzes[randomInt].answer))
-        continue; // 同じ回答が追加されないように
+        continue;
 
       res.push(quizzes[randomInt].answer);
     }
@@ -67,7 +67,6 @@ function Video({
     return shuffleArray(res);
   }
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
-  // const [QuizIndex, setQuizIndex] = useState(0);
   const quizSize: number = quizzes.length;
   const quiz: Quiz = quizzes[QuizIndex];
   const questionWord: string = quiz.question;
