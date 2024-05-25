@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../style/video.css"; // CSSをインポート
 import { useVideo, useClickSide } from "../hooks";
 import { StartVideoBtn, StopVideoBtn } from "./VideoBtn";
@@ -59,12 +59,10 @@ function Video({
   });
 
   //ブレークタイムを入れるタイミングを図る
-  useEffect(() => {
-    if (solvedQuizzes === breakTimePerQuiz) {
-      setSolvedQuizzes(0);
-      hideComponentForFixedTime(breakTimeDuration, setIsComponentsVisible);
-    }
-  }, [solvedQuizzes]);
+  if (solvedQuizzes === breakTimePerQuiz) {
+    setSolvedQuizzes(0);
+    hideComponentForFixedTime(breakTimeDuration, setIsComponentsVisible);
+  }
 
   const pageHeadDescription =
     "Konwalk(コンウォーク)の歩きながら使える英単語帳です。日々の歩く時間を勉強する時間に変身させよう。";
