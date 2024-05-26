@@ -1,12 +1,13 @@
 import "../style/PrepareQuiz.css";
 import PrepareQuiz from "./PrepareQuiz";
 // import FootPrint from "./FootPrint";
-import { Header, Footer, HeadDataHelmet } from "../../../components";
+import { Header, Footer, HeadDataHelmet, QuizCard } from "../../../components";
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
 import { Quiz } from "../../../../type/index.ts";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
@@ -27,6 +28,14 @@ function PrepareQuizzes({
       QuizPartOfSpeech={quiz.partOfSpeech}
       QuizIndex={index}
       setCurrentQuizIndex={setCurrentQuizIndex}
+    />
+  ));
+
+  const cardList = quizzes.map((quiz, index) => (
+    <QuizCard
+      frontElement={quiz.question}
+      backElement={quiz.answer}
+      key={index}
     />
   ));
 
@@ -52,7 +61,7 @@ function PrepareQuizzes({
           </div>
           <div className="PrepareQuizLabel">{quizLabel}</div>
         </Link>
-        {/* <FootPrint /> */}
+        <HorizontalScroll>{cardList}</HorizontalScroll>
         <div className="PrepareQuizList">{PrepareQuizList}</div>
         <MovableSheet />
       </main>

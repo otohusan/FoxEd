@@ -1,0 +1,58 @@
+.quiz-card {
+  width: 70%;
+  height: auto;
+  aspect-ratio: 16 /11;
+  perspective: 1000px; /* 3D効果を作成 */
+  margin-top: 15px;
+  border-radius: 10px; /* カードの角を丸くする */
+  background-color: transparent;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.quiz-card:hover {
+  transform: scale(1.08);
+}
+
+.quiz-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.quiz-card.is-flipped .quiz-card-inner {
+  transform: rotateX(180deg);
+}
+
+.quiz-card-front,
+.quiz-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: rgb(24, 24, 24);
+  border-radius: 8px; /* カードの角を丸くする */
+  background-color: #fbfbfb;
+  box-shadow: 0 3px 8px 2px rgba(131, 116, 94, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  border: 0.1px solid rgb(235, 235, 235);
+}
+
+.quiz-card-front:hover,
+.quiz-card-back:hover {
+  box-shadow: 0 4.5px 8px 4px rgba(131, 116, 94, 0.1);
+}
+
+.quiz-card-front {
+  font-weight: bold;
+}
+
+.quiz-card-back {
+  transform: rotateX(180deg);
+}
