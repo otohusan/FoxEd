@@ -1,5 +1,5 @@
 .quiz-card {
-  width: 60%;
+  width: 70%;
   height: auto;
   aspect-ratio: 16 /11;
   perspective: 1000px; /* 3D効果を作成 */
@@ -37,16 +37,16 @@
   align-items: center;
   font-size: 24px;
   color: rgb(24, 24, 24);
-  border-radius: 10px; /* カードの角を丸くする */
-  background-color: #fcfcfc;
-  box-shadow: 0 3px 8px 2px rgba(84, 84, 84, 0.1);
+  border-radius: 8px; /* カードの角を丸くする */
+  background-color: #fbfbfb;
+  box-shadow: 0 3px 8px 2px rgba(131, 116, 94, 0.1);
   transition: box-shadow 0.3s ease-in-out;
-  border: 1px solid rgb(233, 233, 233);
+  border: 0.1px solid rgb(235, 235, 235);
 }
 
 .quiz-card-front:hover,
 .quiz-card-back:hover {
-  box-shadow: 0 4.5px 8px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4.5px 8px 4px rgba(131, 116, 94, 0.1);
 }
 
 .quiz-card-front {

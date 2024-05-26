@@ -30,9 +30,9 @@
 }
 
 .horizontal-scroll > *:first-child {
-  margin-left: 15%;
+  margin-left: 13%;
 }
 
 .horizontal-scroll > *:last-child {
-  margin-right: 15%;
+  margin-right: 13%;
 }
