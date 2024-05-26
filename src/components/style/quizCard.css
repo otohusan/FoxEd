@@ -3,6 +3,13 @@
   height: 200px;
   perspective: 1000px; /* 3D効果を作成 */
   margin-top: 15px;
+  border-radius: 10px; /* カードの角を丸くする */
+  background-color: transparent;
+  transition: transform 0.2s ease-in-out;
+}
+
+.quiz-card:hover {
+  transform: scale(1.08);
 }
 
 .quiz-card-inner {
@@ -29,15 +36,20 @@
   font-size: 24px;
   color: rgb(24, 24, 24);
   border-radius: 10px; /* カードの角を丸くする */
-  border: 1px solid rgb(156, 156, 156);
+  background-color: #fcfcfc;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.quiz-card-front:hover,
+.quiz-card-back:hover {
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.15);
 }
 
 .quiz-card-front {
-  background-color: #fcfcfc;
   font-weight: 600;
 }
 
 .quiz-card-back {
-  background-color: #fbfbfb;
   transform: rotateX(180deg);
 }
