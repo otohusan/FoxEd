@@ -41,7 +41,7 @@ function Video({
     answer,
     quizzes
   );
-  const partOfSpeech: number = quiz.partOfSpeech;
+  const partOfSpeech: number | undefined = quiz.partOfSpeech;
 
   // 休憩を入れることに関するコード
   const breakTimeDuration: number = 7000;
