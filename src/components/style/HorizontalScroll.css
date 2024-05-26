@@ -25,6 +25,14 @@
 .horizontal-scroll > * {
   /* これを外すだけで、縦スクロールに戻せる */
   display: inline-block;
-  margin-right: 5%;
+  margin-right: 3%;
   margin-left: 3%;
+}
+
+.horizontal-scroll > *:first-child {
+  margin-left: 15%;
+}
+
+.horizontal-scroll > *:last-child {
+  margin-right: 15%;
 }
