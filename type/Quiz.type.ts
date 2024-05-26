@@ -4,5 +4,5 @@ export type Quiz = {
   // その移行前段階として、nullを許容するように変更
   choices?: string[];
   answer: string;
-  partOfSpeech: number;
+  partOfSpeech?: number;
 };

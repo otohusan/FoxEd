@@ -8,7 +8,7 @@ import { ReviewQuizType } from "../../../../type";
 interface QuizChoicesProps {
   question: string;
   choices: string[];
-  partOfSpeech: number;
+  partOfSpeech: number | undefined;
   answer: string;
   quizSize: number;
   quizIndex: number;

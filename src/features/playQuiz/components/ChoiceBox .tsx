@@ -9,7 +9,7 @@ interface ChoiceBoxProps {
   answer: string;
   quizSize: number;
   quizIndex: number;
-  partOfSpeech: number;
+  partOfSpeech: number | undefined;
   feedbackFunc: (answer: string, clickedChoice: string) => void;
   setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   setSolvedQuizzes: React.Dispatch<React.SetStateAction<number>>;
@@ -72,7 +72,12 @@ function ChoiceBox({
         // 付け足して返す
         return [
           ...prevValues,
-          { question: question, answer: answer, partOfSpeech: partOfSpeech },
+          {
+            question: question,
+            answer: answer,
+            // 品詞が空の場合は名詞を割り当てる
+            partOfSpeech: partOfSpeech == undefined ? 1 : partOfSpeech,
+          },
         ];
       });
     }
