@@ -31,6 +31,14 @@ function PrepareQuizzes({
     />
   ));
 
+  const cardList = quizzes.map((quiz, index) => (
+    <QuizCard
+      frontElement={quiz.question}
+      backElement={quiz.answer}
+      key={index}
+    />
+  ));
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -53,12 +61,7 @@ function PrepareQuizzes({
           </div>
           <div className="PrepareQuizLabel">{quizLabel}</div>
         </Link>
-        <HorizontalScroll>
-          <QuizCard backElement="interesting" frontElement="楽しい" />
-          <QuizCard backElement="interesting" frontElement="楽しい" />
-          <QuizCard backElement="interesting" frontElement="楽しい" />
-        </HorizontalScroll>
-        {/* <FootPrint /> */}
+        <HorizontalScroll>{cardList}</HorizontalScroll>
         <div className="PrepareQuizList">{PrepareQuizList}</div>
         <MovableSheet />
       </main>
