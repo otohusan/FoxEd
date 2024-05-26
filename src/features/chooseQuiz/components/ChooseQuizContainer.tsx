@@ -3,7 +3,6 @@ import { MdArrowOutward } from "react-icons/md";
 import { QuizFormat } from "../../../../type/index.ts";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import React from "react";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;
