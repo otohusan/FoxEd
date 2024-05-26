@@ -6,6 +6,7 @@ import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
 import { QuizFormat, ReviewQuizType } from "../type/index.ts";
+import React from "react";
 // import { HelmetProvider } from "react-helmet-async";
 
 function App() {
