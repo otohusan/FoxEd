@@ -2,6 +2,7 @@
   width: 300px;
   height: 200px;
   perspective: 1000px; /* 3D効果を作成 */
+  margin-top: 15px;
 }
 
 .quiz-card-inner {
@@ -26,15 +27,17 @@
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  color: white;
+  color: rgb(24, 24, 24);
   border-radius: 10px; /* カードの角を丸くする */
+  border: 1px solid rgb(156, 156, 156);
 }
 
 .quiz-card-front {
-  background-color: #333;
+  background-color: #fcfcfc;
+  font-weight: 600;
 }
 
 .quiz-card-back {
-  background-color: #555;
+  background-color: #fbfbfb;
   transform: rotateX(180deg);
 }
