@@ -2,6 +2,7 @@ import "../style/choiceBox.css";
 import { hideComponentForFixedTime } from "../api";
 import { returnNextQuizIndex } from "../../../api";
 import { ReviewQuizType } from "../../../../type";
+import React from "react";
 
 interface ChoiceBoxProps {
   question: string;

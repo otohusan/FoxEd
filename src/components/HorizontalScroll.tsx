@@ -1,3 +1,4 @@
+import React from "react";
 import "./style/HorizontalScroll.css";
 
 type HorizontalScrollProps = {
