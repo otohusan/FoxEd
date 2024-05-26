@@ -7,6 +7,7 @@ import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import Introduction from "../introduction/Introduction.tsx";
 import SelectQuizModeContainer from "./SelectQuizModeContainer.tsx";
 import { useEffect, useState } from "react";
+import React from "react";
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];

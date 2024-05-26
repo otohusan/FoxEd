@@ -1,3 +1,4 @@
+import React from "react";
 import "../style/PrepareMenus.css";
 import SpeakWordBtn from "./SpeakWordBtn";
 import { IoFootstepsOutline } from "react-icons/io5";

@@ -15,6 +15,7 @@ import { returnNextQuizIndex } from "../../../api";
 import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 import { HeadDataHelmet } from "../../../components/index.ts";
 import allocateChoices from "../api/allocateChoices.ts";
+import React from "react";
 
 type VideoProps = {
   // 復習問題の管理
