@@ -8,7 +8,6 @@ import { Quiz } from "../../../../type/index.ts";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
-import React from "react";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];

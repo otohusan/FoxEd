@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./style/quizCard.css";
-import React from "react";
 
 type quizCardProps = { frontElement: string; backElement: string };
 

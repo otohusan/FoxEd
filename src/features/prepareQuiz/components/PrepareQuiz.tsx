@@ -1,7 +1,6 @@
 import "../style/PrepareQuiz.css";
 import PrepareQuizMenu from "./PrepareQuizMenu";
 import { partOfSpeechTable } from "../../../assets/partOfSpeechTable";
-import React from "react";
 
 type PrepareQuizProps = {
   QuizName: string;

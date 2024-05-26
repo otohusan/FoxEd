@@ -4,7 +4,6 @@ import Feedback from "./Feedback";
 import useFeedback from "../hooks/useFeedBack";
 import { useState } from "react";
 import { ReviewQuizType } from "../../../../type";
-import React from "react";
 
 interface QuizChoicesProps {
   question: string;

@@ -1,6 +1,5 @@
 import ChooseQuiz from "../features/chooseQuiz/components/ChooseQuiz";
 import { QuizFormat } from "../../type/index.ts";
-import React from "react";
 
 type ChooseQuizDataProps = {
   quizzes: QuizFormat[];
