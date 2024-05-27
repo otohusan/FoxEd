@@ -70,25 +70,35 @@
   background-color: transparent; */
   padding: 0;
   margin-right: 15%;
+  width: 75%;
+  height: auto;
+  aspect-ratio: 16 / 4; /* 例: 16:9のアスペクト比 */
 }
 
 .ChooseQuizContainer {
-  height: calc(26 * var(--app-vh, 1vh));
+  width: 100%;
+  height: 100%;
   position: relative;
   cursor: pointer;
   margin: 5%;
-  margin-top: 2%;
+  margin-top: 5%;
   text-align: start;
   border-radius: 13px;
-  padding: calc(3.6 * var(--app-vh, 1vh)) 2% calc(13 * var(--app-vh, 1vh)) 8%;
-  box-shadow: 0px 4px 3px rgba(130, 130, 130, 0.2);
+  padding: 5% 2% calc(13 * var(--app-vh, 1vh)) 6%;
   background-color: #fcfcfc;
-  border: 1px solid #f0f0f0;
+  border: 2px solid #f1eeed;
+}
 
-  /* 試し */
-  aspect-ratio: 16 / 9; /* 例: 16:9のアスペクト比 */
-  min-height: 120px;
-  width: auto;
+.ChooseQuizContainer:active {
+  /* border-bottom: 5px solid #f39c19; */
+  box-shadow: inset 0 -5px 0 0 #f39c19;
+  transform: scale(0.98);
+}
+
+@media (min-width: 600px) {
+  .ChooseQuizContainer:hover {
+    box-shadow: inset 0 -5px 0 0 #f39c19;
+  }
 }
 
 @media (max-width: 600px) {
@@ -98,19 +108,14 @@
   }
 }
 
-.ChooseQuizContainer:active {
-  transform: scale(0.98);
-  background-color: #f4f4f4;
-}
-
 .ChooseQuizContent {
   position: relative;
 }
 
 .ChooseQuizLabel {
   -webkit-text-stroke: 0.5px #4a4a4a;
-  margin: calc(1 * var(--app-vh, 1vh)) 0 calc(2.5 * var(--app-vh, 1vh)) 0;
-  font-size: 1.2em;
+  margin: calc(1 * var(--app-vh, 1vh)) 0 2% 2%;
+  font-size: 1.1em;
   font-weight: 500;
 }
 
@@ -143,14 +148,21 @@
 
 .ChooseQuizContainerOpen {
   /* 力技感は否めない */
+  position: absolute;
+  top: 70%;
+  left: 73%;
   font-family: "Inter", sans-serif;
-  position: relative;
-  display: flex;
-  margin-top: calc(3.5 * var(--app-vh, 1vh));
   font-size: 0.9em;
-  color: #f39c19;
-  -webkit-text-stroke: 0.4px #f39c19;
+  color: #5f5f5f;
+  font-weight: 600;
   text-decoration: none;
+}
+
+.ChooseQuizContainerOpenSentence {
+  padding: 2px 10px;
+  display: inline-block;
+  border: 2px solid #dbd7d4;
+  border-radius: 7px;
 }
 
 .ChooseQuizContainerOpenMark {
@@ -158,7 +170,7 @@
   margin-top: 0.15em;
 }
 
-.ChooseQuizContainerOpen:after {
+/* .ChooseQuizContainerOpen:after {
   content: "";
   position: absolute;
   left: 0;
@@ -167,4 +179,4 @@
   height: 2.5px;
   margin-top: 5%;
   background-color: #f39c19;
-}
+} */

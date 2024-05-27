@@ -3,6 +3,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { QuizFormat } from "../../../../type/index.ts";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import InfoBadge from "../../../components/InfoBadge.tsx";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;
@@ -36,19 +37,19 @@ function ChooseQuizContainer({
       <div className="ChooseQuizContent">
         <div className="ChooseQuizLabel">{quizFormat.label}</div>
         {/* 一覧の時に表示する単語を限定 */}
-        <div className="ChooseQuizContainerQuestions">
+        {/* <div className="ChooseQuizContainerQuestions">
           {quizFormat.body.slice(0, 15).map((quiz) => (
             <div key={quiz.question} className="ChooseQuizContainerQuestion">
               {quiz.question}
             </div>
           ))}
-          {/* 続きを示すための... */}
           ...
-        </div>
+        </div> */}
         {/* 収録単語数の表示 */}
-        <div className="ChooseQuizWordsNumbers">
+        <InfoBadge text={`${quizFormat.body.length}用語`} />
+        {/* <div className="ChooseQuizWordsNumbers">
           収録数: {quizFormat.body.length} Words
-        </div>
+        </div> */}
       </div>
       <Link
         className="ChooseQuizContainerOpen"
@@ -58,10 +59,7 @@ function ChooseQuizContainer({
           labelOnClick(setQuizzes, quizFormat);
         }}
       >
-        <div className="ChooseQuizContainerOpenSentence">この単語を覚える</div>
-        <div className="ChooseQuizContainerOpenMark">
-          <MdArrowOutward />
-        </div>
+        <div className="ChooseQuizContainerOpenSentence">覚える</div>
       </Link>
     </div>
   );
