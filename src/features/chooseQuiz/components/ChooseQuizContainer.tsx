@@ -1,5 +1,4 @@
 import "../style/ChooseQuizContainer.css";
-import { MdArrowOutward } from "react-icons/md";
 import { QuizFormat } from "../../../../type/index.ts";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
