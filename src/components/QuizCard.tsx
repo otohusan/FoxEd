@@ -22,13 +22,19 @@ const QuizCard = (props: quizCardProps) => {
         isVisible ? "is-visible" : ""
       }`}
       onClick={handleClick}
+      ref={containerRef}
     >
-      <div className="quiz-card-inner" ref={containerRef}>
-        <div className={`quiz-card-front ${isVisible ? "is-visible" : ""}`}>
-          {props.frontElement}
-        </div>
-        <div className={`quiz-card-back ${isVisible ? "is-visible" : ""}`}>
-          {props.backElement}
+      <div className="quiz-card-inner">
+        <div
+          className={`quiz-card-front ${isFlipped ? "is-flipped" : ""} ${
+            isVisible ? "is-visible" : ""
+          }`}
+        >
+          {isFlipped ? (
+            <p className="quiz-card-back-element">{props.backElement}</p>
+          ) : (
+            <p className="quiz-card-front-element">{props.frontElement}</p>
+          )}
         </div>
       </div>
     </div>
