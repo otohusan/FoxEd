@@ -6,7 +6,7 @@
   perspective: 1000px; /* 3D効果を作成 */
   margin-top: 15px;
   border-radius: 10px; /* カードの角を丸くする */
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in;
   cursor: pointer;
 }
 
@@ -48,6 +48,7 @@
 
 .quiz-card-front.is-visible {
   box-shadow: 0 3px 10px 5px rgba(131, 116, 94, 0.15);
+  background-color: #fbfbfb;
 }
 
 .quiz-card-front.is-flipped.is-visible {
