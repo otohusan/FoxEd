@@ -1,7 +1,7 @@
 .quiz-card {
-  width: 70%;
+  width: 75%;
   height: auto;
-  aspect-ratio: 16 /11;
+  aspect-ratio: 16 /12;
   perspective: 1000px; /* 3D効果を作成 */
   margin-top: 15px;
   border-radius: 10px; /* カードの角を丸くする */
@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.quiz-card:hover {
+.quiz-card.is-visible {
   transform: scale(1.08);
 }
 
@@ -39,14 +39,14 @@
   color: rgb(24, 24, 24);
   border-radius: 8px; /* カードの角を丸くする */
   background-color: #fbfbfb;
-  box-shadow: 0 3px 8px 2px rgba(131, 116, 94, 0.1);
+  box-shadow: 0 3px 10px 5px rgba(131, 116, 94, 0.1);
   transition: box-shadow 0.3s ease-in-out;
   border: 0.1px solid rgb(235, 235, 235);
 }
 
-.quiz-card-front:hover,
-.quiz-card-back:hover {
-  box-shadow: 0 4.5px 8px 4px rgba(131, 116, 94, 0.1);
+.quiz-card-front.is-visible,
+.quiz-card-back.is-visible {
+  box-shadow: 0 4.5px 10px 5px rgba(131, 116, 94, 0.15);
 }
 
 .quiz-card-front {
