@@ -1,5 +1,6 @@
 .quiz-card {
   width: 75%;
+  max-width: 350px;
   height: auto;
   aspect-ratio: 16 /12;
   perspective: 1000px; /* 3D効果を作成 */
