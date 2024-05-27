@@ -25,7 +25,7 @@ const useElementOnScreen = (
     return () => {
       if (currentRef) observer.unobserve(currentRef);
     };
-  }, [containerRef, options]);
+  }, [options]);
 
   return [containerRef, isVisible];
 };
