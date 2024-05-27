@@ -5,7 +5,6 @@
   perspective: 1000px; /* 3D効果を作成 */
   margin-top: 15px;
   border-radius: 10px; /* カードの角を丸くする */
-  background-color: transparent;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
 }
@@ -18,7 +17,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
+  /* transform-style: preserve-3d; */
   transition: transform 0.5s;
 }
 
@@ -26,8 +25,7 @@
   transform: rotateX(180deg);
 }
 
-.quiz-card-front,
-.quiz-card-back {
+.quiz-card-front {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -41,18 +39,25 @@
   background-color: #fbfbfb;
   box-shadow: 0 3px 10px 5px rgba(131, 116, 94, 0.1);
   transition: box-shadow 0.3s ease-in-out;
-  border: 0.1px solid rgb(235, 235, 235);
 }
 
-.quiz-card-front.is-visible,
-.quiz-card-back.is-visible {
-  box-shadow: 0 4.5px 10px 5px rgba(131, 116, 94, 0.15);
+.quiz-card-front.is-flipped {
+  box-shadow: 0 -3px 10px 5px rgba(131, 116, 94, 0.1);
 }
 
-.quiz-card-front {
+.quiz-card-front.is-visible {
+  box-shadow: 0 3px 10px 5px rgba(131, 116, 94, 0.15);
+}
+
+.quiz-card-front.is-flipped.is-visible {
+  box-shadow: 0 -3px 10px 5px rgba(131, 116, 94, 0.15);
+}
+
+.quiz-card-front-element {
   font-weight: bold;
 }
 
-.quiz-card-back {
+.quiz-card-back-element {
   transform: rotateX(180deg);
+  display: "inline-block";
 }
