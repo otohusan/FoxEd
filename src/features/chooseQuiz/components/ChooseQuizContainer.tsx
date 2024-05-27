@@ -36,20 +36,8 @@ function ChooseQuizContainer({
     <div className="ChooseQuizContainer">
       <div className="ChooseQuizContent">
         <div className="ChooseQuizLabel">{quizFormat.label}</div>
-        {/* 一覧の時に表示する単語を限定 */}
-        {/* <div className="ChooseQuizContainerQuestions">
-          {quizFormat.body.slice(0, 15).map((quiz) => (
-            <div key={quiz.question} className="ChooseQuizContainerQuestion">
-              {quiz.question}
-            </div>
-          ))}
-          ...
-        </div> */}
         {/* 収録単語数の表示 */}
         <InfoBadge text={`${quizFormat.body.length}用語`} />
-        {/* <div className="ChooseQuizWordsNumbers">
-          収録数: {quizFormat.body.length} Words
-        </div> */}
       </div>
       <Link
         className="ChooseQuizContainerOpen"

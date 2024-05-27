@@ -49,7 +49,7 @@
 }
 
 .ChooseQuizDataList {
-  color: #4a4a4a;
+  color: #414141;
   overflow-x: auto; /* 横方向のスクロールを許可 */
   white-space: nowrap; /* 子要素を改行させない */
   /* 横スクロールバーを非表示にする */
@@ -113,37 +113,9 @@
 }
 
 .ChooseQuizLabel {
-  -webkit-text-stroke: 0.5px #4a4a4a;
   margin: calc(1 * var(--app-vh, 1vh)) 0 2% 2%;
   font-size: 1.1em;
-  font-weight: 500;
-}
-
-.ChooseQuizContainerQuestions {
-  display: flex;
-  font-size: 0.8em;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  color: #a2a7ae;
-  flex-wrap: wrap;
-  overflow: hidden; /* 余分な行を隠す */
-  min-height: calc(
-    13 * var(--app-vh, 1vh)
-  ); /* 表示したい行数に応じた高さを設定 */
-  max-height: calc(
-    13 * var(--app-vh, 1vh)
-  ); /* 表示したい行数に応じた高さを設定 */
-}
-
-.ChooseQuizContainerQuestion {
-  margin-right: 3%;
-  margin-bottom: calc(2 * var(--app-vh, 1vh));
-}
-
-.ChooseQuizWordsNumbers {
-  color: #7d7f84;
-  font-size: 0.8em;
-  margin-top: calc(2 * var(--app-vh, 1vh));
+  font-weight: 700;
 }
 
 .ChooseQuizContainerOpen {
@@ -164,19 +136,3 @@
   border: 2px solid #dbd7d4;
   border-radius: 7px;
 }
-
-.ChooseQuizContainerOpenMark {
-  margin-left: 0.5vw;
-  margin-top: 0.15em;
-}
-
-/* .ChooseQuizContainerOpen:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  width: 8em;
-  height: 2.5px;
-  margin-top: 5%;
-  background-color: #f39c19;
-} */
