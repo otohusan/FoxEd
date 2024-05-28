@@ -17,6 +17,7 @@
 .nav-item {
   text-align: center;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .nav-item.is-selected {
