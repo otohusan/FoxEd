@@ -8,12 +8,19 @@
   width: 100%;
   background-color: #fbfaf9;
   border-top: 1px solid #e0e0e0;
-  padding: 7px 0;
+  padding: 8px 0;
+  padding-bottom: 5px;
   box-shadow: 0 -0.1px 0px 0 rgba(0, 0, 0, 0.1);
 }
 
 .nav-item {
   text-align: center;
+  font-weight: 400;
+}
+
+.nav-item.is-selected {
+  transform: scale(1.1);
+  font-weight: 600;
 }
 
 .nav-link {
@@ -28,10 +35,9 @@
 
 .nav-icon {
   font-size: 23px;
-  color: #6e6e6e;
+  color: #838383;
 }
 
 .nav-text {
   font-size: 9px;
-  font-weight: 400;
 }
