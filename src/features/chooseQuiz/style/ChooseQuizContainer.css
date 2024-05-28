@@ -32,20 +32,24 @@
 
 .ChooseQuizListTitle {
   color: #4a4a4a;
-  -webkit-text-stroke: 0.7px #4a4a4a;
+  /* -webkit-text-stroke: 0.7px #4a4a4a; */
   text-align: start;
-  margin-left: 6.5%;
+  margin-left: 5%;
   /* margin-top: calc(18 * var(--app-vh, 1vh)); */
   font-size: 1.1em;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 600;
 }
 
 .ChooseQuizListTitleKoukou {
   color: #4a4a4a;
-  -webkit-text-stroke: 0.7px #4a4a4a;
+  /* -webkit-text-stroke: 0.7px #4a4a4a; */
   text-align: start;
-  margin-left: 6.5%;
-  margin-top: calc(10 * var(--app-vh, 1vh));
+  margin-left: 5%;
+  margin-top: calc(7 * var(--app-vh, 1vh));
   font-size: 1.1em;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 600;
 }
 
 .ChooseQuizDataList {
@@ -61,6 +65,7 @@
     display: none;
   }
   margin-right: 7%;
+  margin-left: 1%;
 }
 
 .ChooseQuizContainerWrapper {
@@ -82,11 +87,12 @@
   position: relative;
   cursor: pointer;
   margin: 5%;
+  margin-top: 3%;
   text-align: start;
   border-radius: 13px;
   padding: 5% 2% calc(13 * var(--app-vh, 1vh)) 6%;
   background-color: #fcfcfc;
-  border: 2px solid #f1eeed;
+  border: 2px solid #f0eceb;
 }
 
 .ChooseQuizContainer:active {
