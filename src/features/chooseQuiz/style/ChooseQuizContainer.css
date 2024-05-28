@@ -1,12 +1,11 @@
 .ChooseTopTitle {
   color: #ffb056;
-  -webkit-text-stroke: 1px #ffb056;
+  font-weight: 600;
   text-align: start;
   margin-top: calc(15 * var(--app-vh, 1vh));
   margin-left: 5%;
   font-size: 1.7em;
-  /* margin-bottom: calc(3 * var(--app-vh, 1vh)); */
-  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 @media (max-width: 600px) {
@@ -18,7 +17,7 @@
 .hr-line {
   border-top: 5px solid #ffb056; /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
-  margin-top: calc(0.2 * var(--app-vh, 1vh));
+  margin-top: calc(0.1 * var(--app-vh, 1vh));
   margin-bottom: calc(5 * var(--app-vh, 1vh));
   margin-left: 1.5vw;
 }
@@ -46,7 +45,7 @@
   /* -webkit-text-stroke: 0.7px #4a4a4a; */
   text-align: start;
   margin-left: 5%;
-  margin-top: calc(7 * var(--app-vh, 1vh));
+  margin-top: calc(4 * var(--app-vh, 1vh));
   font-size: 1.1em;
   font-family: "Noto Sans JP", sans-serif;
   font-weight: 600;

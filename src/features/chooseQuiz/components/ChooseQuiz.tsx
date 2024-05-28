@@ -22,9 +22,9 @@ function labelOnClick(
 }
 
 function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
   // selectModeコンポーネントの位置を設定するステート（例）
@@ -97,7 +97,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
         ) : (
           <></>
         )}
-        <div className="ChooseTopTitle">英単語データ</div>
+        <div className="ChooseTopTitle">英単語リスト</div>
         <div className="hr-line"></div>
         <div className="ChooseQuizListTitle">TOIEC英単語</div>
         <div className="ChooseQuizDataList">
