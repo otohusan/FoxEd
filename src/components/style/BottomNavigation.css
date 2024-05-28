@@ -1,0 +1,45 @@
+/* BottomNavigation.css */
+.bottom-navigation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 600px;
+  background-color: #fbfaf9;
+  border-top: 1px solid #e0e0e0;
+  padding: 8px 0;
+  padding-bottom: 5px;
+  box-shadow: 0 -0.1px 0px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+  text-align: center;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.nav-item.is-selected {
+  transform: scale(1.1);
+  font-weight: 600;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #676767;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-icon {
+  font-size: 23px;
+  color: #838383;
+}
+
+.nav-text {
+  font-size: 9px;
+}
