@@ -32,6 +32,10 @@ function Video({
 }: VideoProps) {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
   const quizSize: number = quizzes.length;
+  // インデックスがクイズのサイズよりも大きい場合に対処
+  if (QuizIndex >= quizSize) {
+    setQuizIndex(0);
+  }
   const quiz: Quiz = quizzes[QuizIndex];
   const questionWord: string = quiz.question;
   const answer: string = quiz.answer;
