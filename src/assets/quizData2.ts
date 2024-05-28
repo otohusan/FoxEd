@@ -1,7 +1,7 @@
 import { QuizFormat } from "../../type/index.ts";
 
 export const quizData2: QuizFormat = {
-  label: "高校英語 初級",
+  label: "初級",
   body: [
     {
       question: "Effort",
