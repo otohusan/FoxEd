@@ -1,37 +1,64 @@
-import React, { useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import React from "react";
+import { IoFootstepsOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
-import { CgProfile } from "react-icons/cg";
+import { LiaBookSolid } from "react-icons/lia";
 import "./style/BottomNavigation.css";
+import { useNavigate } from "react-router-dom";
+
+//urlの中のページ部分を返す関数
+const getPageSegment = () => {
+  try {
+    if (window === undefined) {
+      return "/";
+    }
+    const url = window.location.href;
+    const urlObj = new URL(url);
+    const segments = urlObj.pathname
+      .split("/")
+      .filter((segment) => segment.length > 0);
+    return segments.length > 0 ? `/${segments[0]}` : "/";
+  } catch (e) {
+    console.error("Invalid URL");
+    return "/";
+  }
+};
 
 const BottomNavigation = () => {
+  // 動的にURLを取得して page セグメントを取得する
+  const pageSegment = getPageSegment();
+
+  const navigate = useNavigate();
   const navItems = [
     {
       text: "ホーム",
       icon: <GoHome />,
-      id: "home",
-      onClick: () => {},
+      id: "/",
+      onClick: () => {
+        navigate("/");
+      },
     },
     {
-      text: "プロフィール",
-      icon: <CgProfile />,
-      id: "profile",
-      onClick: () => {},
+      text: "ウォーク",
+      icon: <IoFootstepsOutline />,
+      id: "/PlayQuiz",
+      onClick: () => {
+        navigate("/PlayQuiz");
+      },
     },
     {
-      text: "探す",
-      icon: <AiOutlineSearch />,
-      id: "search",
-      onClick: () => {},
+      text: "学ぶ",
+      icon: <LiaBookSolid />,
+      id: "/PrepareQuiz",
+      onClick: () => {
+        navigate("/PrepareQuiz");
+      },
     },
   ];
 
-  const [selected, setSelected] = useState("home");
   const selectedIconColor = "#f67a27";
   const selectedTextColor = "#ff802b";
 
-  const handleClick = (id: string, onClick: () => void) => {
-    setSelected(id);
+  const handleClick = (onClick: () => void) => {
     onClick();
   };
 
@@ -40,19 +67,19 @@ const BottomNavigation = () => {
       {navItems.map((item) => (
         <div
           key={item.id}
-          className={`nav-item ${selected === item.id ? "is-selected" : ""}`}
-          onClick={() => handleClick(item.id, item.onClick)}
+          className={`nav-item ${pageSegment === item.id ? "is-selected" : ""}`}
+          onClick={() => handleClick(item.onClick)}
         >
           <div className="nav-link">
             {item.icon &&
               React.cloneElement(item.icon, {
                 className: "nav-icon",
-                color: selected === item.id ? selectedIconColor : "#838383",
+                color: pageSegment === item.id ? selectedIconColor : "#838383",
               })}
             <span
               className="nav-text"
               style={{
-                color: selected === item.id ? selectedTextColor : "#6e6e6e",
+                color: pageSegment === item.id ? selectedTextColor : "#6e6e6e",
               }}
             >
               {item.text}
