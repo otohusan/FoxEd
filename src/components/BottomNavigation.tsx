@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 //urlの中のページ部分を返す関数
 const getPageSegment = () => {
   try {
-    if (window === undefined) {
+    if (typeof window === "undefined") {
       return "/";
     }
     const url = window.location.href;
@@ -25,6 +25,10 @@ const getPageSegment = () => {
 
 //PWAで利用されているかを判定する
 const isInStandaloneMode = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
   return (
     window.matchMedia("(display-mode: standalone)").matches ||
     window.matchMedia("(display-mode: fullscreen)").matches ||
@@ -37,10 +41,9 @@ const BottomNavigation = () => {
   const pageSegment = getPageSegment();
 
   // PWAの場合とそうでないかで高さを変える
-  const BottomNavigationHeight = isInStandaloneMode() ? "60px" : "35px";
-  const BottomNavigationItemsMarginBottom = isInStandaloneMode()
-    ? "10px"
-    : "0px";
+  const isPWAOrNot = isInStandaloneMode();
+  const BottomNavigationHeight = isPWAOrNot ? "60px" : "35px";
+  const BottomNavigationItemsMarginBottom = isPWAOrNot ? "10px" : "0px";
 
   const navigate = useNavigate();
   const navItems = [
