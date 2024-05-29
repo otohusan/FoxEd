@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 //urlの中のページ部分を返す関数
 const getPageSegment = () => {
   try {
-    if (window === undefined) {
+    if (typeof window === "undefined") {
       return "/";
     }
     const url = window.location.href;
@@ -23,9 +23,27 @@ const getPageSegment = () => {
   }
 };
 
+//PWAで利用されているかを判定する
+const isInStandaloneMode = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.matchMedia("(display-mode: fullscreen)").matches ||
+    window.matchMedia("(display-mode: minimal-ui)").matches
+  );
+};
+
 const BottomNavigation = () => {
   // 動的にURLを取得して page セグメントを取得する
   const pageSegment = getPageSegment();
+
+  // PWAの場合とそうでないかで高さを変える
+  const isPWAOrNot = isInStandaloneMode();
+  const BottomNavigationHeight = isPWAOrNot ? "60px" : "35px";
+  const BottomNavigationItemsMarginBottom = isPWAOrNot ? "10px" : "0px";
 
   const navigate = useNavigate();
   const navItems = [
@@ -58,16 +76,21 @@ const BottomNavigation = () => {
   const selectedIconColor = "#f67a27";
   const selectedTextColor = "#ff802b";
 
+  // クリックされると渡されている関数を実行
   const handleClick = (onClick: () => void) => {
     onClick();
   };
 
   return (
-    <nav className="bottom-navigation">
+    <nav
+      className="bottom-navigation"
+      style={{ height: `${BottomNavigationHeight}` }}
+    >
       {navItems.map((item) => (
         <div
           key={item.id}
           className={`nav-item ${pageSegment === item.id ? "is-selected" : ""}`}
+          style={{ marginBottom: `${BottomNavigationItemsMarginBottom}` }}
           onClick={() => handleClick(item.onClick)}
         >
           <div className="nav-link">
