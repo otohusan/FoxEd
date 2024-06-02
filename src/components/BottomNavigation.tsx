@@ -42,8 +42,8 @@ const BottomNavigation = () => {
 
   // PWAの場合とそうでないかで高さを変える
   const isPWAOrNot = isInStandaloneMode();
-  const BottomNavigationHeight = isPWAOrNot ? "60px" : "35px";
-  const BottomNavigationItemsMarginBottom = isPWAOrNot ? "10px" : "0px";
+  const BottomNavigationHeight = isPWAOrNot ? "60px" : "50px";
+  const BottomNavigationItemsMarginBottom = isPWAOrNot ? "10px" : "10px";
 
   const navigate = useNavigate();
   const navItems = [
