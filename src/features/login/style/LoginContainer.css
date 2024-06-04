@@ -21,7 +21,7 @@
   height: 40px;
 }
 
-button {
+.login-form > button {
   display: block;
   width: 100%; /* ボタンの幅を親要素に合わせる */
   padding: 0.75rem;
@@ -35,16 +35,16 @@ button {
   color: #ff9421;
 }
 
-button:disabled {
+.login-form > button:disabled {
   color: #e2e2e2;
   font-weight: 600;
 }
 
-button:not(:disabled) {
+.login-form > button:not(:disabled) {
   color: rgb(61, 67, 255);
   font-weight: bold;
 }
 
-button:hover {
+.login-form > button:hover {
   background-color: #dcdcdc;
 }
