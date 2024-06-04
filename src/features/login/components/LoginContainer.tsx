@@ -22,7 +22,7 @@ const LoginContainer = () => {
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
-        <h1>Konwalk</h1>
+        <h1 className="login-title">Konwalk</h1>
         <InputField
           id="email"
           type="email"

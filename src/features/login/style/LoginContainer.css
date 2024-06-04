@@ -3,9 +3,18 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: rgb(247, 172, 66);
+  background: linear-gradient(
+    to bottom right,
+    rgb(247, 172, 66),
+    rgb(234, 145, 55)
+  );
   height: 100vh;
   margin-top: -50px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.login-title {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .login-form {
