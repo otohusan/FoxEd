@@ -25,10 +25,12 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://your-backend-url/protected", {
-          withCredentials: true,
-        });
-        setUser(response.data.user);
+        const response = await axios.get(
+          // NOTICE: テスト段階だから特定のIDを取得してる
+          // 本来はJWTかクッキーにIDを置いといて取得する？
+          "http://0.0.0.0:8080/users/3db2452d-53ed-4df8-b483-eb4dc4cc4ffa"
+        );
+        setUser(response.data);
       } catch (error) {
         console.error("Failed to fetch user", error);
       } finally {
