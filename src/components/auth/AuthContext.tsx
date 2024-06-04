@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+
   // APIを叩いてuser情報を取得
   useEffect(() => {
     const checkAuth = async () => {
@@ -28,7 +30,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         const response = await axios.get(
           // NOTICE: テスト段階だから特定のIDを取得してる
           // 本来はJWTかクッキーにIDを置いといて取得する？
-          "http://0.0.0.0:8080/users/3db2452d-53ed-4df8-b483-eb4dc4cc4ffa"
+          `${BASE_BACKEND_URL}users/3db2452d-53ed-4df8-b483-eb4dc4cc4ffa`
         );
         setUser(response.data);
       } catch (error) {
@@ -39,7 +41,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     };
 
     checkAuth();
-  }, []);
+  }, [BASE_BACKEND_URL]);
 
   return (
     <AuthContext.Provider value={{ user, setUser, loading }}>
