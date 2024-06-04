@@ -1,12 +1,9 @@
-import { useAuth } from "../../../components/auth/useAuth";
 import "./style/Introduction.css";
 
 function Introduction() {
-  const { user } = useAuth();
   return (
     <div className="introductionContainer">
       <h1 className="introductionComment">
-        <p style={{ color: "black" }}>{user?.email}</p>
         <span className="introductionBig">Konwalk(コンウォーク)</span>
         <br />
         を<br />

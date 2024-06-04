@@ -7,6 +7,27 @@ import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import Introduction from "../introduction/Introduction.tsx";
 import SelectQuizModeContainer from "./SelectQuizModeContainer.tsx";
 import { useEffect, useState } from "react";
+// import { useAuth } from "../../../components/auth/useAuth.ts";
+import axios from "axios";
+
+interface Flashcard {
+  ID: string;
+  StudySetID: string;
+  Question: string;
+  Answer: string;
+  CreatedAt: string;
+  UpdatedAt: string;
+}
+
+interface StudySet {
+  id: string;
+  user_id: string;
+  title: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  flashcards: Flashcard[];
+}
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
@@ -83,12 +104,34 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
     }
   }, []);
 
+  // const { user } = useAuth();
+  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+  const [studysets, setStudysets] = useState<StudySet[]>([]);
+  const userID = "4b626883-64fd-4fde-a389-d2d5c185f604"; // テスト用のユーザーID
+
+  // userのIDから学習セットを取得
+  useEffect(() => {
+    const fetchStudySets = async () => {
+      try {
+        const res = await axios.get(
+          `${BASE_BACKEND_URL}/studysets/user/${userID}`
+        );
+        setStudysets(res.data);
+      } catch (error) {
+        console.error("Failed to fetch studysets", error);
+      }
+    };
+
+    fetchStudySets();
+  }, [BASE_BACKEND_URL, userID]);
+
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
       <Header HeaderTitle="Choose" />
       <main>
         <Introduction />
+
         {isSelectModeOpen ? (
           <SelectQuizModeContainer
             x={selectModePosition.x}
@@ -99,6 +142,32 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
         )}
         <div className="ChooseTopTitle">英単語リスト</div>
         <div className="hr-line"></div>
+
+        {/* ユーザが作成した学習セットを表示 */}
+        <div className="ChooseQuizListTitle">あなたの学習セット</div>
+        {studysets && studysets.length > 0 ? (
+          <div className="ChooseQuizDataList">
+            {/* 取得した学習セットを表示 */}
+            {studysets.map((studyset) => (
+              <div className="ChooseQuizContainerWrapper" key={studyset.id}>
+                <ChooseQuizContainer
+                  key={studyset.id}
+                  // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
+                  quizFormat={{
+                    label: studyset.title,
+                    body: studyset.flashcards,
+                  }}
+                  labelOnClick={labelOnClick}
+                  setQuizzes={setQuizzes}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No study sets available.</p>
+        )}
+
+        {/* Konwalk作成の学習セット */}
         <div className="ChooseQuizListTitle">TOIEC英単語</div>
         <div className="ChooseQuizDataList">
           {quizzes.map((quizFormat, index) => (

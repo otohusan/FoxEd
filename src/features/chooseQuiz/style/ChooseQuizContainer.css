@@ -45,7 +45,6 @@
   /* -webkit-text-stroke: 0.7px #4a4a4a; */
   text-align: start;
   margin-left: 5%;
-  margin-top: calc(4 * var(--app-vh, 1vh));
   font-size: 1.1em;
   font-family: "Noto Sans JP", sans-serif;
   font-weight: 600;
@@ -65,6 +64,7 @@
   }
   margin-right: 7%;
   margin-left: 1%;
+  margin-bottom: 30px;
 }
 
 .ChooseQuizContainerWrapper {

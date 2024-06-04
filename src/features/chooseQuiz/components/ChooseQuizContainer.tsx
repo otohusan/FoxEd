@@ -36,7 +36,9 @@ function ChooseQuizContainer({
       <div className="ChooseQuizContent">
         <div className="ChooseQuizLabel">{quizFormat.label}</div>
         {/* 収録単語数の表示 */}
-        <InfoBadge text={`${quizFormat.body.length}用語`} />
+        <InfoBadge
+          text={`${quizFormat.body ? quizFormat.body.length : 0}用語`}
+        />
       </div>
       <Link
         className="ChooseQuizContainerOpen"
