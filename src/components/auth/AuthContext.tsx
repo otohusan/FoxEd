@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     const checkAuth = async () => {
       try {
         // トークンが空だったら何もしない
+        // NOTICE: 実際はcookieに保存したい
         const token = localStorage.getItem("token");
         if (token === null) {
           return;
@@ -39,8 +40,13 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         // JWTトークンをデコード
         const decoded: any = jwtDecode(token);
 
+        // 期限切れの場合は何もしない
+        if (decoded.exp <= Date.now() / 1000) {
+          return;
+        }
+
+        // ユーザ情報を取得
         const response = await axios.get(
-          // 本来はJWTかクッキーにIDを置いといて取得する？
           `${BASE_BACKEND_URL}/users/${decoded.userID}`
         );
 
