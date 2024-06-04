@@ -6,6 +6,7 @@ interface AuthContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
+  login: (name: string, email: string, password: string) => void;
 }
 
 export const useAuth = (): AuthContextType => {

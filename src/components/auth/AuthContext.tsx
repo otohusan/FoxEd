@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { User } from "../../../type";
+import { jwtDecode } from "jwt-decode";
 
 type AuthContextProps = {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ interface AuthContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
+  login: (name: string, email: string, password: string) => void;
 }
 
 // 初回レンダーの際のみにcontextを作成するために、外で定義
@@ -43,8 +45,35 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     checkAuth();
   }, [BASE_BACKEND_URL]);
 
+  // ログイン用の関数
+  const login = async (name: string, email: string, password: string) => {
+    try {
+      const response = await axios.post(`${BASE_BACKEND_URL}login/email`, {
+        name,
+        email,
+        password,
+      });
+      const token = response.data.token; // JWTトークンを取得
+      const decoded: any = jwtDecode(token); // JWTトークンをデコード
+      console.log(decoded); // デバッグのためにデコード結果をログ出力
+
+      const user: User = {
+        ID: decoded.userID, // 正しいキー名を使用
+        name: decoded.name,
+        email: decoded.email,
+        createdAt: decoded.createdAt,
+      };
+      setUser(user);
+      // 必要ならローカルストレージにトークンを保存
+      localStorage.setItem("token", token);
+    } catch (error) {
+      console.error("Failed to login", error);
+      alert("ログインに失敗しました");
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser, loading }}>
+    <AuthContext.Provider value={{ user, setUser, loading, login }}>
       {children}
     </AuthContext.Provider>
   );
