@@ -1,7 +1,13 @@
 import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { PlayQuiz, ReviewQuiz, PrepareQuiz, ChooseQuizData } from "./pages";
+import {
+  PlayQuiz,
+  ReviewQuiz,
+  PrepareQuiz,
+  ChooseQuizData,
+  Login,
+} from "./pages";
 import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
@@ -65,7 +71,10 @@ function App() {
             <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
           }
         />
+
+        <Route path="/Login" element={<Login />} />
       </Routes>
+
       <BottomNavigation />
       {/* </HelmetProvider> */}
     </>
