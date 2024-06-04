@@ -11,7 +11,7 @@ interface AuthContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
-  login: (name: string, email: string, password: string) => void;
+  loginWithEmail: (email: string, password: string) => void;
 }
 
 // 初回レンダーの際のみにcontextを作成するために、外で定義
@@ -46,10 +46,9 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   }, [BASE_BACKEND_URL]);
 
   // ログイン用の関数
-  const login = async (name: string, email: string, password: string) => {
+  const loginWithEmail = async (email: string, password: string) => {
     try {
       const response = await axios.post(`${BASE_BACKEND_URL}login/email`, {
-        name,
         email,
         password,
       });
@@ -73,7 +72,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, login }}>
+    <AuthContext.Provider value={{ user, setUser, loading, loginWithEmail }}>
       {children}
     </AuthContext.Provider>
   );
