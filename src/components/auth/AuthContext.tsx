@@ -30,12 +30,29 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // トークンが空だったら何もしない
+        const token = localStorage.getItem("token");
+        if (token === null) {
+          return;
+        }
+
+        // JWTトークンをデコード
+        const decoded: any = jwtDecode(token);
+
         const response = await axios.get(
-          // NOTICE: テスト段階だから特定のIDを取得してる
           // 本来はJWTかクッキーにIDを置いといて取得する？
-          `${BASE_BACKEND_URL}users/3db2452d-53ed-4df8-b483-eb4dc4cc4ffa`
+          `${BASE_BACKEND_URL}/users/${decoded.userID}`
         );
-        setUser(response.data);
+
+        const userInfo = response.data;
+        // NOTICE: jsonが大文字で返ってきてる
+        const user = {
+          ID: userInfo.ID,
+          name: userInfo.Name,
+          email: userInfo.Email,
+          createdAt: userInfo.CreatedAt,
+        };
+        setUser(user);
       } catch (error) {
         console.error("Failed to fetch user", error);
       } finally {
@@ -62,11 +79,17 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       const token = response.data.token; // JWTトークンを取得
       const decoded: any = jwtDecode(token); // JWTトークンをデコード
 
-      const user: User = {
-        ID: decoded.userID, // 正しいキー名を使用
-        name: decoded.name,
-        email: decoded.email,
-        createdAt: decoded.createdAt,
+      const userInfoResponse = await axios.get(
+        `${BASE_BACKEND_URL}/users/${decoded.userID}`
+      );
+      const userInfo = userInfoResponse.data;
+
+      // NOTICE: jsonが大文字で返ってきてる
+      const user = {
+        ID: userInfo.ID, // 正しいキー名を使用
+        name: userInfo.Name,
+        email: userInfo.Email,
+        createdAt: userInfo.CreatedAt,
       };
       setUser(user);
       // 必要ならローカルストレージにトークンを保存

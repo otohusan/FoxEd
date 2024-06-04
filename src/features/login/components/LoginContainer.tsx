@@ -39,7 +39,7 @@ const LoginContainer = () => {
           placeholder="パスワード"
           required
         />
-        <button type="submit" disabled={!isFormValid}>
+        <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
           ログイン
         </button>
       </form>
