@@ -3,6 +3,7 @@ import App from "./App";
 import { hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
+import { AuthProvider } from "./components/auth/AuthContext";
 
 const container = document.getElementById("root");
 if (container) {
@@ -14,7 +15,9 @@ if (container) {
           import.meta.env.VITE_GITHUB_PAGES === "true" ? "/FoxEd/" : "/"
         }
       >
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </BrowserRouter>
     </HelmetProvider>
   );
