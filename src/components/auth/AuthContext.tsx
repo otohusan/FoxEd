@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { User } from "../../../type";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 type AuthContextProps = {
   children: React.ReactNode;
@@ -45,16 +46,21 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     checkAuth();
   }, [BASE_BACKEND_URL]);
 
+  // ログイン成功したらページ移動させるため
+  const navigate = useNavigate();
+
   // ログイン用の関数
   const loginWithEmail = async (email: string, password: string) => {
     try {
-      const response = await axios.post(`${BASE_BACKEND_URL}login/email`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${BASE_BACKEND_URL}/users/login/email`,
+        {
+          Email: email,
+          Password: password,
+        }
+      );
       const token = response.data.token; // JWTトークンを取得
       const decoded: any = jwtDecode(token); // JWTトークンをデコード
-      console.log(decoded); // デバッグのためにデコード結果をログ出力
 
       const user: User = {
         ID: decoded.userID, // 正しいキー名を使用
@@ -65,9 +71,11 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       setUser(user);
       // 必要ならローカルストレージにトークンを保存
       localStorage.setItem("token", token);
+
+      // ホームに遷移
+      navigate("/");
     } catch (error) {
-      console.error("Failed to login", error);
-      alert("ログインに失敗しました");
+      alert(error);
     }
   };
 
