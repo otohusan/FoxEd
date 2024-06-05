@@ -3,8 +3,7 @@ import { Suspense, lazy, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
-import { quizData2 } from "./assets/quizData2";
-import { QuizFormat, ReviewQuizType } from "../type/index.ts";
+import { ReviewQuizType } from "../type/index.ts";
 import BottomNavigation from "./components/BottomNavigation.tsx";
 import Loading from "./components/Loading.tsx";
 
@@ -23,11 +22,6 @@ function App() {
     reviewQuizInitialValue
   );
 
-  const [QuizIndex, setQuizIndex] = useState<number>(0);
-
-  // 利用するクイズのデータを保持
-  const [quizzes, setQuizzes] = useState<QuizFormat>(quizData2);
-
   return (
     <>
       {/* <HelmetProvider> */}
@@ -35,14 +29,7 @@ function App() {
         <Routes>
           <Route
             path="/PlayQuiz"
-            element={
-              <PlayQuiz
-                setReviewQuizzes={setReviewQuizzes}
-                QuizIndex={QuizIndex}
-                setQuizIndex={setQuizIndex}
-                quizzes={quizzes.body}
-              />
-            }
+            element={<PlayQuiz setReviewQuizzes={setReviewQuizzes} />}
           />
 
           <Route

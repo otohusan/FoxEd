@@ -16,21 +16,18 @@ import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 import { HeadDataHelmet } from "../../../components/index.ts";
 import allocateChoices from "../api/allocateChoices.ts";
 import { Link } from "react-router-dom";
+import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 
 type VideoProps = {
   // 復習問題の管理
   setReviewQuizzes: React.Dispatch<React.SetStateAction<ReviewQuizType[]>>;
-  QuizIndex: number;
-  setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
-  quizzes: Quiz[];
 };
 
-function Video({
-  setReviewQuizzes,
-  QuizIndex,
-  setQuizIndex,
-  quizzes,
-}: VideoProps) {
+function Video({ setReviewQuizzes }: VideoProps) {
+  // contextからクイズの情報を取り出す
+  const { quizFormat, currentQuizIndex, setCurrentQuizIndex } =
+    useQuizContext();
+  const quizzes = quizFormat ? quizFormat.body : [];
   //解かれた問題の数を管理する
   const [solvedQuizzes, setSolvedQuizzes] = useState(0);
   const [isComponentsVisible, setIsComponentsVisible] = useState(true);
@@ -38,9 +35,9 @@ function Video({
   //クリックされた画面の場所によって発動する関数を選べるフックを呼んでいる
   const { handleClick } = useClickSide({
     onLeftEdgeClick: () =>
-      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, -1)),
+      setCurrentQuizIndex(returnNextQuizIndex(currentQuizIndex, quizSize, -1)),
     onRightEdgeClick: () =>
-      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, 1)),
+      setCurrentQuizIndex(returnNextQuizIndex(currentQuizIndex, quizSize, 1)),
   });
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
 
@@ -61,15 +58,15 @@ function Video({
 
   const quizSize: number = quizzes.length;
   // インデックスがクイズのサイズよりも大きい場合に対処
-  if (QuizIndex >= quizSize) {
-    setQuizIndex(0);
+  if (currentQuizIndex >= quizSize) {
+    setCurrentQuizIndex(0);
   }
-  const quiz: Quiz = quizzes[QuizIndex];
+  const quiz: Quiz = quizzes[currentQuizIndex];
   const questionWord: string = quiz.question;
   const answer: string = quiz.answer;
   const choices: string[] = allocateChoices(
     quizSize,
-    QuizIndex,
+    currentQuizIndex,
     answer,
     quizzes
   );
@@ -108,7 +105,7 @@ function Video({
       </div>
 
       <DisplayQuizNumber
-        currentQuizNumber={QuizIndex + 1}
+        currentQuizNumber={currentQuizIndex + 1}
         QuizLength={quizSize}
       />
 
@@ -129,9 +126,9 @@ function Video({
               question={questionWord}
               choices={choices}
               answer={answer}
-              setQuizIndex={setQuizIndex}
+              setQuizIndex={setCurrentQuizIndex}
               quizSize={quizSize}
-              quizIndex={QuizIndex}
+              quizIndex={currentQuizIndex}
               setSolvedQuizzes={setSolvedQuizzes}
               // 間違った問題を更新する関数
               setReviewQuizzes={setReviewQuizzes}
