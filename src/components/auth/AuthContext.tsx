@@ -8,12 +8,18 @@ type AuthContextProps = {
   children: React.ReactNode;
 };
 
-interface AuthContextType {
+type AuthContextType = {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
-}
+};
+
+type DecodedToken = {
+  userID: string;
+  exp: number;
+  // 他の必要なフィールドがあれば追加
+};
 
 // 初回レンダーの際のみにcontextを作成するために、外で定義
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -38,7 +44,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         }
 
         // JWTトークンをデコード
-        const decoded: any = jwtDecode(token);
+        const decoded: DecodedToken = jwtDecode(token);
 
         // 期限切れの場合は何もしない
         if (decoded.exp <= Date.now() / 1000) {
@@ -83,7 +89,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         }
       );
       const token = response.data.token; // JWTトークンを取得
-      const decoded: any = jwtDecode(token); // JWTトークンをデコード
+      const decoded: DecodedToken = jwtDecode(token); // JWTトークンをデコード
 
       const userInfoResponse = await axios.get(
         `${BASE_BACKEND_URL}/users/${decoded.userID}`
