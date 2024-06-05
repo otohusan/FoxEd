@@ -10,6 +10,8 @@ interface Flashcard {
 }
 
 export type QuizFormat = {
+  id?: string;
   label: string;
+  user_id?: string;
   body: Quiz[] | Flashcard[];
 };

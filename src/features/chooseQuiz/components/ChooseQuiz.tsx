@@ -140,6 +140,8 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
                 onClick={(event) => {
                   // QuizFormatの形に落とし込んでる
                   labelOnClick(setQuizzes, {
+                    id: studyset.id,
+                    user_id: studyset.user_id,
                     label: studyset.title,
                     body: studyset.flashcards,
                   });

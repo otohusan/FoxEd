@@ -60,6 +60,8 @@ function App() {
             element={
               <PrepareQuiz
                 quizzes={quizzes.body}
+                id={quizzes && quizzes.id}
+                user_id={quizzes && quizzes.user_id}
                 quizLabel={quizzes.label}
                 setCurrentQuizIndex={setQuizIndex}
               />

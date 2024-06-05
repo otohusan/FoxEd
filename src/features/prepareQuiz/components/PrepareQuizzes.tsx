@@ -8,9 +8,12 @@ import { Quiz } from "../../../../type/index.ts";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
+import { useAuth } from "../../../components/auth/useAuth.ts";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
+  id?: string;
+  user_id?: string;
   quizLabel: string;
   setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
 };
@@ -18,6 +21,8 @@ type PrepareQuizProps = {
 function PrepareQuizzes({
   quizzes,
   quizLabel,
+  id,
+  user_id,
   setCurrentQuizIndex,
 }: PrepareQuizProps) {
   const PrepareQuizList =
@@ -47,6 +52,8 @@ function PrepareQuizzes({
     window.scrollTo(0, 0);
   }, []);
 
+  const { user } = useAuth();
+
   const pageHeadDescription: string = `無料で『${quizLabel}』をbasicな英単語帳から学べます。赤シートを有効に使って、英単語を覚えましょう。`;
   return (
     <div>
@@ -66,6 +73,7 @@ function PrepareQuizzes({
           <div className="PrepareQuizLabel">{quizLabel}</div>
         </Link>
         <HorizontalScroll>{cardList}</HorizontalScroll>
+        {user?.ID == user_id && <p style={{ color: "black" }}>お前のや</p>}
         <div className="PrepareQuizList">{PrepareQuizList}</div>
         <MovableSheet />
       </main>
