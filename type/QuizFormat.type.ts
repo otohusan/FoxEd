@@ -11,7 +11,7 @@ interface Flashcard {
 
 export type QuizFormat = {
   id?: string;
-  label: string;
   user_id?: string;
+  label: string;
   body: Quiz[] | Flashcard[];
 };

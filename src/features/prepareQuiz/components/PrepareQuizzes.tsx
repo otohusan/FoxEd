@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
+import CreateQuiz from "./CreateQuiz.tsx";
 
 type PrepareQuizProps = {
   quizzes: Quiz[];
@@ -73,7 +74,8 @@ function PrepareQuizzes({
           <div className="PrepareQuizLabel">{quizLabel}</div>
         </Link>
         <HorizontalScroll>{cardList}</HorizontalScroll>
-        {user?.ID == user_id && <p style={{ color: "black" }}>お前のや</p>}
+        {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
+        {user?.ID == user_id && id && <CreateQuiz studySetID={id} />}
         <div className="PrepareQuizList">{PrepareQuizList}</div>
         <MovableSheet />
       </main>
