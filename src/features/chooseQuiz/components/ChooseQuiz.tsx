@@ -7,7 +7,7 @@ import Introduction from "../introduction/Introduction.tsx";
 import SelectQuizModeContainer from "./SelectQuizModeContainer.tsx";
 import { useEffect, useState } from "react";
 // import { useAuth } from "../../../components/auth/useAuth.ts";
-import axios from "axios";
+import useFetch from "../../../hooks/useFetch.ts";
 
 interface Flashcard {
   ID: string;
@@ -105,24 +105,12 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
 
   // const { user } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const [studysets, setStudysets] = useState<StudySet[]>([]);
   const userID = "4b626883-64fd-4fde-a389-d2d5c185f604"; // テスト用のユーザーID
 
-  // userのIDから学習セットを取得
-  useEffect(() => {
-    const fetchStudySets = async () => {
-      try {
-        const res = await axios.get(
-          `${BASE_BACKEND_URL}/studysets/user/${userID}`
-        );
-        setStudysets(res.data);
-      } catch (error) {
-        console.error("Failed to fetch studysets", error);
-      }
-    };
-
-    fetchStudySets();
-  }, [BASE_BACKEND_URL, userID]);
+  // ユーザの学習セットを検索
+  const { data, loading, error } = useFetch<StudySet[]>(
+    `${BASE_BACKEND_URL}/studysets/user/${userID}`
+  );
 
   return (
     <div>
@@ -144,10 +132,10 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
 
         {/* ユーザが作成した学習セットを表示 */}
         <div className="ChooseQuizListTitle">あなたの学習セット</div>
-        {studysets && studysets.length > 0 ? (
+        {data && data.length > 0 ? (
           <div className="ChooseQuizDataList">
             {/* 取得した学習セットを表示 */}
-            {studysets.map((studyset) => (
+            {data.map((studyset) => (
               <div className="ChooseQuizContainerWrapper" key={studyset.id}>
                 <ChooseQuizContainer
                   key={studyset.id}
