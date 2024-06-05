@@ -1,13 +1,6 @@
 import "./App.css";
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import {
-  PlayQuiz,
-  ReviewQuiz,
-  PrepareQuiz,
-  ChooseQuizData,
-  Login,
-} from "./pages";
 import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { allQuizzes } from "./assets/allQuizData";
 import { quizData2 } from "./assets/quizData2";
@@ -15,6 +8,13 @@ import { QuizFormat, ReviewQuizType } from "../type/index.ts";
 import BottomNavigation from "./components/BottomNavigation.tsx";
 
 // import { HelmetProvider } from "react-helmet-async";
+
+// Lazy load the components
+const PlayQuiz = lazy(() => import("./pages/PlayQuiz"));
+const ReviewQuiz = lazy(() => import("./pages/ReviewQuiz"));
+const PrepareQuiz = lazy(() => import("./pages/PrepareQuiz"));
+const ChooseQuizData = lazy(() => import("./pages/ChooseQuizData"));
+const Login = lazy(() => import("./pages/Login"));
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
@@ -30,50 +30,52 @@ function App() {
   return (
     <>
       {/* <HelmetProvider> */}
-      <Routes>
-        <Route
-          path="/PlayQuiz"
-          element={
-            <PlayQuiz
-              setReviewQuizzes={setReviewQuizzes}
-              QuizIndex={QuizIndex}
-              setQuizIndex={setQuizIndex}
-              quizzes={quizzes.body}
-            />
-          }
-        />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route
+            path="/PlayQuiz"
+            element={
+              <PlayQuiz
+                setReviewQuizzes={setReviewQuizzes}
+                QuizIndex={QuizIndex}
+                setQuizIndex={setQuizIndex}
+                quizzes={quizzes.body}
+              />
+            }
+          />
 
-        <Route
-          path="/ReviewQuiz"
-          element={
-            <ReviewQuiz
-              reviewQuizzes={reviewQuizzes}
-              setReviewQuizzes={setReviewQuizzes}
-            />
-          }
-        />
+          <Route
+            path="/ReviewQuiz"
+            element={
+              <ReviewQuiz
+                reviewQuizzes={reviewQuizzes}
+                setReviewQuizzes={setReviewQuizzes}
+              />
+            }
+          />
 
-        <Route
-          path="/PrepareQuiz"
-          element={
-            <PrepareQuiz
-              quizzes={quizzes.body}
-              quizLabel={quizzes.label}
-              setCurrentQuizIndex={setQuizIndex}
-            />
-          }
-        />
+          <Route
+            path="/PrepareQuiz"
+            element={
+              <PrepareQuiz
+                quizzes={quizzes.body}
+                quizLabel={quizzes.label}
+                setCurrentQuizIndex={setQuizIndex}
+              />
+            }
+          />
 
-        <Route
-          path="/"
-          // 全てのクイズのデータを渡して、選択させる
-          element={
-            <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
-          }
-        />
+          <Route
+            path="/"
+            // 全てのクイズのデータを渡して、選択させる
+            element={
+              <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
+            }
+          />
 
-        <Route path="/Login" element={<Login />} />
-      </Routes>
+          <Route path="/Login" element={<Login />} />
+        </Routes>
+      </Suspense>
 
       <BottomNavigation />
       {/* </HelmetProvider> */}
