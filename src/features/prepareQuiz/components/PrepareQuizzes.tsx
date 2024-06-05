@@ -73,10 +73,10 @@ function PrepareQuizzes({
           </div>
           <div className="PrepareQuizLabel">{quizLabel}</div>
         </Link>
-        <HorizontalScroll>{cardList}</HorizontalScroll>
+        {quizzes && <HorizontalScroll>{cardList}</HorizontalScroll>}
+        <div className="PrepareQuizList">{PrepareQuizList}</div>
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
         {user?.ID == user_id && id && <CreateQuiz studySetID={id} />}
-        <div className="PrepareQuizList">{PrepareQuizList}</div>
         <MovableSheet />
       </main>
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Quiz } from "../../../../type/index.ts";
+import "../style/CreateQuiz.css";
 
 type CreateQuizProps = {
   studySetID: string;
@@ -9,19 +9,30 @@ type CreateQuizProps = {
 const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newQuiz: Quiz = {
-      question,
-      answer,
-    };
 
     try {
       // クイズデータをバックエンドに送信
+      const token = localStorage.getItem("token"); // ローカルストレージからトークンを取得
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      // クイズデータをバックエンドに送信
       await axios.post(
-        `http://your-backend-url/quizzes/${studySetID}`,
-        newQuiz
+        `${BASE_BACKEND_URL}/flashcards/${studySetID}`,
+        {
+          answer: answer,
+          question: question,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // 認証ヘッダーにトークンを追加
+          },
+        }
       );
       alert("クイズが作成されました");
     } catch (error) {
@@ -32,24 +43,28 @@ const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
 
   return (
     <div className="create-quiz-container">
-      <h1>クイズ作成</h1>
+      <h1>クイズを追加</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>問題文</label>
-          <input
-            type="text"
+          <label>問題</label>
+          <textarea
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             required
+            rows={5} // テキストエリアの初期行数を設定
+            cols={50} // テキストエリアの初期列数を設定
+            placeholder="問題を入力"
           />
         </div>
         <div>
-          <label>正解</label>
-          <input
-            type="text"
+          <label>答え</label>
+          <textarea
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             required
+            rows={5} // テキストエリアの初期行数を設定
+            cols={50} // テキストエリアの初期列数を設定
+            placeholder="答えを入力"
           />
         </div>
 
