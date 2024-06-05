@@ -24,7 +24,9 @@ function ChooseQuiz({ quizzes }: ChooseQuizProps) {
 
   // ロジックが多く描かれてしまってる
   // selectするメニューを表示する場所を計算する関数
-  function QuizDataOnChoice(event: any) {
+  function QuizDataOnChoice(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) {
     const SELECT_MODE_WIDTH = 200; // 例: 200pxの幅
     const SELECT_MODE_HEIGHT = 100; // 例: 100pxの高さ
 
@@ -52,12 +54,15 @@ function ChooseQuiz({ quizzes }: ChooseQuizProps) {
   }
 
   // メニューの外側のクリックを検出する関数
-  const handleClickOutside = (event: any) => {
+  const handleClickOutside = (event: MouseEvent) => {
     // ここで`SelectQuizModeContainer`コンポーネントやその子要素がクリックされたかどうかをチェック
     const selectModeContainer = document.querySelector(
       ".SelectQuizModeContainer"
     );
-    if (selectModeContainer && !selectModeContainer.contains(event.target)) {
+    if (
+      selectModeContainer &&
+      !selectModeContainer.contains(event.target as Node)
+    ) {
       setIsSelectModeOpen(false);
     }
   };
@@ -157,7 +162,7 @@ function ChooseQuiz({ quizzes }: ChooseQuizProps) {
           {yumetan.map((quizFormat, index) => (
             <div
               key={index}
-              onClick={() => {
+              onClick={(event) => {
                 setQuizFormat(quizFormat);
                 QuizDataOnChoice(event);
               }}
