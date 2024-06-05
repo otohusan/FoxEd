@@ -15,6 +15,7 @@ import { returnNextQuizIndex } from "../../../api";
 import { Quiz, ReviewQuizType } from "../../../../type/index.ts";
 import { HeadDataHelmet } from "../../../components/index.ts";
 import allocateChoices from "../api/allocateChoices.ts";
+import { Link } from "react-router-dom";
 
 type VideoProps = {
   // 復習問題の管理
@@ -30,7 +31,34 @@ function Video({
   setQuizIndex,
   quizzes,
 }: VideoProps) {
+  //解かれた問題の数を管理する
+  const [solvedQuizzes, setSolvedQuizzes] = useState(0);
+  const [isComponentsVisible, setIsComponentsVisible] = useState(true);
+
+  //クリックされた画面の場所によって発動する関数を選べるフックを呼んでいる
+  const { handleClick } = useClickSide({
+    onLeftEdgeClick: () =>
+      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, -1)),
+    onRightEdgeClick: () =>
+      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, 1)),
+  });
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
+
+  // クイズが設定されてない場合と、少ない場合に表示する
+  if (!quizzes || quizzes.length < 5) {
+    return (
+      <div className="video-text-error-container">
+        <h2>問題数が少ないから使えないよ</h2>
+        <Link to={"/PrepareQuiz"}>フラッシュカード</Link>
+        <span className="video-text-error">に</span>
+        <br />
+        <span className="video-text-error">戻って</span>
+        <br />
+        <span className="video-text-error">問題を追加しよう</span>
+      </div>
+    );
+  }
+
   const quizSize: number = quizzes.length;
   // インデックスがクイズのサイズよりも大きい場合に対処
   if (QuizIndex >= quizSize) {
@@ -50,17 +78,6 @@ function Video({
   // 休憩を入れることに関するコード
   const breakTimeDuration: number = 7000;
   const breakTimePerQuiz: number = 7;
-  //解かれた問題の数を管理する
-  const [solvedQuizzes, setSolvedQuizzes] = useState(0);
-  const [isComponentsVisible, setIsComponentsVisible] = useState(true);
-
-  //クリックされた画面の場所によって発動する関数を選べるフックを呼んでいる
-  const { handleClick } = useClickSide({
-    onLeftEdgeClick: () =>
-      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, -1)),
-    onRightEdgeClick: () =>
-      setQuizIndex(returnNextQuizIndex(QuizIndex, quizSize, 1)),
-  });
 
   //ブレークタイムを入れるタイミングを図る
   if (solvedQuizzes === breakTimePerQuiz) {

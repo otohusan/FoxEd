@@ -58,3 +58,16 @@ video {
 .videoBtnContainer :active {
   transform: scale(0.9);
 }
+
+.video-text-error-container {
+  color: var(--text-color);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-text-error {
+  text-decoration: none;
+  margin-bottom: 10px;
+}
