@@ -1,6 +1,5 @@
 import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
-import "../style/WalkGirl.css";
 import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
