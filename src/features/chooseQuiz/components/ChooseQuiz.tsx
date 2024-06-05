@@ -10,12 +10,12 @@ import { useEffect, useState } from "react";
 import useFetch from "../../../hooks/useFetch.ts";
 
 interface Flashcard {
-  ID: string;
-  StudySetID: string;
-  Question: string;
-  Answer: string;
-  CreatedAt: string;
-  UpdatedAt: string;
+  id: string;
+  study_set_id: string;
+  question: string;
+  answer: string;
+  created_at: string;
+  updated_at: string;
 }
 
 interface StudySet {
