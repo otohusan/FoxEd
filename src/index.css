@@ -1,5 +1,6 @@
 :root {
-  font-family: sans-serif, Helvetica, Arial, system-ui;
+  font-family: "Hiragino Kaku Gothic ProN", "游ゴシック", "Yu Gothic", system-ui,
+    Helvetica, sans-serif, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.87);
