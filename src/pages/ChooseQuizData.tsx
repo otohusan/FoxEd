@@ -1,14 +1,9 @@
 import ChooseQuiz from "../features/chooseQuiz/components/ChooseQuiz";
-import { QuizFormat } from "../../type/index.ts";
 
-type ChooseQuizDataProps = {
-  quizzes: QuizFormat[];
-};
-
-function ChooseQuizData({ quizzes }: ChooseQuizDataProps) {
+function ChooseQuizData() {
   return (
     <div>
-      <ChooseQuiz quizzes={quizzes} />
+      <ChooseQuiz />
     </div>
   );
 }

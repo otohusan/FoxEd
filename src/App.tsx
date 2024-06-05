@@ -2,7 +2,6 @@ import "./App.css";
 import { Suspense, lazy, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
-import { allQuizzes } from "./assets/allQuizData";
 import { ReviewQuizType } from "../type/index.ts";
 import BottomNavigation from "./components/BottomNavigation.tsx";
 import Loading from "./components/Loading.tsx";
@@ -47,7 +46,7 @@ function App() {
           <Route
             path="/"
             // 全てのクイズのデータを渡して、選択させる
-            element={<ChooseQuizData quizzes={allQuizzes} />}
+            element={<ChooseQuizData />}
           />
 
           <Route path="/Login" element={<Login />} />

@@ -1,21 +1,17 @@
 import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/ChooseQuizContainer.css";
-import { QuizFormat } from "../../../../type/index.ts";
+import { StudySet } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
+import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
 import SelectQuizModeContainer from "./SelectQuizModeContainer.tsx";
 import { useEffect, useState } from "react";
 // import { useAuth } from "../../../components/auth/useAuth.ts";
 import useFetch from "../../../hooks/useFetch.ts";
-import { StudySet } from "../../../../type/index.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 
-type ChooseQuizProps = {
-  quizzes: QuizFormat[];
-};
-
-function ChooseQuiz({ quizzes }: ChooseQuizProps) {
+function ChooseQuiz() {
   const { setQuizFormat } = useQuizContext();
 
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
