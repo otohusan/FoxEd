@@ -108,7 +108,7 @@ function ChooseQuiz({ quizzes }: ChooseQuizProps) {
         <div className="hr-line"></div>
 
         {/* ユーザが作成した学習セットを表示 */}
-        <div className="ChooseQuizListTitle">あなたの学習セット</div>
+        {data && <div className="ChooseQuizListTitle">あなたの学習セット</div>}
         {data && data.length > 0 ? (
           <div className="ChooseQuizDataList">
             {/* 取得した学習セットを表示 */}

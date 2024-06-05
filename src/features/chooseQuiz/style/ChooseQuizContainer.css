@@ -17,7 +17,6 @@
   border-top: 5px solid #ffb056; /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
   margin-top: calc(0.1 * var(--app-vh, 1vh));
-  margin-bottom: calc(5 * var(--app-vh, 1vh));
   margin-left: 1.5vw;
 }
 
