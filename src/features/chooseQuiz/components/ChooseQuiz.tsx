@@ -136,7 +136,19 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
           <div className="ChooseQuizDataList">
             {/* 取得した学習セットを表示 */}
             {data.map((studyset) => (
-              <div className="ChooseQuizContainerWrapper" key={studyset.id}>
+              <div
+                onClick={(event) => {
+                  // QuizFormatの形に落とし込んでる
+                  labelOnClick(setQuizzes, {
+                    label: studyset.title,
+                    body: studyset.flashcards,
+                  });
+                  // navigate("/PrepareQuiz");
+                  QuizDataOnChoice(event);
+                }}
+                className="ChooseQuizContainerWrapper"
+                key={studyset.id}
+              >
                 <ChooseQuizContainer
                   key={studyset.id}
                   // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う

@@ -20,24 +20,28 @@ function PrepareQuizzes({
   quizLabel,
   setCurrentQuizIndex,
 }: PrepareQuizProps) {
-  const PrepareQuizList = quizzes.map((quiz, index) => (
-    <PrepareQuiz
-      key={index}
-      QuizName={quiz.question}
-      QuizAnswer={quiz.answer}
-      QuizPartOfSpeech={quiz.partOfSpeech}
-      QuizIndex={index}
-      setCurrentQuizIndex={setCurrentQuizIndex}
-    />
-  ));
+  const PrepareQuizList =
+    quizzes &&
+    quizzes.map((quiz, index) => (
+      <PrepareQuiz
+        key={index}
+        QuizName={quiz.question}
+        QuizAnswer={quiz.answer}
+        QuizPartOfSpeech={quiz.partOfSpeech && quiz.partOfSpeech}
+        QuizIndex={index}
+        setCurrentQuizIndex={setCurrentQuizIndex}
+      />
+    ));
 
-  const cardList = quizzes.map((quiz, index) => (
-    <QuizCard
-      frontElement={quiz.question}
-      backElement={quiz.answer}
-      key={index}
-    />
-  ));
+  const cardList =
+    quizzes &&
+    quizzes.map((quiz, index) => (
+      <QuizCard
+        frontElement={quiz.question}
+        backElement={quiz.answer}
+        key={index}
+      />
+    ));
 
   useEffect(() => {
     window.scrollTo(0, 0);
