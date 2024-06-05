@@ -8,25 +8,7 @@ import SelectQuizModeContainer from "./SelectQuizModeContainer.tsx";
 import { useEffect, useState } from "react";
 // import { useAuth } from "../../../components/auth/useAuth.ts";
 import useFetch from "../../../hooks/useFetch.ts";
-
-interface Flashcard {
-  id: string;
-  study_set_id: string;
-  question: string;
-  answer: string;
-  created_at: string;
-  updated_at: string;
-}
-
-interface StudySet {
-  id: string;
-  user_id: string;
-  title: string;
-  description: string;
-  created_at: string;
-  updated_at: string;
-  flashcards: Flashcard[];
-}
+import { StudySet } from "../../../../type/index.ts";
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
@@ -108,7 +90,7 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
   const userID = "4b626883-64fd-4fde-a389-d2d5c185f604"; // テスト用のユーザーID
 
   // ユーザの学習セットを検索
-  const { data, loading, error } = useFetch<StudySet[]>(
+  const { data } = useFetch<StudySet[]>(
     `${BASE_BACKEND_URL}/studysets/user/${userID}`
   );
 

@@ -1,50 +1,73 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { Quiz } from "../../../type";
+import React, { createContext, useState, ReactNode } from "react";
+import { Quiz, Flashcard } from "../../../type/index";
+
+export type QuizFormat = {
+  id?: string;
+  user_id?: string;
+  label: string;
+  body: Quiz[] | Flashcard[];
+};
 
 interface QuizContextType {
-  quizzes: Quiz[];
-  setQuizzes: React.Dispatch<React.SetStateAction<Quiz[]>>;
+  quizFormat: QuizFormat | null;
+  setQuizFormat: React.Dispatch<React.SetStateAction<QuizFormat | null>>;
+  currentQuizIndex: number;
+  setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   addQuiz: (quiz: Quiz) => void;
   updateQuiz: (updatedQuiz: Quiz) => void;
   deleteQuiz: (quizId: string) => void;
 }
 
-const QuizContext = createContext<QuizContextType | undefined>(undefined);
+export const QuizContext = createContext<QuizContextType | undefined>(
+  undefined
+);
 
 export const QuizProvider = ({ children }: { children: ReactNode }) => {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+  const [quizFormat, setQuizFormat] = useState<QuizFormat | null>(null);
+  const [currentQuizIndex, setCurrentQuizIndex] = useState<number>(0);
 
   const addQuiz = (quiz: Quiz) => {
-    setQuizzes((prevQuizzes) => [...prevQuizzes, quiz]);
+    if (quizFormat) {
+      setQuizFormat({
+        ...quizFormat,
+        body: [...quizFormat.body, quiz],
+      });
+    }
   };
 
   const updateQuiz = (updatedQuiz: Quiz) => {
-    setQuizzes((prevQuizzes) =>
-      prevQuizzes.map((quiz) =>
-        quiz.id === updatedQuiz.id ? updatedQuiz : quiz
-      )
-    );
+    if (quizFormat) {
+      setQuizFormat({
+        ...quizFormat,
+        body: quizFormat.body.map((quiz) =>
+          quiz.id === updatedQuiz.id ? updatedQuiz : quiz
+        ),
+      });
+    }
   };
 
   const deleteQuiz = (quizId: string) => {
-    setQuizzes((prevQuizzes) =>
-      prevQuizzes.filter((quiz) => quiz.id !== quizId)
-    );
+    if (quizFormat) {
+      setQuizFormat({
+        ...quizFormat,
+        body: quizFormat.body.filter((quiz) => quiz.id !== quizId),
+      });
+    }
   };
 
   return (
     <QuizContext.Provider
-      value={{ quizzes, setQuizzes, addQuiz, updateQuiz, deleteQuiz }}
+      value={{
+        quizFormat,
+        setQuizFormat,
+        currentQuizIndex,
+        setCurrentQuizIndex,
+        addQuiz,
+        updateQuiz,
+        deleteQuiz,
+      }}
     >
       {children}
     </QuizContext.Provider>
   );
-};
-
-export const useQuizContext = () => {
-  const context = useContext(QuizContext);
-  if (context === undefined) {
-    throw new Error("useQuizContext must be used within a QuizProvider");
-  }
-  return context;
 };

@@ -1,13 +1,4 @@
-import { Quiz } from "./Quiz.type";
-
-interface Flashcard {
-  ID: string;
-  StudySetID: string;
-  Question: string;
-  Answer: string;
-  CreatedAt: string;
-  UpdatedAt: string;
-}
+import { Quiz, Flashcard } from "./index";
 
 export type QuizFormat = {
   id?: string;
