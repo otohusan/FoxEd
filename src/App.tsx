@@ -55,25 +55,12 @@ function App() {
             }
           />
 
-          <Route
-            path="/PrepareQuiz"
-            element={
-              <PrepareQuiz
-                quizzes={quizzes.body}
-                id={quizzes && quizzes.id}
-                user_id={quizzes && quizzes.user_id}
-                quizLabel={quizzes.label}
-                setCurrentQuizIndex={setQuizIndex}
-              />
-            }
-          />
+          <Route path="/PrepareQuiz" element={<PrepareQuiz />} />
 
           <Route
             path="/"
             // 全てのクイズのデータを渡して、選択させる
-            element={
-              <ChooseQuizData quizzes={allQuizzes} setQuizzes={setQuizzes} />
-            }
+            element={<ChooseQuizData quizzes={allQuizzes} />}
           />
 
           <Route path="/Login" element={<Login />} />

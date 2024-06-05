@@ -9,24 +9,14 @@ import { useEffect, useState } from "react";
 // import { useAuth } from "../../../components/auth/useAuth.ts";
 import useFetch from "../../../hooks/useFetch.ts";
 import { StudySet } from "../../../../type/index.ts";
+import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 
 type ChooseQuizProps = {
   quizzes: QuizFormat[];
-  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>;
 };
 
-// データセットを選択すると、その問題がセットされる
-function labelOnClick(
-  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>,
-  quizData: QuizFormat
-): void {
-  setQuizzes(quizData);
-}
-
-function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+function ChooseQuiz({ quizzes }: ChooseQuizProps) {
+  const { setQuizFormat } = useQuizContext();
 
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
   // selectModeコンポーネントの位置を設定するステート（例）
@@ -120,14 +110,12 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
             {data.map((studyset) => (
               <div
                 onClick={(event) => {
-                  // QuizFormatの形に落とし込んでる
-                  labelOnClick(setQuizzes, {
+                  setQuizFormat({
                     id: studyset.id,
                     user_id: studyset.user_id,
                     label: studyset.title,
                     body: studyset.flashcards,
                   });
-                  // navigate("/PrepareQuiz");
                   QuizDataOnChoice(event);
                 }}
                 className="ChooseQuizContainerWrapper"
@@ -140,8 +128,6 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
                     label: studyset.title,
                     body: studyset.flashcards,
                   }}
-                  labelOnClick={labelOnClick}
-                  setQuizzes={setQuizzes}
                 />
               </div>
             ))}
@@ -157,17 +143,12 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
             <div
               key={index}
               onClick={(event) => {
-                labelOnClick(setQuizzes, quizFormat);
-                // navigate("/PrepareQuiz");
+                setQuizFormat(quizFormat);
                 QuizDataOnChoice(event);
               }}
               className="ChooseQuizContainerWrapper"
             >
-              <ChooseQuizContainer
-                quizFormat={quizFormat}
-                labelOnClick={labelOnClick}
-                setQuizzes={setQuizzes}
-              />
+              <ChooseQuizContainer quizFormat={quizFormat} />
             </div>
           ))}
         </div>
@@ -177,17 +158,12 @@ function ChooseQuiz({ quizzes, setQuizzes }: ChooseQuizProps) {
             <div
               key={index}
               onClick={() => {
-                labelOnClick(setQuizzes, quizFormat);
-                // navigate("/PrepareQuiz");
+                setQuizFormat(quizFormat);
                 QuizDataOnChoice(event);
               }}
               className="ChooseQuizContainerWrapper"
             >
-              <ChooseQuizContainer
-                quizFormat={quizFormat}
-                labelOnClick={labelOnClick}
-                setQuizzes={setQuizzes}
-              />
+              <ChooseQuizContainer quizFormat={quizFormat} />
             </div>
           ))}
         </div>

@@ -3,13 +3,12 @@ import { QuizFormat } from "../../type/index.ts";
 
 type ChooseQuizDataProps = {
   quizzes: QuizFormat[];
-  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>;
 };
 
-function ChooseQuizData({ quizzes, setQuizzes }: ChooseQuizDataProps) {
+function ChooseQuizData({ quizzes }: ChooseQuizDataProps) {
   return (
     <div>
-      <ChooseQuiz quizzes={quizzes} setQuizzes={setQuizzes} />
+      <ChooseQuiz quizzes={quizzes} />
     </div>
   );
 }

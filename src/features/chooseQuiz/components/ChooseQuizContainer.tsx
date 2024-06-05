@@ -3,22 +3,15 @@ import { QuizFormat } from "../../../../type/index.ts";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import InfoBadge from "../../../components/InfoBadge.tsx";
+import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;
-  // データが選択された際に発火する関数
-  labelOnClick: (
-    setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>,
-    quizData: QuizFormat
-  ) => void;
-  setQuizzes: React.Dispatch<React.SetStateAction<QuizFormat>>;
 };
 
-function ChooseQuizContainer({
-  quizFormat,
-  labelOnClick,
-  setQuizzes,
-}: ChooseQuizContainerProps) {
+function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
+  const { setQuizFormat } = useQuizContext();
+
   // iosのアドレスバーによる高さの変更を防ぐために、画面の高さをはじめに取得して固定する
   // CSSではそれを使う
   useEffect(() => {
@@ -45,7 +38,7 @@ function ChooseQuizContainer({
         to={"/PrepareQuiz"}
         onClick={(e) => {
           e.preventDefault();
-          labelOnClick(setQuizzes, quizFormat);
+          setQuizFormat(quizFormat);
         }}
       >
         <div className="ChooseQuizContainerOpenSentence">覚える</div>
