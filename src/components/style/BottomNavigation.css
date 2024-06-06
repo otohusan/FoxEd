@@ -7,8 +7,8 @@
   bottom: 0;
   width: 100%;
   max-width: 600px;
-  background-color: #fbfaf9;
-  border-top: 1px solid #e0e0e0;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--gray-border-color);
   padding: 8px 0;
   padding-bottom: 5px;
   box-shadow: 0 -0.1px 0px 0 rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@
 
 .nav-link {
   text-decoration: none;
-  color: #676767;
+  color: var(--text-color-4);
   display: flex;
   flex-direction: column;
   align-items: center;

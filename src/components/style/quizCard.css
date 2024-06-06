@@ -10,7 +10,7 @@
   cursor: pointer;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: var(--text-color);
+  color: var(--text-color-2);
 }
 
 .quiz-card.is-visible {
@@ -39,7 +39,7 @@
   align-items: center;
   font-size: 24px;
   border-radius: 8px; /* カードの角を丸くする */
-  background-color: #fbfbfb;
+  background-color: var(--main-color);
   box-shadow: 0 3px 10px 5px rgba(131, 116, 94, 0.1);
   transition: box-shadow 0.3s ease-in-out;
 }
