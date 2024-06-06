@@ -6,7 +6,9 @@
   color: rgba(255, 255, 255, 0.87);
 
   --primary-color: #f6f6f6;
-  --secondary-color: #ff9430;
+
+  --key-color: #ff9430;
+
   --text-color: #151515;
   --text-color-2: #333333;
   --text-color-3: #4d4d4d;
