@@ -1,5 +1,6 @@
 import React, { createContext, useState, ReactNode } from "react";
 import { Quiz, Flashcard } from "../../../type/index";
+import { quizData2 } from "../../assets/quizData2";
 
 export type QuizFormat = {
   id?: string;
@@ -23,7 +24,7 @@ export const QuizContext = createContext<QuizContextType | undefined>(
 );
 
 export const QuizProvider = ({ children }: { children: ReactNode }) => {
-  const [quizFormat, setQuizFormat] = useState<QuizFormat | null>(null);
+  const [quizFormat, setQuizFormat] = useState<QuizFormat | null>(quizData2);
   const [currentQuizIndex, setCurrentQuizIndex] = useState<number>(0);
 
   const addQuiz = (quiz: Quiz) => {
