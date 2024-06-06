@@ -17,6 +17,7 @@
   border-top: 5px solid #ffb056; /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
   margin-top: calc(0.1 * var(--app-vh, 1vh));
+  margin-bottom: 40px;
   margin-left: 1.5vw;
 }
 
@@ -73,7 +74,7 @@
   margin-right: 12%;
   width: 75%;
   height: auto;
-  aspect-ratio: 16 / 4; /* 例: 16:9のアスペクト比 */
+  aspect-ratio: 16 / 4.5;
 }
 
 .ChooseQuizContainer {

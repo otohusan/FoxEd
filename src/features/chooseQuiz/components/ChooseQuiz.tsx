@@ -134,7 +134,7 @@ function ChooseQuiz() {
             ))}
           </div>
         ) : (
-          <p>No study sets available.</p>
+          <></>
         )}
 
         {/* Konwalk作成の学習セット */}

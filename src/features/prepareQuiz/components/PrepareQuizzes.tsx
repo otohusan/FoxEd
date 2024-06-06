@@ -9,23 +9,27 @@ import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import CreateQuiz from "./CreateQuiz.tsx";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
+import { WindowVirtualizer } from "virtua";
 
 function PrepareQuizzes() {
   const { quizFormat, setCurrentQuizIndex } = useQuizContext();
   const quizzes = quizFormat ? quizFormat.body : [];
 
-  const PrepareQuizList =
-    quizzes &&
-    quizzes.map((quiz, index) => (
-      <PrepareQuiz
-        key={index}
-        QuizName={quiz.question}
-        QuizAnswer={quiz.answer}
-        QuizPartOfSpeech={"partOfSpeech" in quiz ? quiz.partOfSpeech : 7}
-        QuizIndex={index}
-        setCurrentQuizIndex={setCurrentQuizIndex}
-      />
-    ));
+  const PrepareQuizList = (
+    <WindowVirtualizer>
+      {quizzes &&
+        quizzes.map((quiz, index) => (
+          <PrepareQuiz
+            key={index}
+            QuizName={quiz.question}
+            QuizAnswer={quiz.answer}
+            QuizPartOfSpeech={"partOfSpeech" in quiz ? quiz.partOfSpeech : 7}
+            QuizIndex={index}
+            setCurrentQuizIndex={setCurrentQuizIndex}
+          />
+        ))}
+    </WindowVirtualizer>
+  );
 
   const cardList =
     quizzes &&
