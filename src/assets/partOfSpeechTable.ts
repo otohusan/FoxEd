@@ -6,4 +6,5 @@ export const partOfSpeechTable: string[] = [
   "前",
   "接",
   "助",
+  "無",
 ];

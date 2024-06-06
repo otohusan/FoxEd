@@ -3,9 +3,9 @@
 }
 
 .PrepareQuizContainer {
-  color: #333333;
-  margin-bottom: 10%;
-  margin-top: 5%;
+  color: var(--text-color-2);
+  margin-bottom: 8%;
+  margin-top: 3%;
 }
 
 .PrepareQuizContent {
@@ -15,9 +15,10 @@
 }
 
 .PrepareQuizName {
-  font-family: "DM Serif Text", serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 2em;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .PrepareQuizPartOfSpeechAndAnswer {
@@ -32,7 +33,7 @@
   justify-content: center; /* 横方向の中央揃え */
   align-items: center; /* 縦方向の中央揃え */
   padding: 0% 0.2em;
-  margin: 0% 1% 0% 0.5%;
+  margin: 0% 1% 0% 0%;
   height: 1.25em;
 }
 

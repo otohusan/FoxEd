@@ -1,11 +1,15 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Hiragino Kaku Gothic ProN", "游ゴシック", "Yu Gothic", system-ui,
+    Helvetica, sans-serif, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.87);
 
   --primary-color: #f6f6f6;
   --secondary-color: #ff9430;
+  --text-color: #151515;
+  --text-color-2: #333333;
+  --text-color-3: #4d4d4d;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

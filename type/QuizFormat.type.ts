@@ -1,6 +1,8 @@
-import { Quiz } from "./Quiz.type";
+import { Quiz, Flashcard } from "./index";
 
 export type QuizFormat = {
+  id?: string;
+  user_id?: string;
   label: string;
-  body: Quiz[];
+  body: Quiz[] | Flashcard[];
 };

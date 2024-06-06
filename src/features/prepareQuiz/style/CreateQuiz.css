@@ -1,0 +1,53 @@
+.create-quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  color: var(--text-color);
+}
+
+.create-quiz-container h1 {
+  text-align: start;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.create-quiz-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* フォーム全体を中央に揃える */
+}
+
+.create-quiz-container form > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* 親コンテナの幅に合わせる */
+  align-items: flex-start; /* テキストエリアとラベルを左揃えにする */
+}
+
+.create-quiz-container label {
+  font-weight: bold;
+  text-align: start;
+}
+
+.create-quiz-container textarea,
+.create-quiz-container input {
+  width: 100%; /* テキストエリアと入力フィールドを親コンテナの幅に合わせる */
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
+}
+
+.create-quiz-container button {
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center; /* ボタンを中央に揃える */
+  width: 100%;
+  font-weight: 600;
+}
