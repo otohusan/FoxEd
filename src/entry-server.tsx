@@ -3,6 +3,8 @@ import { StaticRouter } from "react-router-dom/server";
 import { Location } from "react-router-dom";
 import App from "./App";
 import { HelmetProvider } from "react-helmet-async";
+import { AuthProvider } from "./components/auth/AuthContext.tsx";
+import { QuizProvider } from "./components/quiz/QuizContext.tsx";
 
 export async function render(url: string | Partial<Location<any>>) {
   const helmetContext: any = {};
@@ -10,7 +12,11 @@ export async function render(url: string | Partial<Location<any>>) {
   const appHtml = ReactDOMServer.renderToString(
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url}>
-        <App />
+        <QuizProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </QuizProvider>
       </StaticRouter>
     </HelmetProvider>
   );
