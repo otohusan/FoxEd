@@ -24,7 +24,8 @@
   white-space: pre-wrap;
   margin-left: 5vw;
   line-height: 2;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Hiragino Kaku Gothic ProN", "游ゴシック", "Yu Gothic",
+    sans-serif;
 
   display: block;
   margin-left: auto;

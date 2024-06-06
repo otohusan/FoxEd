@@ -5,3 +5,4 @@ export { default as QuizCard } from "./QuizCard";
 export { default as HeadDataHelmet } from "./HeadDataHelmet";
 export { default as InfoBadge } from "./InfoBadge";
 export { default as BottomNavigation } from "./BottomNavigation";
+export { default as InputField } from "./InputField";

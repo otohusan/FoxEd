@@ -1,0 +1,30 @@
+.InputField-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+  text-align: left;
+  margin-left: 20%;
+  margin-bottom: -1px;
+}
+
+.InputField-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 0px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  background-color: #ffffff31;
+  color: #f5f5f5fa;
+}
+
+.InputField-input::placeholder {
+  color: #f5f5f5d9; /* プレースホルダーの色を指定 */
+}
+
+.InputField-input:focus {
+  border-color: #ffa200;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(255, 157, 0, 0.25);
+}

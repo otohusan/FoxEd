@@ -5,7 +5,7 @@ import { partOfSpeechTable } from "../../../assets/partOfSpeechTable";
 type PrepareQuizProps = {
   QuizName: string;
   QuizAnswer: string;
-  QuizPartOfSpeech: number | undefined;
+  QuizPartOfSpeech?: number | undefined;
   setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   QuizIndex: number;
 };
@@ -24,7 +24,9 @@ function PrepareQuiz({
         <div className="PrepareQuizPartOfSpeechAndAnswer">
           <div className="PrepareQuizPartOfSpeechContainer">
             <div className="PrepareQuizPartOfSpeech">
-              {QuizPartOfSpeech && partOfSpeechTable[QuizPartOfSpeech - 1]}
+              {QuizPartOfSpeech
+                ? partOfSpeechTable[QuizPartOfSpeech - 1]
+                : partOfSpeechTable[7]}
             </div>
           </div>
           <div className="PrepareQuizAnswer">{QuizAnswer}</div>
