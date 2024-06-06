@@ -21,9 +21,8 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleClickOutside = (event: any) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
