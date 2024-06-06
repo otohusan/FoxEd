@@ -2,21 +2,14 @@
   color: #ffb056;
   font-weight: 600;
   text-align: start;
-  margin-top: calc(15 * var(--app-vh, 1vh));
+  margin-top: 80px;
   margin-left: 5%;
   font-size: 1.7em;
-}
-
-@media (max-width: 600px) {
-  .ChooseTopTitle {
-    margin-top: calc(11 * var(--app-vh, 1vh));
-  }
 }
 
 .hr-line {
   border-top: 5px solid #ffb056; /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
-  margin-top: calc(0.1 * var(--app-vh, 1vh));
   margin-bottom: 40px;
   margin-left: 1.5vw;
 }
@@ -30,17 +23,14 @@
 
 .ChooseQuizListTitle {
   color: #4a4a4a;
-  /* -webkit-text-stroke: 0.7px #4a4a4a; */
   text-align: start;
   margin-left: 5%;
-  /* margin-top: calc(18 * var(--app-vh, 1vh)); */
   font-size: 1.1em;
   font-weight: 600;
 }
 
 .ChooseQuizListTitleKoukou {
   color: #4a4a4a;
-  /* -webkit-text-stroke: 0.7px #4a4a4a; */
   text-align: start;
   margin-left: 5%;
   font-size: 1.1em;
@@ -67,14 +57,11 @@
 .ChooseQuizContainerWrapper {
   /* これを外すだけで、縦スクロールに戻せる */
   display: inline-block;
-  /* width: 88%; */
-  /* border: none;
-  background-color: transparent; */
   padding: 0;
   margin-right: 12%;
   width: 75%;
   height: auto;
-  aspect-ratio: 16 / 4.5;
+  aspect-ratio: 16 / 9.5;
 }
 
 .ChooseQuizContainer {
@@ -86,7 +73,7 @@
   margin-top: 3%;
   text-align: start;
   border-radius: 13px;
-  padding: 5% 2% calc(13 * var(--app-vh, 1vh)) 6%;
+  padding: 15px 2% 0 6%;
   background-color: #fcfcfc;
   border: 2px solid #f0eceb;
 }
@@ -103,19 +90,12 @@
   }
 }
 
-@media (max-width: 600px) {
-  /* スマートフォン用のスタイル */
-  .ChooseQuizContainer {
-    padding-bottom: calc(12.5 * var(--app-vh, 1vh));
-  }
-}
-
 .ChooseQuizContent {
   position: relative;
 }
 
 .ChooseQuizLabel {
-  margin: calc(1 * var(--app-vh, 1vh)) 0 2% 2%;
+  margin: 5px 0 5px 5px;
   font-size: 1.1em;
   font-weight: 700;
 }
@@ -123,7 +103,7 @@
 .ChooseQuizContainerOpen {
   /* 力技感は否めない */
   position: absolute;
-  top: 70%;
+  top: 72%;
   right: 6%;
   font-size: 0.9em;
   color: var(--text-color-3);

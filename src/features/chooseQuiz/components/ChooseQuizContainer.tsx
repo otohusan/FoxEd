@@ -1,6 +1,5 @@
 import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import InfoBadge from "../../../components/InfoBadge.tsx";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
@@ -11,18 +10,6 @@ type ChooseQuizContainerProps = {
 
 function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
   const { setQuizFormat } = useQuizContext();
-
-  // iosのアドレスバーによる高さの変更を防ぐために、画面の高さをはじめに取得して固定する
-  // CSSではそれを使う
-  useEffect(() => {
-    const updateVH = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--app-vh", `${vh}px`);
-    };
-
-    // 初期設定
-    updateVH();
-  }, []);
 
   return (
     <div className="ChooseQuizContainer">
