@@ -3,15 +3,17 @@
     Helvetica, sans-serif, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.87);
 
   --primary-color: #f6f6f6;
 
   --key-color: #ff9430;
+  --key-color-2: #ffa24c;
 
   --text-color: #151515;
   --text-color-2: #333333;
   --text-color-3: #4d4d4d;
+
+  --gray-border-color: #f0eceb;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
