@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         );
 
         const userInfo = response.data;
-        // NOTICE: jsonが大文字で返ってきてる
+
         const user = {
           ID: userInfo.ID,
           name: userInfo.Name,

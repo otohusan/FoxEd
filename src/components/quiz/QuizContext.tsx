@@ -29,9 +29,10 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
 
   const addQuiz = (quiz: Quiz) => {
     if (quizFormat) {
+      // からの場合は新たに追加
       setQuizFormat({
         ...quizFormat,
-        body: [...quizFormat.body, quiz],
+        body: quizFormat.body ? [...quizFormat.body, quiz] : [quiz],
       });
     }
   };

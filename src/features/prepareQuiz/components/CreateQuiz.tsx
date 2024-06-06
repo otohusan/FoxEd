@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../style/CreateQuiz.css";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
 
 type CreateQuizProps = {
   studySetID: string;
 };
 
 const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
+  const { addQuiz } = useQuizContext();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
+  //APIに新しいクイズを送信とstateにもセット
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -20,6 +23,9 @@ const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
       if (!token) {
         throw new Error("No token found");
       }
+
+      // stateに追加してすぐ反映
+      addQuiz({ answer: answer, question: question });
 
       // クイズデータをバックエンドに送信
       await axios.post(
