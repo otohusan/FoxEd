@@ -17,15 +17,15 @@ const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // DB更新に成功したらstate更新
     try {
-      // stateに追加してすぐ反映
-      addQuiz({ answer: answer, question: question });
-
       // クイズデータをバックエンドに送信
       await postQuiz(`${BASE_BACKEND_URL}/flashcards/${studySetID}`, {
         question,
         answer,
       });
+      // stateの更新
+      addQuiz({ answer: answer, question: question });
 
       // 入力欄をからに
       setAnswer("");

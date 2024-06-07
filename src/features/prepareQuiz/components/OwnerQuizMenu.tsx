@@ -30,18 +30,15 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({
 
   const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   // 削除用のロジック
-  const handleDeleteQuiz = (id: string) => {
+  const handleDeleteQuiz = async (id: string) => {
     const isConfirmed = window.confirm("クイズを削除しますか？");
     if (isConfirmed) {
       try {
         // DBの更新が成功したらstateの更新
-        sendQuizDelete(`${VITE_BASE_BACKEND_URL}/flashcards/${QuizID}`).then(
-          () => {
-            deleteQuiz(id);
-          }
-        );
+        await sendQuizDelete(`${VITE_BASE_BACKEND_URL}/flashcards/${QuizID}`);
+        deleteQuiz(id);
       } catch (error) {
-        alert("クイズの削除に失敗しました");
+        alert(error);
         return;
       }
     }

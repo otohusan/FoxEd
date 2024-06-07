@@ -24,22 +24,28 @@ const EditQuiz: React.FC<EditQuizProps> = ({
 
   // クイズを更新する関数
   const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const handleSave = () => {
+  const handleSave = async () => {
     if (prevQuestion == question && prevAnswer == answer) {
       alert("入力が変わっていません");
       return;
     }
     if (!quizFormat || !quizFormat.id) return;
 
-    // backEndに送る
-    sendQuizUpdate(`${VITE_BASE_BACKEND_URL}/flashcards/${quizId}`, {
-      question: question,
-      answer: answer,
-      studySetID: quizFormat.id,
-    });
-    // stateの更新
-    updateQuiz({ id: quizId, question: question, answer: answer });
-    onCancel();
+    // DB更新に成功したらstate更新
+    try {
+      // backEndに送る
+      await sendQuizUpdate(`${VITE_BASE_BACKEND_URL}/flashcards/${quizId}`, {
+        question: question,
+        answer: answer,
+        studySetID: quizFormat.id,
+      });
+      // stateの更新
+      updateQuiz({ id: quizId, question: question, answer: answer });
+      onCancel();
+    } catch (error) {
+      alert(error);
+      return;
+    }
   };
 
   return (
