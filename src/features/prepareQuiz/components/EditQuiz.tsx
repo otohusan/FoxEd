@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../style/EditQuiz.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
-import sendQuizUpdate from "../../../api/quiz/sendQuizUpdate";
+import { sendQuizUpdate } from "../../../api";
 
 type EditQuizProps = {
   quizId: string;

@@ -4,6 +4,7 @@ import EditQuiz from "./EditQuiz";
 import "../style/OwnerQuizMenu.css";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { sendQuizDelete } from "../../../api";
 
 type OwnerQuizMenuProps = {
   QuizID: string;
@@ -27,11 +28,22 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({
     setIsEditing(false);
   };
 
+  const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   // 削除用のロジック
   const handleDeleteQuiz = (id: string) => {
     const isConfirmed = window.confirm("クイズを削除しますか？");
     if (isConfirmed) {
-      deleteQuiz(id);
+      try {
+        // DBの更新が成功したらstateの更新
+        sendQuizDelete(`${VITE_BASE_BACKEND_URL}/flashcards/${QuizID}`).then(
+          () => {
+            deleteQuiz(id);
+          }
+        );
+      } catch (error) {
+        alert("クイズの削除に失敗しました");
+        return;
+      }
     }
   };
 
