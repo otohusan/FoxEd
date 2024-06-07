@@ -31,7 +31,7 @@ const EditQuiz: React.FC<EditQuizProps> = ({
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             required
-            rows={5} // テキストエリアの初期行数を設定
+            rows={3} // テキストエリアの初期行数を設定
             cols={50} // テキストエリアの初期列数を設定
             placeholder="問題を入力"
           />
@@ -42,7 +42,7 @@ const EditQuiz: React.FC<EditQuizProps> = ({
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             required
-            rows={5} // テキストエリアの初期行数を設定
+            rows={3} // テキストエリアの初期行数を設定
             cols={50} // テキストエリアの初期列数を設定
             placeholder="答えを入力"
           />

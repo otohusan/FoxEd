@@ -31,24 +31,25 @@
   margin-bottom: 10px; /* テキストエリアの下の余白を小さくする */
 }
 
-.edit-quiz-content h2 {
+.edit-quiz-content > h2 {
   margin-top: 0;
   margin-bottom: 10px; /* 見出しの下の余白を小さくする */
   font-size: 22px;
 }
 
-.edit-quiz-each-content label {
+.edit-quiz-each-content > label {
   margin-bottom: 5px; /* ラベルとテキストエリアの間の余白を小さくする */
   margin: 0;
 }
 
-.edit-quiz-each-content textarea {
+.edit-quiz-each-content > textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
+  padding: 2%;
 }
 
-.edit-quiz-content button {
+.edit-quiz-content > button {
   margin: 5px 0; /* ボタンの上下の余白を調整 */
   padding: 10px;
   border: none;

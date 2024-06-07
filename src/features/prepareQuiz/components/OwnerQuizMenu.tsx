@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import EditQuiz from "./EditQuiz";
+import "../style/OwnerQuizMenu.css";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 type OwnerQuizMenuProps = {
   QuizID: string;
@@ -32,10 +35,16 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({
     }
   };
 
+  const ICONSIZE = "20px";
+
   return (
-    <div>
-      <button onClick={() => handleEditQuiz()}>編集</button>
-      <button onClick={() => handleDeleteQuiz(QuizID)}>削除</button>
+    <div className="owner-quiz-menu-container">
+      <button onClick={() => handleEditQuiz()}>
+        <FiEdit size={ICONSIZE} />
+      </button>
+      <button onClick={() => handleDeleteQuiz(QuizID)}>
+        <RiDeleteBin6Line size={ICONSIZE} />
+      </button>
       {isEditing && (
         <EditQuiz
           quizId={QuizID}

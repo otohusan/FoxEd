@@ -1,5 +1,5 @@
 .PrepareMenus {
-  color: #949494;
+  color: var(--icon-color);
   position: absolute;
   top: 110%;
   right: 0%;
@@ -11,14 +11,14 @@
 }
 
 .PrepareMenus > button {
-  color: #949494;
+  color: var(--icon-color);
   cursor: pointer;
   background-color: transparent;
   border: none;
 }
 
 .PrepareQuizPlayBtn {
-  color: #989898;
+  color: var(--icon-color);
   margin-left: 0.2em;
   margin-top: 0.2em;
 }

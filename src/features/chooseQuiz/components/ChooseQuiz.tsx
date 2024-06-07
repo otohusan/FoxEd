@@ -28,7 +28,9 @@ function ChooseQuiz() {
 
   // const { user } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const userID = "4b626883-64fd-4fde-a389-d2d5c185f604"; // テスト用のユーザーID
+  // テスト用のユーザーID
+  // 期限切れてるのに取得してるから注意
+  const userID = "4b626883-64fd-4fde-a389-d2d5c185f604";
 
   // ユーザの学習セットを検索
   const { data } = useFetch<StudySet[]>(

@@ -44,7 +44,9 @@ function PrepareQuiz({
 
         {
           // オーナーだった場合のみ表示
-          isOwner && QuizID && (
+          // isOwner && QuizID &&
+          // NOTICE: 今だけこの条件
+          QuizID && (
             <OwnerQuizMenu
               QuizID={QuizID}
               prevQuestion={QuizName}
