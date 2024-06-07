@@ -41,7 +41,11 @@ function PrepareQuiz({
           setCurrentQuizIndex={setCurrentQuizIndex}
           QuizIndex={QuizIndex}
         />
-        {isOwner && QuizID && <OwnerQuizMenu QuizID={QuizID} />}
+
+        {
+          // オーナーだった場合のみ表示
+          isOwner && QuizID && <OwnerQuizMenu QuizID={QuizID} />
+        }
       </div>
       <div className="PrepareQuizBorder"></div>
     </div>

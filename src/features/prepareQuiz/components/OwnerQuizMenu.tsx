@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
+import EditQuiz from "./EditQuiz";
 
 type OwnerQuizMenuProps = {
   QuizID: string;
@@ -7,12 +8,17 @@ type OwnerQuizMenuProps = {
 
 const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({ QuizID }) => {
   const { deleteQuiz } = useQuizContext();
+  const [isEditing, setIsEditing] = useState(false);
 
-  const handleEditQuiz = (id: string) => {
-    console.log(`Editing quiz with ID: ${id}`);
-    // 編集処理のロジックをここに追加
+  const handleEditQuiz = () => {
+    setIsEditing(true);
   };
 
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
+  // 削除用のロジック
   const handleDeleteQuiz = (id: string) => {
     const isConfirmed = window.confirm("クイズを削除しますか？");
     if (isConfirmed) {
@@ -22,8 +28,9 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({ QuizID }) => {
 
   return (
     <div>
-      <button onClick={() => handleEditQuiz(QuizID)}>編集</button>
+      <button onClick={() => handleEditQuiz()}>編集</button>
       <button onClick={() => handleDeleteQuiz(QuizID)}>削除</button>
+      {isEditing && <EditQuiz quizId={QuizID} onCancel={handleCancelEdit} />}
     </div>
   );
 };
