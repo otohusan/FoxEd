@@ -1,7 +1,8 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import "./style/MenuBar.css";
 import { RiMenu2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useClickAway } from "../hooks";
 
 type MenuBarProps = {
   isOpen: boolean;
@@ -15,31 +16,10 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    // SSR環境での実行を回避する
-    if (typeof document === "undefined") {
-      return;
-    }
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "visible";
-    }
-
-    return () => {
-      document.body.style.overflow = "visible";
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, setIsOpen]);
+  // 外側をクリックしたら閉じるカスタムフックを呼び出し
+  useClickAway(menuRef, () => {
+    setIsOpen(false);
+  });
 
   return (
     <div>
