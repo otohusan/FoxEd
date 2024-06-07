@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/EditQuiz.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
+import sendQuizUpdate from "../../../api/quiz/sendQuizUpdate";
 
 type EditQuizProps = {
   quizId: string;
@@ -21,7 +22,18 @@ const EditQuiz: React.FC<EditQuizProps> = ({
   const { updateQuiz } = useQuizContext();
 
   // クイズを更新する関数
+  const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   const handleSave = () => {
+    if (prevQuestion == question && prevAnswer == answer) {
+      alert("入力が変わっていません");
+      return;
+    }
+    // backEndに送る
+    sendQuizUpdate(`${VITE_BASE_BACKEND_URL}/flashcards/${quizId}`, {
+      question: question,
+      answer: answer,
+    });
+    // stateの更新
     updateQuiz({ id: quizId, question: question, answer: answer });
     onCancel();
   };
