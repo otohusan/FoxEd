@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../style/EditQuiz.css";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
 
 type EditQuizProps = {
   quizId: string;
@@ -17,8 +18,12 @@ const EditQuiz: React.FC<EditQuizProps> = ({
   const [question, setQuestion] = useState(prevQuestion);
   const [answer, setAnswer] = useState(prevAnswer);
 
+  const { updateQuiz } = useQuizContext();
+
+  // クイズを更新する関数
   const handleSave = () => {
-    // onSave(quizId, question, answer);
+    updateQuiz({ id: quizId, question: question, answer: answer });
+    onCancel();
   };
 
   return (
