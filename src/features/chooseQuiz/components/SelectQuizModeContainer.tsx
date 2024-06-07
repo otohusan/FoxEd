@@ -15,6 +15,7 @@ const SelectQuizModeContainer: React.FC<SelectQuizModeContainerProps> = ({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // 閉じるカスタムフック
   useClickAway(menuRef, onClose);
 
   useEffect(() => {
