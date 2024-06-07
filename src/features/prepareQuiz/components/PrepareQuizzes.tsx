@@ -12,7 +12,15 @@ import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 import { WindowVirtualizer } from "virtua";
 
 function PrepareQuizzes() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const { user } = useAuth();
   const { quizFormat, setCurrentQuizIndex } = useQuizContext();
+
+  // 学習セットのオーナーであるかを判定
+  const isOwner = user?.ID == quizFormat?.user_id;
   const quizzes = quizFormat ? quizFormat.body : [];
 
   const PrepareQuizList = (
@@ -21,11 +29,13 @@ function PrepareQuizzes() {
         quizzes.map((quiz, index) => (
           <PrepareQuiz
             key={index}
+            QuizID={quiz.id}
             QuizName={quiz.question}
             QuizAnswer={quiz.answer}
             QuizPartOfSpeech={"partOfSpeech" in quiz ? quiz.partOfSpeech : 7}
             QuizIndex={index}
             setCurrentQuizIndex={setCurrentQuizIndex}
+            isOwner={isOwner}
           />
         ))}
     </WindowVirtualizer>
@@ -40,12 +50,6 @@ function PrepareQuizzes() {
         key={index}
       />
     ));
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const { user } = useAuth();
 
   const pageHeadDescription: string = `無料で『${quizFormat?.label}』をbasicな英単語帳から学べます。赤シートを有効に使って、英単語を覚えましょう。`;
   return (
@@ -70,9 +74,7 @@ function PrepareQuizzes() {
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
-        {user?.ID == quizFormat?.user_id && quizFormat?.id && (
-          <CreateQuiz studySetID={quizFormat.id} />
-        )}
+        {isOwner && quizFormat?.id && <CreateQuiz studySetID={quizFormat.id} />}
 
         <MovableSheet />
       </main>
