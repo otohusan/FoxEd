@@ -20,6 +20,7 @@ const EditQuiz: React.FC<EditQuizProps> = ({
   const [answer, setAnswer] = useState(prevAnswer);
 
   const { updateQuiz } = useQuizContext();
+  const { quizFormat } = useQuizContext();
 
   // クイズを更新する関数
   const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -28,10 +29,13 @@ const EditQuiz: React.FC<EditQuizProps> = ({
       alert("入力が変わっていません");
       return;
     }
+    if (!quizFormat || !quizFormat.id) return;
+
     // backEndに送る
     sendQuizUpdate(`${VITE_BASE_BACKEND_URL}/flashcards/${quizId}`, {
       question: question,
       answer: answer,
+      studySetID: quizFormat.id,
     });
     // stateの更新
     updateQuiz({ id: quizId, question: question, answer: answer });

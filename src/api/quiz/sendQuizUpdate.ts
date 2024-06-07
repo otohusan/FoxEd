@@ -3,6 +3,7 @@ import axios from "axios";
 type QuizUpdate = {
   question: string;
   answer: string;
+  studySetID: string;
 };
 
 const sendQuizUpdate = async (url: string, quiz: QuizUpdate): Promise<void> => {
