@@ -1,16 +1,59 @@
+import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../style/SelectQuizMode.css";
+import { useClickAway } from "../../../hooks";
 
 type SelectQuizModeContainerProps = {
-  x: number;
-  y: number;
+  isOpen: boolean;
+  onClose: () => void;
 };
 
-function SelectQuizModeContainer(props: SelectQuizModeContainerProps) {
+const SelectQuizModeContainer: React.FC<SelectQuizModeContainerProps> = ({
+  isOpen,
+  onClose,
+}) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useClickAway(menuRef, onClose);
+
+  useEffect(() => {
+    function calculatePosition(event: MouseEvent) {
+      const SELECT_MODE_WIDTH = 200;
+      const SELECT_MODE_HEIGHT = 100;
+
+      let x = event.clientX;
+      let y = event.clientY;
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      if (x + SELECT_MODE_WIDTH > screenWidth) {
+        x = screenWidth - SELECT_MODE_WIDTH;
+      }
+      if (y + SELECT_MODE_HEIGHT > screenHeight) {
+        y = screenHeight - SELECT_MODE_HEIGHT;
+      }
+
+      y += window.scrollY - 50;
+      setPosition({ x, y });
+    }
+
+    if (isOpen) {
+      document.addEventListener("click", calculatePosition);
+    }
+
+    return () => {
+      document.removeEventListener("click", calculatePosition);
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
   return (
     <div
       className="SelectQuizModeContainer"
-      style={{ top: `${props.y}px`, left: `${props.x}px` }}
+      style={{ top: `${position.y}px`, left: `${position.x}px` }}
+      ref={menuRef}
     >
       <Link to={"/PlayQuiz"} className="SelectMode">
         歩いて覚える
@@ -21,6 +64,6 @@ function SelectQuizModeContainer(props: SelectQuizModeContainerProps) {
       </Link>
     </div>
   );
-}
+};
 
 export default SelectQuizModeContainer;
