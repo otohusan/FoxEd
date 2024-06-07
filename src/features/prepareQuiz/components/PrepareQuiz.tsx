@@ -44,7 +44,13 @@ function PrepareQuiz({
 
         {
           // オーナーだった場合のみ表示
-          isOwner && QuizID && <OwnerQuizMenu QuizID={QuizID} />
+          isOwner && QuizID && (
+            <OwnerQuizMenu
+              QuizID={QuizID}
+              prevQuestion={QuizName}
+              prevAnswer={QuizAnswer}
+            />
+          )
         }
       </div>
       <div className="PrepareQuizBorder"></div>

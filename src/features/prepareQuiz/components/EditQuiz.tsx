@@ -3,12 +3,19 @@ import "../style/EditQuiz.css";
 
 type EditQuizProps = {
   quizId: string;
+  prevQuestion: string;
+  prevAnswer: string;
   onCancel: () => void;
 };
 
-const EditQuiz: React.FC<EditQuizProps> = ({ quizId, onCancel }) => {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+const EditQuiz: React.FC<EditQuizProps> = ({
+  quizId,
+  onCancel,
+  prevQuestion,
+  prevAnswer,
+}) => {
+  const [question, setQuestion] = useState(prevQuestion);
+  const [answer, setAnswer] = useState(prevAnswer);
 
   const handleSave = () => {
     // onSave(quizId, question, answer);

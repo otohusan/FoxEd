@@ -4,9 +4,15 @@ import EditQuiz from "./EditQuiz";
 
 type OwnerQuizMenuProps = {
   QuizID: string;
+  prevQuestion: string;
+  prevAnswer: string;
 };
 
-const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({ QuizID }) => {
+const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({
+  QuizID,
+  prevQuestion,
+  prevAnswer,
+}) => {
   const { deleteQuiz } = useQuizContext();
   const [isEditing, setIsEditing] = useState(false);
 
@@ -30,7 +36,14 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({ QuizID }) => {
     <div>
       <button onClick={() => handleEditQuiz()}>編集</button>
       <button onClick={() => handleDeleteQuiz(QuizID)}>削除</button>
-      {isEditing && <EditQuiz quizId={QuizID} onCancel={handleCancelEdit} />}
+      {isEditing && (
+        <EditQuiz
+          quizId={QuizID}
+          prevQuestion={prevQuestion}
+          prevAnswer={prevAnswer}
+          onCancel={handleCancelEdit}
+        />
+      )}
     </div>
   );
 };
