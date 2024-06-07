@@ -1,11 +1,10 @@
-import { Header, Footer, HeadDataHelmet } from "../../../components";
+import { Header, Footer, HeadDataHelmet, PopupMenu } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/ChooseQuizContainer.css";
 import { StudySet } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
-import SelectQuizModeContainer from "./SelectQuizModeContainer.tsx";
 import { useState } from "react";
 // import { useAuth } from "../../../components/auth/useAuth.ts";
 import useFetch from "../../../hooks/useFetch.ts";
@@ -22,6 +21,10 @@ function ChooseQuiz() {
   const handleClose = () => {
     setIsSelectModeOpen(false);
   };
+  const menuItems = [
+    { text: "歩いて覚える", link: "/PlayQuiz" },
+    { text: "単語帳で覚える", link: "/PrepareQuiz" },
+  ];
 
   // const { user } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -39,9 +42,10 @@ function ChooseQuiz() {
       <main>
         <Introduction />
 
-        <SelectQuizModeContainer
+        <PopupMenu
           isOpen={isSelectModeOpen}
           onClose={handleClose}
+          menuItems={menuItems}
         />
 
         <div className="ChooseTopTitle">英単語リスト</div>

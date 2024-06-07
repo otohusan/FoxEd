@@ -1,4 +1,4 @@
-.PopupMenu {
+.SelectQuizModeContainer {
   z-index: 2;
   position: absolute;
   top: 50%;
@@ -6,13 +6,13 @@
   display: flex;
   flex-direction: column; /* 子要素を縦方向に並べる */
   align-items: start; /* 子要素を中央揃えにする */
-  background-color: var(--text-color-4);
+  background-color: #6a6e72;
   border-radius: 8px;
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
 
-.PopupMenu > .MenuOption {
-  color: var(--main-color);
+.SelectMode {
+  color: #fdfdfd;
   text-decoration: none;
   font-size: 0.8em;
   width: 35vw;
@@ -21,11 +21,11 @@
   margin: 7px;
 }
 
-.PopupMenu > .MenuOption-hr-line {
+.SelectMode-hr-line {
   border-top: 1px solid #7c8185; /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
 }
 
-.PopupMenu > .MenuOption:hover {
+.SelectMode:hover {
   color: #fee09a;
 }

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../style/SelectQuizMode.css";
-import { useClickAway } from "../../../hooks";
+import "./style/PopupMenu.css";
+import { useClickAway } from "../hooks";
 
 type MenuItem = {
   text: string;
@@ -9,13 +9,13 @@ type MenuItem = {
   onClick?: () => void;
 };
 
-type SelectQuizModeContainerProps = {
+type PopupMenuProps = {
   isOpen: boolean;
   onClose: () => void;
   menuItems: MenuItem[];
 };
 
-const SelectQuizModeContainer: React.FC<SelectQuizModeContainerProps> = ({
+const PopupMenu: React.FC<PopupMenuProps> = ({
   isOpen,
   onClose,
   menuItems,
@@ -28,19 +28,19 @@ const SelectQuizModeContainer: React.FC<SelectQuizModeContainerProps> = ({
 
   useEffect(() => {
     function calculatePosition(event: MouseEvent) {
-      const SELECT_MODE_WIDTH = 200;
-      const SELECT_MODE_HEIGHT = 100;
+      const MENU_WIDTH = 200;
+      const MENU_HEIGHT = 100;
 
       let x = event.clientX;
       let y = event.clientY;
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
 
-      if (x + SELECT_MODE_WIDTH > screenWidth) {
-        x = screenWidth - SELECT_MODE_WIDTH;
+      if (x + MENU_WIDTH > screenWidth) {
+        x = screenWidth - MENU_WIDTH;
       }
-      if (y + SELECT_MODE_HEIGHT > screenHeight) {
-        y = screenHeight - SELECT_MODE_HEIGHT;
+      if (y + MENU_HEIGHT > screenHeight) {
+        y = screenHeight - MENU_HEIGHT;
       }
 
       y += window.scrollY - 50;
@@ -60,28 +60,28 @@ const SelectQuizModeContainer: React.FC<SelectQuizModeContainerProps> = ({
 
   return (
     <div
-      className="SelectQuizModeContainer"
+      className="PopupMenu"
       style={{ top: `${position.y}px`, left: `${position.x}px` }}
       ref={menuRef}
     >
       {menuItems.map((item, index) => (
-        <>
+        <React.Fragment key={index}>
           {item.link ? (
-            <Link to={item.link} className="SelectMode">
+            <Link to={item.link} className="MenuOption">
               {item.text}
             </Link>
           ) : (
-            <div className="SelectMode" onClick={item.onClick}>
+            <div className="MenuOption" onClick={item.onClick}>
               {item.text}
             </div>
           )}
           {index < menuItems.length - 1 && (
-            <div className="SelectMode-hr-line"></div>
+            <div className="MenuOption-hr-line"></div>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );
 };
 
-export default SelectQuizModeContainer;
+export default PopupMenu;
