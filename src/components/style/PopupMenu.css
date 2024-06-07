@@ -1,4 +1,4 @@
-.SelectQuizModeContainer {
+.PopupMenu {
   z-index: 2;
   position: absolute;
   top: 50%;
@@ -11,7 +11,7 @@
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
 
-.SelectMode {
+.MenuOption {
   color: #fdfdfd;
   text-decoration: none;
   font-size: 0.8em;
@@ -21,11 +21,11 @@
   margin: 7px;
 }
 
-.SelectMode-hr-line {
+.MenuOption-hr-line {
   border-top: 1px solid #7c8185; /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
 }
 
-.SelectMode:hover {
+.MenuOption:hover {
   color: #fee09a;
 }
