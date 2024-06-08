@@ -5,3 +5,10 @@
   transform: translate(-50%, -50%);
   width: 95%;
 }
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Y軸で中央に配置 */
+  min-height: 100vh; /* ビューポート全体の高さを設定 */
+}

@@ -1,18 +1,91 @@
-import { Header } from "../../../components";
+import { useState } from "react";
+import { StudySet } from "../../../../type";
+import { Header, PopupMenu } from "../../../components";
 import LoginPrompt from "../../../components/LoginPrompt";
 import { useAuth } from "../../../components/auth/useAuth";
+import { useFetch } from "../../../hooks";
+import ChooseQuizContainer from "../../chooseQuiz/components/ChooseQuizContainer";
 import "../style/MainProfile.css";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
 
 function MainProfile() {
   const { user } = useAuth();
+  const { setQuizFormat } = useQuizContext();
+
+  // 期限切れてるのに取得してるから注意
+  const userID = "4b626883-64fd-4fde-a389-d2d5c185f604";
+
+  // ユーザの学習セットを検索
+  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+  const { data } = useFetch<StudySet[]>(
+    `${BASE_BACKEND_URL}/studysets/user/${userID}`
+  );
+
+  // menuに関わる者たち
+  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
+  const handleOpen = () => {
+    setIsSelectModeOpen(true);
+  };
+  const handleClose = () => {
+    setIsSelectModeOpen(false);
+  };
+  const menuItems = [
+    { text: "歩いて覚える", link: "/PlayQuiz" },
+    { text: "単語帳で覚える", link: "/PrepareQuiz" },
+  ];
+
   return (
-    <div>
+    <div className="profile-container">
       <Header HeaderTitle="Profile" />
-      <div className="profile-login-prompt">
-        {!user && (
+      {/* ログインしていない場合にログインプロンプトを表示 */}
+      {!user && (
+        <div className="profile-login-prompt">
           <LoginPrompt promptText="ログインして、自分だけの学習セットを作成しよう" />
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* ログインしている場合に学習セットを表示 */}
+      {user && (
+        <>
+          <PopupMenu
+            isOpen={isSelectModeOpen}
+            onClose={handleClose}
+            menuItems={menuItems}
+          />
+
+          {data && (
+            <div className="ChooseQuizListTitle">あなたの学習セット</div>
+          )}
+          {data && data.length > 0 && (
+            <div className="ChooseQuizDataList">
+              {/* 取得した学習セットを表示 */}
+              {data.map((studyset) => (
+                <div
+                  onClick={() => {
+                    setQuizFormat({
+                      id: studyset.id,
+                      user_id: studyset.user_id,
+                      label: studyset.title,
+                      body: studyset.flashcards,
+                    });
+                    handleOpen();
+                  }}
+                  className="ChooseQuizContainerWrapper"
+                  key={studyset.id}
+                >
+                  <ChooseQuizContainer
+                    key={studyset.id}
+                    quizFormat={{
+                      label: studyset.title,
+                      body: studyset.flashcards,
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
