@@ -1,12 +1,7 @@
-import LoginPrompt from "../components/LoginPrompt";
-import { useAuth } from "../components/auth/useAuth";
+import MainProfile from "../features/profile/components/MainProfile";
 
 function Profile() {
-  const { user } = useAuth();
-  if (!user) {
-    return <LoginPrompt />;
-  }
-  return <div>Profile</div>;
+  return <MainProfile />;
 }
 
 export default Profile;
