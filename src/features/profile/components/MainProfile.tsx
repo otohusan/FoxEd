@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { StudySet } from "../../../../type";
-import { Header, PopupMenu } from "../../../components";
+import { Footer, Header, PopupMenu } from "../../../components";
 import LoginPrompt from "../../../components/LoginPrompt";
 import { useAuth } from "../../../components/auth/useAuth";
 import { useFetch } from "../../../hooks";
 import ChooseQuizContainer from "../../chooseQuiz/components/ChooseQuizContainer";
 import "../style/MainProfile.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
+import MakeStudySet from "./MakeStudySet";
 
 function MainProfile() {
   const { user } = useAuth();
@@ -86,6 +87,8 @@ function MainProfile() {
           )}
         </>
       )}
+      <MakeStudySet />
+      <Footer />
     </div>
   );
 }
