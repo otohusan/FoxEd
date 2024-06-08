@@ -9,6 +9,7 @@ import "../style/MainProfile.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import MakeStudySet from "./MakeStudySet";
 import axios from "axios";
+import OwnerStudySetMenu from "../../chooseQuiz/components/OwnerStudySetMenu";
 
 function MainProfile() {
   const { user } = useAuth();
@@ -101,6 +102,18 @@ function MainProfile() {
                         body: studyset.flashcards,
                       }}
                     />
+
+                    {/* オーナーだった場合編集ボタンを追加 */}
+                    {studyset.id &&
+                      studyset.description &&
+                      userID == studyset.user_id && (
+                        <OwnerStudySetMenu
+                          studySetID={studyset.id}
+                          prevTitle={studyset.title}
+                          prevDescription={studyset.description}
+                          onNewStudySet={handleNewStudySet}
+                        />
+                      )}
                   </div>
                 ))}
             </div>

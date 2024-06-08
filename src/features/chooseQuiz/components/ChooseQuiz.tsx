@@ -101,14 +101,16 @@ function ChooseQuiz() {
                     }}
                   />
                   {/* オーナーだった場合編集ボタンを追加 */}
-                  {studyset.id && studyset.description && (
-                    <OwnerStudySetMenu
-                      studySetID={studyset.id}
-                      prevTitle={studyset.title}
-                      prevDescription={studyset.description}
-                      onNewStudySet={handleNewStudySet}
-                    />
-                  )}
+                  {studyset.id &&
+                    studyset.description &&
+                    userID == studyset.user_id && (
+                      <OwnerStudySetMenu
+                        studySetID={studyset.id}
+                        prevTitle={studyset.title}
+                        prevDescription={studyset.description}
+                        onNewStudySet={handleNewStudySet}
+                      />
+                    )}
                 </div>
               ))}
           </div>
