@@ -9,6 +9,7 @@ import { useState } from "react";
 // import { useAuth } from "../../../components/auth/useAuth.ts";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
+import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
 
 function ChooseQuiz() {
   const { setQuizFormat } = useQuizContext();
@@ -68,6 +69,7 @@ function ChooseQuiz() {
                       id: studyset.id,
                       user_id: studyset.user_id,
                       label: studyset.title,
+                      description: studyset.description,
                       body: studyset.flashcards,
                     });
                     handleOpen();
@@ -79,10 +81,20 @@ function ChooseQuiz() {
                     key={studyset.id}
                     // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
                     quizFormat={{
+                      id: studyset.id,
                       label: studyset.title,
+                      description: studyset.description,
                       body: studyset.flashcards,
                     }}
                   />
+                  {/* オーナーだった場合編集ボタンを追加 */}
+                  {studyset.id && studyset.description && (
+                    <OwnerStudySetMenu
+                      studySetID={studyset.id}
+                      prevTitle={studyset.title}
+                      prevDescription={studyset.description}
+                    />
+                  )}
                 </div>
               ))}
           </div>

@@ -63,6 +63,7 @@
   height: auto;
   aspect-ratio: 16 / 9.5;
   margin: 10px 7% 0px 4%;
+  position: relative;
 }
 
 .ChooseQuizContainer {

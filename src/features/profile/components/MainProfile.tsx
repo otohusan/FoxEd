@@ -86,6 +86,7 @@ function MainProfile() {
                         id: studyset.id,
                         user_id: studyset.user_id,
                         label: studyset.title,
+                        description: studyset.description,
                         body: studyset.flashcards,
                       });
                       handleOpen();

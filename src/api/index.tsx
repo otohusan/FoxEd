@@ -7,3 +7,4 @@ export { default as sendQuizUpdate } from "./quiz/sendQuizUpdate";
 export { default as sendQuizDelete } from "./quiz/sendQuizDelete";
 export { default as sendStudySetUpdate } from "./studySet/sendStudySetUpdate";
 export { default as postStudySet } from "./studySet/postStudySet";
+export { default as sendStudySetDelete } from "./studySet/sendStudySetDelete";
