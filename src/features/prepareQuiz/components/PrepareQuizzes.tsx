@@ -70,6 +70,8 @@ function PrepareQuizzes() {
           <div className="PrepareQuizLabel">{quizFormat?.label}</div>
         </Link>
 
+        {!quizzes && <p>問題がないよ！追加しよう</p>}
+
         {quizzes && <HorizontalScroll>{cardList}</HorizontalScroll>}
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 

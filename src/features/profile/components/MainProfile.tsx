@@ -51,15 +51,18 @@ function MainProfile() {
     <div className="profile-container">
       <Header HeaderTitle="Profile" />
       {/* ログインしていない場合にログインプロンプトを表示 */}
-      {!user && (
-        <div className="profile-login-prompt">
-          <LoginPrompt promptText="ログインして、自分だけの学習セットを作成しよう" />
-        </div>
-      )}
+      <div className="profile-login-prompt-container">
+        {!user && (
+          <div className="profile-login-prompt">
+            <LoginPrompt promptText="ログインして、自分だけの学習セットを作成しよう" />
+          </div>
+        )}
+      </div>
 
       {/* ログインしている場合に学習セットを表示 */}
       {user && (
         <>
+          {!data && <p>自分だけの学習セット作ってみよう！</p>}
           <PopupMenu
             isOpen={isSelectModeOpen}
             onClose={handleClose}
@@ -101,9 +104,9 @@ function MainProfile() {
                 ))}
             </div>
           )}
+          <MakeStudySet onNewStudySet={handleNewStudySet} />
         </>
       )}
-      <MakeStudySet onNewStudySet={handleNewStudySet} />
       <Footer />
     </div>
   );

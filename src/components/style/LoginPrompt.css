@@ -16,6 +16,7 @@
   margin-bottom: 20px;
   font-size: 16px;
   color: var(--text-color-2);
+  font-weight: 500;
 
   overflow-wrap: anywhere; /* 収まらない場合に折り返す */
   word-break: normal; /* 単語の分割はデフォルトに依存 */
