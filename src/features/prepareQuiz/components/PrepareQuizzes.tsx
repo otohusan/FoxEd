@@ -32,7 +32,7 @@ function PrepareQuizzes() {
             QuizID={quiz.id}
             QuizName={quiz.question}
             QuizAnswer={quiz.answer}
-            QuizPartOfSpeech={"partOfSpeech" in quiz ? quiz.partOfSpeech : 7}
+            QuizPartOfSpeech={"partOfSpeech" in quiz ? quiz.partOfSpeech : 8}
             QuizIndex={index}
             setCurrentQuizIndex={setCurrentQuizIndex}
             isOwner={isOwner}
