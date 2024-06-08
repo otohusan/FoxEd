@@ -1,7 +1,11 @@
 import "./style/LoginPrompt.css";
 import { useNavigate } from "react-router-dom";
 
-const LoginPrompt: React.FC = () => {
+type LoginPromptProps = {
+  promptText: string;
+};
+
+const LoginPrompt = ({ promptText }: LoginPromptProps) => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -10,7 +14,7 @@ const LoginPrompt: React.FC = () => {
 
   return (
     <div className="login-prompt">
-      <p>この機能を利用するにはログインが必要です。</p>
+      <p>{promptText}</p>
       <button onClick={handleLoginClick}>ログインする</button>
     </div>
   );
