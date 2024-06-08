@@ -58,30 +58,33 @@ function ChooseQuiz() {
         {data && data.length > 0 ? (
           <div className="ChooseQuizDataList">
             {/* 取得した学習セットを表示 */}
-            {data.map((studyset) => (
-              <div
-                onClick={() => {
-                  setQuizFormat({
-                    id: studyset.id,
-                    user_id: studyset.user_id,
-                    label: studyset.title,
-                    body: studyset.flashcards,
-                  });
-                  handleOpen();
-                }}
-                className="ChooseQuizContainerWrapper"
-                key={studyset.id}
-              >
-                <ChooseQuizContainer
-                  key={studyset.id}
-                  // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
-                  quizFormat={{
-                    label: studyset.title,
-                    body: studyset.flashcards,
+            {data
+              .slice()
+              .reverse()
+              .map((studyset) => (
+                <div
+                  onClick={() => {
+                    setQuizFormat({
+                      id: studyset.id,
+                      user_id: studyset.user_id,
+                      label: studyset.title,
+                      body: studyset.flashcards,
+                    });
+                    handleOpen();
                   }}
-                />
-              </div>
-            ))}
+                  className="ChooseQuizContainerWrapper"
+                  key={studyset.id}
+                >
+                  <ChooseQuizContainer
+                    key={studyset.id}
+                    // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
+                    quizFormat={{
+                      label: studyset.title,
+                      body: studyset.flashcards,
+                    }}
+                  />
+                </div>
+              ))}
           </div>
         ) : (
           <></>
