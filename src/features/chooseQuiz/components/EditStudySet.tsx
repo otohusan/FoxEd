@@ -7,6 +7,7 @@ type EditStudySetProps = {
   prevTitle: string;
   prevDescription: string;
   onCancel: (e: React.MouseEvent) => void;
+  onNewStudySet: () => void;
 };
 
 const EditStudySet: React.FC<EditStudySetProps> = ({
@@ -14,15 +15,24 @@ const EditStudySet: React.FC<EditStudySetProps> = ({
   prevTitle,
   prevDescription,
   onCancel,
+  onNewStudySet,
 }) => {
   const [title, setTitle] = useState(prevTitle);
   const [description, setDescription] = useState(prevDescription);
 
+  // 保存のロジック
   const handleSave = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     try {
+      if (title == prevTitle && description == prevDescription) {
+        alert("入力内容が変わっていません");
+        return;
+      }
       await sendStudySetUpdate(studySetId, { title, description });
-      alert("学習セットが更新されました");
+      // studySetがstateで持ててないから明示的に更新
+      onNewStudySet();
       onCancel(e);
+      alert("学習セットが更新されました");
     } catch (error) {
       alert("学習セットの更新に失敗しました");
     }

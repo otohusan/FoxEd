@@ -10,6 +10,7 @@ import { useState } from "react";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
+import axios from "axios";
 
 function ChooseQuiz() {
   const { setQuizFormat } = useQuizContext();
@@ -34,9 +35,21 @@ function ChooseQuiz() {
   const userID = "4b626883-64fd-4fde-a389-d2d5c185f604";
 
   // ユーザの学習セットを検索
-  const { data } = useFetch<StudySet[]>(
+  const { data, setData } = useFetch<StudySet[]>(
     `${BASE_BACKEND_URL}/studysets/user/${userID}`
   );
+
+  // 明示的にデータを更新する
+  const handleNewStudySet = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_BACKEND_URL}/studysets/user/${userID}`
+      );
+      setData(response.data);
+    } catch (error) {
+      console.error("学習セットの取得に失敗しました", error);
+    }
+  };
 
   return (
     <div>
@@ -93,6 +106,7 @@ function ChooseQuiz() {
                       studySetID={studyset.id}
                       prevTitle={studyset.title}
                       prevDescription={studyset.description}
+                      onNewStudySet={handleNewStudySet}
                     />
                   )}
                 </div>

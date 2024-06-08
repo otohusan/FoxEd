@@ -9,12 +9,14 @@ type OwnerStudySetMenuProps = {
   studySetID: string;
   prevTitle: string;
   prevDescription: string;
+  onNewStudySet: () => void;
 };
 
 const OwnerStudySetMenu: React.FC<OwnerStudySetMenuProps> = ({
   studySetID,
   prevTitle,
   prevDescription,
+  onNewStudySet,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -28,18 +30,17 @@ const OwnerStudySetMenu: React.FC<OwnerStudySetMenuProps> = ({
     setIsEditing(false);
   };
 
-  const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   // 削除用のロジック
-  const handleDeleteStudySet = async (e: React.MouseEvent, id: string) => {
+  const handleDeleteStudySet = async (e: React.MouseEvent) => {
     e.stopPropagation();
     const isConfirmed = window.confirm("学習セットを削除しますか？");
     if (isConfirmed) {
       try {
         // DBの更新が成功したらstateの更新
-        await sendStudySetDelete(
-          `${VITE_BASE_BACKEND_URL}/studysets/${studySetID}`
-        );
-        // deleteStudySet(id);
+        await sendStudySetDelete(studySetID);
+        // studySetがstateで持ててないから明示的に更新
+        onNewStudySet();
+        alert("学習セットが削除されました");
       } catch (error) {
         alert(error);
         return;
@@ -54,7 +55,7 @@ const OwnerStudySetMenu: React.FC<OwnerStudySetMenuProps> = ({
       <button onClick={handleEditStudySet}>
         <FiEdit size={ICONSIZE} />
       </button>
-      <button onClick={(e) => handleDeleteStudySet(e, studySetID)}>
+      <button onClick={(e) => handleDeleteStudySet(e)}>
         <RiDeleteBin6Line size={ICONSIZE} />
       </button>
       {isEditing && (
@@ -63,6 +64,7 @@ const OwnerStudySetMenu: React.FC<OwnerStudySetMenuProps> = ({
           prevTitle={prevTitle}
           prevDescription={prevDescription}
           onCancel={handleCancelEdit}
+          onNewStudySet={onNewStudySet}
         />
       )}
     </div>
