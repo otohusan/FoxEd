@@ -1,12 +1,30 @@
 import { useState } from "react";
 import "../style/MakeStudySet.css";
+import { postStudySet } from "../../../api";
 
-function MakeStudySet() {
+type MakeStudySetProps = {
+  onNewStudySet: () => void;
+};
+
+function MakeStudySet({ onNewStudySet }: MakeStudySetProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    try {
+      await postStudySet({ title: title, description: description });
+
+      // 新しい学習セットを親コンポーネントに通知して再度データを取得
+      onNewStudySet();
+
+      setTitle("");
+      setDescription("");
+      alert("学習セットが作成されました");
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (

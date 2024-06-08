@@ -5,3 +5,5 @@ export { default as generateRandomInteger } from "./generateRandomInteger";
 export { default as postQuiz } from "./quiz/postQuiz";
 export { default as sendQuizUpdate } from "./quiz/sendQuizUpdate";
 export { default as sendQuizDelete } from "./quiz/sendQuizDelete";
+export { default as sendStudySetUpdate } from "./studySet/sendStudySetUpdate";
+export { default as postStudySet } from "./studySet/postStudySet";

@@ -5,6 +5,7 @@ type FetchState<T> = {
   data: T | null;
   loading: boolean;
   error: Error | null;
+  setData: React.Dispatch<React.SetStateAction<T | null>>;
 };
 
 const useFetch = <T>(url: string): FetchState<T> => {
@@ -31,7 +32,7 @@ const useFetch = <T>(url: string): FetchState<T> => {
     fetchData();
   }, [url]);
 
-  return { data, loading, error };
+  return { data, loading, error, setData };
 };
 
 export default useFetch;

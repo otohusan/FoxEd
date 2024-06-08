@@ -8,6 +8,7 @@ import ChooseQuizContainer from "../../chooseQuiz/components/ChooseQuizContainer
 import "../style/MainProfile.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import MakeStudySet from "./MakeStudySet";
+import axios from "axios";
 
 function MainProfile() {
   const { user } = useAuth();
@@ -18,9 +19,20 @@ function MainProfile() {
 
   // ユーザの学習セットを検索
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const { data } = useFetch<StudySet[]>(
+  const { data, setData } = useFetch<StudySet[]>(
     `${BASE_BACKEND_URL}/studysets/user/${userID}`
   );
+
+  const handleNewStudySet = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_BACKEND_URL}/studysets/user/${userID}`
+      );
+      setData(response.data);
+    } catch (error) {
+      console.error("学習セットの取得に失敗しました", error);
+    }
+  };
 
   // menuに関わる者たち
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
@@ -87,7 +99,7 @@ function MainProfile() {
           )}
         </>
       )}
-      <MakeStudySet />
+      <MakeStudySet onNewStudySet={handleNewStudySet} />
       <Footer />
     </div>
   );
