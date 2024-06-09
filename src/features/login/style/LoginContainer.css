@@ -57,3 +57,12 @@
 .login-form > button:hover {
   background-color: #dcdcdc;
 }
+
+.redirect-register-message {
+  color: var(--main-color-2);
+}
+
+.redirect-register-message-url {
+  color: rgb(27, 33, 199);
+  text-decoration: underline;
+}
