@@ -6,13 +6,13 @@ import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
 import { useState } from "react";
-// import { useAuth } from "../../../components/auth/useAuth.ts";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
 import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
+import { useNavigate } from "react-router-dom";
 
 function ChooseQuiz() {
   const { setQuizFormat } = useQuizContext();
@@ -53,6 +53,8 @@ function ChooseQuiz() {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
@@ -69,6 +71,19 @@ function ChooseQuiz() {
         <div className="ChooseTopTitle">英単語リスト</div>
         <div className="hr-line"></div>
 
+        {user && !data && (
+          <p className="choose-quiz-make-prompt">
+            <span
+              className="choose-quiz-make-prompt-url"
+              onClick={() => {
+                navigate("/Profile");
+              }}
+            >
+              プロフィール
+            </span>
+            から、オリジナル学習セットを作成しよう！
+          </p>
+        )}
         {/* ユーザが作成した学習セットを表示 */}
         {data && <div className="ChooseQuizListTitle">あなたの学習セット</div>}
         {data && data.length > 0 ? (

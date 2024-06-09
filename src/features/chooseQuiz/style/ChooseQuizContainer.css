@@ -119,3 +119,16 @@
   border: 2px solid var(--gray-border-color);
   border-radius: 7px;
 }
+
+.choose-quiz-make-prompt {
+  font-weight: 500;
+  text-align: start;
+  margin-left: 5.2%;
+  margin-bottom: 60px;
+}
+
+.choose-quiz-make-prompt-url {
+  color: rgb(28, 28, 164);
+  text-decoration: underline;
+  cursor: pointer;
+}
