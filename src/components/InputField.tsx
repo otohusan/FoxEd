@@ -27,6 +27,9 @@ const InputField: React.FC<InputFieldProps> = ({
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  // 英数字で8文字以上のパスワードを検証する正規表現
+  const passwordPattern = "^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+
   return (
     <div className="InputField-container">
       {label && (
@@ -43,6 +46,10 @@ const InputField: React.FC<InputFieldProps> = ({
           required={required}
           placeholder={placeholder}
           className="InputField-input"
+          {...(type === "password" ? { pattern: passwordPattern } : {})}
+          {...(type === "password"
+            ? { title: "パスワードは英数字からなる8文字以上が必要です" }
+            : {})}
         />
         {type === "password" && (
           <button
