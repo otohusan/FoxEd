@@ -4,14 +4,19 @@ import { postStudySet } from "../../../api";
 
 type MakeStudySetProps = {
   onNewStudySet: () => void;
+  studySetQuantity: number | undefined;
 };
 
-function MakeStudySet({ onNewStudySet }: MakeStudySetProps) {
+function MakeStudySet({ onNewStudySet, studySetQuantity }: MakeStudySetProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (studySetQuantity && studySetQuantity >= 5) {
+      alert("学習セットは5個までしか作れないよ");
+      return;
+    }
 
     try {
       await postStudySet({ title: title, description: description });
