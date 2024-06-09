@@ -47,7 +47,7 @@ const LoginContainer = () => {
         </button>
 
         <p className="redirect-register-message">
-          ユーザー新規登録は
+          ユーザ新規登録は
           <a
             className="redirect-register-message-url"
             onClick={() => {

@@ -11,6 +11,8 @@ import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
 import axios from "axios";
+import LoginPrompt from "../../../components/LoginPrompt.tsx";
+import { useAuth } from "../../../components/auth/useAuth.ts";
 
 function ChooseQuiz() {
   const { setQuizFormat } = useQuizContext();
@@ -28,22 +30,22 @@ function ChooseQuiz() {
     { text: "単語帳で覚える", link: "/PrepareQuiz" },
   ];
 
-  // const { user } = useAuth();
+  const { user } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  // テスト用のユーザーID
-  // 期限切れてるのに取得してるから注意
-  const userID = "4b626883-64fd-4fde-a389-d2d5c185f604";
+  // userがない場合にはFetchを行わないように
+  // nullの場合はuseFetch内でFetchが実行されないようになってる
+  const fetchUrl = user
+    ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
+    : null;
 
   // ユーザの学習セットを検索
-  const { data, setData } = useFetch<StudySet[]>(
-    `${BASE_BACKEND_URL}/studysets/user/${userID}`
-  );
+  const { data, setData } = useFetch<StudySet[]>(fetchUrl);
 
   // 明示的にデータを更新する
   const handleNewStudySet = async () => {
     try {
       const response = await axios.get(
-        `${BASE_BACKEND_URL}/studysets/user/${userID}`
+        `${BASE_BACKEND_URL}/studysets/user/${user?.ID}`
       );
       setData(response.data);
     } catch (error) {
@@ -103,7 +105,7 @@ function ChooseQuiz() {
                   {/* オーナーだった場合編集ボタンを追加 */}
                   {studyset.id &&
                     studyset.description &&
-                    userID == studyset.user_id && (
+                    user?.ID == studyset.user_id && (
                       <OwnerStudySetMenu
                         studySetID={studyset.id}
                         prevTitle={studyset.title}
@@ -149,6 +151,9 @@ function ChooseQuiz() {
             </div>
           ))}
         </div>
+        {!user && (
+          <LoginPrompt promptText="ログインすれば、オリジナル学習セットを作成できる" />
+        )}
       </main>
       <Footer />
     </div>

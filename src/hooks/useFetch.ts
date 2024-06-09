@@ -11,12 +11,17 @@ type FetchState<T> = {
 const cache: { [key: string]: { data: any; timestamp: number } } = {};
 const CACHE_DURATION = 1000 * 60 * 5; // 5 minutes
 
-const useFetch = <T>(url: string): FetchState<T> => {
-  const [data, setData] = useState<T | null>(cache[url]?.data || null);
-  const [loading, setLoading] = useState<boolean>(!cache[url]);
+// urlがnullの場合にはFetchを行わないように
+const useFetch = <T>(url: string | null): FetchState<T> => {
+  const [data, setData] = useState<T | null>(url ? cache[url]?.data : null);
+  const [loading, setLoading] = useState<boolean>(url ? !cache[url] : false);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    if (!url) {
+      return;
+    }
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);

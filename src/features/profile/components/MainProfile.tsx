@@ -20,19 +20,20 @@ function MainProfile() {
   const { user } = useAuth();
   const { setQuizFormat } = useQuizContext();
 
-  // 期限切れてるのに取得してるから注意
-  const userID = "4b626883-64fd-4fde-a389-d2d5c185f604";
+  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+  // userがない場合にはFetchを行わないように
+  // nullの場合はuseFetch内でFetchが実行されないようになってる
+  const fetchUrl = user
+    ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
+    : null;
 
   // ユーザの学習セットを検索
-  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const { data, setData } = useFetch<StudySet[]>(
-    `${BASE_BACKEND_URL}/studysets/user/${userID}`
-  );
+  const { data, setData } = useFetch<StudySet[]>(fetchUrl);
 
   const handleNewStudySet = async () => {
     try {
       const response = await axios.get(
-        `${BASE_BACKEND_URL}/studysets/user/${userID}`
+        `${BASE_BACKEND_URL}/studysets/user/${user?.ID}`
       );
       setData(response.data);
     } catch (error) {
@@ -111,7 +112,7 @@ function MainProfile() {
                     {/* オーナーだった場合編集ボタンを追加 */}
                     {studyset.id &&
                       studyset.description &&
-                      userID == studyset.user_id && (
+                      user.ID == studyset.user_id && (
                         <OwnerStudySetMenu
                           studySetID={studyset.id}
                           prevTitle={studyset.title}
