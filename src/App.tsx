@@ -5,6 +5,7 @@ import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { ReviewQuizType } from "../type/index.ts";
 import BottomNavigation from "./components/BottomNavigation.tsx";
 import Loading from "./components/Loading.tsx";
+import Register from "./pages/Register.tsx";
 
 // import { HelmetProvider } from "react-helmet-async";
 
@@ -52,6 +53,7 @@ function App() {
 
           <Route path="/Login" element={<Login />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Register" element={<Register />} />
         </Routes>
       </Suspense>
 
