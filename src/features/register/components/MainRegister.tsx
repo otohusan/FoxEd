@@ -4,6 +4,7 @@ import { InputField } from "../../../components";
 import registerWithEmail from "../api/registerWithEmail";
 import "../style/MainRegister.css";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../components/Loading";
 
 const MainRegister = () => {
   const [name, setName] = useState("");
@@ -11,25 +12,32 @@ const MainRegister = () => {
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await registerWithEmail(name, email, password);
+      setIsRegistered(true);
     } catch (error) {
       alert(error);
-      return;
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsRegistered(true);
   };
 
   useEffect(() => {
     // フォームの入力が全てあるかどうかを確認
     setIsFormValid(name !== "" && email !== "" && password !== "");
   }, [name, email, password]);
+
+  // 更新中はこれを表示
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="login-container">
