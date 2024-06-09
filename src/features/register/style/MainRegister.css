@@ -58,7 +58,9 @@
   background-color: #dcdcdc;
 }
 
-.toggle-password-visibility {
-  color: blue;
-  text-decoration: underline;
+.isRegisteredMessage {
+  color: var(--main-color-2);
+  font-weight: 600;
+  line-height: 30px;
+  margin: 5px;
 }

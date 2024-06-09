@@ -11,13 +11,13 @@ const registerWithEmail = async (
 ) => {
   try {
     await axios.post(`${BASE_BACKEND_URL}/register/email`, {
-      Name: name,
-      Email: email,
-      Password: password,
+      username: name,
+      email: email,
+      password: password,
     });
 
     // ユーザーに認証メールが送信されたことを知らせるメッセージを表示
-    alert("登録が成功しました。認証メールを確認してください。");
+    alert("登録が成功しました！認証メールをご確認ください。");
   } catch (error) {
     alert("登録に失敗しました。もう一度お試しください。");
   }
