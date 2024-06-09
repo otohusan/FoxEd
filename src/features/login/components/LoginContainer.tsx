@@ -19,7 +19,11 @@ const LoginContainer = () => {
 
   useEffect(() => {
     // フォームの入力が全てあるかどうかを確認
-    setIsFormValid(email !== "" && password !== "");
+    setIsFormValid(
+      email !== "" &&
+        password !== "" &&
+        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)
+    );
   }, [email, password]);
 
   return (

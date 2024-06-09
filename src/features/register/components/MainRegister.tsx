@@ -31,7 +31,12 @@ const MainRegister = () => {
 
   useEffect(() => {
     // フォームの入力が全てあるかどうかを確認
-    setIsFormValid(name !== "" && email !== "" && password !== "");
+    setIsFormValid(
+      name !== "" &&
+        email !== "" &&
+        password !== "" &&
+        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)
+    );
   }, [name, email, password]);
 
   // 更新中はこれを表示
