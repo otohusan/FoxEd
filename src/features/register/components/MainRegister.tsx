@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { InputField } from "../../../components";
 import registerWithEmail from "../api/registerWithEmail";
 import "../style/MainRegister.css";
+import { useNavigate } from "react-router-dom";
 
 const MainRegister = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,8 @@ const MainRegister = () => {
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +69,18 @@ const MainRegister = () => {
           <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
             登録
           </button>
+
+          <p className="redirect-login-message">
+            登録済みの方は
+            <a
+              className="redirect-login-message-url"
+              onClick={() => {
+                navigate("/Login");
+              }}
+            >
+              こちら
+            </a>
+          </p>
         </form>
       )}
     </div>

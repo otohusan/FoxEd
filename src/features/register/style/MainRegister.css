@@ -64,3 +64,12 @@
   line-height: 30px;
   margin: 5px;
 }
+
+.redirect-login-message {
+  color: var(--main-color-2);
+}
+
+.redirect-login-message-url {
+  color: rgb(27, 33, 199);
+  text-decoration: underline;
+}
