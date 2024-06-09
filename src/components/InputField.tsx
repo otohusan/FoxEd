@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import "./style/InputField.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 type InputFieldProps = {
   id: string;
@@ -19,6 +21,12 @@ const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   required = false,
 }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <div className="InputField-container">
       {label && (
@@ -26,15 +34,26 @@ const InputField: React.FC<InputFieldProps> = ({
           {label}
         </label>
       )}
-      <input
-        type={type}
-        id={id}
-        value={value}
-        onChange={onChange}
-        required={required}
-        placeholder={placeholder}
-        className="InputField-input"
-      />
+      <div className="InputField-password-container">
+        <input
+          type={type === "password" && isPasswordVisible ? "text" : type}
+          id={id}
+          value={value}
+          onChange={onChange}
+          required={required}
+          placeholder={placeholder}
+          className="InputField-input"
+        />
+        {type === "password" && (
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="InputField-toggle-visibility"
+          >
+            {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        )}
+      </div>
     </div>
   );
 };

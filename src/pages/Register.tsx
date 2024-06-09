@@ -1,5 +1,7 @@
+import MainRegister from "../features/register/components/MainRegister";
+
 function Register() {
-  return <div>Register</div>;
+  return <MainRegister />;
 }
 
 export default Register;

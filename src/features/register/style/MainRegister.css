@@ -1,0 +1,64 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(
+    to bottom right,
+    rgb(247, 172, 66),
+    rgb(234, 145, 55)
+  );
+  height: 100vh;
+  margin-top: -80px;
+}
+
+.login-title {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--main-color-2);
+}
+
+.login-form {
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 400px; /* フォームの最大幅を設定 */
+  width: 70%; /* フォームを親要素の幅に合わせる */
+}
+
+.login-form input {
+  width: 100%; /* 入力フィールドの幅を親要素に合わせる */
+  margin-bottom: 1rem; /* 入力フィールド間の余白を設定 */
+  height: 40px;
+}
+
+.login-form > button {
+  display: block;
+  width: 100%; /* ボタンの幅を親要素に合わせる */
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: rgb(246, 246, 246);
+  color: #ff9421;
+}
+
+.login-form > button:disabled {
+  color: #e2e2e2;
+  font-weight: 600;
+}
+
+.login-form > button:not(:disabled) {
+  color: rgb(61, 67, 255);
+  font-weight: bold;
+}
+
+.login-form > button:hover {
+  background-color: #dcdcdc;
+}
+
+.toggle-password-visibility {
+  color: blue;
+  text-decoration: underline;
+}
