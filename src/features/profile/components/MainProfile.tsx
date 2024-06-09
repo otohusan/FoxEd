@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StudySet } from "../../../../type";
 import { Footer, Header, PopupMenu } from "../../../components";
 import LoginPrompt from "../../../components/LoginPrompt";
@@ -12,6 +12,11 @@ import axios from "axios";
 import OwnerStudySetMenu from "../../chooseQuiz/components/OwnerStudySetMenu";
 
 function MainProfile() {
+  // ページの先頭に戻る
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { user } = useAuth();
   const { setQuizFormat } = useQuizContext();
 
