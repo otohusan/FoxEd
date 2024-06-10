@@ -1,0 +1,18 @@
+.profile-login-prompt {
+  margin-top: 50px;
+  width: 95%;
+}
+
+.profile-login-prompt-container {
+  display: flex;
+  justify-content: center; /* X軸で中央に配置 */
+  align-items: center; /* Y軸で中央に配置 */
+}
+
+.profile-container {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Y軸で中央に配置 */
+  min-height: 100vh; /* ビューポート全体の高さを設定 */
+}

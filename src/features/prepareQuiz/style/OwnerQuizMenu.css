@@ -1,0 +1,13 @@
+.owner-quiz-menu-container {
+  position: absolute;
+  top: 70%;
+  right: -13%;
+  width: 140px;
+}
+
+.owner-quiz-menu-container > button {
+  color: var(--icon-color);
+  background-color: transparent;
+  border: none;
+  margin-right: 8.5%;
+}

@@ -1,43 +1,39 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "../style/CreateQuiz.css";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
+import { postQuiz } from "../../../api";
 
 type CreateQuizProps = {
   studySetID: string;
 };
 
 const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
+  const { addQuiz } = useQuizContext();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
+  //APIに新しいクイズを送信とstateにもセット
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // DB更新に成功したらstate更新
     try {
       // クイズデータをバックエンドに送信
-      const token = localStorage.getItem("token"); // ローカルストレージからトークンを取得
-      if (!token) {
-        throw new Error("No token found");
-      }
+      await postQuiz(`${BASE_BACKEND_URL}/flashcards/${studySetID}`, {
+        question,
+        answer,
+      });
+      // stateの更新
+      addQuiz({ answer: answer, question: question });
 
-      // クイズデータをバックエンドに送信
-      await axios.post(
-        `${BASE_BACKEND_URL}/flashcards/${studySetID}`,
-        {
-          answer: answer,
-          question: question,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // 認証ヘッダーにトークンを追加
-          },
-        }
-      );
-      alert("クイズが作成されました");
+      // 入力欄をからに
+      setAnswer("");
+      setQuestion("");
+
+      alert("クイズを追加しました");
     } catch (error) {
-      console.error("クイズの作成に失敗しました", error);
-      alert("クイズの作成に失敗しました");
+      alert(error);
     }
   };
 

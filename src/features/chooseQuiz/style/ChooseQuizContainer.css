@@ -1,5 +1,5 @@
 .ChooseTopTitle {
-  color: #ffb056;
+  color: var(--key-color-2);
   font-weight: 600;
   text-align: start;
   margin-top: 80px;
@@ -8,7 +8,7 @@
 }
 
 .hr-line {
-  border-top: 5px solid #ffb056; /* 上辺に黒色の1pxの線を引く */
+  border-top: 5px solid var(--key-color-2); /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
   margin-bottom: 40px;
   margin-left: 1.5vw;
@@ -22,7 +22,7 @@
 }
 
 .ChooseQuizListTitle {
-  color: #4a4a4a;
+  color: var(--text-color-3);
   text-align: start;
   margin-left: 5%;
   font-size: 1.1em;
@@ -30,7 +30,7 @@
 }
 
 .ChooseQuizListTitleKoukou {
-  color: #4a4a4a;
+  color: var(--text-color-3);
   text-align: start;
   margin-left: 5%;
   font-size: 1.1em;
@@ -38,7 +38,7 @@
 }
 
 .ChooseQuizDataList {
-  color: #414141;
+  color: var(--text-color-3);
   overflow-x: auto; /* 横方向のスクロールを許可 */
   white-space: nowrap; /* 子要素を改行させない */
   /* 横スクロールバーを非表示にする */
@@ -62,31 +62,33 @@
   width: 75%;
   height: auto;
   aspect-ratio: 16 / 9.5;
+  margin: 10px 7% 0px 4%;
+  position: relative;
 }
 
 .ChooseQuizContainer {
+  /* margin: 5%;
+  margin-top: 3%; */
   width: 100%;
   height: 100%;
   position: relative;
   cursor: pointer;
-  margin: 5%;
-  margin-top: 3%;
   text-align: start;
   border-radius: 13px;
   padding: 15px 2% 0 6%;
-  background-color: #fcfcfc;
-  border: 2px solid #f0eceb;
+  background-color: var(--main-color);
+  border: 2px solid var(--gray-border-color);
 }
 
 .ChooseQuizContainer:active {
   /* border-bottom: 5px solid #f39c19; */
-  box-shadow: inset 0 -5px 0 0 #f39c19;
+  box-shadow: inset 0 -5px 0 0 var(--key-color-2);
   transform: scale(0.98);
 }
 
 @media (min-width: 600px) {
   .ChooseQuizContainer:hover {
-    box-shadow: inset 0 -5px 0 0 #f39c19;
+    box-shadow: inset 0 -5px 0 0 var(--key-color-2);
   }
 }
 
@@ -114,6 +116,19 @@
 .ChooseQuizContainerOpenSentence {
   padding: 2px 10px;
   display: inline-block;
-  border: 2px solid #dbd7d4;
+  border: 2px solid var(--gray-border-color);
   border-radius: 7px;
+}
+
+.choose-quiz-make-prompt {
+  font-weight: 500;
+  text-align: start;
+  margin-left: 5.2%;
+  margin-bottom: 60px;
+}
+
+.choose-quiz-make-prompt-url {
+  color: rgb(28, 28, 164);
+  text-decoration: underline;
+  cursor: pointer;
 }

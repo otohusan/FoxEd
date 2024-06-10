@@ -1,13 +1,7 @@
 import React, { createContext, useState, ReactNode } from "react";
-import { Quiz, Flashcard } from "../../../type/index";
+import { Quiz } from "../../../type/index";
 import { quizData2 } from "../../assets/quizData2";
-
-export type QuizFormat = {
-  id?: string;
-  user_id?: string;
-  label: string;
-  body: Quiz[] | Flashcard[];
-};
+import { QuizFormat } from "../../../type/index";
 
 interface QuizContextType {
   quizFormat: QuizFormat | null;
@@ -29,9 +23,10 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
 
   const addQuiz = (quiz: Quiz) => {
     if (quizFormat) {
+      // からの場合は新たに追加
       setQuizFormat({
         ...quizFormat,
-        body: [...quizFormat.body, quiz],
+        body: quizFormat.body ? [...quizFormat.body, quiz] : [quiz],
       });
     }
   };

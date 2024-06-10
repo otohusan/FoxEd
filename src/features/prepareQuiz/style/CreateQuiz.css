@@ -42,7 +42,7 @@
 
 .create-quiz-container button {
   padding: 10px;
-  background-color: var(--secondary-color);
+  background-color: var(--key-color);
   color: #fff;
   border: none;
   border-radius: 5px;

@@ -67,7 +67,11 @@ video {
   transform: translate(-50%, -50%);
 }
 
+.video-text-error-container h2 {
+  margin-top: -10px;
+  white-space: nowrap;
+}
+
 .video-text-error {
-  text-decoration: none;
   margin-bottom: 10px;
 }

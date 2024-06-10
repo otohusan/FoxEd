@@ -28,3 +28,20 @@
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(255, 157, 0, 0.25);
 }
+
+.InputField-password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.InputField-toggle-visibility {
+  color: #a3824a;
+  position: absolute;
+  top: 20%;
+  right: 2%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}

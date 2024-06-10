@@ -1,6 +1,6 @@
 .info-badge {
-  color: rgb(98, 98, 98);
-  background-color: rgb(255, 237, 212);
+  color: var(--text-color-4);
+  background-color: var(--key-color-3);
   padding: 3px 10px;
   display: inline-block;
   border-radius: 15px;

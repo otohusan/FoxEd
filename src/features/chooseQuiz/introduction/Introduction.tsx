@@ -14,7 +14,6 @@ function Introduction() {
       <img
         src="/Konwalk_char.svg"
         alt="Konwalk Character"
-        loading="lazy"
         className="konwalk_char"
       />
       <h2 className="introductionNavigateComment">

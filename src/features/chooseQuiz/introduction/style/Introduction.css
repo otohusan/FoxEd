@@ -8,17 +8,17 @@
 }
 
 .introductionBold {
-  color: #ffb056;
+  color: var(--key-color-2);
   font-size: 1.2em;
 }
 
 .introductionBig {
   font-size: 1.4em;
-  color: #ffb056;
+  color: var(--key-color-2);
 }
 
 .introductionContainer {
-  color: #4a4a4a;
+  color: var(--text-color-3);
   margin-top: 150px;
   text-align: left;
   white-space: pre-wrap;

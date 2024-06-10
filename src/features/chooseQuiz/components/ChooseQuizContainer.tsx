@@ -20,6 +20,7 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
           text={`${quizFormat.body ? quizFormat.body.length : 0}用語`}
         />
       </div>
+
       <Link
         className="ChooseQuizContainerOpen"
         to={"/PrepareQuiz"}

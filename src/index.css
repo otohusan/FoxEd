@@ -3,13 +3,24 @@
     Helvetica, sans-serif, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.87);
 
-  --primary-color: #f6f6f6;
-  --secondary-color: #ff9430;
+  --main-color: #fcfcfc;
+  --main-color-2: #f6f6f6;
+
+  --key-color: #fa9a3f;
+  --key-color-2: #ffa24c;
+  --key-color-3: #fdecd4;
+
   --text-color: #151515;
   --text-color-2: #333333;
   --text-color-3: #4d4d4d;
+  --text-color-4: #676767;
+
+  --icon-color: #949494;
+
+  --gray-border-color: #f0eceb;
+
+  --background-color: #fbfaf9;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,5 +35,5 @@ body {
   /* max-width: 600px; */
   max-width: 600px;
   margin: 0 auto;
-  background-color: #fbfaf9;
+  background-color: var(--background-color);
 }
