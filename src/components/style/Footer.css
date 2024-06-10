@@ -1,6 +1,6 @@
 .Footer {
-  color: rgb(255, 255, 255);
-  background-color: #f39b49;
+  color: var(--main-color);
+  background-color: var(--key-color);
   border-radius: 3px;
   padding-top: 5vh;
   padding-bottom: 10vh;
@@ -13,7 +13,7 @@
 }
 
 .FooterLink {
-  color: rgb(255, 255, 255);
+  color: var(--main-color);
   cursor: pointer;
   margin-top: 6%;
   margin-bottom: 6%;
@@ -24,11 +24,11 @@
 }
 
 .BackToTop {
-  color: rgb(255, 255, 255);
+  color: var(--main-color);
+  font-weight: 600;
   cursor: pointer;
   margin-bottom: 6%;
   margin-left: 5%;
-  -webkit-text-stroke: 0.5px #ffffff;
   border: none;
   background-color: transparent;
   padding-right: 1em;

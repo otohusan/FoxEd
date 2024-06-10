@@ -9,11 +9,12 @@
     rgb(234, 145, 55)
   );
   height: 100vh;
-  margin-top: -50px;
+  margin-top: -80px;
 }
 
 .login-title {
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--main-color-2);
 }
 
 .login-form {
@@ -55,4 +56,13 @@
 
 .login-form > button:hover {
   background-color: #dcdcdc;
+}
+
+.redirect-register-message {
+  color: var(--main-color-2);
+}
+
+.redirect-register-message-url {
+  color: rgb(27, 33, 199);
+  text-decoration: underline;
 }

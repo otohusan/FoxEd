@@ -1,7 +1,7 @@
 .feedback-container {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.2);
-  color: var(--primary-color);
+  color: var(--main-color-2);
   padding: 20px 40px;
   border-radius: 10%;
   top: 20%;
@@ -13,5 +13,5 @@
 }
 
 .feedback-value {
-  color: var(--primary-color);
+  color: var(--main-color-2);
 }

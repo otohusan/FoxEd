@@ -45,7 +45,8 @@ function Video({ setReviewQuizzes }: VideoProps) {
   if (!quizzes || quizzes.length < 5) {
     return (
       <div className="video-text-error-container">
-        <h2>問題数が少ないから使えないよ</h2>
+        <h2>問題数が5個より</h2>
+        <h2>少ないから使えないよ</h2>
         <Link to={"/PrepareQuiz"}>フラッシュカード</Link>
         <span className="video-text-error">に</span>
         <br />

@@ -5,6 +5,7 @@ import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { ReviewQuizType } from "../type/index.ts";
 import BottomNavigation from "./components/BottomNavigation.tsx";
 import Loading from "./components/Loading.tsx";
+import Register from "./pages/Register.tsx";
 
 // import { HelmetProvider } from "react-helmet-async";
 
@@ -14,6 +15,7 @@ const ReviewQuiz = lazy(() => import("./pages/ReviewQuiz"));
 const PrepareQuiz = lazy(() => import("./pages/PrepareQuiz"));
 const ChooseQuizData = lazy(() => import("./pages/ChooseQuizData"));
 const Login = lazy(() => import("./pages/Login"));
+const Profile = lazy(() => import("./pages/Profile"));
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
@@ -50,6 +52,8 @@ function App() {
           />
 
           <Route path="/Login" element={<Login />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Register" element={<Register />} />
         </Routes>
       </Suspense>
 

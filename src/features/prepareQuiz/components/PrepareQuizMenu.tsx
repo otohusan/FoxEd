@@ -4,6 +4,7 @@ import { IoFootstepsOutline } from "react-icons/io5";
 import { MdIosShare } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import shareContent from "../../../api/shareContent";
 
 type PrepareQuizMenuProps = {
   QuizName: string;
@@ -22,15 +23,11 @@ function PrepareQuizMenu({
 
   // share機能
   const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: "Konwalk",
-        text: "歩く時間を無駄にしない単語帳",
-        url: "https://konwalk.jp",
-      });
-    } else {
-      alert("このブラウザではシェアを利用できません。");
-    }
+    shareContent({
+      title: "Konwalk",
+      text: "歩く時間を無駄にしない単語帳",
+      url: "https://konwalk.jp",
+    });
   };
 
   return (

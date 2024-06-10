@@ -1,0 +1,23 @@
+.owner-study-set-menu-container {
+  position: absolute;
+  top: 74%;
+  left: 6%;
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
+}
+
+.owner-study-set-menu-container > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 8px;
+  color: var(--text-color-4);
+}
+
+.owner-study-set-menu-container > button:hover {
+  background: none;
+  border: none;
+  color: var(--key-color);
+}

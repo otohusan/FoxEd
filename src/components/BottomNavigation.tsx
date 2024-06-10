@@ -2,6 +2,7 @@ import React from "react";
 import { IoFootstepsOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { LiaBookSolid } from "react-icons/lia";
+import { BsPerson } from "react-icons/bs";
 import "./style/BottomNavigation.css";
 import { useNavigate } from "react-router-dom";
 
@@ -69,6 +70,14 @@ const BottomNavigation = () => {
       id: "/PrepareQuiz",
       onClick: () => {
         navigate("/PrepareQuiz");
+      },
+    },
+    {
+      text: "プロフィール",
+      icon: <BsPerson />,
+      id: "/Profile",
+      onClick: () => {
+        navigate("/Profile");
       },
     },
   ];
