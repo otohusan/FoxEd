@@ -35,7 +35,9 @@ const MainRegister = () => {
       name !== "" &&
         email !== "" &&
         password !== "" &&
-        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)
+        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
+          password
+        )
     );
   }, [name, email, password]);
 
