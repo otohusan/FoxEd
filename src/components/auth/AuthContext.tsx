@@ -48,8 +48,6 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
 
         // 期限切れの場合は何もしない
         if (decoded.exp <= Date.now() / 1000) {
-          // 開発の時にJWTの期限切れわかりやすいように
-          alert("期限切れてんで");
           return;
         }
 
