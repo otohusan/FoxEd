@@ -13,6 +13,8 @@ const MainRegister = () => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEmailExist, setIsEmailExist] = useState(false);
+  const [isUsernameExist, setIsUsernameExist] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,8 +24,19 @@ const MainRegister = () => {
     try {
       await registerWithEmail(name, email, password);
       setIsRegistered(true);
-    } catch (error) {
-      alert(error);
+    } catch (error: unknown) {
+      // Error型だった場合のみ行う
+      if (error instanceof Error) {
+        // エラー文によって行動変える
+        if (error.message.includes("メールアドレス")) {
+          setIsEmailExist(true);
+        }
+        if (error.message.includes("ユーザー名")) {
+          setIsUsernameExist(true);
+        }
+      } else {
+        console.error("Unexpected error:", error);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -35,7 +48,9 @@ const MainRegister = () => {
       name !== "" &&
         email !== "" &&
         password !== "" &&
-        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)
+        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
+          password
+        )
     );
   }, [name, email, password]);
 
@@ -55,19 +70,35 @@ const MainRegister = () => {
       {!isRegistered && (
         <form onSubmit={handleSubmit} className="login-form">
           <h1 className="login-title">Konwalk</h1>
+          {isUsernameExist && (
+            <p className="register-error-message">
+              このユーザ名は既に使用されいるよ
+            </p>
+          )}
           <InputField
             id="name"
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setIsUsernameExist(false);
+            }}
             required
             placeholder="名前"
           />
+          {isEmailExist && (
+            <p className="register-error-message">
+              このメールアドレスは既に使用されいるよ
+            </p>
+          )}
           <InputField
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setIsEmailExist(false);
+            }}
             required
             placeholder="メールアドレス"
           />

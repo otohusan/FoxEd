@@ -54,6 +54,11 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({
       <button onClick={() => handleDeleteQuiz(QuizID)}>
         <RiDeleteBin6Line size={ICONSIZE} />
       </button>
+      {/* 誰でも表示できるメニューと並び合わせるために追加 */}
+      <button style={{ color: "transparent" }}>
+        <RiDeleteBin6Line size={ICONSIZE} />
+      </button>
+
       {isEditing && (
         <EditQuiz
           quizId={QuizID}

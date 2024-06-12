@@ -73,3 +73,11 @@
   color: rgb(27, 33, 199);
   text-decoration: underline;
 }
+
+.register-error-message {
+  color: var(--main-color-2);
+  font-size: 10px;
+  align-items: start;
+  text-align: left; /* テキストを左揃えにする */
+  align-self: flex-start; /* 要素自体を左側に配置する */
+}
