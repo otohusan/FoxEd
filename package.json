@@ -47,6 +47,7 @@
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0",
     "ts-node": "^10.9.2",
-    "virtua": "^0.31.0"
+    "virtua": "^0.31.0",
+    "braces": ">=3.0.3"
   }
 }
