@@ -53,7 +53,12 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
 
         // ユーザ情報を取得
         const response = await axios.get(
-          `${BASE_BACKEND_URL}/users/${decoded.userID}`
+          `${BASE_BACKEND_URL}/users/${decoded.userID}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         const userInfo = response.data;
@@ -92,7 +97,12 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       const decoded: DecodedToken = jwtDecode(token); // JWTトークンをデコード
 
       const userInfoResponse = await axios.get(
-        `${BASE_BACKEND_URL}/users/${decoded.userID}`
+        `${BASE_BACKEND_URL}/users/${decoded.userID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const userInfo = userInfoResponse.data;
 
