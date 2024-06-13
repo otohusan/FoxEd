@@ -8,10 +8,13 @@ type FetchState<T> = {
   setData: React.Dispatch<React.SetStateAction<T | null>>;
 };
 
+const cache: { [key: string]: { data: any; timestamp: number } } = {};
+const CACHE_DURATION = 1000 * 60 * 5; // 5 minutes
+
 // urlがnullの場合にはFetchを行わないように
 const useFetch = <T>(url: string | null): FetchState<T> => {
-  const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(!!url);
+  const [data, setData] = useState<T | null>(url ? cache[url]?.data : null);
+  const [loading, setLoading] = useState<boolean>(url ? !cache[url] : false);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
@@ -26,6 +29,7 @@ const useFetch = <T>(url: string | null): FetchState<T> => {
       try {
         const response = await axios.get<T>(url);
         setData(response.data);
+        cache[url] = { data: response.data, timestamp: Date.now() }; // キャッシュに保存
       } catch (error) {
         if (axios.isAxiosError(error)) {
           setError(error);
@@ -37,7 +41,12 @@ const useFetch = <T>(url: string | null): FetchState<T> => {
       }
     };
 
-    fetchData();
+    if (!cache[url] || Date.now() - cache[url].timestamp > CACHE_DURATION) {
+      fetchData();
+    } else {
+      setData(cache[url].data);
+      setLoading(false);
+    }
   }, [url]);
 
   return { data, loading, error, setData };
