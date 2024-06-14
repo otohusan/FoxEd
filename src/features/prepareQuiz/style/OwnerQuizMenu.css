@@ -16,3 +16,8 @@
   margin-left: 0.2em;
   cursor: pointer;
 }
+
+.owner-quiz-menu-container > button:active {
+  transform: scale(0.95); /* クリック時に少し縮小 */
+  color: var(--key-color-2);
+}

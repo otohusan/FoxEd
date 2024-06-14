@@ -6,11 +6,13 @@ import { BsPerson } from "react-icons/bs";
 import "./style/BottomNavigation.css";
 import { useNavigate } from "react-router-dom";
 
-//urlの中のページ部分を返す関数
+// urlの中のページ部分を返す関数
+// エラーの場合は"/"を返すとホームにページがあると認識してしまう
+// それの対策として存在しないページの値を返す
 const getPageSegment = () => {
   try {
     if (typeof window === "undefined") {
-      return "/";
+      return "/null";
     }
     const url = window.location.href;
     const urlObj = new URL(url);
@@ -20,31 +22,16 @@ const getPageSegment = () => {
     return segments.length > 0 ? `/${segments[0]}` : "/";
   } catch (e) {
     console.error("Invalid URL");
-    return "/";
+    return "/null";
   }
-};
-
-//PWAで利用されているかを判定する
-const isInStandaloneMode = () => {
-  if (typeof window === "undefined") {
-    return false;
-  }
-
-  return (
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.matchMedia("(display-mode: fullscreen)").matches ||
-    window.matchMedia("(display-mode: minimal-ui)").matches
-  );
 };
 
 const BottomNavigation = () => {
   // 動的にURLを取得して page セグメントを取得する
   const pageSegment = getPageSegment();
 
-  // PWAの場合とそうでないかで高さを変える
-  const isPWAOrNot = isInStandaloneMode();
-  const BottomNavigationHeight = isPWAOrNot ? "60px" : "50px";
-  const BottomNavigationItemsMarginBottom = isPWAOrNot ? "10px" : "10px";
+  const BottomNavigationHeight = "50px";
+  const BottomNavigationItemsMarginBottom = "10px";
 
   const navigate = useNavigate();
   const navItems = [

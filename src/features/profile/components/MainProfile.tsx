@@ -124,10 +124,7 @@ function MainProfile() {
                 ))}
             </div>
           )}
-          <MakeStudySet
-            onNewStudySet={handleNewStudySet}
-            studySetQuantity={data?.length}
-          />
+          <MakeStudySet studySetQuantity={data?.length} />
         </>
       )}
       <Footer />
