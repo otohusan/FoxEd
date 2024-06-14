@@ -11,6 +11,10 @@ function MakeStudySet({ onNewStudySet, studySetQuantity }: MakeStudySetProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  // NOTICE:
+  // 学習セット作成時にすぐ勉強ページに遷移させたかった
+  // ただsyudySetのIDはDBで自動生成されることが問題で
+  // フロントのみで対応しようとなると難しいので保留した
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (studySetQuantity && studySetQuantity >= 5) {
