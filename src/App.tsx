@@ -26,6 +26,7 @@ function App() {
   return (
     <>
       {/* <HelmetProvider> */}
+      {/* lazy importを行なってるから、更新時はこれを表示 */}
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route
