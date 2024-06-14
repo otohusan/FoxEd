@@ -1,7 +1,11 @@
 import LoginContainer from "../features/login/components/LoginContainer";
 
 const Login = () => {
-  return <LoginContainer />;
+  return (
+    <div>
+      <LoginContainer />
+    </div>
+  );
 };
 
 export default Login;
