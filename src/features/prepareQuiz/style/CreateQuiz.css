@@ -38,6 +38,8 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
+  /* 16未満だとスマホの入力の時ズームされてしまう */
+  font-size: 16px;
 }
 
 .create-quiz-container button {
