@@ -28,6 +28,8 @@
   width: 100%; /* 入力フィールドの幅を親要素に合わせる */
   margin-bottom: 1rem; /* 入力フィールド間の余白を設定 */
   height: 40px;
+  /* 16未満だとスマホの入力の時ズームされてしまう */
+  font-size: 16px;
 }
 
 .login-form > button {
