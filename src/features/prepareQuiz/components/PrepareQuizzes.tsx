@@ -70,9 +70,11 @@ function PrepareQuizzes() {
           <div className="PrepareQuizLabel">{quizFormat?.label}</div>
         </Link>
 
-        {!quizzes || (quizzes.length == 0 && <p>問題がないよ！追加しよう</p>)}
+        {(!quizzes || quizzes.length == 0) && <p>新しい問題を追加しよう！</p>}
 
-        {quizzes && <HorizontalScroll>{cardList}</HorizontalScroll>}
+        {quizzes && quizzes.length != 0 && (
+          <HorizontalScroll>{cardList}</HorizontalScroll>
+        )}
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
