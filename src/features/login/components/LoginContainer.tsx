@@ -29,44 +29,49 @@ const LoginContainer = () => {
   }, [email, password]);
 
   return (
-    <main>
-      <div className="login-container">
-        <form onSubmit={handleSubmit} className="login-form">
-          <h1 className="login-title">Konwalk</h1>
-          <InputField
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="メールアドレス"
-          />
-          <InputField
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="パスワード"
-            required
-          />
-          <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
-            ログイン
-          </button>
-
-          <p className="redirect-register-message">
-            ユーザ新規登録は
-            <a
-              className="redirect-register-message-url"
-              onClick={() => {
-                navigate("/Register");
-              }}
+    <div>
+      <main>
+        <div className="login-container">
+          <form onSubmit={handleSubmit} className="login-form">
+            <h1 className="login-title">Konwalk</h1>
+            <InputField
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="メールアドレス"
+            />
+            <InputField
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="パスワード"
+              required
+            />
+            <button
+              type="submit"
+              disabled={!isFormValid}
+              onClick={handleSubmit}
             >
-              こちら
-            </a>
-          </p>
-        </form>
-      </div>
-    </main>
+              ログイン
+            </button>
+            <p className="redirect-register-message">
+              ユーザ新規登録は
+              <a
+                className="redirect-register-message-url"
+                onClick={() => {
+                  navigate("/Register");
+                }}
+              >
+                こちら
+              </a>
+            </p>
+          </form>
+        </div>
+      </main>
+    </div>
   );
 };
 

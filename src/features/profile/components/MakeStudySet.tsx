@@ -1,16 +1,24 @@
 import { useState } from "react";
 import "../style/MakeStudySet.css";
 import { postStudySet } from "../../../api";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
+import { useAuth } from "../../../components/auth/useAuth";
+import { useNavigate } from "react-router-dom";
 
 type MakeStudySetProps = {
-  onNewStudySet: () => void;
   studySetQuantity: number | undefined;
 };
 
-function MakeStudySet({ onNewStudySet, studySetQuantity }: MakeStudySetProps) {
+function MakeStudySet({ studySetQuantity }: MakeStudySetProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  // 作成後にクイズページに遷移するために使う
+  const { setCurrentQuizIndex, setQuizFormat } = useQuizContext();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  // 学習セットの作成を行い、その学習セットのページに遷移する
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (studySetQuantity && studySetQuantity >= 5) {
@@ -19,13 +27,25 @@ function MakeStudySet({ onNewStudySet, studySetQuantity }: MakeStudySetProps) {
     }
 
     try {
-      await postStudySet({ title: title, description: description });
+      // 学習セット作成して、そのIDをうけとる
+      const studySetID = await postStudySet({
+        title: title,
+        description: description,
+      });
 
-      // 新しい学習セットを親コンポーネントに通知して再度データを取得
-      onNewStudySet();
+      setCurrentQuizIndex(0);
+      setQuizFormat({
+        id: studySetID,
+        user_id: user?.ID,
+        label: title,
+        description: description,
+        body: [],
+      });
 
       setTitle("");
       setDescription("");
+
+      navigate("/PrepareQuiz");
       alert("学習セットが作成されました");
     } catch (error) {
       alert(error);
