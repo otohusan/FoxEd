@@ -14,6 +14,7 @@
 }
 
 .breakTimeValueJapanese {
+  color: var(--main-color-2);
   margin-top: 4px;
   font-size: 14px;
 }
