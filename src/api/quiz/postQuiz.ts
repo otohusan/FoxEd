@@ -5,7 +5,7 @@ type PostQuiz = {
   answer: string;
 };
 
-const postQuiz = async (url: string, quiz: PostQuiz): Promise<void> => {
+const postQuiz = async (url: string, quiz: PostQuiz): Promise<string> => {
   const token = localStorage.getItem("token");
   if (!token) {
     throw new Error("トークンが見つかりません");
@@ -13,11 +13,13 @@ const postQuiz = async (url: string, quiz: PostQuiz): Promise<void> => {
 
   try {
     // バックエンドにクイズを送信
-    await axios.post(url, quiz, {
+    const res = await axios.post(url, quiz, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
+    return res.data.id;
   } catch (error) {
     throw new Error("クイズの作成に失敗しました");
   }

@@ -47,6 +47,7 @@
   border-radius: 5px;
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
   padding: 2%;
+  font-size: 16px;
 }
 
 .edit-quiz-content > button {
@@ -57,6 +58,7 @@
   cursor: pointer;
   align-self: center; /* ボタンを中央に揃える */
   width: 100%;
+  color: var(--text-color-2);
 }
 
 .edit-quiz-content .saveBtn {

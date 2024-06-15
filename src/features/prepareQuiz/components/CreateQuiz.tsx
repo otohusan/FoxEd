@@ -20,12 +20,15 @@ const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
     // DB更新に成功したらstate更新
     try {
       // クイズデータをバックエンドに送信
-      await postQuiz(`${BASE_BACKEND_URL}/flashcards/${studySetID}`, {
-        question,
-        answer,
-      });
+      const flashcardID = await postQuiz(
+        `${BASE_BACKEND_URL}/flashcards/${studySetID}`,
+        {
+          question,
+          answer,
+        }
+      );
       // stateの更新
-      addQuiz({ answer: answer, question: question });
+      addQuiz({ id: flashcardID, answer: answer, question: question });
 
       // 入力欄をからに
       setAnswer("");

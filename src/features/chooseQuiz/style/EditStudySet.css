@@ -51,6 +51,7 @@
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
   padding: 2%;
   text-align: left; /* テキストエリアのテキストを左揃えにする */
+  font-size: 16px;
 }
 
 .edit-study-set-content > button {
@@ -61,6 +62,7 @@
   cursor: pointer;
   align-self: center; /* ボタンを中央に揃える */
   width: 100%;
+  color: var(--text-color-2);
 }
 
 .edit-study-set-content .saveBtn {
