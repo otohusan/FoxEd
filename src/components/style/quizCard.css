@@ -21,7 +21,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  /* transform-style: preserve-3d; */
   transition: transform 0.5s;
 }
 
@@ -37,11 +36,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
   border-radius: 8px; /* カードの角を丸くする */
   background-color: var(--main-color);
   box-shadow: 0 3px 10px 5px rgba(131, 116, 94, 0.1);
   transition: box-shadow 0.3s ease-in-out;
+
+  overflow-y: scroll;
 }
 
 .quiz-card-front.is-flipped {
@@ -64,4 +65,15 @@
 .quiz-card-back-element {
   transform: rotateX(180deg);
   display: "inline-block";
+}
+
+.quiz-card-back-element,
+.quiz-card-front-element {
+  margin: 5px;
+  padding: 0;
+
+  word-wrap: break-word; /* 長い単語を折り返す */
+  word-break: break-all; /* 単語内でも必要に応じて折り返す */
+  overflow-wrap: break-word; /* 長い単語を折り返す */
+  white-space: pre-wrap; /* 保持しながら折り返す */
 }

@@ -36,23 +36,24 @@ function PrepareQuiz({
           </div>
           <div className="PrepareQuizAnswer">{QuizAnswer}</div>
         </div>
-        <PrepareQuizMenu
-          QuizName={QuizName}
-          setCurrentQuizIndex={setCurrentQuizIndex}
-          QuizIndex={QuizIndex}
-        />
-
-        {
-          // オーナーだった場合のみ表示
-          // NOTICE: 今だけこの条件
-          isOwner && QuizID && (
-            <OwnerQuizMenu
-              QuizID={QuizID}
-              prevQuestion={QuizName}
-              prevAnswer={QuizAnswer}
-            />
-          )
-        }
+        <div className="prepare-quiz-menus">
+          {
+            // オーナーだった場合のみ表示
+            // NOTICE: 今だけこの条件
+            isOwner && QuizID && (
+              <OwnerQuizMenu
+                QuizID={QuizID}
+                prevQuestion={QuizName}
+                prevAnswer={QuizAnswer}
+              />
+            )
+          }
+          <PrepareQuizMenu
+            QuizName={QuizName}
+            setCurrentQuizIndex={setCurrentQuizIndex}
+            QuizIndex={QuizIndex}
+          />
+        </div>
       </div>
       <div className="PrepareQuizBorder"></div>
     </div>

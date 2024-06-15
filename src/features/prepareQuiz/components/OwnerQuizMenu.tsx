@@ -44,11 +44,14 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({
     }
   };
 
-  const ICONSIZE = "20px";
+  const ICONSIZE = "22px";
 
   return (
     <div className="owner-quiz-menu-container">
-      <button onClick={() => handleEditQuiz()}>
+      <button
+        onClick={() => handleEditQuiz()}
+        className="owner-quiz-menu-edit-button"
+      >
         <FiEdit size={ICONSIZE} />
       </button>
       <button onClick={() => handleDeleteQuiz(QuizID)}>
