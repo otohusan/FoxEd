@@ -6,6 +6,10 @@
   color: var(--text-color-2);
   margin-bottom: 8%;
   margin-top: 3%;
+  word-wrap: break-word; /* 長い単語を折り返す */
+  word-break: break-all; /* 単語内でも必要に応じて折り返す */
+  overflow-wrap: break-word; /* 長い単語を折り返す */
+  white-space: pre-wrap; /* 保持しながら折り返す */
 }
 
 .PrepareQuizContent {
@@ -36,6 +40,9 @@
   padding: 0% 0.2em;
   margin: 0% 1% 0% 0%;
   height: 1.25em;
+
+  /* この値は答えと合わせる */
+  margin-bottom: 35px;
 }
 
 .PrepareQuizPartOfSpeech {
@@ -49,6 +56,10 @@
   font-weight: 600;
   color: #ffd6c0cb;
   margin-left: 0.5%;
+  margin-right: 0.5%;
+
+  /* この値は答えと合わせる */
+  margin-bottom: 35px;
 }
 
 .PrepareQuizBorder {
@@ -75,4 +86,10 @@
 
 .PrepareQuizLabel {
   -webkit-text-stroke: 0.5px #717171;
+}
+
+.prepare-quiz-menus {
+  position: absolute;
+  top: 93%;
+  right: 0%;
 }
