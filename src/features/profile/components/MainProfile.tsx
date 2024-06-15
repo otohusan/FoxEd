@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { StudySet } from "../../../../type";
-import { Footer, Header, PopupMenu } from "../../../components";
+import { Footer, HeadDataHelmet, Header, PopupMenu } from "../../../components";
 import LoginPrompt from "../../../components/LoginPrompt";
 import { useAuth } from "../../../components/auth/useAuth";
 import { useFetch } from "../../../hooks";
@@ -56,6 +56,7 @@ function MainProfile() {
 
   return (
     <div className="profile-container">
+      <HeadDataHelmet pageTitle="プロフィールページ" />
       <Header HeaderTitle="Profile" />
       {/* ログインしていない場合にログインプロンプトを表示 */}
       <div className="profile-login-prompt-container">
