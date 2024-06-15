@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../components/auth/useAuth";
-import { InputField } from "../../../components";
+import { HeadDataHelmet, InputField } from "../../../components";
 import "../style/LoginContainer.css";
 import { useNavigate } from "react-router-dom";
 
@@ -30,6 +30,7 @@ const LoginContainer = () => {
 
   return (
     <div>
+      <HeadDataHelmet pageTitle="ログインページ" />
       <main>
         <div className="login-container">
           <form onSubmit={handleSubmit} className="login-form">

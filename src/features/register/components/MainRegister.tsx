@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { InputField } from "../../../components";
+import { HeadDataHelmet, InputField } from "../../../components";
 import registerWithEmail from "../api/registerWithEmail";
 import "../style/MainRegister.css";
 import { useNavigate } from "react-router-dom";
@@ -61,6 +61,7 @@ const MainRegister = () => {
 
   return (
     <div className="login-container">
+      <HeadDataHelmet pageTitle="新規登録ページ" />
       {isRegistered && (
         <p className="isRegisteredMessage">
           入力されたメールアドレスにリンクを送信しました！
