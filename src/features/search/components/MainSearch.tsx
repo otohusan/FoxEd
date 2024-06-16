@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../style/MainSearch.css"; // スタイルを別ファイルで管理する場合
 import { Header } from "../../../components";
 import { StudySet } from "../../../../type";
@@ -8,6 +8,10 @@ import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import { useNavigate } from "react-router-dom";
 
 function MainSearch() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState<StudySet[]>();
   const { setQuizFormat } = useQuizContext();
