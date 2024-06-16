@@ -3,6 +3,7 @@ import { IoFootstepsOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { LiaBookSolid } from "react-icons/lia";
 import { BsPerson } from "react-icons/bs";
+import { FiSearch } from "react-icons/fi";
 import "./style/BottomNavigation.css";
 import { useNavigate } from "react-router-dom";
 
@@ -41,6 +42,14 @@ const BottomNavigation = () => {
       id: "/",
       onClick: () => {
         navigate("/");
+      },
+    },
+    {
+      text: "探す",
+      icon: <FiSearch />,
+      id: "/Search",
+      onClick: () => {
+        navigate("/Search");
       },
     },
     {
@@ -99,6 +108,7 @@ const BottomNavigation = () => {
               className="nav-text"
               style={{
                 color: pageSegment === item.id ? selectedTextColor : "#6e6e6e",
+                marginLeft: item.id === "/Search" ? "2px" : "0",
               }}
             >
               {item.text}
