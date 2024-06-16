@@ -1,3 +1,7 @@
+.main-search {
+  height: 100%;
+}
+
 .search-bar {
   margin-top: 150px;
   display: flex;

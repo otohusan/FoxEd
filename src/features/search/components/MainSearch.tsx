@@ -1,48 +1,40 @@
 import { useState } from "react";
 import "../style/MainSearch.css"; // スタイルを別ファイルで管理する場合
-import { Footer, Header } from "../../../components";
-import { QuizFormat } from "../../../../type";
+import { Header } from "../../../components";
+import { StudySet } from "../../../../type";
 import ChooseQuizContainer from "../../chooseQuiz/components/ChooseQuizContainer";
+import axios from "axios";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
+import { useNavigate } from "react-router-dom";
 
 function MainSearch() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<QuizFormat[]>([]);
+  const [results, setResults] = useState<StudySet[]>();
+  const { setQuizFormat } = useQuizContext();
+  const navigate = useNavigate();
 
+  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+
+  // 検索を行う関数
   const handleSearch = async () => {
-    // ここでバックエンドAPIを呼び出し、結果を取得します
-    // 例：const response = await fetch(`/api/search?query=${searchTerm}`);
-    // const data = await response.json();
-    const data: QuizFormat[] = [
-      {
-        label: "結果1",
-        body: [
-          { question: "question1", answer: "answer1", partOfSpeech: 1 },
-          { question: "question2", answer: "answer2", partOfSpeech: 2 },
-        ],
-      },
-      {
-        label: "結果2",
-        body: [
-          { question: "question3", answer: "answer3", partOfSpeech: 1 },
-          { question: "question4", answer: "answer4", partOfSpeech: 2 },
-        ],
-      },
-      {
-        label: "結果3",
-        body: [
-          { question: "question5", answer: "answer5", partOfSpeech: 1 },
-          { question: "question6", answer: "answer6", partOfSpeech: 2 },
-        ],
-      },
-      {
-        label: "結果4",
-        body: [
-          { question: "question7", answer: "answer7", partOfSpeech: 1 },
-          { question: "question8", answer: "answer8", partOfSpeech: 2 },
-        ],
-      },
-    ]; // ダミーデータを使用
-    setResults(data);
+    if (!searchTerm) {
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `${BASE_BACKEND_URL}/studysets/search?title=${searchTerm}`
+      );
+
+      if (!response.data) {
+        alert("学習セットが見つかりませんでした");
+      }
+
+      setResults(response.data);
+    } catch (error) {
+      console.error("Error fetching study sets:", error);
+      setResults([]);
+    }
   };
 
   return (
@@ -58,13 +50,34 @@ function MainSearch() {
         <button onClick={handleSearch}>検索</button>
       </div>
       <div className="search-quiz-results">
-        {results.map((result, index) => (
-          <div className="search-quiz-result">
-            <ChooseQuizContainer key={index} quizFormat={result} />
-          </div>
-        ))}
+        {results &&
+          results.map((result) => (
+            <div
+              className="search-quiz-result"
+              key={result.id}
+              onClick={() => {
+                setQuizFormat({
+                  id: result.id,
+                  user_id: result.user_id,
+                  label: result.title,
+                  description: result.description,
+                  body: result.flashcards,
+                });
+
+                navigate("/PrepareQuiz");
+              }}
+            >
+              <ChooseQuizContainer
+                quizFormat={{
+                  id: result.id,
+                  label: result.title,
+                  description: result.description,
+                  body: result.flashcards,
+                }}
+              />
+            </div>
+          ))}
       </div>
-      <Footer />
     </div>
   );
 }
