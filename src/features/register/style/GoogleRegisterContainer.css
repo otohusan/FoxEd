@@ -1,0 +1,35 @@
+.google-register-container {
+  display: flex;
+
+  justify-content: center;
+}
+
+.google-register-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #555555;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+
+  margin-top: 35px;
+}
+
+.google-register-button:hover {
+  background-color: #f5f5f5;
+  border-color: #cccccc;
+}
+
+.google-register-button:active {
+  background-color: #e5e5e5;
+  border-color: #bbbbbb;
+}
+
+.google-register-button > svg {
+  margin-right: 8px;
+}
