@@ -136,7 +136,7 @@ function ChooseQuiz() {
         )}
 
         {/* Konwalk作成の学習セット */}
-        <div className="ChooseQuizListTitle">TOIEC英単語</div>
+        <div className="ChooseQuizListTitle">TOEIC英単語</div>
         <div className="ChooseQuizDataList">
           {quizzes.map((quizFormat, index) => (
             <div
