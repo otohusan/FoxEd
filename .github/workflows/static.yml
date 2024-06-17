@@ -41,6 +41,7 @@ jobs:
         run: npm run generate
         env:
           VITE_IMAGE_WITH_SHARE_URL: ${{ secrets.VITE_IMAGE_WITH_SHARE_URL }}
+          VITE_GOOGLE_CLIENT_ID: ${{secrets.VITE_GOOGLE_CLIENT_ID}}
           VITE_GITHUB_PAGES: ${{vars.VITE_GITHUB_PAGES}}
           VITE_BASE_BACKEND_URL: ${{vars.VITE_BASE_BACKEND_URL}}
       - name: Setup Pages
