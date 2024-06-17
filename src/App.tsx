@@ -7,6 +7,7 @@ import BottomNavigation from "./components/BottomNavigation.tsx";
 import Loading from "./components/Loading.tsx";
 import Register from "./pages/Register.tsx";
 import Search from "./pages/Search.tsx";
+import ApplicationPrivacy from "./pages/ApplicationPrivacy.tsx";
 
 // import { HelmetProvider } from "react-helmet-async";
 
@@ -57,6 +58,7 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Search" element={<Search />} />
+          <Route path="/ApplicationPrivacy" element={<ApplicationPrivacy />} />
         </Routes>
       </Suspense>
 

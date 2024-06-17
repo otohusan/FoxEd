@@ -1,11 +1,11 @@
-import { Header, Footer, HeadDataHelmet, PopupMenu } from "../../../components";
+import { Header, Footer, HeadDataHelmet } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/ChooseQuizContainer.css";
 import { StudySet } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
-import { useState } from "react";
+
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
@@ -18,17 +18,17 @@ function ChooseQuiz() {
   const { setQuizFormat } = useQuizContext();
 
   // menuに関わる者たち
-  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const handleOpen = () => {
-    setIsSelectModeOpen(true);
-  };
-  const handleClose = () => {
-    setIsSelectModeOpen(false);
-  };
-  const menuItems = [
-    { text: "歩いて覚える", link: "/PlayQuiz" },
-    { text: "単語帳で覚える", link: "/PrepareQuiz" },
-  ];
+  // const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
+  // const handleOpen = () => {
+  //   setIsSelectModeOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setIsSelectModeOpen(false);
+  // };
+  // const menuItems = [
+  //   { text: "歩いて覚える", link: "/PlayQuiz" },
+  //   { text: "単語帳で覚える", link: "/PrepareQuiz" },
+  // ];
 
   const { user } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -62,11 +62,11 @@ function ChooseQuiz() {
       <main>
         <Introduction />
 
-        <PopupMenu
+        {/* <PopupMenu
           isOpen={isSelectModeOpen}
           onClose={handleClose}
           menuItems={menuItems}
-        />
+        /> */}
 
         <div className="ChooseTopTitle">英単語リスト</div>
         <div className="hr-line"></div>
@@ -102,7 +102,8 @@ function ChooseQuiz() {
                       description: studyset.description,
                       body: studyset.flashcards,
                     });
-                    handleOpen();
+                    // handleOpen();
+                    navigate("/PrepareQuiz");
                   }}
                   className="ChooseQuizContainerWrapper"
                   key={studyset.id}
@@ -136,14 +137,15 @@ function ChooseQuiz() {
         )}
 
         {/* Konwalk作成の学習セット */}
-        <div className="ChooseQuizListTitle">TOIEC英単語</div>
+        <div className="ChooseQuizListTitle">TOEIC英単語</div>
         <div className="ChooseQuizDataList">
           {quizzes.map((quizFormat, index) => (
             <div
               key={index}
               onClick={() => {
                 setQuizFormat(quizFormat);
-                handleOpen();
+                // handleOpen();
+                navigate("/PrepareQuiz");
               }}
               className="ChooseQuizContainerWrapper"
             >
@@ -158,7 +160,8 @@ function ChooseQuiz() {
               key={index}
               onClick={() => {
                 setQuizFormat(quizFormat);
-                handleOpen();
+                // handleOpen();
+                navigate("/PrepareQuiz");
               }}
               className="ChooseQuizContainerWrapper"
             >
@@ -166,9 +169,11 @@ function ChooseQuiz() {
             </div>
           ))}
         </div>
-        {!user && (
-          <LoginPrompt promptText="ログインすれば、オリジナル学習セットを作成できる" />
-        )}
+        <div className="login-prompt-container">
+          {!user && (
+            <LoginPrompt promptText="ログインすれば、オリジナル学習セットを作成できる" />
+          )}
+        </div>
       </main>
       <Footer />
     </div>
