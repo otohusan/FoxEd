@@ -101,14 +101,15 @@ const BottomNavigation = () => {
           <div className="nav-link">
             {item.icon &&
               React.cloneElement(item.icon, {
-                className: "nav-icon",
+                className: `nav-icon ${
+                  item.id === "/Search" ? "search-icon" : ""
+                }`,
                 color: pageSegment === item.id ? selectedIconColor : "#838383",
               })}
             <span
               className="nav-text"
               style={{
                 color: pageSegment === item.id ? selectedTextColor : "#6e6e6e",
-                marginLeft: item.id === "/Search" ? "2px" : "0",
               }}
             >
               {item.text}

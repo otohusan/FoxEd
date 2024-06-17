@@ -42,6 +42,7 @@ const LoginContainer = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="メールアドレス"
+              autocomplete="email"
             />
             <InputField
               id="password"
@@ -50,6 +51,7 @@ const LoginContainer = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="パスワード"
               required
+              autocomplete="current-password"
             />
             <button
               type="submit"
