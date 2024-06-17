@@ -23,6 +23,10 @@
   justify-content: center;
 }
 
+.nav-icon.search-icon {
+  margin-right: 2px;
+}
+
 .nav-item.is-selected {
   transform: scale(1.1);
   font-weight: 600;
