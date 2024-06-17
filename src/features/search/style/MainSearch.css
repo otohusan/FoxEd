@@ -1,0 +1,38 @@
+.main-search {
+  height: 100%;
+}
+
+.search-bar {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  padding: 7px 15px;
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--key-color);
+  color: var(--main-color);
+  border-radius: 4px;
+}
+
+.search-quiz-result {
+  display: inline-block;
+  width: 75%;
+  height: auto;
+  aspect-ratio: 16 / 9.5;
+  margin: 10px 7% 20px 0%;
+  margin-bottom: 15px; /* 各要素の下に15pxのマージンを追加 */
+}

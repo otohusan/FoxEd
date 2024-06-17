@@ -3,6 +3,7 @@ import { IoFootstepsOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { LiaBookSolid } from "react-icons/lia";
 import { BsPerson } from "react-icons/bs";
+import { FiSearch } from "react-icons/fi";
 import "./style/BottomNavigation.css";
 import { useNavigate } from "react-router-dom";
 
@@ -41,6 +42,14 @@ const BottomNavigation = () => {
       id: "/",
       onClick: () => {
         navigate("/");
+      },
+    },
+    {
+      text: "探す",
+      icon: <FiSearch />,
+      id: "/Search",
+      onClick: () => {
+        navigate("/Search");
       },
     },
     {
@@ -92,7 +101,9 @@ const BottomNavigation = () => {
           <div className="nav-link">
             {item.icon &&
               React.cloneElement(item.icon, {
-                className: "nav-icon",
+                className: `nav-icon ${
+                  item.id === "/Search" ? "search-icon" : ""
+                }`,
                 color: pageSegment === item.id ? selectedIconColor : "#838383",
               })}
             <span

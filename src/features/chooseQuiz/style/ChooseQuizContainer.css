@@ -132,3 +132,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.login-prompt-container {
+  display: flex;
+  justify-content: center; /* X軸で中央に配置 */
+  margin-inline: 4%;
+}

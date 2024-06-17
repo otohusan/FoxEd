@@ -9,6 +9,7 @@ type InputFieldProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
+  autocomplete: string;
   placeholder?: string;
 };
 
@@ -19,6 +20,7 @@ const InputField: React.FC<InputFieldProps> = ({
   value,
   onChange,
   placeholder,
+  autocomplete = "on",
   required = false,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -45,6 +47,7 @@ const InputField: React.FC<InputFieldProps> = ({
           onChange={onChange}
           required={required}
           placeholder={placeholder}
+          autoComplete={autocomplete}
           className="InputField-input"
           {...(type === "password" ? { pattern: passwordPattern } : {})}
           {...(type === "password"

@@ -86,6 +86,7 @@ const MainRegister = () => {
             }}
             required
             placeholder="名前"
+            autocomplete="username"
           />
           {isEmailExist && (
             <p className="register-error-message">
@@ -102,6 +103,7 @@ const MainRegister = () => {
             }}
             required
             placeholder="メールアドレス"
+            autocomplete="email"
           />
           <InputField
             id="password"
@@ -110,6 +112,7 @@ const MainRegister = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="パスワード"
             required
+            autocomplete="new-password"
           />
           <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
             登録
