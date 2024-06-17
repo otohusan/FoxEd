@@ -5,6 +5,8 @@ import registerWithEmail from "../api/registerWithEmail";
 import "../style/MainRegister.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import GoogleRegisterContainer from "./GoogleRegisterContainer";
 
 const MainRegister = () => {
   const [name, setName] = useState("");
@@ -58,6 +60,8 @@ const MainRegister = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   return (
     <div className="login-container">
@@ -117,6 +121,11 @@ const MainRegister = () => {
           <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
             登録
           </button>
+
+          {/* これがGoogleのログイン */}
+          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+            <GoogleRegisterContainer />
+          </GoogleOAuthProvider>
 
           <p className="redirect-login-message">
             登録済みの方は
