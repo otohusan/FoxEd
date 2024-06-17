@@ -3,7 +3,8 @@ import { useAuth } from "../../../components/auth/useAuth";
 import { HeadDataHelmet, InputField } from "../../../components";
 import "../style/LoginContainer.css";
 import { useNavigate } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import GoogleLoginContainer from "./GoogleLoginContainer";
 
 const LoginContainer = () => {
   const { loginWithEmail } = useAuth();
@@ -66,14 +67,7 @@ const LoginContainer = () => {
 
             {/* これがGoogleのログイン */}
             <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-              <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  console.log(credentialResponse);
-                }}
-                onError={() => {
-                  alert("失敗");
-                }}
-              />
+              <GoogleLoginContainer />
             </GoogleOAuthProvider>
             <p className="redirect-register-message">
               ユーザ新規登録は
