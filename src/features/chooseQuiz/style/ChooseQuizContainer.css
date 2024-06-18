@@ -138,3 +138,12 @@
   justify-content: center; /* X軸で中央に配置 */
   margin-inline: 4%;
 }
+
+.owner-drop-menu {
+  position: absolute;
+  top: 64%;
+  left: 10%;
+  font-size: 26px;
+  margin: 0;
+  background-color: aqua;
+}

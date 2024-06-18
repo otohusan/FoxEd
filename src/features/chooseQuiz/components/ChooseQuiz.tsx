@@ -1,4 +1,4 @@
-import { Header, Footer, HeadDataHelmet } from "../../../components";
+import { Header, Footer, HeadDataHelmet, PopupMenu } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/ChooseQuizContainer.css";
 import { StudySet } from "../../../../type/index.ts";
@@ -13,22 +13,38 @@ import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function ChooseQuiz() {
   const { setQuizFormat } = useQuizContext();
 
   // menuに関わる者たち
-  // const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  // const handleOpen = () => {
-  //   setIsSelectModeOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setIsSelectModeOpen(false);
-  // };
-  // const menuItems = [
-  //   { text: "歩いて覚える", link: "/PlayQuiz" },
-  //   { text: "単語帳で覚える", link: "/PrepareQuiz" },
-  // ];
+  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const handleOpen = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    let x = rect.left + 50;
+    let y = rect.top + rect.height + window.scrollY - 100;
+
+    if (x + 200 > screenWidth) {
+      x = rect.left - 200 + rect.width; // メニューの幅を考慮
+    }
+    if (y - window.scrollY + 200 > screenHeight) {
+      y = rect.top - 100 + window.scrollY; // メニューの高さを考慮
+    }
+    setMenuPosition({ x, y });
+    setIsSelectModeOpen(true);
+  };
+  const handleClose = () => {
+    setIsSelectModeOpen(false);
+  };
+  const menuItems = [
+    { text: "歩いて覚える", link: "/PlayQuiz" },
+    { text: "単語帳で覚える", link: "/PrepareQuiz" },
+  ];
 
   const { user } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -62,11 +78,12 @@ function ChooseQuiz() {
       <main>
         <Introduction />
 
-        {/* <PopupMenu
+        <PopupMenu
           isOpen={isSelectModeOpen}
           onClose={handleClose}
           menuItems={menuItems}
-        /> */}
+          position={menuPosition}
+        />
 
         <div className="ChooseTopTitle">英単語リスト</div>
         <div className="hr-line"></div>
@@ -122,12 +139,20 @@ function ChooseQuiz() {
                   {studyset.id &&
                     studyset.description &&
                     user?.ID == studyset.user_id && (
-                      <OwnerStudySetMenu
-                        studySetID={studyset.id}
-                        prevTitle={studyset.title}
-                        prevDescription={studyset.description}
-                        onNewStudySet={handleNewStudySet}
-                      />
+                      // <OwnerStudySetMenu
+                      //   studySetID={studyset.id}
+                      //   prevTitle={studyset.title}
+                      //   prevDescription={studyset.description}
+                      //   onNewStudySet={handleNewStudySet}
+                      // />
+                      <div
+                        className="owner-drop-menu"
+                        onClick={(e) => {
+                          handleOpen(e);
+                        }}
+                      >
+                        ...
+                      </div>
                     )}
                 </div>
               ))}
