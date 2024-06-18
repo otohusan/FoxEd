@@ -15,8 +15,20 @@ import { useAuth } from "../../../components/auth/useAuth.ts";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { sendStudySetDelete } from "../../../api/index.tsx";
+import EditStudySet from "./EditStudySet.tsx";
 
 function ChooseQuiz() {
+  const [isEditing, setIsEditing] = useState(false);
+  const handleEditStudySet = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsEditing(false);
+  };
+
   const { setQuizFormat, quizFormat } = useQuizContext();
 
   const handleDeleteStudySet = async (e: React.MouseEvent) => {
@@ -69,7 +81,7 @@ function ChooseQuiz() {
     setIsSelectModeOpen(false);
   };
   const menuItems = [
-    { text: "歩いて覚える", link: "/PlayQuiz" },
+    { text: "歩いて覚える", onClick: handleEditStudySet },
     { text: "学習セットを削除", onClick: handleDeleteStudySet },
   ];
 
@@ -111,6 +123,16 @@ function ChooseQuiz() {
           menuItems={menuItems}
           position={menuPosition}
         />
+
+        {isEditing && quizFormat?.id && quizFormat.description && (
+          <EditStudySet
+            studySetId={quizFormat?.id}
+            prevTitle={quizFormat?.label}
+            prevDescription={quizFormat?.description}
+            onCancel={handleCancelEdit}
+            onNewStudySet={handleNewStudySet}
+          />
+        )}
 
         <div className="ChooseTopTitle">英単語リスト</div>
         <div className="hr-line"></div>
