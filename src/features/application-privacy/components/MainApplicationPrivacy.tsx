@@ -1,9 +1,10 @@
-import { Header } from "../../../components";
+import { HeadDataHelmet, Header } from "../../../components";
 import "../style/MainApplicationPrivacy.css";
 
 function MainApplicationPrivacy() {
   return (
     <div className="application-privacy">
+      <HeadDataHelmet pageTitle="プライバシーポリシー" />
       <Header HeaderTitle="プライバシーポリシー" />
       <main className="privacy-content">
         <h2>アプリケーション提供者の名称、連絡先</h2>
