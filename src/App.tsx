@@ -5,11 +5,6 @@ import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { ReviewQuizType } from "../type/index.ts";
 import BottomNavigation from "./components/BottomNavigation.tsx";
 import Loading from "./components/Loading.tsx";
-import Register from "./pages/Register.tsx";
-import Search from "./pages/Search.tsx";
-import ApplicationPrivacy from "./pages/ApplicationPrivacy.tsx";
-
-// import { HelmetProvider } from "react-helmet-async";
 
 // Lazy load the components
 const PlayQuiz = lazy(() => import("./pages/PlayQuiz"));
@@ -18,6 +13,9 @@ const PrepareQuiz = lazy(() => import("./pages/PrepareQuiz"));
 const ChooseQuizData = lazy(() => import("./pages/ChooseQuizData"));
 const Login = lazy(() => import("./pages/Login"));
 const Profile = lazy(() => import("./pages/Profile"));
+const Register = lazy(() => import("./pages/Register"));
+const Search = lazy(() => import("./pages/Search"));
+const ApplicationPrivacy = lazy(() => import("./pages/ApplicationPrivacy"));
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../style/MainSearch.css"; // スタイルを別ファイルで管理する場合
-import { Header } from "../../../components";
+import { HeadDataHelmet, Header } from "../../../components";
 import { StudySet } from "../../../../type";
 import ChooseQuizContainer from "../../chooseQuiz/components/ChooseQuizContainer";
 import axios from "axios";
@@ -43,6 +43,7 @@ function MainSearch() {
 
   return (
     <div className="main-search">
+      <HeadDataHelmet pageTitle="検索ページ" />
       <Header HeaderTitle="Search" />
       <div className="search-bar">
         <input
