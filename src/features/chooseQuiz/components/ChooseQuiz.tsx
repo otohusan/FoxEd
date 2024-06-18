@@ -14,9 +14,36 @@ import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { sendStudySetDelete } from "../../../api/index.tsx";
 
 function ChooseQuiz() {
-  const { setQuizFormat } = useQuizContext();
+  const { setQuizFormat, quizFormat } = useQuizContext();
+
+  const handleDeleteStudySet = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const isConfirmed = window.confirm("学習セットを削除しますか？");
+    if (isConfirmed) {
+      try {
+        // DBの更新が成功したらstateの更新
+        if (!quizFormat) {
+          return;
+        }
+
+        if (!quizFormat.id) {
+          return;
+        }
+
+        await sendStudySetDelete(quizFormat?.id);
+
+        handleNewStudySet();
+        setIsSelectModeOpen(false);
+        alert("学習セットが削除されました");
+      } catch (error) {
+        alert(error);
+        return;
+      }
+    }
+  };
 
   // menuに関わる者たち
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
@@ -43,7 +70,7 @@ function ChooseQuiz() {
   };
   const menuItems = [
     { text: "歩いて覚える", link: "/PlayQuiz" },
-    { text: "単語帳で覚える", link: "/PrepareQuiz" },
+    { text: "学習セットを削除", onClick: handleDeleteStudySet },
   ];
 
   const { user } = useAuth();
@@ -148,6 +175,13 @@ function ChooseQuiz() {
                       <div
                         className="owner-drop-menu"
                         onClick={(e) => {
+                          setQuizFormat({
+                            id: studyset.id,
+                            user_id: studyset.user_id,
+                            label: studyset.title,
+                            description: studyset.description,
+                            body: studyset.flashcards,
+                          });
                           handleOpen(e);
                         }}
                       >
