@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import "./style/MenuBar.css";
 import { RiMenu2Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useClickAway } from "../hooks";
+import { useAuth } from "./auth/useAuth";
 
 type MenuBarProps = {
   isOpen: boolean;
@@ -20,6 +21,19 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
   useClickAway(menuRef, () => {
     setIsOpen(false);
   });
+
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
+
+  // ログアウト用の関数
+  const handleLogout = () => {
+    // ローカルストレージからトークンを削除
+    localStorage.removeItem("token");
+    setUser(null);
+    setIsOpen(false);
+    // ログインページにリダイレクト
+    navigate("/Profile");
+  };
 
   return (
     <div>
@@ -51,6 +65,11 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
               <Link to={"/ReviewQuiz"} className="MenuLink">
                 単語を復習 📝
               </Link>
+            </li>
+            <li>
+              <button onClick={handleLogout} className="menu-logout-button">
+                ログアウト
+              </button>
             </li>
             <button onClick={toggleMenu} className="menuCloseBtn">
               メニューを閉じる
