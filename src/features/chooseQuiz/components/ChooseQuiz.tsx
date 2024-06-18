@@ -8,7 +8,7 @@ import Introduction from "../introduction/Introduction.tsx";
 import { RxDotsHorizontal } from "react-icons/rx";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
-import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
+// import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
 import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
@@ -59,7 +59,7 @@ function ChooseQuiz() {
   // menuに関わる者たち
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const handleOpen = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleOpen = (e: React.MouseEvent) => {
     e.stopPropagation();
     const rect = e.currentTarget.getBoundingClientRect();
     const screenWidth = window.innerWidth;
