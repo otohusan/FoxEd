@@ -5,17 +5,29 @@ import { MdIosShare } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import shareContent from "../../../api/shareContent";
+import { RxDotsHorizontal } from "react-icons/rx";
 
 type PrepareQuizMenuProps = {
+  isOwner: boolean;
+  QuizID: string | undefined;
+  QuizAnswer: string;
   QuizName: string;
   setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   QuizIndex: number;
+  handleClickMenu: (
+    e: React.MouseEvent,
+    quiz: { id: string; question: string; answer: string }
+  ) => void;
 };
 
 function PrepareQuizMenu({
+  isOwner,
+  QuizID,
+  QuizAnswer,
   QuizName,
   setCurrentQuizIndex,
   QuizIndex,
+  handleClickMenu,
 }: PrepareQuizMenuProps) {
   const iconSize: string = "22px";
 
@@ -48,9 +60,25 @@ function PrepareQuizMenu({
         {/* 大きさ整えるためにサイズ指定している */}
         <IoFootstepsOutline size={iconSize} />
       </Link>
-      <button onClick={handleShare}>
-        <MdIosShare size={iconSize} />
-      </button>
+      {QuizID && isOwner && (
+        <button
+          className="owner-drop-quiz-menu"
+          onClick={(e) => {
+            handleClickMenu(e, {
+              id: QuizID,
+              question: QuizName, // 適切な値に変更
+              answer: QuizAnswer, // 適切な値に変更
+            });
+          }}
+        >
+          <RxDotsHorizontal />
+        </button>
+      )}
+      {!isOwner && (
+        <button onClick={handleShare}>
+          <MdIosShare size={iconSize} />
+        </button>
+      )}
     </div>
   );
 }
