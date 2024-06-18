@@ -141,9 +141,15 @@
 
 .owner-drop-menu {
   position: absolute;
-  top: 64%;
-  left: 10%;
+  top: 71%;
+  left: 8%;
   font-size: 26px;
   margin: 0;
-  background-color: aqua;
+
+  background-color: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: var(--text-color-2);
 }

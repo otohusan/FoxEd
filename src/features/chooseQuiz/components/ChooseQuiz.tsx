@@ -5,7 +5,7 @@ import { StudySet } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
-
+import { RxDotsHorizontal } from "react-icons/rx";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
@@ -194,7 +194,7 @@ function ChooseQuiz() {
                       //   prevDescription={studyset.description}
                       //   onNewStudySet={handleNewStudySet}
                       // />
-                      <div
+                      <button
                         className="owner-drop-menu"
                         onClick={(e) => {
                           setQuizFormat({
@@ -207,8 +207,8 @@ function ChooseQuiz() {
                           handleOpen(e);
                         }}
                       >
-                        ...
-                      </div>
+                        <RxDotsHorizontal />
+                      </button>
                     )}
                 </div>
               ))}
