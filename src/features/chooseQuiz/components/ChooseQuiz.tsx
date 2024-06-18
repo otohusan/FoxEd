@@ -49,7 +49,6 @@ function ChooseQuiz() {
 
         handleNewStudySet();
         setIsSelectModeOpen(false);
-        alert("学習セットが削除されました");
       } catch (error) {
         alert(error);
         return;
@@ -81,8 +80,8 @@ function ChooseQuiz() {
     setIsSelectModeOpen(false);
   };
   const menuItems = [
-    { text: "歩いて覚える", onClick: handleEditStudySet },
-    { text: "学習セットを削除", onClick: handleDeleteStudySet },
+    { text: "編集を行う", onClick: handleEditStudySet },
+    { text: "削除する", onClick: handleDeleteStudySet },
   ];
 
   const { user } = useAuth();
