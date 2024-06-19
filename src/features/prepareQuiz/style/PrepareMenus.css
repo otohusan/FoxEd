@@ -12,11 +12,17 @@
   color: var(--icon-color);
   cursor: pointer;
   background-color: transparent;
-  border: none;
 }
 
 .PrepareMenus > button:active {
   transform: scale(0.95); /* クリック時に少し縮小 */
+}
+
+.quiz-share-btn {
+  border: none;
+}
+
+.quiz-share-btn:active {
   color: var(--key-color-2);
 }
 

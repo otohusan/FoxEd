@@ -75,7 +75,7 @@ function PrepareQuizMenu({
         </button>
       )}
       {!isOwner && (
-        <button onClick={handleShare}>
+        <button onClick={handleShare} className="quiz-share-btn">
           <MdIosShare size={iconSize} />
         </button>
       )}
