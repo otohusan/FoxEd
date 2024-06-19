@@ -7,7 +7,7 @@ interface AuthContextType {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
-  favoriteItems: StudySet[];
+  favoriteItems: StudySet[] | null;
   toggleFavorite: (
     studySet: StudySet,
     action: "add" | "remove"

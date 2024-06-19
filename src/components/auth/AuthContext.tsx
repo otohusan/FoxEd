@@ -13,7 +13,7 @@ type AuthContextType = {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
-  favoriteItems: StudySet[];
+  favoriteItems: StudySet[] | null;
   toggleFavorite: (
     studySet: StudySet,
     action: "add" | "remove"
@@ -34,7 +34,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const AuthProvider = ({ children }: AuthContextProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [favoriteItems, setFavoriteItems] = useState<StudySet[]>([]);
+  const [favoriteItems, setFavoriteItems] = useState<StudySet[] | null>([]);
 
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
@@ -157,19 +157,20 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       // 追加の場合
       if (action === "add") {
         await axios.post(
-          `${BASE_BACKEND_URL}/user/${user?.ID}/studyset/${studySet.id}`,
+          `${BASE_BACKEND_URL}/favorites/user/${user?.ID}/studyset/${studySet.id}`,
+          {},
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        setFavoriteItems((prevItems) => [...prevItems, studySet]);
+        setFavoriteItems((prevItems) => [...(prevItems || []), studySet]);
       }
       // 削除の場合
       else if (action === "remove") {
         await axios.delete(
-          `${BASE_BACKEND_URL}/users/${user?.ID}/studyset/${studySet.id}`,
+          `${BASE_BACKEND_URL}/favorites/user/${user?.ID}/studyset/${studySet.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -177,7 +178,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
           }
         );
         setFavoriteItems((prevItems) =>
-          prevItems.filter((item) => item.id !== studySet.id)
+          (prevItems || []).filter((item) => item.id !== studySet.id)
         );
       }
     } catch (error) {

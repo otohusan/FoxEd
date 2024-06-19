@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { sendStudySetDelete } from "../../../api/index.tsx";
 import EditStudySet from "./EditStudySet.tsx";
+import FavoriteButton from "./FavoriteButton.tsx";
 
 function ChooseQuiz() {
   const [isEditing, setIsEditing] = useState(false);
@@ -209,6 +210,7 @@ function ChooseQuiz() {
                         <RxDotsHorizontal size={"23px"} />
                       </button>
                     )}
+                  <FavoriteButton studySet={studyset} />
                 </div>
               ))}
           </div>
