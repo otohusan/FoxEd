@@ -1,34 +1,88 @@
-import { Header, Footer, HeadDataHelmet } from "../../../components";
+import { Header, Footer, HeadDataHelmet, PopupMenu } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/ChooseQuizContainer.css";
 import { StudySet } from "../../../../type/index.ts";
 import { quizzes as yumetan } from "../../../assets/quizzes.ts";
 import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
-
+import { RxDotsHorizontal } from "react-icons/rx";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
-import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
+// import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
 import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { sendStudySetDelete } from "../../../api/index.tsx";
+import EditStudySet from "./EditStudySet.tsx";
 
 function ChooseQuiz() {
-  const { setQuizFormat } = useQuizContext();
+  const [isEditing, setIsEditing] = useState(false);
+  const handleEditStudySet = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsEditing(false);
+  };
+
+  const { setQuizFormat, quizFormat } = useQuizContext();
+
+  const handleDeleteStudySet = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const isConfirmed = window.confirm("学習セットを削除しますか？");
+    if (isConfirmed) {
+      try {
+        // DBの更新が成功したらstateの更新
+        if (!quizFormat) {
+          return;
+        }
+
+        if (!quizFormat.id) {
+          return;
+        }
+
+        await sendStudySetDelete(quizFormat?.id);
+
+        handleNewStudySet();
+        setIsSelectModeOpen(false);
+      } catch (error) {
+        alert(error);
+        return;
+      }
+    }
+  };
 
   // menuに関わる者たち
-  // const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  // const handleOpen = () => {
-  //   setIsSelectModeOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setIsSelectModeOpen(false);
-  // };
-  // const menuItems = [
-  //   { text: "歩いて覚える", link: "/PlayQuiz" },
-  //   { text: "単語帳で覚える", link: "/PrepareQuiz" },
-  // ];
+  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const handleOpen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    let x = rect.left + 50;
+    let y = rect.top + rect.height + window.scrollY - 100;
+
+    if (x + 200 > screenWidth) {
+      x = rect.left - 200 + rect.width; // メニューの幅を考慮
+    }
+    if (y - window.scrollY + 200 > screenHeight) {
+      y = rect.top - 100 + window.scrollY; // メニューの高さを考慮
+    }
+    setMenuPosition({ x, y });
+    setIsSelectModeOpen(true);
+  };
+  const handleClose = () => {
+    setIsSelectModeOpen(false);
+  };
+  const menuItems = [
+    { text: "編集を行う", onClick: handleEditStudySet },
+    { text: "削除する", onClick: handleDeleteStudySet },
+  ];
 
   const { user } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -62,11 +116,22 @@ function ChooseQuiz() {
       <main>
         <Introduction />
 
-        {/* <PopupMenu
+        <PopupMenu
           isOpen={isSelectModeOpen}
           onClose={handleClose}
           menuItems={menuItems}
-        /> */}
+          position={menuPosition}
+        />
+
+        {isEditing && quizFormat?.id && quizFormat.description && (
+          <EditStudySet
+            studySetId={quizFormat?.id}
+            prevTitle={quizFormat?.label}
+            prevDescription={quizFormat?.description}
+            onCancel={handleCancelEdit}
+            onNewStudySet={handleNewStudySet}
+          />
+        )}
 
         <div className="ChooseTopTitle">英単語リスト</div>
         <div className="hr-line"></div>
@@ -122,12 +187,27 @@ function ChooseQuiz() {
                   {studyset.id &&
                     studyset.description &&
                     user?.ID == studyset.user_id && (
-                      <OwnerStudySetMenu
-                        studySetID={studyset.id}
-                        prevTitle={studyset.title}
-                        prevDescription={studyset.description}
-                        onNewStudySet={handleNewStudySet}
-                      />
+                      // <OwnerStudySetMenu
+                      //   studySetID={studyset.id}
+                      //   prevTitle={studyset.title}
+                      //   prevDescription={studyset.description}
+                      //   onNewStudySet={handleNewStudySet}
+                      // />
+                      <button
+                        className="owner-drop-menu"
+                        onClick={(e) => {
+                          setQuizFormat({
+                            id: studyset.id,
+                            user_id: studyset.user_id,
+                            label: studyset.title,
+                            description: studyset.description,
+                            body: studyset.flashcards,
+                          });
+                          handleOpen(e);
+                        }}
+                      >
+                        <RxDotsHorizontal />
+                      </button>
                     )}
                 </div>
               ))}

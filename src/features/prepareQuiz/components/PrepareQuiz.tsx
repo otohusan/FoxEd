@@ -1,7 +1,7 @@
 import "../style/PrepareQuiz.css";
 import PrepareQuizMenu from "./PrepareQuizMenu";
 import { partOfSpeechTable } from "../../../assets/partOfSpeechTable";
-import OwnerQuizMenu from "./OwnerQuizMenu";
+// import OwnerQuizMenu from "./OwnerQuizMenu";
 
 type PrepareQuizProps = {
   QuizID?: string;
@@ -11,6 +11,10 @@ type PrepareQuizProps = {
   setCurrentQuizIndex: React.Dispatch<React.SetStateAction<number>>;
   QuizIndex: number;
   isOwner: boolean;
+  handleClickMenu: (
+    e: React.MouseEvent,
+    quiz: { id: string; question: string; answer: string }
+  ) => void;
 };
 
 function PrepareQuiz({
@@ -21,6 +25,7 @@ function PrepareQuiz({
   setCurrentQuizIndex,
   QuizIndex,
   isOwner,
+  handleClickMenu,
 }: PrepareQuizProps) {
   return (
     <div className="PrepareQuizContainer">
@@ -37,7 +42,7 @@ function PrepareQuiz({
           <div className="PrepareQuizAnswer">{QuizAnswer}</div>
         </div>
         <div className="prepare-quiz-menus">
-          {
+          {/* {
             // オーナーだった場合のみ表示
             // NOTICE: 今だけこの条件
             isOwner && QuizID && (
@@ -47,11 +52,15 @@ function PrepareQuiz({
                 prevAnswer={QuizAnswer}
               />
             )
-          }
+          } */}
           <PrepareQuizMenu
+            isOwner={isOwner}
+            QuizID={QuizID}
+            QuizAnswer={QuizAnswer}
             QuizName={QuizName}
             setCurrentQuizIndex={setCurrentQuizIndex}
             QuizIndex={QuizIndex}
+            handleClickMenu={handleClickMenu}
           />
         </div>
       </div>

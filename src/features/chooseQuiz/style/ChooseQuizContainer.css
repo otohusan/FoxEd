@@ -138,3 +138,22 @@
   justify-content: center; /* X軸で中央に配置 */
   margin-inline: 4%;
 }
+
+.owner-drop-menu {
+  position: absolute;
+  top: 71%;
+  left: 8%;
+  font-size: 26px;
+  margin: 0;
+
+  background-color: transparent;
+  border: 2px solid var(--gray-border-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: var(--text-color-2);
+}
