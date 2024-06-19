@@ -99,12 +99,13 @@
 
   background-color: transparent;
   border: 2px solid var(--gray-border-color);
-  border-radius: 50%;
-  display: flex;
+  border: none;
+  /* border-radius: 50%; */
+  /* display: flex;
   justify-content: center;
   align-items: center;
   width: 30px;
-  height: 30px;
+  height: 30px; */
   cursor: pointer;
 }
 
