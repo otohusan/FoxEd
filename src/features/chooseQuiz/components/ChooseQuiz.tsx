@@ -85,7 +85,7 @@ function ChooseQuiz() {
     { text: "削除する", onClick: handleDeleteStudySet },
   ];
 
-  const { user } = useAuth();
+  const { user, favoriteItems } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   // userがない場合にはFetchを行わないように
   // nullの場合はuseFetch内でFetchが実行されないようになってる
@@ -156,6 +156,72 @@ function ChooseQuiz() {
           <div className="ChooseQuizDataList">
             {/* 取得した学習セットを表示 */}
             {data
+              .slice()
+              .reverse()
+              .map((studyset) => (
+                <div
+                  onClick={() => {
+                    setQuizFormat({
+                      id: studyset.id,
+                      user_id: studyset.user_id,
+                      label: studyset.title,
+                      description: studyset.description,
+                      body: studyset.flashcards,
+                    });
+                    // handleOpen();
+                    navigate("/PrepareQuiz");
+                  }}
+                  className="ChooseQuizContainerWrapper"
+                  key={studyset.id}
+                >
+                  <ChooseQuizContainer
+                    key={studyset.id}
+                    // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
+                    quizFormat={{
+                      id: studyset.id,
+                      label: studyset.title,
+                      description: studyset.description,
+                      body: studyset.flashcards,
+                    }}
+                  />
+                  <div className="choose-quiz-menus">
+                    <FavoriteButton studySet={studyset} />
+                    {/* オーナーだった場合編集ボタンを追加 */}
+                    {studyset.id &&
+                      studyset.description &&
+                      user?.ID == studyset.user_id && (
+                        <button
+                          className="owner-drop-menu"
+                          onClick={(e) => {
+                            setQuizFormat({
+                              id: studyset.id,
+                              user_id: studyset.user_id,
+                              label: studyset.title,
+                              description: studyset.description,
+                              body: studyset.flashcards,
+                            });
+                            handleOpen(e);
+                          }}
+                        >
+                          <RxDotsHorizontal size={"23px"} />
+                        </button>
+                      )}
+                  </div>
+                </div>
+              ))}
+          </div>
+        ) : (
+          <></>
+        )}
+
+        {/* ユーザが作成した学習セットを表示 */}
+        {favoriteItems && (
+          <div className="ChooseQuizListTitle">あなたのお気に入り</div>
+        )}
+        {favoriteItems && favoriteItems.length > 0 ? (
+          <div className="ChooseQuizDataList">
+            {/* 取得した学習セットを表示 */}
+            {favoriteItems
               .slice()
               .reverse()
               .map((studyset) => (
