@@ -2,6 +2,7 @@
   background-color: transparent;
   border: none;
   color: var(--key-color);
+  cursor: pointer;
 }
 
 .favorite-btn:active {
