@@ -23,14 +23,11 @@ function MenuBar({ isOpen, setIsOpen }: MenuBarProps) {
   });
 
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { logout } = useAuth();
 
   // ログアウト用の関数
   const handleLogout = () => {
-    // ローカルストレージからトークンを削除
-    localStorage.removeItem("token");
-    setUser(null);
-    setIsOpen(false);
+    logout();
     // ログインページにリダイレクト
     navigate("/Profile");
   };

@@ -13,6 +13,7 @@ type AuthContextType = {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
+  logout: () => void;
   favoriteItems: StudySet[] | null;
   toggleFavorite: (
     studySet: StudySet,
@@ -144,6 +145,17 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     }
   };
 
+  // ログアウト用の関数
+  const logout = () => {
+    if (!user) {
+      alert("ログアウト済みです");
+      return;
+    }
+    localStorage.removeItem("token");
+    setUser(null);
+    setFavoriteItems(null);
+  };
+
   const toggleFavorite = async (
     studySet: StudySet,
     action: "add" | "remove"
@@ -199,6 +211,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         setUser,
         loading,
         loginWithEmail,
+        logout,
         favoriteItems,
         toggleFavorite,
       }}
