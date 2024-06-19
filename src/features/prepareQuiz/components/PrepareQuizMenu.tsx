@@ -71,7 +71,7 @@ function PrepareQuizMenu({
             });
           }}
         >
-          <RxDotsHorizontal />
+          <RxDotsHorizontal size={iconSize} />
         </button>
       )}
       {!isOwner && (
