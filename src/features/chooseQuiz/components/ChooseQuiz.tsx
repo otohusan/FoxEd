@@ -215,7 +215,7 @@ function ChooseQuiz() {
         )}
 
         {/* ユーザが作成した学習セットを表示 */}
-        {favoriteItems && (
+        {favoriteItems && favoriteItems.length > 0 && (
           <div className="ChooseQuizListTitle">あなたのお気に入り</div>
         )}
         {favoriteItems && favoriteItems.length > 0 ? (

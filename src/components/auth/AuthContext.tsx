@@ -19,6 +19,7 @@ type AuthContextType = {
     studySet: StudySet,
     action: "add" | "remove"
   ) => Promise<void>;
+  setFavoriteItems: React.Dispatch<React.SetStateAction<StudySet[] | null>>;
 };
 
 type DecodedToken = {
@@ -214,6 +215,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         logout,
         favoriteItems,
         toggleFavorite,
+        setFavoriteItems,
       }}
     >
       {children}

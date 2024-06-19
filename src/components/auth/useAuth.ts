@@ -13,6 +13,7 @@ interface AuthContextType {
     studySet: StudySet,
     action: "add" | "remove"
   ) => Promise<void>;
+  setFavoriteItems: React.Dispatch<React.SetStateAction<StudySet[] | null>>;
 }
 
 export const useAuth = (): AuthContextType => {
