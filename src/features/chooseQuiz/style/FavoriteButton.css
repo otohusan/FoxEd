@@ -1,0 +1,9 @@
+.favorite-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--key-color);
+}
+
+.favorite-btn:active {
+  transform: scale(0.9);
+}

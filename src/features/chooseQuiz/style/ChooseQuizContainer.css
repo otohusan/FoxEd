@@ -139,12 +139,14 @@
   margin-inline: 4%;
 }
 
-.owner-drop-menu {
+.choose-quiz-menus {
   position: absolute;
   top: 73%;
   left: 6%;
   margin: 0;
+}
 
+.owner-drop-menu {
   background-color: transparent;
   border: none;
   /* border: 2px solid var(--gray-border-color);

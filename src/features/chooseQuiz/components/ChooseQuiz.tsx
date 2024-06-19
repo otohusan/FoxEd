@@ -184,33 +184,29 @@ function ChooseQuiz() {
                       body: studyset.flashcards,
                     }}
                   />
-                  {/* オーナーだった場合編集ボタンを追加 */}
-                  {studyset.id &&
-                    studyset.description &&
-                    user?.ID == studyset.user_id && (
-                      // <OwnerStudySetMenu
-                      //   studySetID={studyset.id}
-                      //   prevTitle={studyset.title}
-                      //   prevDescription={studyset.description}
-                      //   onNewStudySet={handleNewStudySet}
-                      // />
-                      <button
-                        className="owner-drop-menu"
-                        onClick={(e) => {
-                          setQuizFormat({
-                            id: studyset.id,
-                            user_id: studyset.user_id,
-                            label: studyset.title,
-                            description: studyset.description,
-                            body: studyset.flashcards,
-                          });
-                          handleOpen(e);
-                        }}
-                      >
-                        <RxDotsHorizontal size={"23px"} />
-                      </button>
-                    )}
-                  <FavoriteButton studySet={studyset} />
+                  <div className="choose-quiz-menus">
+                    <FavoriteButton studySet={studyset} />
+                    {/* オーナーだった場合編集ボタンを追加 */}
+                    {studyset.id &&
+                      studyset.description &&
+                      user?.ID == studyset.user_id && (
+                        <button
+                          className="owner-drop-menu"
+                          onClick={(e) => {
+                            setQuizFormat({
+                              id: studyset.id,
+                              user_id: studyset.user_id,
+                              label: studyset.title,
+                              description: studyset.description,
+                              body: studyset.flashcards,
+                            });
+                            handleOpen(e);
+                          }}
+                        >
+                          <RxDotsHorizontal size={"23px"} />
+                        </button>
+                      )}
+                  </div>
                 </div>
               ))}
           </div>
