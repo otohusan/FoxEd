@@ -19,6 +19,7 @@
   max-width: 200px;
   text-align: start; /* テキストを中央揃えにする */
   margin: 7px;
+  cursor: pointer;
 }
 
 .MenuOption-hr-line {

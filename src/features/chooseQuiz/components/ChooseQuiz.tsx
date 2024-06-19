@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { sendStudySetDelete } from "../../../api/index.tsx";
 import EditStudySet from "./EditStudySet.tsx";
+import FavoriteButton from "./FavoriteButton.tsx";
 
 function ChooseQuiz() {
   const [isEditing, setIsEditing] = useState(false);
@@ -84,7 +85,7 @@ function ChooseQuiz() {
     { text: "削除する", onClick: handleDeleteStudySet },
   ];
 
-  const { user } = useAuth();
+  const { user, favoriteItems } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   // userがない場合にはFetchを行わないように
   // nullの場合はuseFetch内でFetchが実行されないようになってる
@@ -183,32 +184,95 @@ function ChooseQuiz() {
                       body: studyset.flashcards,
                     }}
                   />
-                  {/* オーナーだった場合編集ボタンを追加 */}
-                  {studyset.id &&
-                    studyset.description &&
-                    user?.ID == studyset.user_id && (
-                      // <OwnerStudySetMenu
-                      //   studySetID={studyset.id}
-                      //   prevTitle={studyset.title}
-                      //   prevDescription={studyset.description}
-                      //   onNewStudySet={handleNewStudySet}
-                      // />
-                      <button
-                        className="owner-drop-menu"
-                        onClick={(e) => {
-                          setQuizFormat({
-                            id: studyset.id,
-                            user_id: studyset.user_id,
-                            label: studyset.title,
-                            description: studyset.description,
-                            body: studyset.flashcards,
-                          });
-                          handleOpen(e);
-                        }}
-                      >
-                        <RxDotsHorizontal size={"23px"} />
-                      </button>
-                    )}
+                  <div className="choose-quiz-menus">
+                    <FavoriteButton studySet={studyset} />
+                    {/* オーナーだった場合編集ボタンを追加 */}
+                    {studyset.id &&
+                      studyset.description &&
+                      user?.ID == studyset.user_id && (
+                        <button
+                          className="owner-drop-menu"
+                          onClick={(e) => {
+                            setQuizFormat({
+                              id: studyset.id,
+                              user_id: studyset.user_id,
+                              label: studyset.title,
+                              description: studyset.description,
+                              body: studyset.flashcards,
+                            });
+                            handleOpen(e);
+                          }}
+                        >
+                          <RxDotsHorizontal size={"23px"} />
+                        </button>
+                      )}
+                  </div>
+                </div>
+              ))}
+          </div>
+        ) : (
+          <></>
+        )}
+
+        {/* ユーザが作成した学習セットを表示 */}
+        {favoriteItems && favoriteItems.length > 0 && (
+          <div className="ChooseQuizListTitle">あなたのお気に入り</div>
+        )}
+        {favoriteItems && favoriteItems.length > 0 ? (
+          <div className="ChooseQuizDataList">
+            {/* 取得した学習セットを表示 */}
+            {favoriteItems
+              .slice()
+              .reverse()
+              .map((studyset) => (
+                <div
+                  onClick={() => {
+                    setQuizFormat({
+                      id: studyset.id,
+                      user_id: studyset.user_id,
+                      label: studyset.title,
+                      description: studyset.description,
+                      body: studyset.flashcards,
+                    });
+                    // handleOpen();
+                    navigate("/PrepareQuiz");
+                  }}
+                  className="ChooseQuizContainerWrapper"
+                  key={studyset.id}
+                >
+                  <ChooseQuizContainer
+                    key={studyset.id}
+                    // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
+                    quizFormat={{
+                      id: studyset.id,
+                      label: studyset.title,
+                      description: studyset.description,
+                      body: studyset.flashcards,
+                    }}
+                  />
+                  <div className="choose-quiz-menus">
+                    <FavoriteButton studySet={studyset} />
+                    {/* オーナーだった場合編集ボタンを追加 */}
+                    {studyset.id &&
+                      studyset.description &&
+                      user?.ID == studyset.user_id && (
+                        <button
+                          className="owner-drop-menu"
+                          onClick={(e) => {
+                            setQuizFormat({
+                              id: studyset.id,
+                              user_id: studyset.user_id,
+                              label: studyset.title,
+                              description: studyset.description,
+                              body: studyset.flashcards,
+                            });
+                            handleOpen(e);
+                          }}
+                        >
+                          <RxDotsHorizontal size={"23px"} />
+                        </button>
+                      )}
+                  </div>
                 </div>
               ))}
           </div>

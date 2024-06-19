@@ -74,11 +74,12 @@ function PrepareQuizMenu({
           <RxDotsHorizontal size={iconSize} />
         </button>
       )}
-      {!isOwner && (
-        <button onClick={handleShare} className="quiz-share-btn">
-          <MdIosShare size={iconSize} />
-        </button>
-      )}
+      {!isOwner ||
+        (!QuizID && (
+          <button onClick={handleShare} className="quiz-share-btn">
+            <MdIosShare size={iconSize} />
+          </button>
+        ))}
     </div>
   );
 }
