@@ -206,7 +206,7 @@ function ChooseQuiz() {
                           handleOpen(e);
                         }}
                       >
-                        <RxDotsHorizontal />
+                        <RxDotsHorizontal size={"25px"} />
                       </button>
                     )}
                 </div>
