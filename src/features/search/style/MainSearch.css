@@ -35,4 +35,12 @@
   aspect-ratio: 16 / 9.5;
   margin: 10px 7% 20px 0%;
   margin-bottom: 15px; /* 各要素の下に15pxのマージンを追加 */
+  position: relative;
+}
+
+.search-quiz-menus {
+  position: absolute;
+  top: 73%;
+  left: 6%;
+  margin: 0;
 }

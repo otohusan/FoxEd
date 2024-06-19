@@ -6,6 +6,7 @@ import ChooseQuizContainer from "../../chooseQuiz/components/ChooseQuizContainer
 import axios from "axios";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import { useNavigate } from "react-router-dom";
+import FavoriteButton from "../../chooseQuiz/components/FavoriteButton";
 
 function MainSearch() {
   useEffect(() => {
@@ -80,6 +81,9 @@ function MainSearch() {
                   body: result.flashcards,
                 }}
               />
+              <div className="search-quiz-menus">
+                <FavoriteButton studySet={result} />
+              </div>
             </div>
           ))}
       </div>
