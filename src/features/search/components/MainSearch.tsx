@@ -92,8 +92,8 @@ function MainSearch() {
           ))}
       </div>
 
-      {!user && (
-        <LoginPrompt promptText="ログインすれば、学習セットをブックマークで保存できる" />
+      {!user && results && (
+        <LoginPrompt promptText="ログインすれば、学習セットをお気に入り登録できる" />
       )}
     </div>
   );
