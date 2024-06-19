@@ -134,7 +134,7 @@ function ChooseQuiz() {
           />
         )}
 
-        <div className="ChooseTopTitle">英単語リスト</div>
+        <div className="ChooseTopTitle">学習セット</div>
         <div className="hr-line"></div>
 
         {user && !data && (
