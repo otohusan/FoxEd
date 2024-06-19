@@ -91,5 +91,25 @@
 .prepare-quiz-menus {
   position: absolute;
   top: 93%;
-  right: 0%;
+  right: 2%;
+}
+
+.owner-drop-quiz-menu {
+  font-size: 20px;
+  margin: 0;
+
+  background-color: transparent;
+  border: 2px solid var(--gray-border-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.owner-drop-quiz-menu:active {
+  transform: scale(0.9);
+  background-color: var(--gray-border-color);
 }

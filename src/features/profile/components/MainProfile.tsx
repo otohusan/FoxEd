@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { StudySet } from "../../../../type";
-import { Footer, HeadDataHelmet, Header, PopupMenu } from "../../../components";
+import { Footer, HeadDataHelmet, Header } from "../../../components";
 import LoginPrompt from "../../../components/LoginPrompt";
 import { useAuth } from "../../../components/auth/useAuth";
 import { useFetch } from "../../../hooks";
@@ -10,6 +10,7 @@ import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import MakeStudySet from "./MakeStudySet";
 import axios from "axios";
 import OwnerStudySetMenu from "../../chooseQuiz/components/OwnerStudySetMenu";
+import { useNavigate } from "react-router-dom";
 
 function MainProfile() {
   // ページの先頭に戻る
@@ -19,6 +20,7 @@ function MainProfile() {
 
   const { user } = useAuth();
   const { setQuizFormat } = useQuizContext();
+  const navigate = useNavigate();
 
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   // userがない場合にはFetchを行わないように
@@ -42,17 +44,17 @@ function MainProfile() {
   };
 
   // menuに関わる者たち
-  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const handleOpen = () => {
-    setIsSelectModeOpen(true);
-  };
-  const handleClose = () => {
-    setIsSelectModeOpen(false);
-  };
-  const menuItems = [
-    { text: "歩いて覚える", link: "/PlayQuiz" },
-    { text: "単語帳で覚える", link: "/PrepareQuiz" },
-  ];
+  // const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
+  // const handleOpen = () => {
+  //   setIsSelectModeOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setIsSelectModeOpen(false);
+  // };
+  // const menuItems = [
+  //   { text: "歩いて覚える", link: "/PlayQuiz" },
+  //   { text: "単語帳で覚える", link: "/PrepareQuiz" },
+  // ];
 
   return (
     <div className="profile-container">
@@ -71,11 +73,11 @@ function MainProfile() {
       {user && (
         <>
           {!data && <p>自分だけの学習セット作ってみよう！</p>}
-          <PopupMenu
+          {/* <PopupMenu
             isOpen={isSelectModeOpen}
             onClose={handleClose}
             menuItems={menuItems}
-          />
+          /> */}
 
           {data && (
             <div className="ChooseQuizListTitle">あなたの学習セット</div>
@@ -97,7 +99,8 @@ function MainProfile() {
                         description: studyset.description,
                         body: studyset.flashcards,
                       });
-                      handleOpen();
+                      navigate("/PrepareQuiz");
+                      // handleOpen();
                     }}
                     className="ChooseQuizContainerWrapper"
                     key={studyset.id}

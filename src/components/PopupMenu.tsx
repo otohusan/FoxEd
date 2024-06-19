@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./style/PopupMenu.css";
 import { useClickAway } from "../hooks";
@@ -6,55 +6,26 @@ import { useClickAway } from "../hooks";
 type MenuItem = {
   text: string;
   link?: string;
-  onClick?: () => void;
+  onClick?: (() => void) | ((e: React.MouseEvent) => void);
 };
 
 type PopupMenuProps = {
   isOpen: boolean;
   onClose: () => void;
   menuItems: MenuItem[];
+  position: { x: number; y: number };
 };
 
 const PopupMenu: React.FC<PopupMenuProps> = ({
   isOpen,
   onClose,
   menuItems,
+  position,
 }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const menuRef = useRef<HTMLDivElement>(null);
 
   // 閉じるカスタムフック
   useClickAway(menuRef, onClose);
-
-  useEffect(() => {
-    function calculatePosition(event: MouseEvent) {
-      const MENU_WIDTH = 200;
-      const MENU_HEIGHT = 100;
-
-      let x = event.clientX;
-      let y = event.clientY;
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
-
-      if (x + MENU_WIDTH > screenWidth) {
-        x = screenWidth - MENU_WIDTH;
-      }
-      if (y + MENU_HEIGHT > screenHeight) {
-        y = screenHeight - MENU_HEIGHT;
-      }
-
-      y += window.scrollY - 50;
-      setPosition({ x, y });
-    }
-
-    if (isOpen) {
-      document.addEventListener("click", calculatePosition);
-    }
-
-    return () => {
-      document.removeEventListener("click", calculatePosition);
-    };
-  }, [isOpen]);
 
   if (!isOpen) return null;
 
