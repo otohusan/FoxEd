@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { User } from "../../../type";
+import { StudySet, User } from "../../../type";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,13 @@ type AuthContextType = {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
+  logout: () => void;
+  favoriteItems: StudySet[] | null;
+  toggleFavorite: (
+    studySet: StudySet,
+    action: "add" | "remove"
+  ) => Promise<void>;
+  setFavoriteItems: React.Dispatch<React.SetStateAction<StudySet[] | null>>;
 };
 
 type DecodedToken = {
@@ -29,6 +36,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const AuthProvider = ({ children }: AuthContextProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [favoriteItems, setFavoriteItems] = useState<StudySet[] | null>([]);
 
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
@@ -70,6 +78,13 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
           createdAt: userInfo.CreatedAt,
         };
         setUser(user);
+
+        // お気に入りの学習セットを取得
+        const favoritesResponse = await axios.get(
+          `${BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
+        );
+
+        setFavoriteItems(favoritesResponse.data);
       } catch (error) {
         console.error("Failed to fetch user", error);
       } finally {
@@ -117,6 +132,13 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       // 必要ならローカルストレージにトークンを保存
       localStorage.setItem("token", token);
 
+      // お気に入りの学習セットを取得
+      const favoritesResponse = await axios.get(
+        `${BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
+      );
+
+      setFavoriteItems(favoritesResponse.data);
+
       // ホームに遷移
       navigate("/");
     } catch (error) {
@@ -124,8 +146,78 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     }
   };
 
+  // ログアウト用の関数
+  const logout = () => {
+    if (!user) {
+      alert("ログアウト済みです");
+      return;
+    }
+    localStorage.removeItem("token");
+    setUser(null);
+    setFavoriteItems(null);
+  };
+
+  const toggleFavorite = async (
+    studySet: StudySet,
+    action: "add" | "remove"
+  ) => {
+    if (!user) {
+      alert("ログインが必要です");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("この行動は行えません");
+      return;
+    }
+
+    try {
+      // 追加の場合
+      if (action === "add") {
+        await axios.post(
+          `${BASE_BACKEND_URL}/favorites/user/${user?.ID}/studyset/${studySet.id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setFavoriteItems((prevItems) => [...(prevItems || []), studySet]);
+      }
+      // 削除の場合
+      else if (action === "remove") {
+        await axios.delete(
+          `${BASE_BACKEND_URL}/favorites/user/${user?.ID}/studyset/${studySet.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setFavoriteItems((prevItems) =>
+          (prevItems || []).filter((item) => item.id !== studySet.id)
+        );
+      }
+    } catch (error) {
+      alert("行動が失敗しました");
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, loginWithEmail }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        loading,
+        loginWithEmail,
+        logout,
+        favoriteItems,
+        toggleFavorite,
+        setFavoriteItems,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

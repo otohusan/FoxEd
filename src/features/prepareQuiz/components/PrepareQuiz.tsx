@@ -1,6 +1,6 @@
 import "../style/PrepareQuiz.css";
 import PrepareQuizMenu from "./PrepareQuizMenu";
-import { partOfSpeechTable } from "../../../assets/partOfSpeechTable";
+// import { partOfSpeechTable } from "../../../assets/partOfSpeechTable";
 // import OwnerQuizMenu from "./OwnerQuizMenu";
 
 type PrepareQuizProps = {
@@ -21,7 +21,7 @@ function PrepareQuiz({
   QuizID,
   QuizName,
   QuizAnswer,
-  QuizPartOfSpeech,
+  // QuizPartOfSpeech,
   setCurrentQuizIndex,
   QuizIndex,
   isOwner,
@@ -32,13 +32,13 @@ function PrepareQuiz({
       <div className="PrepareQuizContent">
         <div className="PrepareQuizName">{QuizName}</div>
         <div className="PrepareQuizPartOfSpeechAndAnswer">
-          <div className="PrepareQuizPartOfSpeechContainer">
+          {/* <div className="PrepareQuizPartOfSpeechContainer">
             <div className="PrepareQuizPartOfSpeech">
               {QuizPartOfSpeech
                 ? partOfSpeechTable[QuizPartOfSpeech - 1]
                 : partOfSpeechTable[7]}
             </div>
-          </div>
+          </div> */}
           <div className="PrepareQuizAnswer">{QuizAnswer}</div>
         </div>
         <div className="prepare-quiz-menus">

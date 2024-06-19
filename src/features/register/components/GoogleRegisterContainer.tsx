@@ -15,7 +15,7 @@ type DecodedToken = {
 function GoogleRegisterContainer() {
   const navigate = useNavigate();
 
-  const { setUser } = useAuth();
+  const { setUser, setFavoriteItems } = useAuth();
 
   const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
   // 取得したアクセストークンをバックエンドに送る
@@ -52,6 +52,13 @@ function GoogleRegisterContainer() {
         setUser(user);
         // 必要ならローカルストレージにトークンを保存
         localStorage.setItem("token", token);
+
+        // お気に入りの学習セットを取得
+        const favoritesResponse = await axios.get(
+          `${VITE_BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
+        );
+
+        setFavoriteItems(favoritesResponse.data);
 
         // ホームに遷移
         navigate("/");
