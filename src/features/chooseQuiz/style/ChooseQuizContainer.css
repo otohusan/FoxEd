@@ -141,18 +141,18 @@
 
 .owner-drop-menu {
   position: absolute;
-  top: 71%;
+  top: 73%;
   left: 8%;
   margin: 0;
 
   background-color: transparent;
-  border: 2px solid var(--gray-border-color);
-  border-radius: 50%;
-  display: flex;
+  border: none;
+  /* border: 2px solid var(--gray-border-color);
+  border-radius: 50%; */
+  /* display: flex;
   justify-content: center;
-  align-items: center;
   width: 30px;
-  height: 30px;
+  height: 30px; */
   cursor: pointer;
   color: var(--text-color-2);
 }
