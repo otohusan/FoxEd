@@ -148,9 +148,15 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     studySet: StudySet,
     action: "add" | "remove"
   ) => {
+    if (!user) {
+      alert("ログインが必要です");
+      return;
+    }
+
     const token = localStorage.getItem("token");
     if (!token) {
       alert("この行動は行えません");
+      return;
     }
 
     try {
