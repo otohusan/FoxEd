@@ -7,11 +7,15 @@ import axios from "axios";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import { useNavigate } from "react-router-dom";
 import FavoriteButton from "../../chooseQuiz/components/FavoriteButton";
+import { useAuth } from "../../../components/auth/useAuth";
+import LoginPrompt from "../../../components/LoginPrompt";
 
 function MainSearch() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { user } = useAuth();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState<StudySet[]>();
@@ -87,6 +91,10 @@ function MainSearch() {
             </div>
           ))}
       </div>
+
+      {!user && (
+        <LoginPrompt promptText="ログインすれば、学習セットをブックマークで保存できる" />
+      )}
     </div>
   );
 }
