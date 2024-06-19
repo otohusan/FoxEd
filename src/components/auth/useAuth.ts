@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { User } from "../../../type";
+import { StudySet, User } from "../../../type";
 import { AuthContext } from "./AuthContext";
 
 interface AuthContextType {
@@ -7,6 +7,11 @@ interface AuthContextType {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
+  favoriteItems: StudySet[];
+  toggleFavorite: (
+    studySet: StudySet,
+    action: "add" | "remove"
+  ) => Promise<void>;
 }
 
 export const useAuth = (): AuthContextType => {
