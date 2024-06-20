@@ -10,7 +10,7 @@ import {
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import CreateQuiz from "./CreateQuiz.tsx";
@@ -142,6 +142,8 @@ function PrepareQuizzes() {
     { text: "削除する", onClick: handleDeleteQuiz },
   ];
 
+  const navigate = useNavigate();
+
   const pageHeadDescription: string = `無料で『${quizFormat?.label}』をbasicな英単語帳から学べます。赤シートを有効に使って、英単語を覚えましょう。`;
   return (
     <div>
@@ -154,12 +156,17 @@ function PrepareQuizzes() {
       <Header HeaderTitle="Prepare" />
 
       <main>
-        <Link to={"/"} className="PrepareQuizBackToChooseBtnAndLabel">
+        <button
+          onClick={() => {
+            navigate(-1);
+          }}
+          className="PrepareQuizBackToChooseBtnAndLabel"
+        >
           <div className="PrepareQuizBackToChooseBtn">
             <CgArrowsExchange size={"1.5em"} />
           </div>
           <div className="PrepareQuizLabel">{quizFormat?.label}</div>
-        </Link>
+        </button>
 
         {(!quizzes || quizzes.length == 0) && <p>新しい問題を追加しよう！</p>}
 
