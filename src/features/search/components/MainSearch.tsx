@@ -104,7 +104,9 @@ function MainSearch() {
       </div>
 
       {!user && results && (
-        <LoginPrompt promptText="ログインすれば、学習セットをお気に入り登録できる" />
+        <div className="search-quiz-login-prompt-container">
+          <LoginPrompt promptText="ログインすれば、学習セットをお気に入り登録できる" />
+        </div>
       )}
     </div>
   );

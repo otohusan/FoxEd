@@ -57,7 +57,7 @@
   color: #ffd6c0cb;
   color: #ffba95cb;
   margin-left: 0.5%;
-  margin-right: 0.5%;
+  margin-right: 4%;
 
   /* この値は答えと合わせる */
   margin-bottom: 35px;
@@ -91,9 +91,10 @@
 }
 
 .PrepareQuizLabel {
+  font-size: 14px;
   cursor: pointer;
   -webkit-text-stroke: 0.5px #717171;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .prepare-quiz-menus {
