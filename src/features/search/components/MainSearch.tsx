@@ -17,8 +17,16 @@ function MainSearch() {
 
   const { user } = useAuth();
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<StudySet[]>();
+  // セッションストレージに値が存在したら、それを初期値に
+  const [searchTerm, setSearchTerm] = useState(() => {
+    const savedSearchTerm = sessionStorage.getItem("searchTerm");
+    return savedSearchTerm ? savedSearchTerm : "";
+  });
+
+  const [results, setResults] = useState<StudySet[]>(() => {
+    const savedResults = sessionStorage.getItem("searchResults");
+    return savedResults ? JSON.parse(savedResults) : [];
+  });
   const { setQuizFormat } = useQuizContext();
   const navigate = useNavigate();
 
@@ -40,6 +48,9 @@ function MainSearch() {
       }
 
       setResults(response.data);
+      // セッションストレージに割り当て
+      sessionStorage.setItem("searchResults", JSON.stringify(response.data));
+      sessionStorage.setItem("searchTerm", searchTerm);
     } catch (error) {
       console.error("Error fetching study sets:", error);
       setResults([]);
