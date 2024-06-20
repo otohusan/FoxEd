@@ -72,21 +72,28 @@
 
 .PrepareQuizBackToChooseBtnAndLabel {
   display: flex;
+  align-items: center;
   margin-top: 29%;
   margin-bottom: 7%;
   margin-left: 3%;
+  background-color: transparent;
+  border: none;
   color: #717171;
-  cursor: pointer;
   text-decoration: none;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .PrepareQuizBackToChooseBtn {
   text-align: start;
+  cursor: pointer;
   margin-right: 1%;
 }
 
 .PrepareQuizLabel {
+  cursor: pointer;
   -webkit-text-stroke: 0.5px #717171;
+  margin-bottom: 4px;
 }
 
 .prepare-quiz-menus {
