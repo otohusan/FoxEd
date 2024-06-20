@@ -163,7 +163,7 @@ function PrepareQuizzes() {
           className="PrepareQuizBackToChooseBtnAndLabel"
         >
           <div className="PrepareQuizBackToChooseBtn">
-            <CgArrowsExchange size={"1.5em"} />
+            <CgArrowsExchange size={"25px"} />
           </div>
           <div className="PrepareQuizLabel">{quizFormat?.label}</div>
         </button>
