@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { HeadDataHelmet, QuizCard } from "../../../components";
 import HorizontalScroll from "../../../components/HorizontalScroll";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
@@ -13,6 +14,12 @@ function MainVideoFlashcards() {
 
   const { quizFormat } = useQuizContext();
   const quizzes = quizFormat ? quizFormat.body : [];
+
+  useEffect(() => {
+    return () => {
+      stopVideo(); // コンポーネントがアンマウントされるときにstopVideoを呼び出す
+    };
+  }, [stopVideo]);
 
   const cardList =
     quizzes &&
