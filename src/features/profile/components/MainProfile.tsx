@@ -79,6 +79,17 @@ function MainProfile() {
             menuItems={menuItems}
           /> */}
 
+          <div className="profile-info">
+            <div className="profile-info-item">
+              <span className="profile-info-label">ユーザーID:</span>
+              <span className="profile-info-value">{user.ID}</span>
+            </div>
+            <div className="profile-info-item">
+              <span className="profile-info-label">ニックネーム:</span>
+              <span className="profile-info-value">{user.name}</span>
+            </div>
+          </div>
+
           {data && (
             <div className="ChooseQuizListTitle">あなたの学習セット</div>
           )}
