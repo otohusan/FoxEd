@@ -31,7 +31,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route
-            path="/PlayQuiz"
+            path="/VideoFlashcards"
             element={<PlayQuiz setReviewQuizzes={setReviewQuizzes} />}
           />
 
@@ -58,7 +58,7 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/ApplicationPrivacy" element={<ApplicationPrivacy />} />
-          <Route path="/VideoFlashcards" element={<VideoFlashcards />} />
+          <Route path="/PlayQuiz" element={<VideoFlashcards />} />
         </Routes>
       </Suspense>
 
