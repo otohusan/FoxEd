@@ -24,6 +24,7 @@ function MainVideoFlashcards() {
         backgroundColor="rgba(0, 0, 0, 0.1)"
         borderStyle="2px solid rgba(255, 255, 255)"
         textColor="rgb(255, 255, 255)"
+        textShadow="0px 0px 5px rgba(0, 0, 0, 0.7)"
       />
     ));
 
