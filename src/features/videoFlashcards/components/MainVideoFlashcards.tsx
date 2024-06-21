@@ -1,3 +1,6 @@
+import { QuizCard } from "../../../components";
+import HorizontalScroll from "../../../components/HorizontalScroll";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import {
   StopVideoBtn,
   StartVideoBtn,
@@ -7,6 +10,20 @@ import "../style/MainVideoFlashcards.css";
 
 function MainVideoFlashcards() {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
+
+  const { quizFormat, setCurrentQuizIndex } = useQuizContext();
+  const quizzes = quizFormat ? quizFormat.body : [];
+
+  const cardList =
+    quizzes &&
+    quizzes.map((quiz, index) => (
+      <QuizCard
+        frontElement={quiz.question}
+        backElement={quiz.answer}
+        key={index}
+      />
+    ));
+
   return (
     <div id="video-flashcards-container">
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
@@ -15,6 +32,12 @@ function MainVideoFlashcards() {
         onClick={isVideoPlaying ? stopVideo : startVideo}
       >
         {isVideoPlaying ? <StopVideoBtn /> : <StartVideoBtn />}
+      </div>
+
+      <div className="video-flashcards-card-list">
+        {quizzes && quizzes.length != 0 && (
+          <HorizontalScroll>{cardList}</HorizontalScroll>
+        )}
       </div>
     </div>
   );
