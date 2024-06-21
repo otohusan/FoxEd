@@ -1,3 +1,29 @@
+.profile-info {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-inline: 4%;
+}
+
+.profile-info-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  text-align: left; /* テキストを左揃えにする */
+}
+
+.profile-info-label {
+  color: #666;
+  font-size: 13px;
+}
+
+.profile-info-value {
+  font-weight: bold;
+  color: #333;
+  font-size: 15px;
+}
+
 .profile-login-prompt {
   margin-top: 50px;
   width: 95%;
