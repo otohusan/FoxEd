@@ -1,4 +1,4 @@
-import { QuizCard } from "../../../components";
+import { HeadDataHelmet, QuizCard } from "../../../components";
 import HorizontalScroll from "../../../components/HorizontalScroll";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import {
@@ -29,6 +29,7 @@ function MainVideoFlashcards() {
 
   return (
     <div id="video-flashcards-container">
+      <HeadDataHelmet pageTitle="ビデオフラッシュカード" />
       <video ref={videoRef} autoPlay muted playsInline id="video"></video>
       <div
         className="video-flashcards-btn"
