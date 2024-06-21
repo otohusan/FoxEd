@@ -8,6 +8,7 @@ type quizCardProps = {
   backgroundColor?: string;
   textColor?: string;
   borderStyle?: string;
+  textShadow?: string;
 };
 
 const QuizCard = (props: quizCardProps) => {
@@ -17,6 +18,7 @@ const QuizCard = (props: quizCardProps) => {
     backgroundColor = "#fcfcfc", // デフォルトの背景色
     textColor = "#333333", // デフォルトの文字色
     borderStyle = "",
+    textShadow = "",
   } = props;
 
   const [isFlipped, setIsFlipped] = useState(false);
@@ -50,9 +52,19 @@ const QuizCard = (props: quizCardProps) => {
           }}
         >
           {isFlipped ? (
-            <p className="quiz-card-back-element">{backElement}</p>
+            <p
+              className="quiz-card-back-element"
+              style={{ textShadow: textShadow }}
+            >
+              {backElement}
+            </p>
           ) : (
-            <p className="quiz-card-front-element">{frontElement}</p>
+            <p
+              className="quiz-card-front-element"
+              style={{ textShadow: textShadow }}
+            >
+              {frontElement}
+            </p>
           )}
         </div>
       </div>
