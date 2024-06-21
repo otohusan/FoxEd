@@ -11,7 +11,7 @@ import "../style/MainVideoFlashcards.css";
 function MainVideoFlashcards() {
   const { videoRef, isVideoPlaying, startVideo, stopVideo } = useVideo();
 
-  const { quizFormat, setCurrentQuizIndex } = useQuizContext();
+  const { quizFormat } = useQuizContext();
   const quizzes = quizFormat ? quizFormat.body : [];
 
   const cardList =
@@ -21,6 +21,9 @@ function MainVideoFlashcards() {
         frontElement={quiz.question}
         backElement={quiz.answer}
         key={index}
+        backgroundColor="rgba(0, 0, 0, 0.1)"
+        borderStyle="2px solid rgba(255, 255, 255)"
+        textColor="rgb(255, 255, 255)"
       />
     ));
 

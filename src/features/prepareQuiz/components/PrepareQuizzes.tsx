@@ -50,9 +50,8 @@ function PrepareQuizzes() {
     <WindowVirtualizer>
       {quizzes &&
         quizzes.map((quiz, index) => (
-          <div>
+          <div key={index}>
             <PrepareQuiz
-              key={index}
               QuizID={quiz.id}
               QuizName={quiz.question}
               QuizAnswer={quiz.answer}
