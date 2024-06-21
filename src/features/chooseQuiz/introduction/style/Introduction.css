@@ -12,6 +12,13 @@
   font-size: 1.2em;
 }
 
+.introductionBold > a {
+  color: var(--key-color-2);
+  font-size: 1em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .introductionBig {
   font-size: 1.4em;
   color: var(--key-color-2);
