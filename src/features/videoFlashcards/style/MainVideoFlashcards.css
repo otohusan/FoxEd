@@ -42,7 +42,8 @@ video {
   transform: translate(-50%, -50%);
   object-fit: cover;
   filter: brightness(100%) contrast(120%) saturate(120%);
-  background-color: rgb(41, 41, 41);
+  background-color: rgb(61, 61, 61);
+  background-color: rgb(6, 40, 84);
 }
 
 .video-flashcards-card-list {
