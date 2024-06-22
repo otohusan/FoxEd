@@ -133,6 +133,8 @@
 .quiz-action-btn-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 0 40px;
 }
 
 .quiz-action-btn {
@@ -141,13 +143,11 @@
   align-items: center;
   width: 40px;
   height: 40px;
-  margin: 0 40px;
   background-color: #f6f6f6;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
   color: #333;
 }
 
