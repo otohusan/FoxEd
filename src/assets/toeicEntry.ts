@@ -2,6 +2,8 @@ import { QuizFormat } from "../../type";
 
 export const toeicEntry: QuizFormat = {
   label: "初級",
+  created_at: "",
+  updated_at: "",
   body: [
     {
       question: "Anyway",

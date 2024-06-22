@@ -2,6 +2,8 @@ import { QuizFormat } from "../../type/index.ts";
 
 export const quizData2: QuizFormat = {
   label: "初級",
+  created_at: "",
+  updated_at: "",
   body: [
     {
       question: "Effort",
