@@ -219,14 +219,14 @@ function PrepareQuizzes() {
           <HorizontalScroll>{cardList}</HorizontalScroll>
         )}
         <div className="quiz-actions">
-          <div className="quiz-action-btn-container">
-            <button className="quiz-action-btn" onClick={shuffleQuizzes}>
+          <div className="quiz-action-btn-container" onClick={shuffleQuizzes}>
+            <button className="quiz-action-btn">
               <TiArrowShuffle size={"20px"} />
             </button>
             <span className="quiz-action-btn-label">シャッフル</span>
           </div>
-          <div className="quiz-action-btn-container">
-            <button className="quiz-action-btn" onClick={reverseQuizzes}>
+          <div className="quiz-action-btn-container" onClick={reverseQuizzes}>
+            <button className="quiz-action-btn">
               <TbCards size={"20px"} />
             </button>
             <span className="quiz-action-btn-label">反転</span>
