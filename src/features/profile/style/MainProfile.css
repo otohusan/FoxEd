@@ -14,23 +14,24 @@
 }
 
 .profile-info-label-nickname {
-  color: #666;
+  color: var(--icon-color);
   font-size: 11px;
 }
 
 .profile-info-value-nickname {
-  color: #333;
+  color: var(--text-color-2);
   font-size: 22px;
+  font-weight: 600;
 }
 
 .profile-info-label {
-  color: #666;
+  color: var(--icon-color);
   font-size: 11px;
 }
 
 .profile-info-value {
   font-weight: bold;
-  color: #333;
+  color: var(--text-color-2);
   font-size: 13px;
 }
 

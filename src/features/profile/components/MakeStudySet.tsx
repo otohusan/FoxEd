@@ -40,6 +40,8 @@ function MakeStudySet({ studySetQuantity }: MakeStudySetProps) {
         label: title,
         description: description,
         body: [],
+        created_at: "",
+        updated_at: "",
       });
 
       setTitle("");
