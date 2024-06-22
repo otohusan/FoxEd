@@ -18,8 +18,7 @@ import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 import { WindowVirtualizer } from "virtua";
 import EditQuiz from "./EditQuiz.tsx";
 import { sendQuizDelete } from "../../../api/index.tsx";
-import { TiArrowShuffle } from "react-icons/ti";
-import { TbCards } from "react-icons/tb";
+import QuizActions from "./QuizActions.tsx";
 
 function PrepareQuizzes() {
   useEffect(() => {
@@ -145,34 +144,6 @@ function PrepareQuizzes() {
 
   const navigate = useNavigate();
 
-  const shuffleQuizzes = () => {
-    const shuffled = [...quizzes].sort(() => Math.random() - 0.5);
-    setQuizFormat({
-      ...quizFormat,
-      body: shuffled,
-      label: quizFormat?.label || "", // labelがundefinedでないことを保証
-      description: quizFormat?.description || "", // descriptionがundefinedでないことを保証
-      user_id: quizFormat?.user_id || "", // user_idがundefinedでないことを保証
-      id: quizFormat?.id || "", // idがundefinedでないことを保証
-    });
-  };
-
-  const reverseQuizzes = () => {
-    const reversed = quizzes.map((quiz) => ({
-      ...quiz,
-      question: quiz.answer,
-      answer: quiz.question,
-    }));
-    setQuizFormat({
-      ...quizFormat,
-      body: reversed,
-      label: quizFormat?.label || "", // labelがundefinedでないことを保証
-      description: quizFormat?.description || "", // descriptionがundefinedでないことを保証
-      user_id: quizFormat?.user_id || "", // user_idがundefinedでないことを保証
-      id: quizFormat?.id || "", // idがundefinedでないことを保証
-    });
-  };
-
   const pageHeadDescription: string = `無料で『${quizFormat?.label}』をbasicな英単語帳から学べます。赤シートを有効に使って、英単語を覚えましょう。`;
   return (
     <div>
@@ -218,20 +189,7 @@ function PrepareQuizzes() {
         {quizzes && quizzes.length != 0 && (
           <HorizontalScroll>{cardList}</HorizontalScroll>
         )}
-        <div className="quiz-actions">
-          <div className="quiz-action-btn-container" onClick={shuffleQuizzes}>
-            <button className="quiz-action-btn">
-              <TiArrowShuffle size={"20px"} />
-            </button>
-            <span className="quiz-action-btn-label">シャッフル</span>
-          </div>
-          <div className="quiz-action-btn-container" onClick={reverseQuizzes}>
-            <button className="quiz-action-btn">
-              <TbCards size={"20px"} />
-            </button>
-            <span className="quiz-action-btn-label">反転</span>
-          </div>
-        </div>
+        <QuizActions setQuizFormat={setQuizFormat} quizFormat={quizFormat} />
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
