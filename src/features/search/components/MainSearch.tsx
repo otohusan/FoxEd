@@ -83,6 +83,8 @@ function MainSearch() {
                   label: result.title,
                   description: result.description,
                   body: result.flashcards,
+                  created_at: result.created_at,
+                  updated_at: result.updated_at,
                 });
 
                 navigate("/PrepareQuiz");
@@ -94,10 +96,12 @@ function MainSearch() {
                   label: result.title,
                   description: result.description,
                   body: result.flashcards,
+                  created_at: result.created_at,
+                  updated_at: result.updated_at,
                 }}
               />
               <div className="search-quiz-menus">
-                <FavoriteButton studySet={result} />
+                <FavoriteButton studySet={result} IconSize="25px" />
               </div>
             </div>
           ))}

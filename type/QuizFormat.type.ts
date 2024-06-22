@@ -5,5 +5,7 @@ export type QuizFormat = {
   user_id?: string;
   label: string;
   description?: string;
+  created_at: string;
+  updated_at: string;
   body: Quiz[] | Flashcard[];
 };

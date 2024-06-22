@@ -167,6 +167,8 @@ function ChooseQuiz() {
                       label: studyset.title,
                       description: studyset.description,
                       body: studyset.flashcards,
+                      created_at: studyset.created_at,
+                      updated_at: studyset.updated_at,
                     });
                     // handleOpen();
                     navigate("/PrepareQuiz");
@@ -182,10 +184,12 @@ function ChooseQuiz() {
                       label: studyset.title,
                       description: studyset.description,
                       body: studyset.flashcards,
+                      created_at: studyset.created_at,
+                      updated_at: studyset.updated_at,
                     }}
                   />
                   <div className="choose-quiz-menus">
-                    <FavoriteButton studySet={studyset} />
+                    <FavoriteButton studySet={studyset} IconSize="25px" />
                     {/* オーナーだった場合編集ボタンを追加 */}
                     {studyset.id &&
                       studyset.description &&
@@ -199,6 +203,8 @@ function ChooseQuiz() {
                               label: studyset.title,
                               description: studyset.description,
                               body: studyset.flashcards,
+                              created_at: studyset.created_at,
+                              updated_at: studyset.updated_at,
                             });
                             handleOpen(e);
                           }}
@@ -233,6 +239,8 @@ function ChooseQuiz() {
                       label: studyset.title,
                       description: studyset.description,
                       body: studyset.flashcards,
+                      created_at: studyset.created_at,
+                      updated_at: studyset.updated_at,
                     });
                     // handleOpen();
                     navigate("/PrepareQuiz");
@@ -248,10 +256,12 @@ function ChooseQuiz() {
                       label: studyset.title,
                       description: studyset.description,
                       body: studyset.flashcards,
+                      created_at: studyset.created_at,
+                      updated_at: studyset.updated_at,
                     }}
                   />
                   <div className="choose-quiz-menus">
-                    <FavoriteButton studySet={studyset} />
+                    <FavoriteButton studySet={studyset} IconSize="25px" />
                     {/* オーナーだった場合編集ボタンを追加 */}
                     {studyset.id &&
                       studyset.description &&
@@ -265,6 +275,8 @@ function ChooseQuiz() {
                               label: studyset.title,
                               description: studyset.description,
                               body: studyset.flashcards,
+                              created_at: studyset.created_at,
+                              updated_at: studyset.updated_at,
                             });
                             handleOpen(e);
                           }}

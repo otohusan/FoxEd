@@ -6,11 +6,14 @@ import "../style/FavoriteButton.css";
 
 type FavoriteButtonProps = {
   studySet: StudySet;
+  IconSize: string;
 };
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ studySet }) => {
+const FavoriteButton: React.FC<FavoriteButtonProps> = ({
+  studySet,
+  IconSize,
+}) => {
   const { favoriteItems, toggleFavorite } = useAuth();
-  const ICON_SIZE = "25px";
 
   const handleFavoriteClicked = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -26,10 +29,10 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ studySet }) => {
     <button onClick={(e) => handleFavoriteClicked(e)} className="favorite-btn">
       {isFavorited ? (
         <div className="favorite-btn-favorited">
-          <IoBookmark size={ICON_SIZE} />
+          <IoBookmark size={IconSize} />
         </div>
       ) : (
-        <IoBookmarkOutline size={ICON_SIZE} />
+        <IoBookmarkOutline size={IconSize} />
       )}
     </button>
   );

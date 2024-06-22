@@ -109,6 +109,8 @@ function MainProfile() {
                         label: studyset.title,
                         description: studyset.description,
                         body: studyset.flashcards,
+                        created_at: studyset.created_at,
+                        updated_at: studyset.updated_at,
                       });
                       navigate("/PrepareQuiz");
                       // handleOpen();
@@ -121,6 +123,8 @@ function MainProfile() {
                       quizFormat={{
                         label: studyset.title,
                         body: studyset.flashcards,
+                        created_at: studyset.created_at,
+                        updated_at: studyset.updated_at,
                       }}
                     />
 
