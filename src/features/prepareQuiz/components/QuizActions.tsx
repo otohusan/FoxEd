@@ -1,7 +1,7 @@
 import { TbCards } from "react-icons/tb";
 import { TiArrowShuffle } from "react-icons/ti";
 import { QuizFormat } from "../../../../type";
-import { GoPlus } from "react-icons/go";
+import { FiPlus } from "react-icons/fi";
 import "../style/QuizActions.css";
 
 type QuizActionsProps = {
@@ -58,7 +58,7 @@ function QuizActions({
       {isOwner && quizFormat?.id && (
         <div className="quiz-action-btn-container" onClick={openCreateQuiz}>
           <button className="quiz-action-btn">
-            <GoPlus size={"20px"} />
+            <FiPlus size={"20px"} />
           </button>
           <span className="quiz-action-btn-label">追加</span>
         </div>
