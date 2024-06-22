@@ -5,9 +5,10 @@ import { postQuiz } from "../../../api";
 
 type CreateQuizProps = {
   studySetID: string;
+  closeCreateQuiz?: () => void;
 };
 
-const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
+const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
   const { addQuiz } = useQuizContext();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -33,6 +34,10 @@ const CreateQuiz = ({ studySetID }: CreateQuizProps) => {
       // 入力欄をからに
       setAnswer("");
       setQuestion("");
+
+      if (closeCreateQuiz) {
+        closeCreateQuiz();
+      }
 
       alert("クイズを追加しました");
     } catch (error) {

@@ -1,14 +1,22 @@
 import { TbCards } from "react-icons/tb";
 import { TiArrowShuffle } from "react-icons/ti";
 import { QuizFormat } from "../../../../type";
+import { GoPlus } from "react-icons/go";
 import "../style/QuizActions.css";
 
 type QuizActionsProps = {
   setQuizFormat: React.Dispatch<React.SetStateAction<QuizFormat | null>>;
   quizFormat: QuizFormat | null;
+  openCreateQuiz: () => void;
+  isOwner: boolean;
 };
 
-function QuizActions({ setQuizFormat, quizFormat }: QuizActionsProps) {
+function QuizActions({
+  setQuizFormat,
+  quizFormat,
+  openCreateQuiz,
+  isOwner,
+}: QuizActionsProps) {
   const quizzes = quizFormat ? quizFormat.body : [];
 
   const shuffleQuizzes = () => {
@@ -47,6 +55,14 @@ function QuizActions({ setQuizFormat, quizFormat }: QuizActionsProps) {
         </button>
         <span className="quiz-action-btn-label">シャッフル</span>
       </div>
+      {isOwner && quizFormat?.id && (
+        <div className="quiz-action-btn-container" onClick={openCreateQuiz}>
+          <button className="quiz-action-btn">
+            <GoPlus size={"20px"} />
+          </button>
+          <span className="quiz-action-btn-label">追加</span>
+        </div>
+      )}
       <div className="quiz-action-btn-container">
         <button className="quiz-action-btn" onClick={reverseQuizzes}>
           <TbCards size={"20px"} />

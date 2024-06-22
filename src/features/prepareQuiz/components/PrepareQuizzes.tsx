@@ -144,6 +144,15 @@ function PrepareQuizzes() {
 
   const navigate = useNavigate();
 
+  // CreateQuiz用の状態管理
+  const [isCreatingQuiz, setIsCreatingQuiz] = useState(false);
+  const openCreateQuiz = () => {
+    setIsCreatingQuiz(true);
+  };
+  const closeCreateQuiz = () => {
+    setIsCreatingQuiz(false);
+  };
+
   const pageHeadDescription: string = `無料で『${quizFormat?.label}』をbasicな英単語帳から学べます。赤シートを有効に使って、英単語を覚えましょう。`;
   return (
     <div>
@@ -186,10 +195,34 @@ function PrepareQuizzes() {
           />
         )}
 
+        {isCreatingQuiz && quizFormat?.id && (
+          <div className="prepare-create-modal">
+            <div className="prepare-create-modal-content">
+              <CreateQuiz
+                studySetID={quizFormat?.id}
+                closeCreateQuiz={closeCreateQuiz}
+              />
+              <button
+                onClick={closeCreateQuiz}
+                className="prepare-create-modal-cancel-btn"
+              >
+                閉じる
+              </button>
+            </div>
+          </div>
+        )}
+
         {quizzes && quizzes.length != 0 && (
           <HorizontalScroll>{cardList}</HorizontalScroll>
         )}
-        <QuizActions setQuizFormat={setQuizFormat} quizFormat={quizFormat} />
+        {quizzes && quizzes.length != 0 && (
+          <QuizActions
+            setQuizFormat={setQuizFormat}
+            quizFormat={quizFormat}
+            openCreateQuiz={openCreateQuiz}
+            isOwner={isOwner}
+          />
+        )}
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
