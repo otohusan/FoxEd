@@ -35,6 +35,12 @@
   font-size: 13px;
 }
 
+.profile-message-prompt-make {
+  font-size: 18px;
+  color: var(--key-color);
+  font-weight: 700;
+}
+
 .profile-login-prompt {
   margin-top: 50px;
   width: 95%;
