@@ -29,7 +29,14 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
         }
       );
       // stateの更新
-      addQuiz({ id: flashcardID, answer: answer, question: question });
+      addQuiz({
+        id: flashcardID,
+        answer: answer,
+        question: question,
+        study_set_id: studySetID,
+        updated_at: "",
+        created_at: "",
+      });
 
       // 入力欄をからに
       setAnswer("");

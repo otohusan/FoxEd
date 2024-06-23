@@ -7,6 +7,7 @@ type EditQuizProps = {
   quizId: string;
   prevQuestion: string;
   prevAnswer: string;
+  studySetID: string | undefined;
   onCancel: () => void;
 };
 
@@ -15,6 +16,7 @@ const EditQuiz: React.FC<EditQuizProps> = ({
   onCancel,
   prevQuestion,
   prevAnswer,
+  studySetID,
 }) => {
   const [question, setQuestion] = useState(prevQuestion);
   const [answer, setAnswer] = useState(prevAnswer);
@@ -40,7 +42,14 @@ const EditQuiz: React.FC<EditQuizProps> = ({
         studySetID: quizFormat.id,
       });
       // stateの更新
-      updateQuiz({ id: quizId, question: question, answer: answer });
+      updateQuiz({
+        id: quizId,
+        question: question,
+        answer: answer,
+        study_set_id: studySetID,
+        updated_at: "",
+        created_at: "",
+      });
       onCancel();
     } catch (error) {
       alert(error);

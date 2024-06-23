@@ -1,6 +1,6 @@
 import { TbCards } from "react-icons/tb";
 import { TiArrowShuffle } from "react-icons/ti";
-import { QuizFormat } from "../../../../type";
+import { Flashcard, QuizFormat } from "../../../../type";
 import { FiPlus } from "react-icons/fi";
 import "../style/QuizActions.css";
 import FavoriteButton from "../../chooseQuiz/components/FavoriteButton";
@@ -19,6 +19,22 @@ function QuizActions({
   isOwner,
 }: QuizActionsProps) {
   const quizzes = quizFormat ? quizFormat.body : [];
+
+  // WARN: 簡易的にガード型を作成してる
+  // WARN: undefinedを使う方が良いとも見たけど、理解しきれてない
+  function isFlashcardArray(arr: any[]): arr is Flashcard[] {
+    return arr.every(
+      (item) =>
+        typeof item === "object" &&
+        item !== null &&
+        typeof item.id === "string" &&
+        typeof item.study_set_id === "string" &&
+        typeof item.question === "string" &&
+        typeof item.answer === "string" &&
+        typeof item.created_at === "string" &&
+        typeof item.updated_at === "string"
+    );
+  }
 
   const shuffleQuizzes = () => {
     const shuffled = [...quizzes].sort(() => Math.random() - 0.5);
@@ -54,31 +70,25 @@ function QuizActions({
 
   return (
     <div className="quiz-actions">
-      {
-        // NOTICE:
-        // ガード型を使ったら、クイズ更新時にupdateとcreateがなくて表示されなくなった
-        // その問題対処にquizFormat.idが存在するかしないかで判定
-        // ここで警告出るけど、実際は問題が起きる行動は起きないはず
-        quizFormat && quizFormat.id && (
-          <div className="quiz-action-btn-container">
-            <div className="quiz-action-btn">
-              <FavoriteButton
-                studySet={{
-                  id: quizFormat?.id || "",
-                  user_id: quizFormat?.user_id || "",
-                  title: quizFormat?.label,
-                  description: quizFormat?.description || "",
-                  created_at: quizFormat?.created_at,
-                  updated_at: quizFormat?.updated_at,
-                  flashcards: quizFormat?.body || "",
-                }}
-                IconSize="20px"
-              />
-            </div>
-            <span className="quiz-action-btn-label">お気に入り</span>
+      {quizFormat && isFlashcardArray(quizFormat.body) && (
+        <div className="quiz-action-btn-container">
+          <div className="quiz-action-btn">
+            <FavoriteButton
+              studySet={{
+                id: quizFormat?.id || "",
+                user_id: quizFormat?.user_id || "",
+                title: quizFormat?.label,
+                description: quizFormat?.description || "",
+                created_at: quizFormat?.created_at,
+                updated_at: quizFormat?.updated_at,
+                flashcards: quizFormat?.body || "",
+              }}
+              IconSize="20px"
+            />
           </div>
-        )
-      }
+          <span className="quiz-action-btn-label">お気に入り</span>
+        </div>
+      )}
       {isOwner && quizFormat?.id && (
         <div className="quiz-action-btn-container" onClick={openCreateQuiz}>
           <button className="quiz-action-btn">
