@@ -72,7 +72,6 @@ function MainProfile() {
       {/* ログインしている場合に学習セットを表示 */}
       {user && (
         <>
-          {!data && <p>自分だけの学習セット作ってみよう！</p>}
           {/* <PopupMenu
             isOpen={isSelectModeOpen}
             onClose={handleClose}
@@ -89,6 +88,12 @@ function MainProfile() {
               <span className="profile-info-value">{user.ID}</span>
             </div>
           </div>
+
+          {!data && (
+            <p className="profile-message-prompt-make">
+              自分だけの学習セット作ってみよう！
+            </p>
+          )}
 
           {data && (
             <div className="ChooseQuizListTitle">あなたの学習セット</div>
