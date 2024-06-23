@@ -191,6 +191,7 @@ function PrepareQuizzes() {
             quizId={quizData.quizId}
             prevQuestion={quizData.prevQuestion}
             prevAnswer={quizData.prevAnswer}
+            studySetID={quizFormat?.id}
             onCancel={handleCancelEdit}
           />
         )}

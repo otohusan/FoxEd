@@ -68,6 +68,7 @@ const OwnerQuizMenu: React.FC<OwnerQuizMenuProps> = ({
           prevQuestion={prevQuestion}
           prevAnswer={prevAnswer}
           onCancel={handleCancelEdit}
+          studySetID="0"
         />
       )}
     </div>
