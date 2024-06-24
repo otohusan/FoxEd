@@ -19,16 +19,20 @@ export const QuizContext = createContext<QuizContextType | undefined>(
 
 export const QuizProvider = ({ children }: { children: ReactNode }) => {
   const [quizFormat, setQuizFormat] = useState<QuizFormat | null>(() => {
+    if (typeof window === "undefined") {
+      return quizData2;
+    }
     const storedQuizFormat = localStorage.getItem("quizFormat");
     return storedQuizFormat ? JSON.parse(storedQuizFormat) : quizData2;
   });
-  const [currentQuizIndex, setCurrentQuizIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (quizFormat !== null) {
+    if (quizFormat) {
       localStorage.setItem("quizFormat", JSON.stringify(quizFormat));
     }
   }, [quizFormat]);
+
+  const [currentQuizIndex, setCurrentQuizIndex] = useState<number>(0);
 
   const addQuiz = (quiz: Quiz) => {
     if (quizFormat) {
