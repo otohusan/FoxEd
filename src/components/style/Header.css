@@ -40,6 +40,7 @@
 
 .HeaderTitle {
   color: var(--main-color-2);
+  color: #f6f6f6;
   font-size: 2.2em;
   margin-left: 0.8em;
   font-family: "DM Serif Text", serif;

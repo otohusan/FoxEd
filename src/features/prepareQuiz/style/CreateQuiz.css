@@ -3,7 +3,8 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 5px;
-  color: var(--text-color);
+  color: var(--text-color-2);
+  background-color: var(--background-color);
 }
 
 .create-quiz-container h1 {
@@ -33,13 +34,15 @@
 .create-quiz-container textarea,
 .create-quiz-container input {
   width: 100%; /* テキストエリアと入力フィールドを親コンテナの幅に合わせる */
+  background-color: var(--main-color);
   margin-bottom: 15px;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 2px solid var(--gray-border-color);
   border-radius: 5px;
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
   /* 16未満だとスマホの入力の時ズームされてしまう */
   font-size: 16px;
+  color: var(--text-color-2);
 }
 
 .create-quiz-container button {

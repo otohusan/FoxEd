@@ -9,7 +9,10 @@
 
   --key-color: #fa9a3f;
   --key-color-2: #ffa24c;
+  --key-color-2-5: #ffba95cb;
   --key-color-3: #fdecd4;
+
+  --favorite-color: #fa9a3f;
 
   --text-color: #151515;
   --text-color-2: #333333;
@@ -19,6 +22,7 @@
   --icon-color: #949494;
 
   --gray-border-color: #f0eceb;
+  --quiz-border-color: rgb(245, 245, 245);
 
   --background-color: #fbfaf9;
 
@@ -32,16 +36,22 @@
   --background-color: #2e2620;
 
   --main-color: #413933;
-  --main-color: #eee9e4;
+  --main-color-2: #827d78;
 
-  --text-color: #bbb5b5;
+  --text-color: #efefef;
+  --text-color-2: #eae9e9;
+  --text-color-4: #dcd8d8;
 
   --key-color: #fa993fd5;
   --key-color-2: #fa9a3f;
+  --key-color-2-5: #59473c;
+
+  --favorite-color: #ffb977;
 
   --gray-border-color: #766d6d;
+  --quiz-border-color: rgb(68, 60, 54);
 
-  --icon-color: #867e7e;
+  --icon-color: #c6beb8;
 }
 
 body {

@@ -23,18 +23,18 @@
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: #f6f6f6;
+  background-color: var(--main-color-2);
   border: none;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  color: #333;
+  color: var(--text-color-2);
 }
 
 .quiz-action-btn-label {
   margin-top: 5px;
   font-size: 10px;
-  color: #333;
+  color: var(--text-color-2);
   text-align: center; /* 追加: テキストの中央揃え */
 }
 

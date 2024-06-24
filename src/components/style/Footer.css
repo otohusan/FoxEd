@@ -1,5 +1,5 @@
 .Footer {
-  color: var(--main-color);
+  color: #f6f6f6;
   background-color: var(--key-color);
   border-radius: 3px;
   padding-top: 5vh;
@@ -13,7 +13,7 @@
 }
 
 .FooterLink {
-  color: var(--main-color);
+  color: #f6f6f6;
   cursor: pointer;
   margin-top: 6%;
   margin-bottom: 6%;
@@ -24,7 +24,7 @@
 }
 
 .BackToTop {
-  color: var(--main-color);
+  color: #f6f6f6;
   font-weight: 600;
   cursor: pointer;
   margin-bottom: 6%;
