@@ -1,0 +1,56 @@
+.app-settings {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--main-color);
+  color: var(--text-color);
+  margin-top: 100px;
+}
+
+.app-settings form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--gray-border-color);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.app-settings button {
+  background-color: var(--key-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 15px;
+}
+
+.app-settings button:hover:not(:disabled) {
+  background-color: var(--key-color-2);
+}
+
+.app-settings button:disabled {
+  background-color: var(--icon-color);
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.update-message {
+  color: green;
+  margin-bottom: 10px;
+}
