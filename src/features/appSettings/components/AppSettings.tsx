@@ -1,17 +1,32 @@
 import React, { useState, useMemo } from "react";
-
+import axios from "axios";
 import "../style/AppSettings.css";
 import { Header } from "../../../components";
 import { checkUsernameExists } from "../../../api";
 import { useAuth } from "../../../components/auth/useAuth";
 import LoginPrompt from "../../../components/LoginPrompt";
 
+const updateUserName = async (userID: string, name: string, token: string) => {
+  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+  const response = await axios.put(
+    `${BASE_BACKEND_URL}/users/${userID}`,
+    { name },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
+};
+
 function AppSettings() {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isUsernameExist, setIsUsernameExist] = useState(false);
 
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  const token = localStorage.getItem("token");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +40,12 @@ function AppSettings() {
         return;
       }
       // ここで設定を保存する処理を実装
-      // 例: await updateUserName(name);
+      if (user && token) {
+        await updateUserName(user.ID, name, token);
+        setUser({ ...user, name: name });
+      } else {
+        alert("ユーザー情報が取得できませんでした");
+      }
 
       alert("更新が完了しました");
     } catch (error: unknown) {
