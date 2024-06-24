@@ -1,19 +1,24 @@
 .app-settings {
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
   background-color: var(--main-color);
   color: var(--text-color);
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .app-settings form {
+  width: 80%; /* 親要素の幅に合わせる */
+  max-width: 500px; /* 最大幅を設定 */
   display: flex;
   flex-direction: column;
 }
 
 .form-group {
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .form-group input {
@@ -22,9 +27,11 @@
   border: 1px solid var(--gray-border-color);
   border-radius: 4px;
   font-size: 16px;
+  box-sizing: border-box; /* パディングを含めた幅を計算 */
 }
 
 .app-settings button {
+  width: 100%;
   background-color: var(--key-color);
   color: white;
   border: none;

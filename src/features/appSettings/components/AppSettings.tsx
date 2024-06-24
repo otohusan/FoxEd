@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 
 import "../style/AppSettings.css";
 import { Header } from "../../../components";
+import { checkUsernameExists } from "../../../api";
 
 function AppSettings() {
   const [name, setName] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [isUpdated, setIsUpdated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isUsernameExist, setIsUsernameExist] = useState(false);
 
@@ -14,26 +13,26 @@ function AppSettings() {
     e.preventDefault();
     setIsLoading(true);
     try {
+      // 名前の重複チェック
+      const usernameExists = await checkUsernameExists(name);
+      if (usernameExists) {
+        setIsUsernameExist(true);
+        alert("このユーザー名は既に使用されています");
+        return;
+      }
       // ここで設定を保存する処理を実装
       // 例: await updateUserName(name);
-      console.log("設定を保存:", { name });
-      setIsUpdated(true);
+
+      alert("更新が完了しました");
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        if (error.message.includes("ユーザー名")) {
-          setIsUsernameExist(true);
-        }
-      } else {
-        console.error("Unexpected error:", error);
-      }
+      alert("更新に失敗しました");
     } finally {
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    setIsFormValid(name !== "");
-  }, [name]);
+  // stateに変化がある度に確認
+  const isFormValid = useMemo(() => name !== "", [name]);
 
   if (isLoading) {
     return <div>Loading...</div>; // またはLoadingコンポーネントを使用
@@ -42,33 +41,28 @@ function AppSettings() {
   return (
     <div className="app-settings">
       <Header HeaderTitle="Settings" />
-      {isUpdated && <p className="update-message">設定が更新されました！</p>}
-      {!isUpdated && (
-        <form onSubmit={handleSubmit}>
-          {isUsernameExist && (
-            <p className="error-message">
-              このユーザー名は既に使用されています
-            </p>
-          )}
-          <div className="form-group">
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                setIsUsernameExist(false);
-              }}
-              required
-              placeholder="名前を入力"
-              autoComplete="username"
-            />
-          </div>
-          <button type="submit" disabled={!isFormValid}>
-            設定を保存
-          </button>
-        </form>
-      )}
+      <form onSubmit={handleSubmit}>
+        {isUsernameExist && (
+          <p className="error-message">このユーザー名は既に使用されています</p>
+        )}
+        <div className="form-group">
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              setIsUsernameExist(false);
+            }}
+            required
+            placeholder="名前を入力"
+            autoComplete="username"
+          />
+        </div>
+        <button type="submit" disabled={!isFormValid}>
+          設定を保存
+        </button>
+      </form>
     </div>
   );
 }
