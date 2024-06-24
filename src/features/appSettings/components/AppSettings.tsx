@@ -5,6 +5,7 @@ import { Header } from "../../../components";
 import { checkUsernameExists } from "../../../api";
 import { useAuth } from "../../../components/auth/useAuth";
 import LoginPrompt from "../../../components/LoginPrompt";
+import DarkModeToggle from "../../../components/DarkModeToggle";
 
 const updateUserName = async (userID: string, name: string, token: string) => {
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -39,6 +40,7 @@ function AppSettings() {
         alert("このユーザー名は既に使用されています");
         return;
       }
+
       // ここで設定を保存する処理を実装
       if (user && token) {
         await updateUserName(user.ID, name, token);
@@ -95,6 +97,7 @@ function AppSettings() {
           設定を保存
         </button>
       </form>
+      <DarkModeToggle />
     </div>
   );
 }
