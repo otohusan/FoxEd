@@ -4,7 +4,7 @@
   max-width: 800px;
   line-height: 1.6;
   font-family: "Arial", sans-serif;
-  color: #333;
+  color: var(--text-color-3);
   text-align: left; /* 文字を左揃えにする */
   margin-top: 50px;
 }
@@ -12,7 +12,7 @@
 .privacy-content > h1 {
   font-size: 1.3em;
   margin-bottom: 20px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid var(--gray-border-color);
   padding-bottom: 10px;
 }
 
@@ -20,7 +20,7 @@
   font-size: 1.2em;
   margin-top: 40px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--gray-border-color);
   padding-bottom: 5px;
 }
 
