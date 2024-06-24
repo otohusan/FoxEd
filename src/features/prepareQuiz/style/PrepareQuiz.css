@@ -156,3 +156,7 @@
   max-width: 600px;
   color: var(--text-color-2);
 }
+
+.prompt-make-user-create-quiz {
+  color: var(--text-color-2);
+}

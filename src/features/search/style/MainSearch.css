@@ -13,8 +13,15 @@
   width: 60%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 2px solid var(--gray-border-color);
   border-radius: 4px;
+  background-color: var(--main-color);
+  color: var(--text-color-2);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-color);
+  opacity: 0.54; /* 不透明度を調整（デフォルトは0.54） */
 }
 
 .search-bar button {
@@ -24,7 +31,7 @@
   cursor: pointer;
   border: none;
   background-color: var(--key-color);
-  color: var(--main-color);
+  color: var(--text-color);
   border-radius: 4px;
 }
 
@@ -36,6 +43,7 @@
   margin: 10px 7% 20px 0%;
   margin-bottom: 15px; /* 各要素の下に15pxのマージンを追加 */
   position: relative;
+  color: var(--text-color);
 }
 
 .search-quiz-menus {

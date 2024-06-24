@@ -177,7 +177,11 @@ function PrepareQuizzes() {
           <div className="PrepareQuizLabel">{quizFormat?.label}</div>
         </button>
 
-        {(!quizzes || quizzes.length == 0) && <p>新しい問題を追加しよう！</p>}
+        {(!quizzes || quizzes.length == 0) && (
+          <p className="prompt-make-user-create-quiz">
+            新しい問題を追加しよう！
+          </p>
+        )}
 
         <PopupMenu
           isOpen={isSelectModeOpen}
