@@ -61,8 +61,11 @@ function Header({ HeaderTitle }: HeaderProps) {
       <div className={`HeaderTitle ${isMenuOpen ? "MenuOpen" : ""}`}>
         {HeaderTitle}
       </div>
-      <MenuBar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
-      <DarkModeToggle />
+
+      <div className="header-actions">
+        <DarkModeToggle />
+        <MenuBar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+      </div>
     </header>
   );
 }
