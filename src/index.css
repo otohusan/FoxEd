@@ -20,6 +20,7 @@
 
   --gray-border-color: #f0eceb;
 
+  --background-color: #e8e1db;
   --background-color: #fbfaf9;
 
   font-synthesis: none;
@@ -29,12 +30,13 @@
 }
 
 .dark-mode {
-  --main-color: #1a1a1a;
-  --text-color: #ffffff;
-  --key-color: #ffa24c;
+  --main-color: #413933;
+  --text-color: #bbb5b5;
+  --key-color: #fa993fd5;
   --key-color-2: #fa9a3f;
-  --gray-border-color: #333333;
-  --background-color: #121212;
+  --gray-border-color: #766d6d;
+  --icon-color: #867e7e;
+  --background-color: #2e2620;
 }
 
 body {
