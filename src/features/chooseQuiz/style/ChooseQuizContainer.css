@@ -1,5 +1,5 @@
 .ChooseTopTitle {
-  color: var(--key-color-2);
+  color: var(--text-key-color);
   font-weight: 600;
   text-align: start;
   margin-top: 80px;
@@ -8,7 +8,7 @@
 }
 
 .hr-line {
-  border-top: 5px solid var(--key-color-2); /* 上辺に黒色の1pxの線を引く */
+  border-top: 5px solid var(--text-key-color); /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
   margin-bottom: 40px;
   margin-left: 1.5vw;
