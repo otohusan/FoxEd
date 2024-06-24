@@ -3,11 +3,15 @@ import React, { useState, useMemo } from "react";
 import "../style/AppSettings.css";
 import { Header } from "../../../components";
 import { checkUsernameExists } from "../../../api";
+import { useAuth } from "../../../components/auth/useAuth";
+import LoginPrompt from "../../../components/LoginPrompt";
 
 function AppSettings() {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isUsernameExist, setIsUsernameExist] = useState(false);
+
+  const { user } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +37,14 @@ function AppSettings() {
 
   // stateに変化がある度に確認
   const isFormValid = useMemo(() => name !== "", [name]);
+
+  if (!user) {
+    return (
+      <div className="settings-login-prompt">
+        <LoginPrompt promptText="自作の学習セットを作ってみよう" />
+      </div>
+    );
+  }
 
   if (isLoading) {
     return <div>Loading...</div>; // またはLoadingコンポーネントを使用
