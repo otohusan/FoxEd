@@ -14,6 +14,7 @@
 
   --favorite-color: #fa9a3f;
   --text-key-color: #fa9a3f;
+  --footer-color: #f59e46;
 
   --text-color: #151515;
   --text-color-2: #333333;
@@ -26,6 +27,8 @@
   --quiz-border-color: rgb(245, 245, 245);
 
   --background-color: #fbfaf9;
+
+  --image-dark-filter: brightness(1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -51,11 +54,14 @@
 
   --favorite-color: #ffb977;
   --text-key-color: #e6ac76;
+  --footer-color: #413933;
 
   --gray-border-color: #766d6d;
   --quiz-border-color: rgb(68, 60, 54);
 
   --icon-color: #c6beb8;
+
+  --image-dark-filter: brightness(0.9);
 }
 
 body {
