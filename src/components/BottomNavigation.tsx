@@ -6,7 +6,7 @@ import { BsPerson } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import "./style/BottomNavigation.css";
 import { useNavigate } from "react-router-dom";
-import { useDarkMode } from "../hooks";
+import { useColorModeContext } from "./colorMode/useColorModeContext";
 
 // urlの中のページ部分を返す関数
 // エラーの場合は"/"を返すとホームにページがあると認識してしまう
@@ -84,7 +84,7 @@ const BottomNavigation = () => {
     onClick();
   };
 
-  const [isDarkMode] = useDarkMode(); // ダークモードの状態を取得
+  const { isDarkMode } = useColorModeContext(); // ダークモードの状態を取得
 
   const selectedIconColor = isDarkMode ? "#e8e1db" : "#f67a27";
   const selectedTextColor = isDarkMode ? "#e8e1db" : "#ff802b";

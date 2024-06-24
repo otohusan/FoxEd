@@ -42,6 +42,8 @@
   box-shadow: 0 3px 10px 5px rgba(131, 116, 94, 0.1);
   transition: box-shadow 0.3s ease-in-out;
 
+  border: 2px solid var(--gray-border-color);
+
   overflow-y: scroll;
 }
 

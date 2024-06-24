@@ -20,7 +20,6 @@
 
   --gray-border-color: #f0eceb;
 
-  --background-color: #e8e1db;
   --background-color: #fbfaf9;
 
   font-synthesis: none;
@@ -30,13 +29,19 @@
 }
 
 .dark-mode {
+  --background-color: #2e2620;
+
   --main-color: #413933;
+  --main-color: #eee9e4;
+
   --text-color: #bbb5b5;
+
   --key-color: #fa993fd5;
   --key-color-2: #fa9a3f;
+
   --gray-border-color: #766d6d;
+
   --icon-color: #867e7e;
-  --background-color: #2e2620;
 }
 
 body {
