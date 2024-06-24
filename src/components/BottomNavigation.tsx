@@ -6,6 +6,7 @@ import { BsPerson } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import "./style/BottomNavigation.css";
 import { useNavigate } from "react-router-dom";
+import { useColorModeContext } from "./colorMode/useColorModeContext";
 
 // urlの中のページ部分を返す関数
 // エラーの場合は"/"を返すとホームにページがあると認識してしまう
@@ -78,13 +79,17 @@ const BottomNavigation = () => {
     },
   ];
 
-  const selectedIconColor = "#f67a27";
-  const selectedTextColor = "#ff802b";
-
   // クリックされると渡されている関数を実行
   const handleClick = (onClick: () => void) => {
     onClick();
   };
+
+  const { isDarkMode } = useColorModeContext(); // ダークモードの状態を取得
+
+  const selectedIconColor = isDarkMode ? "#e8e1db" : "#f67a27";
+  const selectedTextColor = isDarkMode ? "#e8e1db" : "#ff802b";
+  const iconColor = isDarkMode ? "#afa397" : "#838383";
+  const textColor = isDarkMode ? "#afa397" : "#838383";
 
   return (
     <nav
@@ -104,12 +109,12 @@ const BottomNavigation = () => {
                 className: `nav-icon ${
                   item.id === "/Search" ? "search-icon" : ""
                 }`,
-                color: pageSegment === item.id ? selectedIconColor : "#838383",
+                color: pageSegment === item.id ? selectedIconColor : iconColor,
               })}
             <span
               className="nav-text"
               style={{
-                color: pageSegment === item.id ? selectedTextColor : "#6e6e6e",
+                color: pageSegment === item.id ? selectedTextColor : textColor,
               }}
             >
               {item.text}

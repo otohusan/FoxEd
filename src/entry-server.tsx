@@ -5,6 +5,7 @@ import App from "./App";
 import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "./components/auth/AuthContext.tsx";
 import { QuizProvider } from "./components/quiz/QuizContext.tsx";
+import { ColorModeProvider } from "./components/colorMode/ColorModeContext.tsx";
 
 export async function render(url: string | Partial<Location<any>>) {
   const helmetContext: any = {};
@@ -14,7 +15,9 @@ export async function render(url: string | Partial<Location<any>>) {
       <StaticRouter location={url}>
         <QuizProvider>
           <AuthProvider>
-            <App />
+            <ColorModeProvider>
+              <App />
+            </ColorModeProvider>
           </AuthProvider>
         </QuizProvider>
       </StaticRouter>

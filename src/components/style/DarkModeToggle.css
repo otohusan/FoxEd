@@ -1,0 +1,9 @@
+/* DarkModeToggle.css */
+.dark-mode-toggle {
+  background-color: transparent;
+  border: none;
+  color: #efefef;
+  position: absolute;
+  right: 16%;
+  top: 25%;
+}

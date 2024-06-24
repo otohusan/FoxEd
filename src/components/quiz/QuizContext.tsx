@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { Quiz } from "../../../type/index";
 import { quizData2 } from "../../assets/quizData2";
 import { QuizFormat } from "../../../type/index";
@@ -18,8 +18,17 @@ export const QuizContext = createContext<QuizContextType | undefined>(
 );
 
 export const QuizProvider = ({ children }: { children: ReactNode }) => {
-  const [quizFormat, setQuizFormat] = useState<QuizFormat | null>(quizData2);
+  const [quizFormat, setQuizFormat] = useState<QuizFormat | null>(() => {
+    const storedQuizFormat = localStorage.getItem("quizFormat");
+    return storedQuizFormat ? JSON.parse(storedQuizFormat) : quizData2;
+  });
   const [currentQuizIndex, setCurrentQuizIndex] = useState<number>(0);
+
+  useEffect(() => {
+    if (quizFormat !== null) {
+      localStorage.setItem("quizFormat", JSON.stringify(quizFormat));
+    }
+  }, [quizFormat]);
 
   const addQuiz = (quiz: Quiz) => {
     if (quizFormat) {

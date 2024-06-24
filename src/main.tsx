@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "./components/auth/AuthContext.tsx";
 import { QuizProvider } from "./components/quiz/QuizContext.tsx";
+import { ColorModeProvider } from "./components/colorMode/ColorModeContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     >
       <QuizProvider>
         <AuthProvider>
-          <App />
+          <ColorModeProvider>
+            <App />
+          </ColorModeProvider>
         </AuthProvider>
       </QuizProvider>
     </BrowserRouter>

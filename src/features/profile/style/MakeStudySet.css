@@ -35,11 +35,13 @@
   width: 100%; /* テキストエリアと入力フィールドを親コンテナの幅に合わせる */
   margin-bottom: 15px;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-border-color);
   border-radius: 5px;
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
   /* 16未満だとスマホの入力の時ズームされてしまう */
   font-size: 16px;
+  background-color: var(--main-color);
+  color: var(--text-color-2);
 }
 
 .make-study-set-container button {

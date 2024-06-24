@@ -9,7 +9,7 @@ type InputFieldProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
-  autocomplete: string;
+  autocomplete?: string;
   placeholder?: string;
 };
 

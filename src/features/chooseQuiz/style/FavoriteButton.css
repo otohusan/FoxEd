@@ -1,7 +1,7 @@
 .favorite-btn {
   background-color: transparent;
   border: none;
-  color: var(--key-color);
+  color: var(--favorite-color);
   cursor: pointer;
   margin-top: 4px;
 }
