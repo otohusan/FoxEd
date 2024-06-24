@@ -11,9 +11,12 @@ export const ColorModeContext = createContext<ColorModeContextType | undefined>(
 );
 
 export const ColorModeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    () => localStorage.getItem("theme") === "dark"
-  );
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    return localStorage.getItem("theme") === "dark";
+  });
 
   useEffect(() => {
     const root = document.documentElement;
