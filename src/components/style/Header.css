@@ -7,7 +7,7 @@
   transform: translate(-50%, 0%);
   display: flex; /* Flexboxを有効化 */
   align-items: center; /* 縦方向の中央揃え */
-  justify-content: flex-start; /* 水平方向の左端揃え */
+  justify-content: space-between; /* 水平方向の左端揃え */
   z-index: 2;
 
   /* ここから試し */
@@ -41,15 +41,24 @@
 .HeaderTitle {
   color: var(--main-color-2);
   color: #f6f6f6;
-  font-size: 2.2em;
-  margin-left: 0.8em;
   font-family: "DM Serif Text", serif;
   font-weight: 700;
 
   /* ここから試し */
   font-size: 1.5em;
+  margin-left: 10px;
 }
 
 .HeaderTitle.MenuOpen {
   color: transparent;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.header-actions button {
+  margin-right: 15px;
+  margin-top: 5px;
 }
