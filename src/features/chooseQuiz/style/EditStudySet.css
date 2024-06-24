@@ -46,12 +46,14 @@
 }
 
 .edit-study-set-each-content > textarea {
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-border-color);
   border-radius: 5px;
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
   padding: 2%;
   text-align: left; /* テキストエリアのテキストを左揃えにする */
   font-size: 16px;
+  background-color: var(--main-color);
+  color: var(--text-color-2);
 }
 
 .edit-study-set-content > button {
@@ -63,6 +65,7 @@
   align-self: center; /* ボタンを中央に揃える */
   width: 100%;
   color: var(--text-color-2);
+  background-color: var(--main-color-2);
 }
 
 .edit-study-set-content .saveBtn {
