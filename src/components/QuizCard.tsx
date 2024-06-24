@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useElementOnScreen } from "../hooks";
 import "./style/quizCard.css";
+import { useColorModeContext } from "./colorMode/useColorModeContext";
 
 type quizCardProps = {
   frontElement: string;
@@ -12,11 +13,12 @@ type quizCardProps = {
 };
 
 const QuizCard = (props: quizCardProps) => {
+  const { isDarkMode } = useColorModeContext();
   const {
     frontElement,
     backElement,
-    backgroundColor = "#fcfcfc", // デフォルトの背景色
-    textColor = "#333333", // デフォルトの文字色
+    backgroundColor = isDarkMode ? "#635952" : "#fcfcfc", // デフォルトの背景色
+    textColor = isDarkMode ? "#eee9e4" : "#333333", // デフォルトの文字色
     borderStyle = "",
     textShadow = "",
   } = props;

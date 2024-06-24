@@ -1,6 +1,6 @@
 .MenuBar {
   position: absolute;
-  top: 28%;
+  top: 25%;
   cursor: pointer;
 
   background-color: transparent;
@@ -12,7 +12,7 @@
 
   /* ここから試し */
   right: 6%;
-  color: var(--main-color-2);
+  color: #f6f6f6;
 }
 
 .MenuContainer {

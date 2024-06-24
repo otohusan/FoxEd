@@ -24,7 +24,7 @@
   width: 15%;
   max-width: 150px;
   height: 35px;
-  background-color: #ff8d23;
+  background-color: var(--key-color);
   border-radius: 10px 0px 0 10px;
   display: flex;
   align-items: center;

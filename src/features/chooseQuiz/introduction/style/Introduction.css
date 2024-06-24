@@ -8,20 +8,23 @@
 }
 
 .introductionBold {
-  color: var(--key-color-2);
+  /* color: var(--text-key-color); */
+  background: linear-gradient(transparent 85%, rgb(254, 188, 96) 40%);
   font-size: 1.2em;
 }
 
 .introductionBold > a {
-  color: var(--key-color-2);
+  color: var(--text-color-3);
   font-size: 1em;
   text-decoration: none;
+  background: linear-gradient(transparent 85%, rgb(254, 188, 96) 40%);
   cursor: pointer;
 }
 
 .introductionBig {
   font-size: 1.4em;
-  color: var(--key-color-2);
+  background: linear-gradient(transparent 87%, rgb(254, 188, 96) 40%);
+  /* color: var(--text-key-color); */
 }
 
 .introductionContainer {
@@ -58,6 +61,7 @@
   display: block;
   max-width: 100%;
   height: auto;
+  filter: var(--image-dark-filter);
 }
 
 @media (max-width: 500px) {

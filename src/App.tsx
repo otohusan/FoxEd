@@ -17,6 +17,7 @@ const Register = lazy(() => import("./pages/Register"));
 const Search = lazy(() => import("./pages/Search"));
 const ApplicationPrivacy = lazy(() => import("./pages/ApplicationPrivacy"));
 const VideoFlashcards = lazy(() => import("./pages/VideoFlashcards.tsx"));
+const Settings = lazy(() => import("./pages/Settings.tsx"));
 
 function App() {
   // 復習が必要な問題を数字で管理する、そのために問題を解くページには更新関数を与えてる
@@ -59,6 +60,7 @@ function App() {
           <Route path="/Search" element={<Search />} />
           <Route path="/ApplicationPrivacy" element={<ApplicationPrivacy />} />
           <Route path="/PlayQuiz" element={<VideoFlashcards />} />
+          <Route path="/Settings" element={<Settings />} />
         </Routes>
       </Suspense>
 

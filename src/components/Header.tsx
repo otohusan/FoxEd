@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style/Header.css";
 import { MenuBar } from ".";
+import DarkModeToggle from "./DarkModeToggle";
 
 type HeaderProps = {
   HeaderTitle: string;
@@ -61,6 +62,7 @@ function Header({ HeaderTitle }: HeaderProps) {
         {HeaderTitle}
       </div>
       <MenuBar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+      <DarkModeToggle />
     </header>
   );
 }

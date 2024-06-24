@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
 import { AuthProvider } from "./components/auth/AuthContext";
 import { QuizProvider } from "./components/quiz/QuizContext";
+import { ColorModeProvider } from "./components/colorMode/ColorModeContext";
 
 const container = document.getElementById("root");
 if (container) {
@@ -18,7 +19,9 @@ if (container) {
       >
         <QuizProvider>
           <AuthProvider>
-            <App />
+            <ColorModeProvider>
+              <App />
+            </ColorModeProvider>
           </AuthProvider>
         </QuizProvider>
       </BrowserRouter>
