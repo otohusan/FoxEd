@@ -86,18 +86,23 @@
 .quiz-card-edit-btn {
   position: absolute;
   bottom: 5%; /* カードの底から10pxの位置に配置 */
-  right: 3%; /* カードの右端から10pxの位置に配置 */
-  padding: 5px 10px;
-  background-color: #ff5722;
-  color: white;
+  right: 4%; /* カードの右端から10pxの位置に配置 */
+  width: 30px;
+  height: 30px;
+  background-color: var(--main-color-2);
+  color: var(--text-color-2);
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .quiz-card-edit-btn.is-flipped {
   transform: rotateX(180deg);
   bottom: 78%; /* カードの底から10pxの位置に配置 */
-  right: 3%; /* カードの右端から10pxの位置に配置 */
+  right: 4%; /* カードの右端から10pxの位置に配置 */
 }

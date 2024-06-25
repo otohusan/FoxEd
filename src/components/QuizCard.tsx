@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useElementOnScreen } from "../hooks";
 import "./style/quizCard.css";
 import { useColorModeContext } from "./colorMode/useColorModeContext";
+import { FiEdit2 } from "react-icons/fi";
 
 type quizCardProps = {
   id?: string;
@@ -89,7 +90,7 @@ const QuizCard = (props: quizCardProps) => {
             }}
             className={`quiz-card-edit-btn ${isFlipped ? "is-flipped" : ""}`}
           >
-            おす
+            <FiEdit2 size={"20px"} />
           </button>
         )}
       </div>
