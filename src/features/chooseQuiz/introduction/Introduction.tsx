@@ -6,8 +6,7 @@ function Introduction() {
       <h1 className="introductionComment">
         <span className="introductionBig">Konwalk(コンウォーク)</span>
         <br />
-        を<br />
-        知ってくれて
+        を知ってくれて
         <br />
         <span className="introductionBold">ありがとう!</span>
       </h1>
