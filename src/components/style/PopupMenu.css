@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column; /* 子要素を縦方向に並べる */
   align-items: start; /* 子要素を中央揃えにする */
-  background-color: #6a6e72;
+  background-color: var(--popup-menu-color);
   border-radius: 8px;
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
@@ -23,7 +23,7 @@
 }
 
 .MenuOption-hr-line {
-  border-top: 1px solid #7c8185; /* 上辺に黒色の1pxの線を引く */
+  border-top: 1px solid var(--popup-menu-border-color); /* 上辺に黒色の1pxの線を引く */
   width: 100%; /* 幅を指定 */
 }
 
