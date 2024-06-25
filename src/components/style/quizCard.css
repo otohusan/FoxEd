@@ -73,7 +73,7 @@
 .quiz-card-back-element,
 .quiz-card-front-element {
   margin: 5px;
-  padding: 5px;
+  padding: 25px 5px 25px 5px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 
   word-wrap: break-word; /* 長い単語を折り返す */
@@ -81,4 +81,23 @@
   overflow-wrap: break-word; /* 長い単語を折り返す */
   white-space: pre-wrap; /* 保持しながら折り返す */
   overflow-y: auto; /* 長いコンテンツをスクロール */
+}
+
+.quiz-card-edit-btn {
+  position: absolute;
+  bottom: 5%; /* カードの底から10pxの位置に配置 */
+  right: 3%; /* カードの右端から10pxの位置に配置 */
+  padding: 5px 10px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quiz-card-edit-btn.is-flipped {
+  transform: rotateX(180deg);
+  bottom: 78%; /* カードの底から10pxの位置に配置 */
+  right: 3%; /* カードの右端から10pxの位置に配置 */
 }

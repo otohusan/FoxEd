@@ -4,8 +4,14 @@ import "./style/quizCard.css";
 import { useColorModeContext } from "./colorMode/useColorModeContext";
 
 type quizCardProps = {
+  id?: string;
   frontElement: string;
   backElement: string;
+  isOwner?: boolean;
+  handleClickMenu?: (
+    e: React.MouseEvent,
+    quiz: { id: string; question: string; answer: string }
+  ) => void;
   backgroundColor?: string;
   textColor?: string;
   borderStyle?: string;
@@ -15,8 +21,11 @@ type quizCardProps = {
 const QuizCard = (props: quizCardProps) => {
   const { isDarkMode } = useColorModeContext();
   const {
+    id,
     frontElement,
     backElement,
+    isOwner,
+    handleClickMenu,
     backgroundColor = isDarkMode ? "#635952" : "#fcfcfc", // デフォルトの背景色
     textColor = isDarkMode ? "#eee9e4" : "#333333", // デフォルトの文字色
     borderStyle = "",
@@ -69,6 +78,20 @@ const QuizCard = (props: quizCardProps) => {
             </p>
           )}
         </div>
+        {id && isOwner && handleClickMenu !== undefined && (
+          <button
+            onClick={(e) => {
+              handleClickMenu(e, {
+                id: id,
+                question: frontElement,
+                answer: backElement,
+              });
+            }}
+            className={`quiz-card-edit-btn ${isFlipped ? "is-flipped" : ""}`}
+          >
+            おす
+          </button>
+        )}
       </div>
     </div>
   );
