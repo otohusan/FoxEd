@@ -69,12 +69,17 @@ function PrepareQuizzes() {
 
   const cardList =
     quizzes &&
-    quizzes.map((quiz, index) => (
-      <QuizCard
-        frontElement={quiz.question}
-        backElement={quiz.answer}
-        key={index}
-      />
+    quizzes.map((quiz) => (
+      <>
+        <QuizCard
+          frontElement={quiz.question}
+          backElement={quiz.answer}
+          key={quiz.id}
+          id={quiz.id}
+          handleClickMenu={handleClickMenu}
+          isOwner={isOwner}
+        />
+      </>
     ));
 
   // menuに関わる者たち
