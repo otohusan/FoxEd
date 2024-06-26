@@ -43,8 +43,9 @@ function MainSearch() {
         `${BASE_BACKEND_URL}/studysets/search?title=${searchTerm}`
       );
 
-      if (!response.data) {
+      if (!response.data || response.data.length === 0) {
         alert("学習セットが見つかりませんでした");
+        setResults([]);
       }
 
       setResults(response.data);
@@ -107,7 +108,7 @@ function MainSearch() {
           ))}
       </div>
 
-      {!user && results && (
+      {!user && results && results.length > 0 && (
         <div className="search-quiz-login-prompt-container">
           <LoginPrompt promptText="ログインすれば、学習セットをお気に入り登録できる" />
         </div>
