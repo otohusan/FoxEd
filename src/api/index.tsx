@@ -12,3 +12,4 @@ export { default as checkUsernameExists } from "./checkUsernameExists";
 export { default as getUserInfoWithToken } from "./getUserInfoWithToken";
 export { default as getUserFavorite } from "./getUserFavorite";
 export { default as getTokenWithEmail } from "./auth/getTokenWithEmail";
+export { default as getTokenWithGoogleToken } from "./auth/getTokenWithGoogleToken";
