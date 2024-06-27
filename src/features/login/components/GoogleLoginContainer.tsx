@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../../components/auth/useAuth";
 import { getUserInfoWithToken } from "../../../api";
+import getUserFavorite from "../../../api/getUserFavorite";
 
 function GoogleLoginContainer() {
   const navigate = useNavigate();
@@ -31,12 +32,8 @@ function GoogleLoginContainer() {
         const userInfo = await getUserInfoWithToken(response.data.token);
         setUser(userInfo);
 
-        // お気に入りの学習セットを取得
-        const favoritesResponse = await axios.get(
-          `${VITE_BASE_BACKEND_URL}/users/${userInfo.ID}/favorite`
-        );
-
-        setFavoriteItems(favoritesResponse.data);
+        // お気に入り学習セットを取得
+        setFavoriteItems(await getUserFavorite(userInfo.ID));
 
         // ホームに遷移
         navigate("/");
