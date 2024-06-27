@@ -17,19 +17,18 @@ function GoogleLoginContainer() {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
+        // トークンを取得
         const response = await axios.post(
           `${VITE_BASE_BACKEND_URL}/auth/google`,
           {
             access_token: tokenResponse.access_token,
           }
         );
+        // トークンをローカルストレージに保存
+        localStorage.setItem("token", response.data.token);
 
-        // JWTトークンを取得、ローカルストレージに保存
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-
-        // ユーザー情報を取得して割り当て
-        const userInfo = await getUserInfoWithToken(token);
+        // 取得したトークンから、ユーザー情報を取得して割り当て
+        const userInfo = await getUserInfoWithToken(response.data.token);
         setUser(userInfo);
 
         // お気に入りの学習セットを取得

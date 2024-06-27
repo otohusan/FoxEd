@@ -3,6 +3,7 @@ import axios from "axios";
 import { StudySet, User } from "../../../type";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { getUserInfoWithToken } from "../../api";
 
 type AuthContextProps = {
   children: React.ReactNode;
@@ -45,7 +46,6 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     const checkAuth = async () => {
       try {
         // トークンが空だったら何もしない
-        // NOTICE: 実際はcookieに保存したい
         const token = localStorage.getItem("token");
         if (token === null) {
           return;
@@ -59,25 +59,9 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
           return;
         }
 
-        // ユーザ情報を取得
-        const response = await axios.get(
-          `${BASE_BACKEND_URL}/users/${decoded.userID}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        const userInfo = response.data;
-
-        const user = {
-          ID: userInfo.ID,
-          name: userInfo.Name,
-          email: userInfo.Email,
-          createdAt: userInfo.CreatedAt,
-        };
-        setUser(user);
+        // 取得したトークンから、ユーザー情報を取得して割り当て
+        const userInfo = await getUserInfoWithToken(token);
+        setUser(userInfo);
 
         // お気に入りの学習セットを取得
         const favoritesResponse = await axios.get(
@@ -108,33 +92,16 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
           Password: password,
         }
       );
-      const token = response.data.token; // JWTトークンを取得
-      const decoded: DecodedToken = jwtDecode(token); // JWTトークンをデコード
+      // トークンをローカルストレージに保存
+      localStorage.setItem("token", response.data.token);
 
-      const userInfoResponse = await axios.get(
-        `${BASE_BACKEND_URL}/users/${decoded.userID}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const userInfo = userInfoResponse.data;
-
-      // NOTICE: jsonが大文字で返ってきてる
-      const user = {
-        ID: userInfo.ID, // 正しいキー名を使用
-        name: userInfo.Name,
-        email: userInfo.Email,
-        createdAt: userInfo.CreatedAt,
-      };
-      setUser(user);
-      // 必要ならローカルストレージにトークンを保存
-      localStorage.setItem("token", token);
+      // 取得したトークンから、ユーザー情報を取得して割り当て
+      const userInfo = await getUserInfoWithToken(response.data.token);
+      setUser(userInfo);
 
       // お気に入りの学習セットを取得
       const favoritesResponse = await axios.get(
-        `${BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
+        `${BASE_BACKEND_URL}/users/${userInfo.ID}/favorite`
       );
 
       setFavoriteItems(favoritesResponse.data);

@@ -2,15 +2,9 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 import "../style/GoogleRegisterContainer.css";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../components/auth/useAuth";
-
-type DecodedToken = {
-  userID: string;
-  exp: number;
-  // 他の必要なフィールドがあれば追加
-};
+import { getUserInfoWithToken } from "../../../api";
 
 function GoogleRegisterContainer() {
   const navigate = useNavigate();
@@ -23,39 +17,23 @@ function GoogleRegisterContainer() {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
+        // トークンを取得
         const response = await axios.post(
           `${VITE_BASE_BACKEND_URL}/auth/google`,
           {
             access_token: tokenResponse.access_token,
           }
         );
-        const token = response.data.token; // JWTトークンを取得
-        const decoded: DecodedToken = jwtDecode(token); // JWTトークンをデコード
+        // トークンをローカルストレージに保存
+        localStorage.setItem("token", response.data.token);
 
-        const userInfoResponse = await axios.get(
-          `${VITE_BASE_BACKEND_URL}/users/${decoded.userID}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const userInfo = userInfoResponse.data;
-
-        // NOTICE: jsonが大文字で返ってきてる
-        const user = {
-          ID: userInfo.ID, // 正しいキー名を使用
-          name: userInfo.Name,
-          email: userInfo.Email,
-          createdAt: userInfo.CreatedAt,
-        };
-        setUser(user);
-        // 必要ならローカルストレージにトークンを保存
-        localStorage.setItem("token", token);
+        // 取得したトークンから、ユーザー情報を取得して割り当て
+        const userInfo = await getUserInfoWithToken(response.data.token);
+        setUser(userInfo);
 
         // お気に入りの学習セットを取得
         const favoritesResponse = await axios.get(
-          `${VITE_BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
+          `${VITE_BASE_BACKEND_URL}/users/${userInfo.ID}/favorite`
         );
 
         setFavoriteItems(favoritesResponse.data);
