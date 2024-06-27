@@ -7,3 +7,4 @@ export { default as InfoBadge } from "./InfoBadge";
 export { default as BottomNavigation } from "./BottomNavigation";
 export { default as InputField } from "./InputField";
 export { default as PopupMenu } from "./PopupMenu";
+export { default as GoogleLoginContainer } from "./GoogleLoginContainer";

@@ -1,15 +1,19 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
-import "../style/GoogleLoginContainer.css";
+import "./style/GoogleLoginContainer.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../components/auth/useAuth";
 import {
   getTokenWithGoogleToken,
-  getUserFavorite,
   getUserInfoWithToken,
-} from "../../../api";
+  getUserFavorite,
+} from "../api";
+import { useAuth } from "./auth/useAuth";
 
-function GoogleLoginContainer(text: string) {
+type GoogleLoginContainerProps = {
+  text: string;
+};
+
+function GoogleLoginContainer({ text }: GoogleLoginContainerProps) {
   const navigate = useNavigate();
 
   const { setUser, setFavoriteItems } = useAuth();

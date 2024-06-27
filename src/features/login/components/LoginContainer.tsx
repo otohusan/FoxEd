@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../components/auth/useAuth";
-import { HeadDataHelmet, InputField } from "../../../components";
+import {
+  HeadDataHelmet,
+  InputField,
+  GoogleLoginContainer,
+} from "../../../components";
 import "../style/LoginContainer.css";
 import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleLoginContainer from "./GoogleLoginContainer";
 
 const LoginContainer = () => {
   const { loginWithEmail } = useAuth();
@@ -67,7 +70,7 @@ const LoginContainer = () => {
 
             {/* これがGoogleのログイン */}
             <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-              <GoogleLoginContainer />
+              <GoogleLoginContainer text="Googleでログイン" />
             </GoogleOAuthProvider>
             <p className="redirect-register-message">
               ユーザ新規登録は
