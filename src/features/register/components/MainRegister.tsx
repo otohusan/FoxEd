@@ -127,7 +127,7 @@ const MainRegister = () => {
 
           {/* これがGoogleのログイン */}
           <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <GoogleLoginContainer text="Googleで登録" />
+            <GoogleLoginContainer text="Googleで新規登録" />
           </GoogleOAuthProvider>
 
           <p className="redirect-login-message">

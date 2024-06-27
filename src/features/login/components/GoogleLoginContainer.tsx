@@ -9,7 +9,7 @@ import {
   getUserInfoWithToken,
 } from "../../../api";
 
-function GoogleLoginContainer() {
+function GoogleLoginContainer(text: string) {
   const navigate = useNavigate();
 
   const { setUser, setFavoriteItems } = useAuth();
@@ -42,7 +42,7 @@ function GoogleLoginContainer() {
     <div className="google-login-container">
       <button onClick={() => login()} className="google-login-button">
         <FcGoogle size={"25px"} />
-        <span>Googleでログイン</span>
+        <span>{text}</span>
       </button>
     </div>
   );
