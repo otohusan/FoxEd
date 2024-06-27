@@ -3,7 +3,11 @@ import axios from "axios";
 import { StudySet, User } from "../../../type";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { getUserInfoWithToken } from "../../api";
+import {
+  getTokenWithEmail,
+  getUserFavorite,
+  getUserInfoWithToken,
+} from "../../api";
 
 type AuthContextProps = {
   children: React.ReactNode;
@@ -63,12 +67,8 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         const userInfo = await getUserInfoWithToken(token);
         setUser(userInfo);
 
-        // お気に入りの学習セットを取得
-        const favoritesResponse = await axios.get(
-          `${BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
-        );
-
-        setFavoriteItems(favoritesResponse.data);
+        // お気に入り学習セットを取得
+        setFavoriteItems(await getUserFavorite(userInfo.ID));
       } catch (error) {
         console.error("Failed to fetch user", error);
       } finally {
@@ -85,26 +85,16 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   // ログイン用の関数
   const loginWithEmail = async (email: string, password: string) => {
     try {
-      const response = await axios.post(
-        `${BASE_BACKEND_URL}/users/login/email`,
-        {
-          Email: email,
-          Password: password,
-        }
-      );
-      // トークンをローカルストレージに保存
-      localStorage.setItem("token", response.data.token);
+      // トークンを取得して、ローカルストレージに保存
+      const token = await getTokenWithEmail(email, password);
+      localStorage.setItem("token", token);
 
       // 取得したトークンから、ユーザー情報を取得して割り当て
-      const userInfo = await getUserInfoWithToken(response.data.token);
+      const userInfo = await getUserInfoWithToken(token);
       setUser(userInfo);
 
-      // お気に入りの学習セットを取得
-      const favoritesResponse = await axios.get(
-        `${BASE_BACKEND_URL}/users/${userInfo.ID}/favorite`
-      );
-
-      setFavoriteItems(favoritesResponse.data);
+      // お気に入り学習セットを取得
+      setFavoriteItems(await getUserFavorite(userInfo.ID));
 
       // ホームに遷移
       navigate("/");

@@ -4,7 +4,7 @@ import "../style/GoogleRegisterContainer.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../components/auth/useAuth";
-import { getUserInfoWithToken } from "../../../api";
+import { getUserFavorite, getUserInfoWithToken } from "../../../api";
 
 function GoogleRegisterContainer() {
   const navigate = useNavigate();
@@ -31,12 +31,8 @@ function GoogleRegisterContainer() {
         const userInfo = await getUserInfoWithToken(response.data.token);
         setUser(userInfo);
 
-        // お気に入りの学習セットを取得
-        const favoritesResponse = await axios.get(
-          `${VITE_BASE_BACKEND_URL}/users/${userInfo.ID}/favorite`
-        );
-
-        setFavoriteItems(favoritesResponse.data);
+        // お気に入り学習セットを取得
+        setFavoriteItems(await getUserFavorite(userInfo.ID));
 
         // ホームに遷移
         navigate("/");

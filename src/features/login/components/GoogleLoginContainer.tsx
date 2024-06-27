@@ -4,8 +4,7 @@ import "../style/GoogleLoginContainer.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../../components/auth/useAuth";
-import { getUserInfoWithToken } from "../../../api";
-import getUserFavorite from "../../../api/getUserFavorite";
+import { getUserFavorite, getUserInfoWithToken } from "../../../api";
 
 function GoogleLoginContainer() {
   const navigate = useNavigate();
