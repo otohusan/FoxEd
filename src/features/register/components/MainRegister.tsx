@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import { HeadDataHelmet, InputField } from "../../../components";
+import {
+  GoogleLoginContainer,
+  HeadDataHelmet,
+  InputField,
+} from "../../../components";
 import registerWithEmail from "../api/registerWithEmail";
 import "../style/MainRegister.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleRegisterContainer from "./GoogleRegisterContainer";
 
 const MainRegister = () => {
   const [name, setName] = useState("");
@@ -124,7 +127,7 @@ const MainRegister = () => {
 
           {/* これがGoogleのログイン */}
           <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <GoogleRegisterContainer />
+            <GoogleLoginContainer text="Googleで登録" />
           </GoogleOAuthProvider>
 
           <p className="redirect-login-message">
