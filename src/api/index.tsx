@@ -9,3 +9,4 @@ export { default as sendStudySetUpdate } from "./studySet/sendStudySetUpdate";
 export { default as postStudySet } from "./studySet/postStudySet";
 export { default as sendStudySetDelete } from "./studySet/sendStudySetDelete";
 export { default as checkUsernameExists } from "./checkUsernameExists";
+export { default as getUserInfoWithToken } from "./getUserInfoWithToken";

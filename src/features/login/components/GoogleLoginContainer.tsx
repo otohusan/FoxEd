@@ -3,14 +3,8 @@ import { FcGoogle } from "react-icons/fc";
 import "../style/GoogleLoginContainer.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../../../components/auth/useAuth";
-
-type DecodedToken = {
-  userID: string;
-  exp: number;
-  // 他の必要なフィールドがあれば追加
-};
+import { getUserInfoWithToken } from "../../../api";
 
 function GoogleLoginContainer() {
   const navigate = useNavigate();
@@ -29,33 +23,18 @@ function GoogleLoginContainer() {
             access_token: tokenResponse.access_token,
           }
         );
-        const token = response.data.token; // JWTトークンを取得
-        const decoded: DecodedToken = jwtDecode(token); // JWTトークンをデコード
 
-        const userInfoResponse = await axios.get(
-          `${VITE_BASE_BACKEND_URL}/users/${decoded.userID}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const userInfo = userInfoResponse.data;
-
-        // NOTICE: jsonが大文字で返ってきてる
-        const user = {
-          ID: userInfo.ID, // 正しいキー名を使用
-          name: userInfo.Name,
-          email: userInfo.Email,
-          createdAt: userInfo.CreatedAt,
-        };
-        setUser(user);
-        // 必要ならローカルストレージにトークンを保存
+        // JWTトークンを取得、ローカルストレージに保存
+        const token = response.data.token;
         localStorage.setItem("token", token);
+
+        // ユーザー情報を取得して割り当て
+        const userInfo = await getUserInfoWithToken(token);
+        setUser(userInfo);
 
         // お気に入りの学習セットを取得
         const favoritesResponse = await axios.get(
-          `${VITE_BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
+          `${VITE_BASE_BACKEND_URL}/users/${userInfo.ID}/favorite`
         );
 
         setFavoriteItems(favoritesResponse.data);
@@ -63,7 +42,7 @@ function GoogleLoginContainer() {
         // ホームに遷移
         navigate("/");
       } catch (error) {
-        console.error("Failed to login with Google:", error);
+        alert("ログインに失敗しました");
       }
     },
   });
