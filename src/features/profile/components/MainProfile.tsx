@@ -78,7 +78,7 @@ function MainProfile() {
             </div>
           </div>
 
-          {!studySets && (
+          {(!studySets || studySets.length === 0) && (
             <p className="profile-message-prompt-make">
               自分だけの学習セット作ってみよう！
             </p>

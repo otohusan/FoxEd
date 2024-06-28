@@ -84,4 +84,12 @@ describe("MainProfile", () => {
     expect(screen.getByText("ユーザーID:")).toBeInTheDocument();
     expect(screen.getByText("1")).toBeInTheDocument();
   });
+
+  test("ユーザーが学習セットを持っていない場合、プロンプトが表示される", async () => {
+    mockUseFetch.mockReturnValue({ data: [], setData: vi.fn() });
+    renderComponent();
+    expect(
+      await screen.findByText(/自分だけの学習セット作ってみよう！/)
+    ).toBeInTheDocument();
+  });
 });
