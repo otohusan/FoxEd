@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   GoogleLoginContainer,
@@ -15,7 +15,7 @@ const MainRegister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  // const [isFormValid, setIsFormValid] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailExist, setIsEmailExist] = useState(false);
@@ -47,17 +47,14 @@ const MainRegister = () => {
     }
   };
 
-  useEffect(() => {
-    // フォームの入力が全てあるかどうかを確認
-    setIsFormValid(
-      name !== "" &&
-        email !== "" &&
-        password !== "" &&
-        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
-          password
-        )
+  // 入力内容が適切か判定する
+  const isFormValid =
+    name !== "" &&
+    email !== "" &&
+    password !== "" &&
+    /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
+      password
     );
-  }, [name, email, password]);
 
   // 更新中はこれを表示
   if (isLoading) {
