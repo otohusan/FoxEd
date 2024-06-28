@@ -76,4 +76,12 @@ describe("MainProfile", () => {
       screen.getByText("ログインして、自分だけの学習セットを作成しよう")
     ).toBeInTheDocument();
   });
+
+  test("ログインしている場合、ユーザー情報が表示される", async () => {
+    renderComponent();
+    expect(screen.getByText("ニックネーム:")).toBeInTheDocument();
+    expect(screen.getByText("Test User")).toBeInTheDocument();
+    expect(screen.getByText("ユーザーID:")).toBeInTheDocument();
+    expect(screen.getByText("1")).toBeInTheDocument();
+  });
 });
