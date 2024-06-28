@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../../components/auth/useAuth";
-import { HeadDataHelmet, InputField } from "../../../components";
+import {
+  GoogleLoginContainer,
+  HeadDataHelmet,
+  InputField,
+} from "../../../components";
 import "../style/LoginContainer.css";
 import { useNavigate } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleLoginContainer from "./GoogleLoginContainer";
 
 const LoginContainer = () => {
   const { loginWithEmail } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,18 +20,13 @@ const LoginContainer = () => {
     loginWithEmail(email, password);
   };
 
-  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
-  useEffect(() => {
-    // フォームの入力が全てあるかどうかを確認
-    setIsFormValid(
-      email !== "" &&
-        password !== "" &&
-        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
-          password
-        )
+  // フォームの入力が全てあるかどうかを確認
+  const isFormValid =
+    email !== "" &&
+    password !== "" &&
+    /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
+      password
     );
-  }, [email, password]);
 
   return (
     <div>
@@ -66,9 +62,8 @@ const LoginContainer = () => {
             </button>
 
             {/* これがGoogleのログイン */}
-            <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-              <GoogleLoginContainer />
-            </GoogleOAuthProvider>
+            <GoogleLoginContainer text="Googleでログイン" />
+
             <p className="redirect-register-message">
               ユーザ新規登録は
               <a
