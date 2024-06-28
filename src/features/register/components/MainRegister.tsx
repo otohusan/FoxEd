@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import {
   GoogleLoginContainer,
   HeadDataHelmet,
@@ -9,7 +8,6 @@ import registerWithEmail from "../api/registerWithEmail";
 import "../style/MainRegister.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const MainRegister = () => {
   const [name, setName] = useState("");
@@ -60,8 +58,6 @@ const MainRegister = () => {
   if (isLoading) {
     return <Loading />;
   }
-
-  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   return (
     <div className="login-container">
@@ -123,9 +119,7 @@ const MainRegister = () => {
           </button>
 
           {/* これがGoogleのログイン */}
-          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <GoogleLoginContainer text="Googleで新規登録" />
-          </GoogleOAuthProvider>
+          <GoogleLoginContainer text="Googleで新規登録" />
 
           <p className="redirect-login-message">
             登録済みの方は

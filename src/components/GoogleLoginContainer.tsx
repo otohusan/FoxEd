@@ -8,12 +8,13 @@ import {
   getUserFavorite,
 } from "../api";
 import { useAuth } from "./auth/useAuth";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 type GoogleLoginContainerProps = {
   text: string;
 };
 
-function GoogleLoginContainer({ text }: GoogleLoginContainerProps) {
+function GoogleLoginBtn({ text }: GoogleLoginContainerProps) {
   const navigate = useNavigate();
 
   const { setUser, setFavoriteItems } = useAuth();
@@ -49,6 +50,16 @@ function GoogleLoginContainer({ text }: GoogleLoginContainerProps) {
         <span>{text}</span>
       </button>
     </div>
+  );
+}
+
+// useGoogleLoginはGoogleOAuthProvider内でしか使えないから、ここでラッピングする
+function GoogleLoginContainer({ text }: GoogleLoginContainerProps) {
+  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  return (
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <GoogleLoginBtn text={text} />
+    </GoogleOAuthProvider>
   );
 }
 
