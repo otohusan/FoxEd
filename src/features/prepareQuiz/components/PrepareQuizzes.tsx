@@ -142,11 +142,6 @@ function PrepareQuizzes() {
     }
   };
 
-  const menuItems = [
-    { text: "編集を行う", onClick: handleEditQuiz },
-    { text: "削除する", onClick: handleDeleteQuiz },
-  ];
-
   const navigate = useNavigate();
 
   // CreateQuiz用の状態管理
@@ -191,7 +186,10 @@ function PrepareQuizzes() {
         <PopupMenu
           isOpen={isSelectModeOpen}
           onClose={handleClose}
-          menuItems={menuItems}
+          menuItems={[
+            { text: "編集を行う", onClick: handleEditQuiz },
+            { text: "削除する", onClick: handleDeleteQuiz },
+          ]}
           position={menuPosition}
         />
 
