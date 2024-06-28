@@ -3,6 +3,11 @@ import axios from "axios";
 import { StudySet, User } from "../../../type";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import {
+  getTokenWithEmail,
+  getUserFavorite,
+  getUserInfoWithToken,
+} from "../../api";
 
 type AuthContextProps = {
   children: React.ReactNode;
@@ -45,7 +50,6 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     const checkAuth = async () => {
       try {
         // トークンが空だったら何もしない
-        // NOTICE: 実際はcookieに保存したい
         const token = localStorage.getItem("token");
         if (token === null) {
           return;
@@ -59,32 +63,12 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
           return;
         }
 
-        // ユーザ情報を取得
-        const response = await axios.get(
-          `${BASE_BACKEND_URL}/users/${decoded.userID}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        // 取得したトークンから、ユーザー情報を取得して割り当て
+        const userInfo = await getUserInfoWithToken(token);
+        setUser(userInfo);
 
-        const userInfo = response.data;
-
-        const user = {
-          ID: userInfo.ID,
-          name: userInfo.Name,
-          email: userInfo.Email,
-          createdAt: userInfo.CreatedAt,
-        };
-        setUser(user);
-
-        // お気に入りの学習セットを取得
-        const favoritesResponse = await axios.get(
-          `${BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
-        );
-
-        setFavoriteItems(favoritesResponse.data);
+        // お気に入り学習セットを取得
+        setFavoriteItems(await getUserFavorite(userInfo.ID));
       } catch (error) {
         console.error("Failed to fetch user", error);
       } finally {
@@ -101,43 +85,16 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   // ログイン用の関数
   const loginWithEmail = async (email: string, password: string) => {
     try {
-      const response = await axios.post(
-        `${BASE_BACKEND_URL}/users/login/email`,
-        {
-          Email: email,
-          Password: password,
-        }
-      );
-      const token = response.data.token; // JWTトークンを取得
-      const decoded: DecodedToken = jwtDecode(token); // JWTトークンをデコード
-
-      const userInfoResponse = await axios.get(
-        `${BASE_BACKEND_URL}/users/${decoded.userID}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const userInfo = userInfoResponse.data;
-
-      // NOTICE: jsonが大文字で返ってきてる
-      const user = {
-        ID: userInfo.ID, // 正しいキー名を使用
-        name: userInfo.Name,
-        email: userInfo.Email,
-        createdAt: userInfo.CreatedAt,
-      };
-      setUser(user);
-      // 必要ならローカルストレージにトークンを保存
+      // トークンを取得して、ローカルストレージに保存
+      const token = await getTokenWithEmail(email, password);
       localStorage.setItem("token", token);
 
-      // お気に入りの学習セットを取得
-      const favoritesResponse = await axios.get(
-        `${BASE_BACKEND_URL}/users/${decoded.userID}/favorite`
-      );
+      // 取得したトークンから、ユーザー情報を取得して割り当て
+      const userInfo = await getUserInfoWithToken(token);
+      setUser(userInfo);
 
-      setFavoriteItems(favoritesResponse.data);
+      // お気に入り学習セットを取得
+      setFavoriteItems(await getUserFavorite(userInfo.ID));
 
       // ホームに遷移
       navigate("/");

@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-
-import { HeadDataHelmet, InputField } from "../../../components";
+import { useState } from "react";
+import {
+  GoogleLoginContainer,
+  HeadDataHelmet,
+  InputField,
+} from "../../../components";
 import registerWithEmail from "../api/registerWithEmail";
 import "../style/MainRegister.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleRegisterContainer from "./GoogleRegisterContainer";
 
 const MainRegister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  // const [isFormValid, setIsFormValid] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailExist, setIsEmailExist] = useState(false);
@@ -44,24 +45,19 @@ const MainRegister = () => {
     }
   };
 
-  useEffect(() => {
-    // フォームの入力が全てあるかどうかを確認
-    setIsFormValid(
-      name !== "" &&
-        email !== "" &&
-        password !== "" &&
-        /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
-          password
-        )
+  // 入力内容が適切か判定する
+  const isFormValid =
+    name !== "" &&
+    email !== "" &&
+    password !== "" &&
+    /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/.test(
+      password
     );
-  }, [name, email, password]);
 
   // 更新中はこれを表示
   if (isLoading) {
     return <Loading />;
   }
-
-  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   return (
     <div className="login-container">
@@ -123,9 +119,7 @@ const MainRegister = () => {
           </button>
 
           {/* これがGoogleのログイン */}
-          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <GoogleRegisterContainer />
-          </GoogleOAuthProvider>
+          <GoogleLoginContainer text="Googleで新規登録" />
 
           <p className="redirect-login-message">
             登録済みの方は
