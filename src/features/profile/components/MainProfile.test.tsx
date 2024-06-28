@@ -4,7 +4,7 @@ import { AuthProvider } from "../../../components/auth/AuthContext";
 import { useAuth } from "../../../components/auth/useAuth";
 import { ColorModeProvider } from "../../../components/colorMode/ColorModeContext";
 import { QuizProvider } from "../../../components/quiz/QuizContext";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useFetch } from "../../../hooks";
 import MainProfile from "./MainProfile";
 import "@testing-library/jest-dom";
@@ -13,6 +13,16 @@ import { vi } from "vitest";
 // モックを作成
 vi.mock("axios");
 vi.mock("../../../hooks/useFetch");
+const mockedUseNavigate = vi.fn();
+vi.mock("react-router-dom", async () => {
+  const mod = await vi.importActual<typeof import("react-router-dom")>(
+    "react-router-dom"
+  );
+  return {
+    ...mod,
+    useNavigate: () => mockedUseNavigate,
+  };
+});
 
 // テスト用のモックデータ
 const mockStudySets = [
@@ -91,5 +101,25 @@ describe("MainProfile", () => {
     expect(
       await screen.findByText(/自分だけの学習セット作ってみよう！/)
     ).toBeInTheDocument();
+  });
+
+  test("ユーザーが学習セットを持っている場合、それらが表示される", async () => {
+    renderComponent();
+    await waitFor(() => {
+      expect(screen.getByText("あなたの学習セット")).toBeInTheDocument();
+    });
+    expect(screen.getByText("Test Study Set 1")).toBeInTheDocument();
+    expect(screen.getByText("Test Study Set 2")).toBeInTheDocument();
+  });
+
+  test("学習セットがクリックされた時に、クイズ準備ページに遷移する", async () => {
+    renderComponent();
+
+    const studySet = await screen.findByText("Test Study Set 1");
+    fireEvent.click(studySet);
+
+    await waitFor(() => {
+      expect(mockedUseNavigate).toHaveBeenCalledWith("/PrepareQuiz");
+    });
   });
 });
