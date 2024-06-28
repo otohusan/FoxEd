@@ -13,7 +13,6 @@ import OwnerStudySetMenu from "../../chooseQuiz/components/OwnerStudySetMenu";
 import { useNavigate } from "react-router-dom";
 
 function MainProfile() {
-  // ページの先頭に戻る
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -23,61 +22,51 @@ function MainProfile() {
   const navigate = useNavigate();
 
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  // userがない場合にはFetchを行わないように
-  // nullの場合はuseFetch内でFetchが実行されないようになってる
   const fetchUrl = user
     ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
     : null;
 
-  // ユーザの学習セットを検索
-  const { data, setData } = useFetch<StudySet[]>(fetchUrl);
+  const { data: studySets, setData: setStudySets } =
+    useFetch<StudySet[]>(fetchUrl);
 
+  // クイズに編集があった時、明示的にデータ更新するため
   const handleNewStudySet = async () => {
-    try {
-      const response = await axios.get(
-        `${BASE_BACKEND_URL}/studysets/user/${user?.ID}`
-      );
-      setData(response.data);
-    } catch (error) {
-      console.error("学習セットの取得に失敗しました", error);
+    if (user) {
+      try {
+        const response = await axios.get(
+          `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
+        );
+        setStudySets(response.data);
+      } catch (error) {
+        console.error("学習セットの取得に失敗しました", error);
+      }
     }
   };
 
-  // menuに関わる者たち
-  // const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  // const handleOpen = () => {
-  //   setIsSelectModeOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setIsSelectModeOpen(false);
-  // };
-  // const menuItems = [
-  //   { text: "歩いて覚える", link: "/PlayQuiz" },
-  //   { text: "単語帳で覚える", link: "/PrepareQuiz" },
-  // ];
+  // クイズがクリックされた時にそのデータを割り当てるのに使う
+  const handleQuizSelect = (studyset: StudySet) => {
+    setQuizFormat({
+      id: studyset.id,
+      user_id: studyset.user_id,
+      label: studyset.title,
+      description: studyset.description,
+      body: studyset.flashcards,
+      created_at: studyset.created_at,
+      updated_at: studyset.updated_at,
+    });
+    navigate("/PrepareQuiz");
+  };
 
   return (
     <div className="profile-container">
       <HeadDataHelmet pageTitle="プロフィールページ" />
       <Header HeaderTitle="Profile" />
-      {/* ログインしていない場合にログインプロンプトを表示 */}
-      <div className="profile-login-prompt-container">
-        {!user && (
-          <div className="profile-login-prompt">
-            <LoginPrompt promptText="ログインして、自分だけの学習セットを作成しよう" />
-          </div>
-        )}
-      </div>
-
-      {/* ログインしている場合に学習セットを表示 */}
-      {user && (
+      {!user ? (
+        <div className="profile-login-prompt-container">
+          <LoginPrompt promptText="ログインして、自分だけの学習セットを作成しよう" />
+        </div>
+      ) : (
         <>
-          {/* <PopupMenu
-            isOpen={isSelectModeOpen}
-            onClose={handleClose}
-            menuItems={menuItems}
-          /> */}
-
           <div className="profile-info">
             <div className="profile-info-item">
               <span className="profile-info-label-nickname">ニックネーム:</span>
@@ -89,54 +78,34 @@ function MainProfile() {
             </div>
           </div>
 
-          {!data && (
+          {!studySets && (
             <p className="profile-message-prompt-make">
               自分だけの学習セット作ってみよう！
             </p>
           )}
 
-          {data && (
-            <div className="ChooseQuizListTitle">あなたの学習セット</div>
-          )}
-          {data && data.length > 0 && (
-            <div className="ChooseQuizDataList">
-              {/* 取得した学習セットを表示 */}
-              {/* 新しいものを先に表示するために */}
-              {data
-                .slice()
-                .reverse()
-                .map((studyset) => (
-                  <div
-                    onClick={() => {
-                      setQuizFormat({
-                        id: studyset.id,
-                        user_id: studyset.user_id,
-                        label: studyset.title,
-                        description: studyset.description,
-                        body: studyset.flashcards,
-                        created_at: studyset.created_at,
-                        updated_at: studyset.updated_at,
-                      });
-                      navigate("/PrepareQuiz");
-                      // handleOpen();
-                    }}
-                    className="ChooseQuizContainerWrapper"
-                    key={studyset.id}
-                  >
-                    <ChooseQuizContainer
+          {studySets && studySets.length > 0 && (
+            <>
+              <div className="ChooseQuizListTitle">あなたの学習セット</div>
+              <div className="ChooseQuizDataList">
+                {studySets
+                  .slice()
+                  .reverse()
+                  .map((studyset) => (
+                    <div
+                      onClick={() => handleQuizSelect(studyset)}
+                      className="ChooseQuizContainerWrapper"
                       key={studyset.id}
-                      quizFormat={{
-                        label: studyset.title,
-                        body: studyset.flashcards,
-                        created_at: studyset.created_at,
-                        updated_at: studyset.updated_at,
-                      }}
-                    />
-
-                    {/* オーナーだった場合編集ボタンを追加 */}
-                    {studyset.id &&
-                      studyset.description &&
-                      user.ID == studyset.user_id && (
+                    >
+                      <ChooseQuizContainer
+                        quizFormat={{
+                          label: studyset.title,
+                          body: studyset.flashcards,
+                          created_at: studyset.created_at,
+                          updated_at: studyset.updated_at,
+                        }}
+                      />
+                      {user.ID === studyset.user_id && (
                         <OwnerStudySetMenu
                           studySetID={studyset.id}
                           prevTitle={studyset.title}
@@ -144,11 +113,12 @@ function MainProfile() {
                           onNewStudySet={handleNewStudySet}
                         />
                       )}
-                  </div>
-                ))}
-            </div>
+                    </div>
+                  ))}
+              </div>
+            </>
           )}
-          <MakeStudySet studySetQuantity={data?.length} />
+          <MakeStudySet studySetQuantity={studySets?.length} />
         </>
       )}
       <Footer />
