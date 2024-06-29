@@ -13,26 +13,38 @@ type PopupMenuProps = {
   isOpen: boolean;
   onClose: () => void;
   menuItems: MenuItem[];
-  position: { x: number; y: number };
+  anchor: DOMRect | null;
 };
 
 const PopupMenu: React.FC<PopupMenuProps> = ({
   isOpen,
   onClose,
   menuItems,
-  position,
+  anchor,
 }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   // 閉じるカスタムフック
   useClickAway(menuRef, onClose);
 
-  if (!isOpen) return null;
+  if (!isOpen || !anchor) return null;
+
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+  let x = anchor.left + 50;
+  let y = anchor.top + anchor.height + window.scrollY - 100;
+
+  if (x + 200 > screenWidth) {
+    x = anchor.left - 200 + anchor.width;
+  }
+  if (y - window.scrollY + 200 > screenHeight) {
+    y = anchor.top - 100 + window.scrollY;
+  }
 
   return (
     <div
       className="PopupMenu"
-      style={{ top: `${position.y}px`, left: `${position.x}px` }}
+      style={{ top: `${y}px`, left: `${x}px` }}
       ref={menuRef}
     >
       {menuItems.map((item, index) => (

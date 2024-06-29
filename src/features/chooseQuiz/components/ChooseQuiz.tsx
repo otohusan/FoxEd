@@ -59,22 +59,8 @@ function ChooseQuiz() {
 
   // menuに関わる者たち
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const handleOpen = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const rect = e.currentTarget.getBoundingClientRect();
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    let x = rect.left + 50;
-    let y = rect.top + rect.height + window.scrollY - 100;
-
-    if (x + 200 > screenWidth) {
-      x = rect.left - 200 + rect.width; // メニューの幅を考慮
-    }
-    if (y - window.scrollY + 200 > screenHeight) {
-      y = rect.top - 100 + window.scrollY; // メニューの高さを考慮
-    }
-    setMenuPosition({ x, y });
+  const [menuAnchor, setMenuAnchor] = useState<DOMRect | null>(null);
+  const handleOpen = () => {
     setIsSelectModeOpen(true);
   };
   const handleClose = () => {
@@ -84,6 +70,11 @@ function ChooseQuiz() {
     { text: "編集を行う", onClick: handleEditStudySet },
     { text: "削除する", onClick: handleDeleteStudySet },
   ];
+  const handleClickMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setMenuAnchor(e.currentTarget.getBoundingClientRect());
+    handleOpen();
+  };
 
   const { user, favoriteItems } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -121,7 +112,7 @@ function ChooseQuiz() {
           isOpen={isSelectModeOpen}
           onClose={handleClose}
           menuItems={menuItems}
-          position={menuPosition}
+          anchor={menuAnchor}
         />
 
         {isEditing && quizFormat?.id && quizFormat.description && (
@@ -206,7 +197,7 @@ function ChooseQuiz() {
                               created_at: studyset.created_at,
                               updated_at: studyset.updated_at,
                             });
-                            handleOpen(e);
+                            handleClickMenu(e);
                           }}
                         >
                           <RxDotsHorizontal size={"23px"} />
@@ -278,7 +269,7 @@ function ChooseQuiz() {
                               created_at: studyset.created_at,
                               updated_at: studyset.updated_at,
                             });
-                            handleOpen(e);
+                            handleClickMenu(e);
                           }}
                         >
                           <RxDotsHorizontal size={"23px"} />

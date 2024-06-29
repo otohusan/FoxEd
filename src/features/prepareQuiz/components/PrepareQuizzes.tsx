@@ -36,7 +36,9 @@ function PrepareQuizzes() {
     e: React.MouseEvent,
     quiz: { id: string; question: string; answer: string }
   ) => {
-    handleOpen(e);
+    e.stopPropagation();
+    setMenuAnchor(e.currentTarget.getBoundingClientRect());
+    handleOpen();
     if (!quiz.id) {
       return;
     }
@@ -84,22 +86,8 @@ function PrepareQuizzes() {
 
   // menuに関わる者たち
   const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const handleOpen = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const rect = e.currentTarget.getBoundingClientRect();
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    let x = rect.left + 50;
-    let y = rect.top + rect.height + window.scrollY - 100;
-
-    if (x + 200 > screenWidth) {
-      x = rect.left - 200 + rect.width; // メニューの幅を考慮
-    }
-    if (y - window.scrollY + 200 > screenHeight) {
-      y = rect.top - 100 + window.scrollY; // メニューの高さを考慮
-    }
-    setMenuPosition({ x, y });
+  const [menuAnchor, setMenuAnchor] = useState<DOMRect | null>(null);
+  const handleOpen = () => {
     setIsSelectModeOpen(true);
   };
   const handleClose = () => {
@@ -190,7 +178,7 @@ function PrepareQuizzes() {
             { text: "編集を行う", onClick: handleEditQuiz },
             { text: "削除する", onClick: handleDeleteQuiz },
           ]}
-          position={menuPosition}
+          anchor={menuAnchor}
         />
 
         {isEditing && (
