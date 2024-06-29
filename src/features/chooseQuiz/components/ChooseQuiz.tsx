@@ -101,6 +101,19 @@ function ChooseQuiz() {
 
   const navigate = useNavigate();
 
+  // ユーザやお気に入りの学習セットがクリックされた時に使う関数
+  const handleClickStudySet = (studyset: StudySet) => {
+    setQuizFormat({
+      id: studyset.id,
+      user_id: studyset.user_id,
+      label: studyset.title,
+      description: studyset.description,
+      body: studyset.flashcards,
+      created_at: studyset.created_at,
+      updated_at: studyset.updated_at,
+    });
+  };
+
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
@@ -141,6 +154,7 @@ function ChooseQuiz() {
             から、オリジナル学習セットを作成しよう！
           </p>
         )}
+
         {/* ユーザが作成した学習セットを表示 */}
         {data && <div className="ChooseQuizListTitle">あなたの学習セット</div>}
         {data && data.length > 0 ? (
@@ -152,16 +166,7 @@ function ChooseQuiz() {
               .map((studyset) => (
                 <div
                   onClick={() => {
-                    setQuizFormat({
-                      id: studyset.id,
-                      user_id: studyset.user_id,
-                      label: studyset.title,
-                      description: studyset.description,
-                      body: studyset.flashcards,
-                      created_at: studyset.created_at,
-                      updated_at: studyset.updated_at,
-                    });
-                    // handleOpen();
+                    handleClickStudySet(studyset);
                     navigate("/PrepareQuiz");
                   }}
                   className="ChooseQuizContainerWrapper"
@@ -188,15 +193,7 @@ function ChooseQuiz() {
                         <button
                           className="owner-drop-menu"
                           onClick={(e) => {
-                            setQuizFormat({
-                              id: studyset.id,
-                              user_id: studyset.user_id,
-                              label: studyset.title,
-                              description: studyset.description,
-                              body: studyset.flashcards,
-                              created_at: studyset.created_at,
-                              updated_at: studyset.updated_at,
-                            });
+                            handleClickStudySet(studyset);
                             handleClickMenu(e);
                           }}
                         >
@@ -224,16 +221,7 @@ function ChooseQuiz() {
               .map((studyset) => (
                 <div
                   onClick={() => {
-                    setQuizFormat({
-                      id: studyset.id,
-                      user_id: studyset.user_id,
-                      label: studyset.title,
-                      description: studyset.description,
-                      body: studyset.flashcards,
-                      created_at: studyset.created_at,
-                      updated_at: studyset.updated_at,
-                    });
-                    // handleOpen();
+                    handleClickStudySet(studyset);
                     navigate("/PrepareQuiz");
                   }}
                   className="ChooseQuizContainerWrapper"
@@ -260,15 +248,7 @@ function ChooseQuiz() {
                         <button
                           className="owner-drop-menu"
                           onClick={(e) => {
-                            setQuizFormat({
-                              id: studyset.id,
-                              user_id: studyset.user_id,
-                              label: studyset.title,
-                              description: studyset.description,
-                              body: studyset.flashcards,
-                              created_at: studyset.created_at,
-                              updated_at: studyset.updated_at,
-                            });
+                            handleClickStudySet(studyset);
                             handleClickMenu(e);
                           }}
                         >
@@ -316,6 +296,7 @@ function ChooseQuiz() {
             </div>
           ))}
         </div>
+
         <div className="login-prompt-container">
           {!user && (
             <LoginPrompt promptText="ログインすれば、オリジナル学習セットを作成できる" />
