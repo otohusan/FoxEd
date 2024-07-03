@@ -90,6 +90,7 @@ const QuizCard = (props: quizCardProps) => {
               });
             }}
             className={`quiz-card-edit-btn ${isFlipped ? "is-flipped" : ""}`}
+            data-testid="quiz-card-edit-btn"
           >
             <FiEdit2 size={"25px"} />
           </button>
