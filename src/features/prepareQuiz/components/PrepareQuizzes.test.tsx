@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import PrepareQuizzes from "./PrepareQuizzes";
 import { vi } from "vitest";
 import { HelmetProvider } from "react-helmet-async";
@@ -85,5 +85,21 @@ describe("PrepareQuizzes", () => {
     renderComponent();
     expect(screen.getByText("Prepare")).toBeInTheDocument();
     expect(screen.getByText("Test Quiz Format")).toBeInTheDocument();
+  });
+
+  test("クイズカードが正しく表示される", () => {
+    renderComponent();
+    const quizCards = screen.getAllByTestId("quiz-card");
+
+    // 問題が表に表示されているから、答えは表示されていない
+    // Question 1
+    expect(within(quizCards[0]).getByText("Question 1")).toBeInTheDocument();
+    const back = within(quizCards[0]).queryByText("Answer 1");
+    expect(back).not.toBeInTheDocument;
+
+    // Question 2
+    expect(within(quizCards[1]).getByText("Question 2")).toBeInTheDocument();
+    const back1 = within(quizCards[1]).queryByText("Answer 1");
+    expect(back1).not.toBeInTheDocument;
   });
 });

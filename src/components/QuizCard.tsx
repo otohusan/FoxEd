@@ -51,6 +51,7 @@ const QuizCard = (props: quizCardProps) => {
       }`}
       onClick={handleClick}
       ref={containerRef}
+      data-testid="quiz-card"
     >
       <div className="quiz-card-inner">
         <div

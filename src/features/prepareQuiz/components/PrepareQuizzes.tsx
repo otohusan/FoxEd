@@ -20,6 +20,7 @@ import EditQuiz from "./EditQuiz.tsx";
 import { sendQuizDelete } from "../../../api/index.tsx";
 import QuizActions from "./QuizActions.tsx";
 import usePopupMenu from "../../../hooks/usePopupMenu.ts";
+import React from "react";
 
 function PrepareQuizzes() {
   const { user } = useAuth();
@@ -72,7 +73,7 @@ function PrepareQuizzes() {
   const cardList =
     quizzes &&
     quizzes.map((quiz, index) => (
-      <>
+      <React.Fragment>
         <QuizCard
           frontElement={quiz.question}
           backElement={quiz.answer}
@@ -81,7 +82,7 @@ function PrepareQuizzes() {
           handleClickMenu={handleClickMenu}
           isOwner={isOwner}
         />
-      </>
+      </React.Fragment>
     ));
 
   const [isEditing, setIsEditing] = useState(false);
