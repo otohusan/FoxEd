@@ -9,7 +9,7 @@ import {
 } from "../../../components";
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
@@ -22,10 +22,6 @@ import QuizActions from "./QuizActions.tsx";
 import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 
 function PrepareQuizzes() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { user } = useAuth();
   const { quizFormat, setCurrentQuizIndex, setQuizFormat } = useQuizContext();
   const {
