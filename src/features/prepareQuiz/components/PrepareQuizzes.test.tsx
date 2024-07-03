@@ -117,3 +117,14 @@ describe("PrepareQuizzes", () => {
     expect(within(quizList[1]).getByText("Answer 2")).toBeInTheDocument();
   });
 });
+
+test("問題がないと、新しい問題を追加するボタンが表示される", () => {
+  mockUseQuizContext.mockReturnValue({
+    quizFormat: [],
+    setCurrentQuizIndex: vi.fn(),
+    setQuizFormat: vi.fn(),
+    deleteQuiz: vi.fn(),
+  });
+  renderComponent();
+  expect(screen.getByText("新しい問題を追加しよう！")).toBeInTheDocument();
+});
