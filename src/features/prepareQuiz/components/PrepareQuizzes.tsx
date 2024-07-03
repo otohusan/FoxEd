@@ -54,7 +54,7 @@ function PrepareQuizzes() {
     <WindowVirtualizer>
       {quizzes &&
         quizzes.map((quiz, index) => (
-          <div key={quiz.id || index}>
+          <div key={quiz.id || index} data-testid="quiz-list">
             <PrepareQuiz
               QuizID={quiz.id}
               QuizName={quiz.question}

@@ -102,4 +102,18 @@ describe("PrepareQuizzes", () => {
     const back1 = within(quizCards[1]).queryByText("Answer 1");
     expect(back1).not.toBeInTheDocument;
   });
+
+  test("クイズリストが正しく表示される", () => {
+    renderComponent();
+
+    const quizList = screen.getAllByTestId("quiz-list");
+
+    // Question 1
+    expect(within(quizList[0]).getByText("Question 1")).toBeInTheDocument();
+    expect(within(quizList[0]).getByText("Answer 1")).toBeInTheDocument();
+
+    // Question 2
+    expect(within(quizList[1]).getByText("Question 2")).toBeInTheDocument();
+    expect(within(quizList[1]).getByText("Answer 2")).toBeInTheDocument();
+  });
 });
