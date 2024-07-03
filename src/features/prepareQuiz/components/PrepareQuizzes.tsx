@@ -9,7 +9,7 @@ import {
 } from "../../../components";
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
@@ -19,39 +19,42 @@ import { WindowVirtualizer } from "virtua";
 import EditQuiz from "./EditQuiz.tsx";
 import { sendQuizDelete } from "../../../api/index.tsx";
 import QuizActions from "./QuizActions.tsx";
+import usePopupMenu from "../../../hooks/usePopupMenu.ts";
+import React from "react";
 
 function PrepareQuizzes() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { user } = useAuth();
   const { quizFormat, setCurrentQuizIndex, setQuizFormat } = useQuizContext();
+  const {
+    isPopupMenuOpen,
+    popupMenuAnchor,
+    handleOpenPopupMenu,
+    handleClosePopupMenu,
+  } = usePopupMenu();
 
   // 学習セットのオーナーであるかを判定
   const isOwner = user?.ID == quizFormat?.user_id;
   const quizzes = quizFormat ? quizFormat.body : [];
 
+  // popupMenuをクリック時に起こす関数
   const handleClickMenu = (
     e: React.MouseEvent,
     quiz: { id: string; question: string; answer: string }
   ) => {
-    handleOpen(e);
-    if (!quiz.id) {
-      return;
-    }
     setQuizData({
       quizId: quiz.id,
       prevQuestion: quiz.question,
       prevAnswer: quiz.answer,
     });
+
+    handleOpenPopupMenu(e);
   };
 
   const PrepareQuizList = (
     <WindowVirtualizer>
       {quizzes &&
         quizzes.map((quiz, index) => (
-          <div key={index}>
+          <div key={quiz.id || index} data-testid="quiz-list">
             <PrepareQuiz
               QuizID={quiz.id}
               QuizName={quiz.question}
@@ -69,42 +72,18 @@ function PrepareQuizzes() {
 
   const cardList =
     quizzes &&
-    quizzes.map((quiz) => (
-      <>
+    quizzes.map((quiz, index) => (
+      <React.Fragment>
         <QuizCard
           frontElement={quiz.question}
           backElement={quiz.answer}
           key={quiz.id}
-          id={quiz.id}
+          id={quiz.id || String(index)}
           handleClickMenu={handleClickMenu}
           isOwner={isOwner}
         />
-      </>
+      </React.Fragment>
     ));
-
-  // menuに関わる者たち
-  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const handleOpen = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const rect = e.currentTarget.getBoundingClientRect();
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    let x = rect.left + 50;
-    let y = rect.top + rect.height + window.scrollY - 100;
-
-    if (x + 200 > screenWidth) {
-      x = rect.left - 200 + rect.width; // メニューの幅を考慮
-    }
-    if (y - window.scrollY + 200 > screenHeight) {
-      y = rect.top - 100 + window.scrollY; // メニューの高さを考慮
-    }
-    setMenuPosition({ x, y });
-    setIsSelectModeOpen(true);
-  };
-  const handleClose = () => {
-    setIsSelectModeOpen(false);
-  };
 
   const [isEditing, setIsEditing] = useState(false);
   const [quizData, setQuizData] = useState({
@@ -137,15 +116,10 @@ function PrepareQuizzes() {
         alert(error);
         return;
       } finally {
-        setIsSelectModeOpen(false);
+        handleClosePopupMenu();
       }
     }
   };
-
-  const menuItems = [
-    { text: "編集を行う", onClick: handleEditQuiz },
-    { text: "削除する", onClick: handleDeleteQuiz },
-  ];
 
   const navigate = useNavigate();
 
@@ -189,10 +163,13 @@ function PrepareQuizzes() {
         )}
 
         <PopupMenu
-          isOpen={isSelectModeOpen}
-          onClose={handleClose}
-          menuItems={menuItems}
-          position={menuPosition}
+          isOpen={isPopupMenuOpen}
+          onClose={handleClosePopupMenu}
+          menuItems={[
+            { text: "編集を行う", onClick: handleEditQuiz },
+            { text: "削除する", onClick: handleDeleteQuiz },
+          ]}
+          anchor={popupMenuAnchor}
         />
 
         {isEditing && (

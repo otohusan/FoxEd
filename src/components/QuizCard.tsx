@@ -51,6 +51,7 @@ const QuizCard = (props: quizCardProps) => {
       }`}
       onClick={handleClick}
       ref={containerRef}
+      data-testid="quiz-card"
     >
       <div className="quiz-card-inner">
         <div
@@ -89,6 +90,7 @@ const QuizCard = (props: quizCardProps) => {
               });
             }}
             className={`quiz-card-edit-btn ${isFlipped ? "is-flipped" : ""}`}
+            data-testid="quiz-card-edit-btn"
           >
             <FiEdit2 size={"25px"} />
           </button>

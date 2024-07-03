@@ -17,6 +17,7 @@ import { useState } from "react";
 import { sendStudySetDelete } from "../../../api/index.tsx";
 import EditStudySet from "./EditStudySet.tsx";
 import FavoriteButton from "./FavoriteButton.tsx";
+import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 
 function ChooseQuiz() {
   const [isEditing, setIsEditing] = useState(false);
@@ -49,7 +50,7 @@ function ChooseQuiz() {
         await sendStudySetDelete(quizFormat?.id);
 
         handleNewStudySet();
-        setIsSelectModeOpen(false);
+        handleClosePopupMenu();
       } catch (error) {
         alert(error);
         return;
@@ -58,32 +59,15 @@ function ChooseQuiz() {
   };
 
   // menuに関わる者たち
-  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const handleOpen = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const rect = e.currentTarget.getBoundingClientRect();
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    let x = rect.left + 50;
-    let y = rect.top + rect.height + window.scrollY - 100;
-
-    if (x + 200 > screenWidth) {
-      x = rect.left - 200 + rect.width; // メニューの幅を考慮
-    }
-    if (y - window.scrollY + 200 > screenHeight) {
-      y = rect.top - 100 + window.scrollY; // メニューの高さを考慮
-    }
-    setMenuPosition({ x, y });
-    setIsSelectModeOpen(true);
+  const {
+    isPopupMenuOpen,
+    popupMenuAnchor,
+    handleOpenPopupMenu,
+    handleClosePopupMenu,
+  } = usePopupMenu();
+  const handleClickMenu = (e: React.MouseEvent) => {
+    handleOpenPopupMenu(e);
   };
-  const handleClose = () => {
-    setIsSelectModeOpen(false);
-  };
-  const menuItems = [
-    { text: "編集を行う", onClick: handleEditStudySet },
-    { text: "削除する", onClick: handleDeleteStudySet },
-  ];
 
   const { user, favoriteItems } = useAuth();
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -110,6 +94,19 @@ function ChooseQuiz() {
 
   const navigate = useNavigate();
 
+  // ユーザやお気に入りの学習セットがクリックされた時に使う関数
+  const handleClickStudySet = (studyset: StudySet) => {
+    setQuizFormat({
+      id: studyset.id,
+      user_id: studyset.user_id,
+      label: studyset.title,
+      description: studyset.description,
+      body: studyset.flashcards,
+      created_at: studyset.created_at,
+      updated_at: studyset.updated_at,
+    });
+  };
+
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
@@ -118,10 +115,13 @@ function ChooseQuiz() {
         <Introduction />
 
         <PopupMenu
-          isOpen={isSelectModeOpen}
-          onClose={handleClose}
-          menuItems={menuItems}
-          position={menuPosition}
+          isOpen={isPopupMenuOpen}
+          onClose={handleClosePopupMenu}
+          menuItems={[
+            { text: "編集を行う", onClick: handleEditStudySet },
+            { text: "削除する", onClick: handleDeleteStudySet },
+          ]}
+          anchor={popupMenuAnchor}
         />
 
         {isEditing && quizFormat?.id && quizFormat.description && (
@@ -150,6 +150,7 @@ function ChooseQuiz() {
             から、オリジナル学習セットを作成しよう！
           </p>
         )}
+
         {/* ユーザが作成した学習セットを表示 */}
         {data && <div className="ChooseQuizListTitle">あなたの学習セット</div>}
         {data && data.length > 0 ? (
@@ -161,16 +162,7 @@ function ChooseQuiz() {
               .map((studyset) => (
                 <div
                   onClick={() => {
-                    setQuizFormat({
-                      id: studyset.id,
-                      user_id: studyset.user_id,
-                      label: studyset.title,
-                      description: studyset.description,
-                      body: studyset.flashcards,
-                      created_at: studyset.created_at,
-                      updated_at: studyset.updated_at,
-                    });
-                    // handleOpen();
+                    handleClickStudySet(studyset);
                     navigate("/PrepareQuiz");
                   }}
                   className="ChooseQuizContainerWrapper"
@@ -197,16 +189,8 @@ function ChooseQuiz() {
                         <button
                           className="owner-drop-menu"
                           onClick={(e) => {
-                            setQuizFormat({
-                              id: studyset.id,
-                              user_id: studyset.user_id,
-                              label: studyset.title,
-                              description: studyset.description,
-                              body: studyset.flashcards,
-                              created_at: studyset.created_at,
-                              updated_at: studyset.updated_at,
-                            });
-                            handleOpen(e);
+                            handleClickStudySet(studyset);
+                            handleClickMenu(e);
                           }}
                         >
                           <RxDotsHorizontal size={"23px"} />
@@ -233,16 +217,7 @@ function ChooseQuiz() {
               .map((studyset) => (
                 <div
                   onClick={() => {
-                    setQuizFormat({
-                      id: studyset.id,
-                      user_id: studyset.user_id,
-                      label: studyset.title,
-                      description: studyset.description,
-                      body: studyset.flashcards,
-                      created_at: studyset.created_at,
-                      updated_at: studyset.updated_at,
-                    });
-                    // handleOpen();
+                    handleClickStudySet(studyset);
                     navigate("/PrepareQuiz");
                   }}
                   className="ChooseQuizContainerWrapper"
@@ -269,16 +244,8 @@ function ChooseQuiz() {
                         <button
                           className="owner-drop-menu"
                           onClick={(e) => {
-                            setQuizFormat({
-                              id: studyset.id,
-                              user_id: studyset.user_id,
-                              label: studyset.title,
-                              description: studyset.description,
-                              body: studyset.flashcards,
-                              created_at: studyset.created_at,
-                              updated_at: studyset.updated_at,
-                            });
-                            handleOpen(e);
+                            handleClickStudySet(studyset);
+                            handleClickMenu(e);
                           }}
                         >
                           <RxDotsHorizontal size={"23px"} />
@@ -325,6 +292,7 @@ function ChooseQuiz() {
             </div>
           ))}
         </div>
+
         <div className="login-prompt-container">
           {!user && (
             <LoginPrompt promptText="ログインすれば、オリジナル学習セットを作成できる" />
