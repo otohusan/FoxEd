@@ -1,25 +1,25 @@
 import { useState, useCallback } from "react";
 
-const useMenu = () => {
-  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const [menuAnchor, setMenuAnchor] = useState<DOMRect | null>(null);
+const usePopupMenu = () => {
+  const [isPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
+  const [popupMenuAnchor, setPopupMenuAnchor] = useState<DOMRect | null>(null);
 
-  const handleOpenMenu = useCallback((e: React.MouseEvent) => {
+  const handleOpenPopupMenu = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    setMenuAnchor(e.currentTarget.getBoundingClientRect());
-    setIsSelectModeOpen(true);
+    setPopupMenuAnchor(e.currentTarget.getBoundingClientRect());
+    setIsPopupMenuOpen(true);
   }, []);
 
-  const handleCloseMenu = useCallback(() => {
-    setIsSelectModeOpen(false);
+  const handleClosePopupMenu = useCallback(() => {
+    setIsPopupMenuOpen(false);
   }, []);
 
   return {
-    isSelectModeOpen,
-    menuAnchor,
-    handleOpenMenu,
-    handleCloseMenu,
+    isPopupMenuOpen,
+    popupMenuAnchor,
+    handleOpenPopupMenu,
+    handleClosePopupMenu,
   };
 };
 
-export default useMenu;
+export default usePopupMenu;

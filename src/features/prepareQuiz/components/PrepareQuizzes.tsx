@@ -19,6 +19,7 @@ import { WindowVirtualizer } from "virtua";
 import EditQuiz from "./EditQuiz.tsx";
 import { sendQuizDelete } from "../../../api/index.tsx";
 import QuizActions from "./QuizActions.tsx";
+import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 
 function PrepareQuizzes() {
   useEffect(() => {
@@ -27,26 +28,29 @@ function PrepareQuizzes() {
 
   const { user } = useAuth();
   const { quizFormat, setCurrentQuizIndex, setQuizFormat } = useQuizContext();
+  const {
+    isPopupMenuOpen,
+    popupMenuAnchor,
+    handleOpenPopupMenu,
+    handleClosePopupMenu,
+  } = usePopupMenu();
 
   // 学習セットのオーナーであるかを判定
   const isOwner = user?.ID == quizFormat?.user_id;
   const quizzes = quizFormat ? quizFormat.body : [];
 
+  // popupMenuをクリック時に起こす関数
   const handleClickMenu = (
     e: React.MouseEvent,
     quiz: { id: string; question: string; answer: string }
   ) => {
-    e.stopPropagation();
-    setMenuAnchor(e.currentTarget.getBoundingClientRect());
-    handleOpen();
-    if (!quiz.id) {
-      return;
-    }
     setQuizData({
       quizId: quiz.id,
       prevQuestion: quiz.question,
       prevAnswer: quiz.answer,
     });
+
+    handleOpenPopupMenu(e);
   };
 
   const PrepareQuizList = (
@@ -84,16 +88,6 @@ function PrepareQuizzes() {
       </>
     ));
 
-  // menuに関わる者たち
-  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const [menuAnchor, setMenuAnchor] = useState<DOMRect | null>(null);
-  const handleOpen = () => {
-    setIsSelectModeOpen(true);
-  };
-  const handleClose = () => {
-    setIsSelectModeOpen(false);
-  };
-
   const [isEditing, setIsEditing] = useState(false);
   const [quizData, setQuizData] = useState({
     quizId: "",
@@ -125,7 +119,7 @@ function PrepareQuizzes() {
         alert(error);
         return;
       } finally {
-        setIsSelectModeOpen(false);
+        handleClosePopupMenu();
       }
     }
   };
@@ -172,13 +166,13 @@ function PrepareQuizzes() {
         )}
 
         <PopupMenu
-          isOpen={isSelectModeOpen}
-          onClose={handleClose}
+          isOpen={isPopupMenuOpen}
+          onClose={handleClosePopupMenu}
           menuItems={[
             { text: "編集を行う", onClick: handleEditQuiz },
             { text: "削除する", onClick: handleDeleteQuiz },
           ]}
-          anchor={menuAnchor}
+          anchor={popupMenuAnchor}
         />
 
         {isEditing && (
