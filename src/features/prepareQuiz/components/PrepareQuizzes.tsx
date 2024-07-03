@@ -53,7 +53,7 @@ function PrepareQuizzes() {
     <WindowVirtualizer>
       {quizzes &&
         quizzes.map((quiz, index) => (
-          <div key={index}>
+          <div key={quiz.id || index}>
             <PrepareQuiz
               QuizID={quiz.id}
               QuizName={quiz.question}
@@ -71,13 +71,13 @@ function PrepareQuizzes() {
 
   const cardList =
     quizzes &&
-    quizzes.map((quiz) => (
+    quizzes.map((quiz, index) => (
       <>
         <QuizCard
           frontElement={quiz.question}
           backElement={quiz.answer}
           key={quiz.id}
-          id={quiz.id}
+          id={quiz.id || String(index)}
           handleClickMenu={handleClickMenu}
           isOwner={isOwner}
         />
