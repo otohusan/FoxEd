@@ -17,6 +17,7 @@ import { useState } from "react";
 import { sendStudySetDelete } from "../../../api/index.tsx";
 import EditStudySet from "./EditStudySet.tsx";
 import FavoriteButton from "./FavoriteButton.tsx";
+import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 
 function ChooseQuiz() {
   const [isEditing, setIsEditing] = useState(false);
@@ -49,7 +50,7 @@ function ChooseQuiz() {
         await sendStudySetDelete(quizFormat?.id);
 
         handleNewStudySet();
-        setIsSelectModeOpen(false);
+        handleClosePopupMenu();
       } catch (error) {
         alert(error);
         return;
@@ -58,22 +59,14 @@ function ChooseQuiz() {
   };
 
   // menuに関わる者たち
-  const [isSelectModeOpen, setIsSelectModeOpen] = useState(false);
-  const [menuAnchor, setMenuAnchor] = useState<DOMRect | null>(null);
-  const handleOpen = () => {
-    setIsSelectModeOpen(true);
-  };
-  const handleClose = () => {
-    setIsSelectModeOpen(false);
-  };
-  const menuItems = [
-    { text: "編集を行う", onClick: handleEditStudySet },
-    { text: "削除する", onClick: handleDeleteStudySet },
-  ];
+  const {
+    isPopupMenuOpen,
+    popupMenuAnchor,
+    handleOpenPopupMenu,
+    handleClosePopupMenu,
+  } = usePopupMenu();
   const handleClickMenu = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setMenuAnchor(e.currentTarget.getBoundingClientRect());
-    handleOpen();
+    handleOpenPopupMenu(e);
   };
 
   const { user, favoriteItems } = useAuth();
@@ -122,10 +115,13 @@ function ChooseQuiz() {
         <Introduction />
 
         <PopupMenu
-          isOpen={isSelectModeOpen}
-          onClose={handleClose}
-          menuItems={menuItems}
-          anchor={menuAnchor}
+          isOpen={isPopupMenuOpen}
+          onClose={handleClosePopupMenu}
+          menuItems={[
+            { text: "編集を行う", onClick: handleEditStudySet },
+            { text: "削除する", onClick: handleDeleteStudySet },
+          ]}
+          anchor={popupMenuAnchor}
         />
 
         {isEditing && quizFormat?.id && quizFormat.description && (
