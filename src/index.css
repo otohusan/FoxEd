@@ -24,6 +24,7 @@
   --text-color-4: #676767;
 
   --icon-color: #949494;
+  --link-text-color: #1c1ca4;
 
   --gray-border-color: #f0eceb;
   --quiz-border-color: rgb(245, 245, 245);
@@ -64,6 +65,7 @@
   --quiz-border-color: rgb(68, 60, 54);
 
   --icon-color: #c6beb8;
+  --link-text-color: #6350f2;
 
   --image-dark-filter: brightness(0.9);
 }
