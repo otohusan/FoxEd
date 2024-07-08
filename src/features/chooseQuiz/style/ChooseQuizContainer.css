@@ -125,10 +125,11 @@
   text-align: start;
   margin-inline: 5.2%;
   margin-bottom: 60px;
+  color: var(--text-color-3);
 }
 
 .choose-quiz-make-prompt-url {
-  color: rgb(28, 28, 164);
+  color: var(--link-text-color);
   text-decoration: underline;
   cursor: pointer;
 }
