@@ -129,7 +129,7 @@
 }
 
 .choose-quiz-make-prompt-url {
-  color: rgb(28, 28, 164);
+  color: var(--link-text-color);
   text-decoration: underline;
   cursor: pointer;
 }
