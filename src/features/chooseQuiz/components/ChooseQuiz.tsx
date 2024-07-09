@@ -134,8 +134,8 @@ function ChooseQuiz() {
           />
         )}
 
-        <div className="ChooseTopTitle">学習セット</div>
-        <div className="hr-line"></div>
+        {/* <div className="ChooseTopTitle">学習セット</div>
+        <div className="hr-line"></div> */}
 
         {user && (!data || data?.length === 0) && (
           <p className="choose-quiz-make-prompt">
