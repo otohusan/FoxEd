@@ -2,13 +2,10 @@ import { Header, Footer, HeadDataHelmet, PopupMenu } from "../../../components";
 import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/ChooseQuizContainer.css";
 import { StudySet } from "../../../../type/index.ts";
-import { quizzes as yumetan } from "../../../assets/quizzes.ts";
-import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
 import { RxDotsHorizontal } from "react-icons/rx";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
-// import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
 import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
@@ -18,6 +15,7 @@ import { sendStudySetDelete } from "../../../api/index.tsx";
 import EditStudySet from "./EditStudySet.tsx";
 import FavoriteButton from "./FavoriteButton.tsx";
 import usePopupMenu from "../../../hooks/usePopupMenu.ts";
+import DefaultStudySets from "./DefaultStudySets.tsx";
 
 function ChooseQuiz() {
   const [isEditing, setIsEditing] = useState(false);
@@ -262,38 +260,7 @@ function ChooseQuiz() {
         )}
 
         {/* Konwalk作成の学習セット */}
-        <div className="ChooseQuizListTitle">TOEIC英単語</div>
-        <div className="ChooseQuizDataList">
-          {quizzes.map((quizFormat, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                setQuizFormat(quizFormat);
-                // handleOpen();
-                navigate("/PrepareQuiz");
-              }}
-              className="ChooseQuizContainerWrapper"
-            >
-              <ChooseQuizContainer quizFormat={quizFormat} />
-            </div>
-          ))}
-        </div>
-        <div className="ChooseQuizListTitleKoukou">高校英単語</div>
-        <div className="ChooseQuizDataList">
-          {yumetan.map((quizFormat, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                setQuizFormat(quizFormat);
-                // handleOpen();
-                navigate("/PrepareQuiz");
-              }}
-              className="ChooseQuizContainerWrapper"
-            >
-              <ChooseQuizContainer quizFormat={quizFormat} />
-            </div>
-          ))}
-        </div>
+        <DefaultStudySets setQuizFormat={setQuizFormat} />
 
         <div className="login-prompt-container">
           {!user && (
