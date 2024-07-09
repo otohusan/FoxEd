@@ -10,7 +10,7 @@ function Introduction() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
+    initialSlide: 2,
   };
 
   return (
@@ -18,22 +18,16 @@ function Introduction() {
       <div className="slider-container">
         <Slider {...settings}>
           <div>
-            <h3>1</h3>
+            <img src="/slide/intro-slide-1.png" alt="Slide 1" />
           </div>
           <div>
-            <h3>2</h3>
+            <img src="/slide/intro-slide-2.png" alt="Slide 2" />
           </div>
           <div>
-            <h3>3</h3>
+            <img src="/slide/intro-slide-3.png" alt="Slide 3" />
           </div>
           <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
+            <img src="/slide/intro-slide-4.png" alt="Slide 4" />
           </div>
         </Slider>
       </div>
