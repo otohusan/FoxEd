@@ -105,6 +105,7 @@ function ChooseQuiz() {
       created_at: studyset.created_at,
       updated_at: studyset.updated_at,
     });
+    navigate("/PrepareQuiz");
   };
 
   return (
@@ -165,7 +166,6 @@ function ChooseQuiz() {
                 <div
                   onClick={() => {
                     handleClickStudySet(studyset);
-                    navigate("/PrepareQuiz");
                   }}
                   className="ChooseQuizContainerWrapper"
                   key={studyset.id}
@@ -220,7 +220,6 @@ function ChooseQuiz() {
                 <div
                   onClick={() => {
                     handleClickStudySet(studyset);
-                    navigate("/PrepareQuiz");
                   }}
                   className="ChooseQuizContainerWrapper"
                   key={studyset.id}
