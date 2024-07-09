@@ -84,3 +84,34 @@
     height: 12em;
   }
 }
+
+.slider-container {
+  width: 80%;
+  margin: auto;
+}
+
+.slider-container > div {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 6/4;
+  background: #3498db;
+}
+
+/* style/Introduction.css */
+.introductionContainer {
+  width: 85%;
+}
+
+.slider-container {
+  width: 100%;
+}
+
+.slick-slide {
+  text-align: center;
+}
+
+.slick-slide h3 {
+  color: white;
+  padding: 40px 0;
+  margin: 10px;
+}

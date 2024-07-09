@@ -7,6 +7,9 @@ import { AuthProvider } from "./components/auth/AuthContext.tsx";
 import { QuizProvider } from "./components/quiz/QuizContext.tsx";
 import { ColorModeProvider } from "./components/colorMode/ColorModeContext.tsx";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
     <BrowserRouter

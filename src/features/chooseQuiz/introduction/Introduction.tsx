@@ -1,30 +1,42 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./style/Introduction.css";
 
 function Introduction() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+  };
+
   return (
     <div className="introductionContainer">
-      <h1 className="introductionComment">
-        <span className="introductionBig">Konwalk(コンウォーク)</span>
-        <br />
-        を知ってくれて
-        <br />
-        <span className="introductionBold">ありがとう!</span>
-      </h1>
-      <img
-        src="/Konwalk_char.svg"
-        alt="Konwalk Character"
-        className="konwalk_char"
-      />
-      <h2 className="introductionNavigateComment">
-        下にある <span className="introductionBold">学習セット</span> から
-        <br />
-        覚えたいもの選ぶか、
-        <span className="introductionBold">
-          <a href="/Search">探す</a>
-        </span>{" "}
-        から気になる学習セットを見つけてね
-      </h2>
-      {/* <h2>{`Konwalk(コンウォーク)は\n歩く時間を、勉強ができる時間に\n変える単語帳だよ`}</h2> */}
+      <div className="slider-container">
+        <Slider {...settings}>
+          <div>
+            <h3>1</h3>
+          </div>
+          <div>
+            <h3>2</h3>
+          </div>
+          <div>
+            <h3>3</h3>
+          </div>
+          <div>
+            <h3>4</h3>
+          </div>
+          <div>
+            <h3>5</h3>
+          </div>
+          <div>
+            <h3>6</h3>
+          </div>
+        </Slider>
+      </div>
     </div>
   );
 }
