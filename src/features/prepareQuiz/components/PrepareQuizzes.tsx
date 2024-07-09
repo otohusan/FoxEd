@@ -10,7 +10,7 @@ import {
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import CreateQuiz from "./CreateQuiz.tsx";
@@ -73,16 +73,14 @@ function PrepareQuizzes() {
   const cardList =
     quizzes &&
     quizzes.map((quiz, index) => (
-      <React.Fragment>
-        <QuizCard
-          frontElement={quiz.question}
-          backElement={quiz.answer}
-          key={quiz.id}
-          id={quiz.id || String(index)}
-          handleClickMenu={handleClickMenu}
-          isOwner={isOwner}
-        />
-      </React.Fragment>
+      <QuizCard
+        key={quiz.id || String(index)}
+        id={quiz.id || String(index)}
+        frontElement={quiz.question}
+        backElement={quiz.answer}
+        handleClickMenu={handleClickMenu}
+        isOwner={isOwner}
+      />
     ));
 
   const [isEditing, setIsEditing] = useState(false);
@@ -122,6 +120,18 @@ function PrepareQuizzes() {
   };
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // 戻るように使う
+  const handleNavigateBack = () => {
+    if (location.key === "default") {
+      // 初期ロードのページの場合
+      navigate("/");
+    } else {
+      // 前のページに戻る
+      navigate(-1);
+    }
+  };
 
   // CreateQuiz用の状態管理
   const [isCreatingQuiz, setIsCreatingQuiz] = useState(false);
@@ -146,7 +156,7 @@ function PrepareQuizzes() {
       <main>
         <button
           onClick={() => {
-            navigate(-1);
+            handleNavigateBack();
           }}
           className="PrepareQuizBackToChooseBtnAndLabel"
         >
@@ -210,6 +220,7 @@ function PrepareQuizzes() {
             isOwner={isOwner}
           />
         )}
+
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
