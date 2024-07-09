@@ -101,7 +101,7 @@ describe("ChooseQuiz", () => {
       popupMenuAnchor: null,
       handleOpenPopupMenu,
       handleClosePopupMenu,
-    });
+    } as ReturnType<typeof usePopupMenu>);
     vi.clearAllMocks();
   });
 
@@ -138,4 +138,33 @@ describe("ChooseQuiz", () => {
     expect(result2[0]).toBeInTheDocument();
     expect(result2[1]).toBeInTheDocument();
   });
+
+  test("自身の学習セットがない場合は、催促メッセージを表示", () => {
+    mockUseQuizContext.mockReturnValue({
+      quizFormat: [],
+      setQuizFormat: vi.fn(),
+    });
+    mockUseFetch.mockReturnValue({ data: [], setData: vi.fn() });
+
+    renderComponent();
+
+    const element = screen.getByText((content, element) => {
+      if (!element) {
+        return false;
+      }
+
+      return (
+        element.tagName.toLowerCase() === "span" &&
+        content.startsWith("プロフィール")
+      );
+    });
+
+    expect(element).toBeInTheDocument();
+
+    expect(
+      screen.getByText("から、オリジナル学習セットを作成しよう！")
+    ).toBeInTheDocument();
+  });
+
+  // TODO: ポップアップメニューのテストがうまくできない
 });

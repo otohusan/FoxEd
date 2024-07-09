@@ -137,7 +137,7 @@ function ChooseQuiz() {
         <div className="ChooseTopTitle">学習セット</div>
         <div className="hr-line"></div>
 
-        {user && !data && (
+        {user && (!data || data?.length === 0) && (
           <p className="choose-quiz-make-prompt">
             <span
               className="choose-quiz-make-prompt-url"
@@ -152,7 +152,9 @@ function ChooseQuiz() {
         )}
 
         {/* ユーザが作成した学習セットを表示 */}
-        {data && <div className="ChooseQuizListTitle">あなたの学習セット</div>}
+        {data && data.length > 0 && (
+          <div className="ChooseQuizListTitle">あなたの学習セット</div>
+        )}
         {data && data.length > 0 ? (
           <div className="ChooseQuizDataList">
             {/* 取得した学習セットを表示 */}
@@ -243,6 +245,7 @@ function ChooseQuiz() {
                       user?.ID == studyset.user_id && (
                         <button
                           className="owner-drop-menu"
+                          data-testid="owner-drop-menu"
                           onClick={(e) => {
                             handleClickStudySet(studyset);
                             handleClickMenu(e);
