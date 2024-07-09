@@ -106,4 +106,19 @@ describe("ChooseQuiz", () => {
     const elements = screen.getAllByText("学習セット");
     expect(elements.length).toBeGreaterThan(1);
   });
+
+  test("ログインしていない場合、ログインプロンプトが表示される", () => {
+    renderComponent();
+    expect(
+      screen.queryByText("ログインすれば、オリジナル学習セットを作成できる")
+    ).not.toBeInTheDocument();
+  });
+
+  test("ログインしていない場合、ログインプロンプトが表示される", () => {
+    mockUseAuth.mockReturnValue({ user: null, favoriteItems: [] });
+    renderComponent();
+    expect(
+      screen.getByText("ログインすれば、オリジナル学習セットを作成できる")
+    ).toBeInTheDocument();
+  });
 });
