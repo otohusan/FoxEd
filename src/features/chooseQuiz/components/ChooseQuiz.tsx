@@ -18,6 +18,8 @@ import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 import DefaultStudySets from "./DefaultStudySets.tsx";
 
 function ChooseQuiz() {
+  const navigate = useNavigate();
+
   const [isEditing, setIsEditing] = useState(false);
   const handleEditStudySet = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -67,8 +69,11 @@ function ChooseQuiz() {
     handleOpenPopupMenu(e);
   };
 
+  // ユーザ周りのデータを取得
   const { user, favoriteItems } = useAuth();
+
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+
   // userがない場合にはFetchを行わないように
   // nullの場合はuseFetch内でFetchが実行されないようになってる
   const fetchUrl = user
@@ -78,7 +83,7 @@ function ChooseQuiz() {
   // ユーザの学習セットを検索
   const { data, setData } = useFetch<StudySet[]>(fetchUrl);
 
-  // 明示的にデータを更新する
+  // 明示的にデータを更新するために使う
   const handleNewStudySet = async () => {
     try {
       const response = await axios.get(
@@ -89,8 +94,6 @@ function ChooseQuiz() {
       console.error("学習セットの取得に失敗しました", error);
     }
   };
-
-  const navigate = useNavigate();
 
   // ユーザやお気に入りの学習セットがクリックされた時に使う関数
   const handleClickStudySet = (studyset: StudySet) => {
