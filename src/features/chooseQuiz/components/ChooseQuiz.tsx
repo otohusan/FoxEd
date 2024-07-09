@@ -1,14 +1,9 @@
 import { Header, Footer, HeadDataHelmet, PopupMenu } from "../../../components";
-import ChooseQuizContainer from "./ChooseQuizContainer";
 import "../style/ChooseQuizContainer.css";
 import { StudySet } from "../../../../type/index.ts";
-import { quizzes as yumetan } from "../../../assets/quizzes.ts";
-import { allQuizzes as quizzes } from "../../../assets/allQuizData.ts";
 import Introduction from "../introduction/Introduction.tsx";
-import { RxDotsHorizontal } from "react-icons/rx";
 import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
-// import OwnerStudySetMenu from "./OwnerStudySetMenu.tsx";
 import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
@@ -16,10 +11,13 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { sendStudySetDelete } from "../../../api/index.tsx";
 import EditStudySet from "./EditStudySet.tsx";
-import FavoriteButton from "./FavoriteButton.tsx";
 import usePopupMenu from "../../../hooks/usePopupMenu.ts";
+import DefaultStudySets from "./DefaultStudySets.tsx";
+import StudySetOverview from "./StudySetOverview.tsx";
 
 function ChooseQuiz() {
+  const navigate = useNavigate();
+
   const [isEditing, setIsEditing] = useState(false);
   const handleEditStudySet = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -69,8 +67,11 @@ function ChooseQuiz() {
     handleOpenPopupMenu(e);
   };
 
+  // ユーザ周りのデータを取得
   const { user, favoriteItems } = useAuth();
+
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+
   // userがない場合にはFetchを行わないように
   // nullの場合はuseFetch内でFetchが実行されないようになってる
   const fetchUrl = user
@@ -80,7 +81,7 @@ function ChooseQuiz() {
   // ユーザの学習セットを検索
   const { data, setData } = useFetch<StudySet[]>(fetchUrl);
 
-  // 明示的にデータを更新する
+  // 明示的にデータを更新するために使う
   const handleNewStudySet = async () => {
     try {
       const response = await axios.get(
@@ -91,8 +92,6 @@ function ChooseQuiz() {
       console.error("学習セットの取得に失敗しました", error);
     }
   };
-
-  const navigate = useNavigate();
 
   // ユーザやお気に入りの学習セットがクリックされた時に使う関数
   const handleClickStudySet = (studyset: StudySet) => {
@@ -105,6 +104,7 @@ function ChooseQuiz() {
       created_at: studyset.created_at,
       updated_at: studyset.updated_at,
     });
+    navigate("/PrepareQuiz");
   };
 
   return (
@@ -137,7 +137,7 @@ function ChooseQuiz() {
         <div className="ChooseTopTitle">学習セット</div>
         <div className="hr-line"></div>
 
-        {user && !data && (
+        {user && (!data || data?.length === 0) && (
           <p className="choose-quiz-make-prompt">
             <span
               className="choose-quiz-make-prompt-url"
@@ -151,147 +151,28 @@ function ChooseQuiz() {
           </p>
         )}
 
-        {/* ユーザが作成した学習セットを表示 */}
-        {data && <div className="ChooseQuizListTitle">あなたの学習セット</div>}
-        {data && data.length > 0 ? (
-          <div className="ChooseQuizDataList">
-            {/* 取得した学習セットを表示 */}
-            {data
-              .slice()
-              .reverse()
-              .map((studyset) => (
-                <div
-                  onClick={() => {
-                    handleClickStudySet(studyset);
-                    navigate("/PrepareQuiz");
-                  }}
-                  className="ChooseQuizContainerWrapper"
-                  key={studyset.id}
-                >
-                  <ChooseQuizContainer
-                    key={studyset.id}
-                    // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
-                    quizFormat={{
-                      id: studyset.id,
-                      label: studyset.title,
-                      description: studyset.description,
-                      body: studyset.flashcards,
-                      created_at: studyset.created_at,
-                      updated_at: studyset.updated_at,
-                    }}
-                  />
-                  <div className="choose-quiz-menus">
-                    <FavoriteButton studySet={studyset} IconSize="25px" />
-                    {/* オーナーだった場合編集ボタンを追加 */}
-                    {studyset.id &&
-                      studyset.description &&
-                      user?.ID == studyset.user_id && (
-                        <button
-                          className="owner-drop-menu"
-                          onClick={(e) => {
-                            handleClickStudySet(studyset);
-                            handleClickMenu(e);
-                          }}
-                        >
-                          <RxDotsHorizontal size={"23px"} />
-                        </button>
-                      )}
-                  </div>
-                </div>
-              ))}
-          </div>
-        ) : (
-          <></>
+        {user && data && data.length > 0 && (
+          <StudySetOverview
+            title="あなたの学習セット"
+            studySets={data}
+            user={user}
+            handleClickStudySet={handleClickStudySet}
+            handleClickMenu={handleClickMenu}
+          />
         )}
 
-        {/* ユーザが作成した学習セットを表示 */}
-        {favoriteItems && favoriteItems.length > 0 && (
-          <div className="ChooseQuizListTitle">あなたのお気に入り</div>
-        )}
-        {favoriteItems && favoriteItems.length > 0 ? (
-          <div className="ChooseQuizDataList">
-            {/* 取得した学習セットを表示 */}
-            {favoriteItems
-              .slice()
-              .reverse()
-              .map((studyset) => (
-                <div
-                  onClick={() => {
-                    handleClickStudySet(studyset);
-                    navigate("/PrepareQuiz");
-                  }}
-                  className="ChooseQuizContainerWrapper"
-                  key={studyset.id}
-                >
-                  <ChooseQuizContainer
-                    key={studyset.id}
-                    // WARN: flashcardsとQuizのデータ型が違うから、setQuizが適切に動作しないと思う
-                    quizFormat={{
-                      id: studyset.id,
-                      label: studyset.title,
-                      description: studyset.description,
-                      body: studyset.flashcards,
-                      created_at: studyset.created_at,
-                      updated_at: studyset.updated_at,
-                    }}
-                  />
-                  <div className="choose-quiz-menus">
-                    <FavoriteButton studySet={studyset} IconSize="25px" />
-                    {/* オーナーだった場合編集ボタンを追加 */}
-                    {studyset.id &&
-                      studyset.description &&
-                      user?.ID == studyset.user_id && (
-                        <button
-                          className="owner-drop-menu"
-                          onClick={(e) => {
-                            handleClickStudySet(studyset);
-                            handleClickMenu(e);
-                          }}
-                        >
-                          <RxDotsHorizontal size={"23px"} />
-                        </button>
-                      )}
-                  </div>
-                </div>
-              ))}
-          </div>
-        ) : (
-          <></>
+        {user && favoriteItems && favoriteItems.length > 0 && (
+          <StudySetOverview
+            title="あなたのお気に入り"
+            studySets={favoriteItems}
+            user={user}
+            handleClickStudySet={handleClickStudySet}
+            handleClickMenu={handleClickMenu}
+          />
         )}
 
         {/* Konwalk作成の学習セット */}
-        <div className="ChooseQuizListTitle">TOEIC英単語</div>
-        <div className="ChooseQuizDataList">
-          {quizzes.map((quizFormat, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                setQuizFormat(quizFormat);
-                // handleOpen();
-                navigate("/PrepareQuiz");
-              }}
-              className="ChooseQuizContainerWrapper"
-            >
-              <ChooseQuizContainer quizFormat={quizFormat} />
-            </div>
-          ))}
-        </div>
-        <div className="ChooseQuizListTitleKoukou">高校英単語</div>
-        <div className="ChooseQuizDataList">
-          {yumetan.map((quizFormat, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                setQuizFormat(quizFormat);
-                // handleOpen();
-                navigate("/PrepareQuiz");
-              }}
-              className="ChooseQuizContainerWrapper"
-            >
-              <ChooseQuizContainer quizFormat={quizFormat} />
-            </div>
-          ))}
-        </div>
+        <DefaultStudySets setQuizFormat={setQuizFormat} />
 
         <div className="login-prompt-container">
           {!user && (
