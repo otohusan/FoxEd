@@ -73,16 +73,14 @@ function PrepareQuizzes() {
   const cardList =
     quizzes &&
     quizzes.map((quiz, index) => (
-      <React.Fragment>
-        <QuizCard
-          frontElement={quiz.question}
-          backElement={quiz.answer}
-          key={quiz.id}
-          id={quiz.id || String(index)}
-          handleClickMenu={handleClickMenu}
-          isOwner={isOwner}
-        />
-      </React.Fragment>
+      <QuizCard
+        key={quiz.id || String(index)}
+        id={quiz.id || String(index)}
+        frontElement={quiz.question}
+        backElement={quiz.answer}
+        handleClickMenu={handleClickMenu}
+        isOwner={isOwner}
+      />
     ));
 
   const [isEditing, setIsEditing] = useState(false);
@@ -210,6 +208,7 @@ function PrepareQuizzes() {
             isOwner={isOwner}
           />
         )}
+
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
