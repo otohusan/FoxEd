@@ -8,13 +8,14 @@ import { useAuth } from "../../../components/auth/useAuth";
 import { ColorModeProvider } from "../../../components/colorMode/ColorModeContext";
 import { QuizProvider } from "../../../components/quiz/QuizContext";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
-import { usePopupMenu } from "../../../hooks";
+import { useFetch, usePopupMenu } from "../../../hooks";
 
 // モックの作成
 vi.mock("axios");
 vi.mock("../../../components/auth/useAuth");
 vi.mock("../../../components/quiz/useQuizContext");
 vi.mock("../../../hooks/usePopupMenu");
+vi.mock("../../../hooks/useFetch");
 
 // ResizeObserver をモック
 global.ResizeObserver = vi.fn().mockImplementation(() => ({
@@ -35,6 +36,8 @@ const mockUseQuizContext = useQuizContext as unknown as ReturnType<
   typeof vi.fn
 >;
 const mockUsePopupMenu = usePopupMenu as unknown as ReturnType<typeof vi.fn>;
+
+const mockUseFetch = useFetch as unknown as ReturnType<typeof vi.fn>;
 
 const mockStudySets = [
   {
@@ -80,9 +83,11 @@ describe("ChooseQuiz", () => {
       favoriteItems: mockStudySets,
     });
     mockUseQuizContext.mockReturnValue({
-      quizFormat: null,
+      quizFormat: mockStudySets,
       setQuizFormat: vi.fn(),
     });
+    mockUseFetch.mockReturnValue({ data: mockStudySets, setData: vi.fn() });
+
     let isPopupMenuOpen = false;
     const handleOpenPopupMenu = vi.fn(() => {
       isPopupMenuOpen = true;
@@ -120,5 +125,17 @@ describe("ChooseQuiz", () => {
     expect(
       screen.getByText("ログインすれば、オリジナル学習セットを作成できる")
     ).toBeInTheDocument();
+  });
+
+  test("学習セットが正しく表示される", () => {
+    renderComponent();
+    expect(screen.getByText("あなたの学習セット")).toBeInTheDocument();
+    expect(screen.getByText("あなたのお気に入り")).toBeInTheDocument();
+    const result1 = screen.getAllByText("Test Study Set 1");
+    const result2 = screen.getAllByText("Test Study Set 2");
+    expect(result1[0]).toBeInTheDocument();
+    expect(result1[1]).toBeInTheDocument();
+    expect(result2[0]).toBeInTheDocument();
+    expect(result2[1]).toBeInTheDocument();
   });
 });
