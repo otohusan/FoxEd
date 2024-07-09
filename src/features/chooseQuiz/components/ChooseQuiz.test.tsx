@@ -166,5 +166,18 @@ describe("ChooseQuiz", () => {
     ).toBeInTheDocument();
   });
 
+  test("お気に入りと自分の学習セットが空の場合は何も表示されない", () => {
+    mockUseFetch.mockReturnValue({ data: [], setData: vi.fn() });
+    mockUseAuth.mockReturnValue({
+      user: { ID: 1, name: "Test User" },
+      favoriteItems: [],
+    });
+
+    renderComponent();
+
+    expect(screen.queryByText("あなたの学習セット")).not.toBeInTheDocument();
+    expect(screen.queryByText("あなたのお気に入り")).not.toBeInTheDocument();
+  });
+
   // TODO: ポップアップメニューのテストがうまくできない
 });
