@@ -104,7 +104,6 @@ function ChooseQuiz() {
       created_at: studyset.created_at,
       updated_at: studyset.updated_at,
     });
-    navigate("/PrepareQuiz");
   };
 
   return (
