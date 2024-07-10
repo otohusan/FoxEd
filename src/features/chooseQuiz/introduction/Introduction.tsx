@@ -4,6 +4,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "./style/Introduction.css";
 
 function Introduction() {
+  type LazyLoadTypes = "ondemand" | "progressive" | "anticipated";
+
   const settings = {
     dots: true,
     infinite: true,
@@ -13,6 +15,7 @@ function Introduction() {
     initialSlide: 0,
     autoplay: true,
     arrows: false,
+    lazyLoad: "ondemand" as LazyLoadTypes,
   };
 
   return (
