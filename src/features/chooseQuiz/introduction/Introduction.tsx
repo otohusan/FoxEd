@@ -1,30 +1,41 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./style/Introduction.css";
 
 function Introduction() {
+  type LazyLoadTypes = "ondemand" | "progressive" | "anticipated";
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    autoplay: true,
+    arrows: false,
+    lazyLoad: "ondemand" as LazyLoadTypes,
+  };
+
   return (
     <div className="introductionContainer">
-      <h1 className="introductionComment">
-        <span className="introductionBig">Konwalk(コンウォーク)</span>
-        <br />
-        を知ってくれて
-        <br />
-        <span className="introductionBold">ありがとう!</span>
-      </h1>
-      <img
-        src="/Konwalk_char.svg"
-        alt="Konwalk Character"
-        className="konwalk_char"
-      />
-      <h2 className="introductionNavigateComment">
-        下にある <span className="introductionBold">学習セット</span> から
-        <br />
-        覚えたいもの選ぶか、
-        <span className="introductionBold">
-          <a href="/Search">探す</a>
-        </span>{" "}
-        から気になる学習セットを見つけてね
-      </h2>
-      {/* <h2>{`Konwalk(コンウォーク)は\n歩く時間を、勉強ができる時間に\n変える単語帳だよ`}</h2> */}
+      <div className="slider-container">
+        <Slider {...settings}>
+          <div>
+            <img src="/slide/intro-slide-1.png" alt="Slide 1" />
+          </div>
+          <div>
+            <img src="/slide/intro-slide-2.png" alt="Slide 2" />
+          </div>
+          <div>
+            <img src="/slide/intro-slide-3.png" alt="Slide 3" />
+          </div>
+          <div>
+            <img src="/slide/intro-slide-4.png" alt="Slide 4" />
+          </div>
+        </Slider>
+      </div>
     </div>
   );
 }
