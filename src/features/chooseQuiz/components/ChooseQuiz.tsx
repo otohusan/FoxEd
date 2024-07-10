@@ -153,7 +153,7 @@ function ChooseQuiz() {
 
         {user && data && data.length > 0 && (
           <StudySetOverview
-            title="あなたの学習セット"
+            title="学習セット"
             studySets={data}
             user={user}
             handleClickStudySet={handleClickStudySet}
@@ -163,7 +163,7 @@ function ChooseQuiz() {
 
         {user && favoriteItems && favoriteItems.length > 0 && (
           <StudySetOverview
-            title="あなたのお気に入り"
+            title="お気に入り"
             studySets={favoriteItems}
             user={user}
             handleClickStudySet={handleClickStudySet}

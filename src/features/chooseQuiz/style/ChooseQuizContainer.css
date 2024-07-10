@@ -25,7 +25,7 @@
   color: var(--text-color-3);
   text-align: start;
   margin-left: 5%;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
 }
 
@@ -59,10 +59,10 @@
   display: inline-block;
   padding: 0;
   margin-right: 12%;
-  width: 75%;
+  width: 70%;
   height: auto;
-  aspect-ratio: 16 / 9.5;
-  margin: 10px 7% 0px 4%;
+  aspect-ratio: 16 / 9;
+  margin: 5px 7% 0px 4%;
   position: relative;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .ChooseQuizLabel {
-  margin: 5px 0 5px 5px;
+  margin: 2px 0 5px 5px;
   font-size: 1.1em;
   font-weight: 700;
 }
@@ -142,7 +142,7 @@
 
 .choose-quiz-menus {
   position: absolute;
-  top: 71%;
+  top: 70%;
   left: 6%;
   margin: 0;
 }
