@@ -39,3 +39,14 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* ドットの色を変更するCSS */
+.slick-dots li button:before {
+  color: var(--slide-dots-color);
+  font-size: 10px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--slide-active-dots-color);
+  font-size: 12px;
+}

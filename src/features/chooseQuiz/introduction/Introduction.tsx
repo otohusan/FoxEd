@@ -12,6 +12,7 @@ function Introduction() {
     slidesToScroll: 1,
     initialSlide: 0,
     autoplay: true,
+    arrows: false,
   };
 
   return (
