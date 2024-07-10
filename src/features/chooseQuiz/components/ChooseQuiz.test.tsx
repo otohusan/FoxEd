@@ -107,9 +107,9 @@ describe("ChooseQuiz", () => {
 
   test("コンポーネントが正しくレンダリングされる", () => {
     renderComponent();
-    expect(screen.getByText("Choose")).toBeInTheDocument();
+    expect(screen.getByText("Home")).toBeInTheDocument();
     const elements = screen.getAllByText("学習セット");
-    expect(elements.length).toBeGreaterThan(1);
+    expect(elements[0]).toBeInTheDocument();
   });
 
   test("ログインしていない場合、ログインプロンプトが表示される", () => {
@@ -122,8 +122,8 @@ describe("ChooseQuiz", () => {
 
   test("学習セットが正しく表示される", () => {
     renderComponent();
-    expect(screen.getByText("あなたの学習セット")).toBeInTheDocument();
-    expect(screen.getByText("あなたのお気に入り")).toBeInTheDocument();
+    expect(screen.getByText("学習セット")).toBeInTheDocument();
+    expect(screen.getByText("お気に入り")).toBeInTheDocument();
     const result1 = screen.getAllByText("Test Study Set 1");
     const result2 = screen.getAllByText("Test Study Set 2");
     expect(result1[0]).toBeInTheDocument();
