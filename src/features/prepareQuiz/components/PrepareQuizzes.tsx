@@ -212,6 +212,7 @@ function PrepareQuizzes() {
         {quizzes && quizzes.length != 0 && (
           <HorizontalScroll>{cardList}</HorizontalScroll>
         )}
+
         {quizzes && quizzes.length != 0 && (
           <QuizActions
             setQuizFormat={setQuizFormat}

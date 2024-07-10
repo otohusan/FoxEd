@@ -5,6 +5,7 @@ import { StudySet, User } from "../../../../type/index.ts";
 import FavoriteButton from "./FavoriteButton.tsx";
 import { RxDotsHorizontal } from "react-icons/rx";
 import "../style/ChooseQuizContainer.css";
+import { useNavigate } from "react-router-dom";
 
 type StudySetListProps = {
   title: string;
@@ -21,6 +22,7 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
   handleClickStudySet,
   handleClickMenu,
 }) => {
+  const navigate = useNavigate();
   return (
     <>
       {studySets.length > 0 && (
@@ -33,7 +35,10 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
             .reverse()
             .map((studyset) => (
               <div
-                onClick={() => handleClickStudySet(studyset)}
+                onClick={() => {
+                  handleClickStudySet(studyset);
+                  navigate("/PrepareQuiz");
+                }}
                 className="ChooseQuizContainerWrapper"
                 key={studyset.id}
               >
@@ -57,6 +62,7 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                         className="owner-drop-menu"
                         data-testid="owner-drop-menu"
                         onClick={(e) => {
+                          e.stopPropagation();
                           handleClickStudySet(studyset);
                           handleClickMenu(e);
                         }}

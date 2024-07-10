@@ -104,13 +104,12 @@ function ChooseQuiz() {
       created_at: studyset.created_at,
       updated_at: studyset.updated_at,
     });
-    navigate("/PrepareQuiz");
   };
 
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
-      <Header HeaderTitle="Choose" />
+      <Header HeaderTitle="Home" />
       <main>
         <Introduction />
 
@@ -134,9 +133,6 @@ function ChooseQuiz() {
           />
         )}
 
-        <div className="ChooseTopTitle">学習セット</div>
-        <div className="hr-line"></div>
-
         {user && (!data || data?.length === 0) && (
           <p className="choose-quiz-make-prompt">
             <span
@@ -153,7 +149,7 @@ function ChooseQuiz() {
 
         {user && data && data.length > 0 && (
           <StudySetOverview
-            title="あなたの学習セット"
+            title="学習セット"
             studySets={data}
             user={user}
             handleClickStudySet={handleClickStudySet}
@@ -163,7 +159,7 @@ function ChooseQuiz() {
 
         {user && favoriteItems && favoriteItems.length > 0 && (
           <StudySetOverview
-            title="あなたのお気に入り"
+            title="お気に入り"
             studySets={favoriteItems}
             user={user}
             handleClickStudySet={handleClickStudySet}
