@@ -109,7 +109,7 @@ function ChooseQuiz() {
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
-      <Header HeaderTitle="Choose" />
+      <Header HeaderTitle="Home" />
       <main>
         <Introduction />
 
