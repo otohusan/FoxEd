@@ -107,11 +107,6 @@ function ChooseQuiz() {
     });
   };
 
-  // 試し
-
-  // const url = `${BASE_BACKEND_URL}/studysets/search?title=a`;
-  // const response = useFetch<StudySet[]>(url);
-
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
@@ -176,17 +171,11 @@ function ChooseQuiz() {
         {/* Konwalk作成の学習セット */}
         <DefaultStudySets setQuizFormat={setQuizFormat} />
 
-        {/* {response.data && response.data.length > 0 && (
-          <StudySetOverview
-            title="IT用語"
-            studySets={response.data}
-            user={user || null}
-            handleClickStudySet={handleClickStudySet}
-            handleClickMenu={handleClickMenu}
-          />
-        )} */}
-
-        <SelectedStudySetsByKonwalk />
+        <SelectedStudySetsByKonwalk
+          handleClickMenu={handleClickMenu}
+          handleClickStudySet={handleNewStudySet}
+          user={user}
+        />
 
         <div className="login-prompt-container">
           {!user && (
