@@ -8,12 +8,16 @@ import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { sendStudySetDelete } from "../../../api/index.tsx";
 import EditStudySet from "./EditStudySet.tsx";
 import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 import DefaultStudySets from "./DefaultStudySets.tsx";
 import StudySetOverview from "./StudySetOverview.tsx";
+import React from "react";
+const SelectedStudySetsByKonwalk = React.lazy(
+  () => import("./SelectedStudySetsByKonwalk")
+);
 
 function ChooseQuiz() {
   const navigate = useNavigate();
@@ -169,6 +173,14 @@ function ChooseQuiz() {
 
         {/* Konwalk作成の学習セット */}
         <DefaultStudySets setQuizFormat={setQuizFormat} />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <SelectedStudySetsByKonwalk
+            handleClickStudySet={handleClickStudySet}
+            handleClickMenu={handleClickMenu}
+            user={user}
+          />
+        </Suspense>
 
         <div className="login-prompt-container">
           {!user && (

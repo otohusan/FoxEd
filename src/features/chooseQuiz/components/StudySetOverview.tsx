@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 type StudySetListProps = {
   title: string;
   studySets: StudySet[];
-  user: User;
+  user: User | null;
   handleClickStudySet: (studyset: StudySet) => void;
   handleClickMenu: (e: React.MouseEvent) => void;
 };
