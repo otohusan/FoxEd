@@ -9,11 +9,10 @@ function Introduction() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 1000,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
-    autoplay: true,
     arrows: false,
     lazyLoad: "ondemand" as LazyLoadTypes,
   };
