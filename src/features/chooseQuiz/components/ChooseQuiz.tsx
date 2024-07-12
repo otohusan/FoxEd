@@ -14,6 +14,7 @@ import EditStudySet from "./EditStudySet.tsx";
 import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 import DefaultStudySets from "./DefaultStudySets.tsx";
 import StudySetOverview from "./StudySetOverview.tsx";
+import SelectedStudySetsByKonwalk from "./SelectedStudySetsByKonwalk.tsx";
 
 function ChooseQuiz() {
   const navigate = useNavigate();
@@ -184,6 +185,8 @@ function ChooseQuiz() {
             handleClickMenu={handleClickMenu}
           />
         )} */}
+
+        <SelectedStudySetsByKonwalk />
 
         <div className="login-prompt-container">
           {!user && (
