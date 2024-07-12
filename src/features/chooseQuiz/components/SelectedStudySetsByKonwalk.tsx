@@ -13,10 +13,10 @@ function SelectedStudySetsByKonwalk({
   handleClickMenu,
   user,
 }: SelectedStudySetsByKonwalkProps) {
-  // 試し
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const url = `${BASE_BACKEND_URL}/studysets/search?title=a`;
+  const url = `${BASE_BACKEND_URL}/studysets/search?title=IT`;
   const response = useFetch<StudySet[]>(url);
+
   return (
     <div>
       {response.data && response.data.length > 0 && (
@@ -27,7 +27,7 @@ function SelectedStudySetsByKonwalk({
           handleClickStudySet={handleClickStudySet}
           handleClickMenu={handleClickMenu}
         />
-      )}{" "}
+      )}
     </div>
   );
 }
