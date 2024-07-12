@@ -8,28 +8,48 @@ type SelectedStudySetsByKonwalkProps = {
   user: User | null;
 };
 
+type SelectedStudySetsByKonwalkContainerProps = {
+  searchTerm: string;
+  categoryTitle: string;
+};
+
 function SelectedStudySetsByKonwalk({
   handleClickStudySet,
   handleClickMenu,
   user,
 }: SelectedStudySetsByKonwalkProps) {
-  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const url = `${BASE_BACKEND_URL}/studysets/search?title=IT`;
-  const response = useFetch<StudySet[]>(url);
-
   return (
     <div>
-      {response.data && response.data.length > 0 && (
-        <StudySetOverview
-          title="IT用語"
-          studySets={response.data}
-          user={user || null}
-          handleClickStudySet={handleClickStudySet}
-          handleClickMenu={handleClickMenu}
-        />
-      )}
+      <SelectedStudySetsByKonwalkContainer
+        searchTerm="IT"
+        categoryTitle="IT用語"
+      />
     </div>
   );
+
+  // handleあたりのpropsを毎回渡すのが煩わしいから、この中で定義してる
+  function SelectedStudySetsByKonwalkContainer({
+    searchTerm,
+    categoryTitle,
+  }: SelectedStudySetsByKonwalkContainerProps) {
+    const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+    const url = `${BASE_BACKEND_URL}/studysets/search?title=${searchTerm}`;
+    const response = useFetch<StudySet[]>(url);
+
+    return (
+      <div>
+        {response.data && response.data.length > 0 && (
+          <StudySetOverview
+            title={categoryTitle}
+            studySets={response.data}
+            user={user || null}
+            handleClickStudySet={handleClickStudySet}
+            handleClickMenu={handleClickMenu}
+          />
+        )}
+      </div>
+    );
+  }
 }
 
 export default SelectedStudySetsByKonwalk;
