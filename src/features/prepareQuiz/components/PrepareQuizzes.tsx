@@ -33,7 +33,7 @@ function PrepareQuizzes() {
   } = usePopupMenu();
 
   // 学習セットのオーナーであるかを判定
-  const isOwner = user?.ID == quizFormat?.user_id;
+  const isOwner = user ? user.ID == quizFormat?.user_id : false;
   const quizzes = quizFormat ? quizFormat.body : [];
 
   // popupMenuをクリック時に起こす関数
