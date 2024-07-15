@@ -10,20 +10,28 @@ type AdmaxAdType = {
 const AdAboveNavBar: React.FC<{ id: string }> = (props) => {
   useEffect(() => {
     // windowオブジェクトの広告リストを初期化
-    if (!window["admaxads"]) window["admaxads"] = [];
+    const admaxads = (window as any).admaxads as AdmaxAdType[] | undefined;
+    if (!admaxads) {
+      (window as any).admaxads = [];
+    }
+
     // 広告リストを取得
-    const admaxads: AdmaxAdType[] = window["admaxads"];
+    const currentAdmaxads = (window as any).admaxads as AdmaxAdType[];
+
     // 広告リストになかったら追加
-    if (!admaxads.some((ad) => ad.admax_id === props.id))
-      admaxads.push({
+    if (!currentAdmaxads.some((ad) => ad.admax_id === props.id)) {
+      currentAdmaxads.push({
         admax_id: props.id,
-        type: "string",
+        type: "switch",
       });
+    }
+
     // 外部JSを読み込んで広告リストを実際に表示
     const tag = document.createElement("script");
     tag.src = "https://adm.shinobi.jp/st/t.js";
     tag.async = true;
     document.body.appendChild(tag);
+
     // アンマウント時にJSタグと広告情報を削除
     return () => {
       try {
@@ -31,11 +39,13 @@ const AdAboveNavBar: React.FC<{ id: string }> = (props) => {
       } catch (e) {
         console.error("Error removing script tag:", e);
       }
-      const adIndex = admaxads.findIndex((ad) => ad.admax_id === props.id);
+      const adIndex = currentAdmaxads.findIndex(
+        (ad) => ad.admax_id === props.id
+      );
       if (adIndex !== -1) {
-        admaxads.splice(adIndex, 1);
+        currentAdmaxads.splice(adIndex, 1);
       }
-      window["__admax_tag__"] = undefined;
+      (window as any).__admax_tag__ = undefined;
     };
   }, [props.id]);
 
