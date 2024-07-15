@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const AboveNavBar = () => {
+const AdAboveNavBar = () => {
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://adm.shinobi.jp/s/1ace0d006f24678201e5da932f2ddf2f";
@@ -19,4 +19,4 @@ const AboveNavBar = () => {
   );
 };
 
-export default AboveNavBar;
+export default AdAboveNavBar;
