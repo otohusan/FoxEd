@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="footer-container">
-      <AdAboveNavBar />
+      <AdAboveNavBar id="1ace0d006f24678201e5da932f2ddf2f" />
       <footer className="Footer">
         <div className="FooterContent">
           <div
