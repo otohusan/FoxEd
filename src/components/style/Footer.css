@@ -1,9 +1,13 @@
+.footer-container {
+  margin-top: 25%;
+}
+
 .Footer {
   color: #f6f6f6;
   background-color: var(--footer-color);
   padding-top: 5vh;
   padding-bottom: 10vh;
-  margin-top: 25%;
+  margin-top: 5%;
 }
 
 .FooterContent {
