@@ -1,0 +1,45 @@
+.application-terms {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+  line-height: 1.6;
+  font-family: "Arial", sans-serif;
+  color: var(--text-color-3);
+  text-align: left; /* 文字を左揃えにする */
+  margin-top: 50px;
+}
+
+.terms-content > h1 {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--gray-border-color);
+  padding-bottom: 10px;
+}
+
+.terms-content > h2 {
+  font-size: 1.2em;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--gray-border-color);
+  padding-bottom: 5px;
+}
+
+.terms-content > h3 {
+  font-size: 1.2em;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.terms-content > p,
+.terms-content > ul {
+  margin-bottom: 15px;
+  text-align: justify; /* テキストを均等配置 */
+}
+
+.terms-content > ul {
+  padding-left: 20px;
+}
+
+.terms-content > ul > li {
+  list-style-type: disc;
+}
