@@ -8,7 +8,6 @@ const AdListType: React.FC = () => {
     const iframe = document.createElement("iframe");
     iframe.style.width = "330px";
     iframe.style.border = "none";
-    // iframe.style.height = "auto";
 
     const currentAdRef = adRef.current;
     if (currentAdRef) {
