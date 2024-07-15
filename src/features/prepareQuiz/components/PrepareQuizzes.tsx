@@ -52,12 +52,14 @@ function PrepareQuizzes() {
     handleOpenPopupMenu(e);
   };
 
+  // 広告を何単語ごとに表示するか
+  const adFrequency = 6;
   const PrepareQuizList = (
     <WindowVirtualizer>
       {quizzes &&
         quizzes.map((quiz, index) => (
           <div key={quiz.id || index} data-testid="quiz-list">
-            {index % 6 == 0 && <AdListType />}
+            {index % adFrequency == 0 && <AdListType />}
             <PrepareQuiz
               QuizID={quiz.id}
               QuizName={quiz.question}
