@@ -1,6 +1,7 @@
 import { HeadDataHelmet, Header } from "../../../components";
 import "../style/MainApplicationContact.css";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 function MainApplicationContact() {
   const [name, setName] = useState("");
@@ -9,9 +10,33 @@ function MainApplicationContact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // フォーム送信のロジックを追加します（例：API呼び出し）
-    console.log({ name, email, message });
-    alert("お問合せを送信しました。");
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+    };
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("お問合せを送信しました。");
+          setName("");
+          setEmail("");
+          setMessage("");
+        },
+        (error) => {
+          console.log("FAILED...", error);
+          alert("お問合せの送信に失敗しました。");
+        }
+      );
   };
 
   return (
