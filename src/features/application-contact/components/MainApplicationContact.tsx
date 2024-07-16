@@ -49,7 +49,9 @@ function MainApplicationContact() {
             required
           />
 
-          <button type="submit">送信</button>
+          <button type="submit" className="contact-submit-btn">
+            送信
+          </button>
         </form>
       </main>
     </div>

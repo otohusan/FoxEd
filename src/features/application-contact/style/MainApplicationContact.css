@@ -64,14 +64,11 @@
 
 .contact-form button {
   padding: 10px 20px;
-  background-color: var(--primary-color);
+  background-color: var(--key-color);
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-family: "Arial", sans-serif;
-}
-
-.contact-form button:hover {
-  background-color: var(--primary-color-dark);
+  margin-top: 5%;
 }
