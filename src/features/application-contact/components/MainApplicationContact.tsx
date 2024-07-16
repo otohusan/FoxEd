@@ -8,12 +8,17 @@ function MainApplicationContact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const isConfirmed = window.confirm("お問合せを行いますか？");
+    if (!isConfirmed) {
+      return;
+    }
 
     const templateParams = {
       from_name: name,
-      from_email: email,
+      to_email: email,
       message: message,
     };
 
@@ -25,8 +30,7 @@ function MainApplicationContact() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
+        () => {
           alert("お問合せを送信しました。");
           setName("");
           setEmail("");
@@ -46,7 +50,12 @@ function MainApplicationContact() {
       <main className="contact-content">
         <h2>お問合せフォーム</h2>
         <p>ご質問やご意見がございましたら、以下のフォームにご記入ください。</p>
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form
+          className="contact-form"
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <label htmlFor="name">お名前:</label>
           <input
             type="text"
