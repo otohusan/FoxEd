@@ -28,6 +28,9 @@ function Footer() {
           <Link to={"/PlayQuiz"} className="FooterLink">
             クイズに挑戦
           </Link>
+          <Link to={"/ApplicationTerms"} className="FooterLink">
+            利用規約
+          </Link>
           <Link to={"/ApplicationPrivacy"} className="FooterLink">
             プライバシーポリシー
           </Link>
