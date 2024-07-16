@@ -17,6 +17,7 @@ const Register = lazy(() => import("./pages/Register"));
 const Search = lazy(() => import("./pages/Search"));
 const ApplicationPrivacy = lazy(() => import("./pages/ApplicationPrivacy"));
 const ApplicationTerms = lazy(() => import("./pages/ApplicationTerms.tsx"));
+const ApplicationContact = lazy(() => import("./pages/ApplicationContact.tsx"));
 const VideoFlashcards = lazy(() => import("./pages/VideoFlashcards.tsx"));
 const Settings = lazy(() => import("./pages/Settings.tsx"));
 
@@ -61,6 +62,7 @@ function App() {
           <Route path="/Search" element={<Search />} />
           <Route path="/ApplicationPrivacy" element={<ApplicationPrivacy />} />
           <Route path="/ApplicationTerms" element={<ApplicationTerms />} />
+          <Route path="/ApplicationContact" element={<ApplicationContact />} />
           <Route path="/PlayQuiz" element={<VideoFlashcards />} />
           <Route path="/Settings" element={<Settings />} />
         </Routes>
