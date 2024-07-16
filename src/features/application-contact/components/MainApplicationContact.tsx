@@ -1,17 +1,46 @@
 import { HeadDataHelmet, Header } from "../../../components";
 import "../style/MainApplicationContact.css";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 function MainApplicationContact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // フォーム送信のロジックを追加します（例：API呼び出し）
-    console.log({ name, email, message });
-    alert("お問合せを送信しました。");
+
+    const isConfirmed = window.confirm("お問合せを行いますか？");
+    if (!isConfirmed) {
+      return;
+    }
+
+    const templateParams = {
+      from_name: name,
+      to_email: email,
+      message: message,
+    };
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          alert("お問合せを送信しました。");
+          setName("");
+          setEmail("");
+          setMessage("");
+        },
+        (error) => {
+          console.log("FAILED...", error);
+          alert("お問合せの送信に失敗しました。");
+        }
+      );
   };
 
   return (
@@ -21,7 +50,12 @@ function MainApplicationContact() {
       <main className="contact-content">
         <h2>お問合せフォーム</h2>
         <p>ご質問やご意見がございましたら、以下のフォームにご記入ください。</p>
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form
+          className="contact-form"
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <label htmlFor="name">お名前:</label>
           <input
             type="text"
