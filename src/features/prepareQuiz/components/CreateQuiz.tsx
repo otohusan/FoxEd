@@ -145,7 +145,7 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
         onClick={handleGenerateAnswerWithAI}
         className="answer-generate-btn"
       >
-        答えを自動生成 β版
+        答えを書いてもらう
       </button>
       <p className="generate-apologize-words">
         間違うこともあるから、参考程度に使ってみてね
