@@ -11,7 +11,7 @@ function MainApplicationContact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const isConfirmed = window.confirm("お問合せを行いますか？");
+    const isConfirmed = window.confirm("お問い合せを行いますか？");
     if (!isConfirmed) {
       return;
     }
@@ -31,24 +31,24 @@ function MainApplicationContact() {
       )
       .then(
         () => {
-          alert("お問合せを送信しました。");
+          alert("お問い合せを送信しました。");
           setName("");
           setEmail("");
           setMessage("");
         },
         (error) => {
           console.log("FAILED...", error);
-          alert("お問合せの送信に失敗しました。");
+          alert("お問い合せの送信に失敗しました。");
         }
       );
   };
 
   return (
     <div className="application-contact">
-      <HeadDataHelmet pageTitle="お問合せ" />
-      <Header HeaderTitle="お問合せ" />
+      <HeadDataHelmet pageTitle="お問い合せ" />
+      <Header HeaderTitle="お問い合せ" />
       <main className="contact-content">
-        <h2>お問合せフォーム</h2>
+        <h2>お問い合せフォーム</h2>
         <p>ご質問やご意見がございましたら、以下のフォームにご記入ください。</p>
         <form
           className="contact-form"
