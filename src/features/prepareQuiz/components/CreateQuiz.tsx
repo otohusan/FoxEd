@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style/CreateQuiz.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import { postQuiz } from "../../../api";
+import axios from "axios";
 
 type CreateQuizProps = {
   studySetID: string;
@@ -52,6 +53,50 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
     }
   };
 
+  async function handleGenerateAnswerWithAI(e: React.MouseEvent) {
+    e.stopPropagation();
+
+    if (!question) {
+      return;
+    }
+
+    const prompt = `問題: ${question} 
+    
+    上にある、問題に対する回答を出力してください。
+
+    出力要件:
+    簡潔に50文字程度を目安にしてください。
+    回答以外の余計な文章は必要ないです。
+    あなたの返答ではなく、ユーザー自身が書いた回答のように出力してください。
+    "です"といった言葉で文章を終わるのは、今回は自然ではないので、体言止めを中心に文章をしめて。
+    `;
+
+    try {
+      const response = await axios.post(
+        `${BASE_BACKEND_URL}/flashcards/generate`,
+        {
+          question: prompt,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = response.data;
+      console.log(data);
+      setAnswer(data.answer);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("AIからの答えを生成できませんでした。");
+    }
+  }
+
   return (
     <div className="create-quiz-container">
       <h1>クイズを追加</h1>
@@ -81,6 +126,8 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
 
         <button type="submit">クイズを作成</button>
       </form>
+
+      <button onClick={handleGenerateAnswerWithAI}>答えを自動生成</button>
     </div>
   );
 };
