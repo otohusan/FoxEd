@@ -68,6 +68,12 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
       return;
     }
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("ログインしてね");
+      return;
+    }
+
     setIsGenerating(true);
 
     const prompt = `問題: ${question} 
@@ -90,6 +96,7 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -99,11 +106,9 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
       }
 
       const data = response.data;
-      console.log(data);
       setAnswer(data.answer);
     } catch (error) {
-      console.error("Error:", error);
-      alert("AIからの答えを生成できませんでした。");
+      alert("答えを生成できませんでした。");
     } finally {
       setIsGenerating(false);
     }
