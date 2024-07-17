@@ -39,7 +39,6 @@
     "vitest": "^1.5.0"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.24.3",
     "@emailjs/browser": "^4.4.1",
     "@hono/node-server": "^1.7.0",
     "@react-oauth/google": "^0.12.1",
