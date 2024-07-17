@@ -47,16 +47,30 @@
 
 .create-quiz-container button {
   padding: 10px;
-  background-color: var(--key-color);
-  color: #fff;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
   align-self: center; /* ボタンを中央に揃える */
   width: 100%;
   font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.quiz-create-submit-btn {
+  color: #fff;
+  border: none;
+  background-color: var(--key-color);
 }
 
 .answer-generate-btn {
-  margin-top: 10px;
+  background-color: var(--background-color);
+  color: var(--key-color);
+  border: 1px solid var(--key-color-2);
+}
+
+.generate-apologize-words {
+  margin: 0;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-color-2);
 }

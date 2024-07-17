@@ -130,15 +130,20 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
           />
         </div>
 
-        <button type="submit">クイズを作成</button>
+        <button type="submit" className="quiz-create-submit-btn">
+          クイズを作成
+        </button>
       </form>
 
       <button
         onClick={handleGenerateAnswerWithAI}
         className="answer-generate-btn"
       >
-        答えを自動生成
+        答えを自動生成 β版
       </button>
+      <p className="generate-apologize-words">
+        間違うこともあるので、参考程度にね
+      </p>
     </div>
   );
 };
