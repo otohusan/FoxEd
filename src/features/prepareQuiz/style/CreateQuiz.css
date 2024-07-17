@@ -7,7 +7,7 @@
   background-color: var(--background-color);
 }
 
-.create-quiz-container h1 {
+.create-quiz-container h2 {
   text-align: start;
   margin-bottom: 20px;
   font-size: 25px;
@@ -38,7 +38,7 @@
   margin-bottom: 15px;
   padding: 8px;
   border: 2px solid var(--gray-border-color);
-  border-radius: 5px;
+  border-radius: 8px;
   box-sizing: border-box; /* パディングを含めた全体の幅を計算 */
   /* 16未満だとスマホの入力の時ズームされてしまう */
   font-size: 16px;
@@ -47,12 +47,30 @@
 
 .create-quiz-container button {
   padding: 10px;
-  background-color: var(--key-color);
-  color: #fff;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
   align-self: center; /* ボタンを中央に揃える */
   width: 100%;
   font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.quiz-create-submit-btn {
+  color: #fff;
+  border: none;
+  background-color: var(--key-color);
+}
+
+.answer-generate-btn {
+  background-color: var(--background-color);
+  color: var(--key-color);
+  border: 1px solid var(--key-color-2);
+}
+
+.generate-apologize-words {
+  margin: 0;
+  margin-top: 7px;
+  font-size: 12px;
+  color: var(--text-color-2);
 }
