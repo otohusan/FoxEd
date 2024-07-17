@@ -142,7 +142,7 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
         答えを自動生成 β版
       </button>
       <p className="generate-apologize-words">
-        間違うこともあるので、参考程度にね
+        間違うこともあるから、参考程度に使ってみてね
       </p>
     </div>
   );
