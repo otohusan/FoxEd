@@ -58,7 +58,13 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
   async function handleGenerateAnswerWithAI(e: React.MouseEvent) {
     e.stopPropagation();
 
+    if (question.length > 500) {
+      alert("問題が長すぎるよ");
+      return;
+    }
+
     if (!question) {
+      alert("問題を入力してね");
       return;
     }
 
