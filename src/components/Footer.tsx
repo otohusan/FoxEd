@@ -35,7 +35,7 @@ function Footer() {
             プライバシーポリシー
           </Link>
           <Link to={"/ApplicationContact"} className="FooterLink">
-            お問合せ
+            お問い合せ
           </Link>
         </div>
         <p className="FooterCopyright">Copyright ©︎ Konwalk</p>
