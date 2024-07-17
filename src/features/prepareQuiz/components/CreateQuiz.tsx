@@ -13,6 +13,8 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
   const { addQuiz } = useQuizContext();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
   //APIに新しいクイズを送信とstateにもセット
@@ -60,6 +62,8 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
       return;
     }
 
+    setIsGenerating(true);
+
     const prompt = `問題: ${question} 
     
     上にある、問題に対する回答を出力してください。
@@ -94,12 +98,14 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
     } catch (error) {
       console.error("Error:", error);
       alert("AIからの答えを生成できませんでした。");
+    } finally {
+      setIsGenerating(false);
     }
   }
 
   return (
     <div className="create-quiz-container">
-      <h1>クイズを追加</h1>
+      <h2>クイズを追加</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>問題</label>
@@ -115,7 +121,7 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
         <div>
           <label>答え</label>
           <textarea
-            value={answer}
+            value={isGenerating ? "答えを考え中..." : answer}
             onChange={(e) => setAnswer(e.target.value)}
             required
             rows={5} // テキストエリアの初期行数を設定
@@ -127,7 +133,12 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
         <button type="submit">クイズを作成</button>
       </form>
 
-      <button onClick={handleGenerateAnswerWithAI}>答えを自動生成</button>
+      <button
+        onClick={handleGenerateAnswerWithAI}
+        className="answer-generate-btn"
+      >
+        答えを自動生成
+      </button>
     </div>
   );
 };
