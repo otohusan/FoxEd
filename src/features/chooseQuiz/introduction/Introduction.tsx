@@ -22,16 +22,28 @@ function Introduction() {
       <div className="slider-container">
         <Slider {...settings}>
           <div>
-            <img src="/slide/intro-slide-1.png" alt="Slide 1" />
+            <img
+              src="/slide/intro-slide-1.png"
+              alt="Konwalk(コンウォーク)を紹介するスライドの1枚目"
+            />
           </div>
           <div>
-            <img src="/slide/intro-slide-2.png" alt="Slide 2" />
+            <img
+              src="/slide/intro-slide-2.png"
+              alt="Konwalk(コンウォーク)を紹介するスライドの2枚目"
+            />
           </div>
           <div>
-            <img src="/slide/intro-slide-3.png" alt="Slide 3" />
+            <img
+              src="/slide/intro-slide-3.png"
+              alt="Konwalk(コンウォーク)を紹介するスライドの3枚目"
+            />
           </div>
           <div>
-            <img src="/slide/intro-slide-4.png" alt="Slide 4" />
+            <img
+              src="/slide/intro-slide-4.png"
+              alt="Konwalk(コンウォーク)を紹介するスライドの4枚目"
+            />
           </div>
         </Slider>
       </div>
