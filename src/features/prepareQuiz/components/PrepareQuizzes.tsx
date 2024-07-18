@@ -202,6 +202,7 @@ function PrepareQuizzes() {
             <div className="prepare-create-modal-content">
               <CreateQuiz
                 studySetID={quizFormat?.id}
+                studySetTitle={quizFormat.label}
                 closeCreateQuiz={closeCreateQuiz}
               />
               <button
@@ -230,7 +231,12 @@ function PrepareQuizzes() {
         <div className="PrepareQuizList">{PrepareQuizList}</div>
 
         {/* idが存在して、userと学習セットの著者が等しい場合に表示 */}
-        {isOwner && quizFormat?.id && <CreateQuiz studySetID={quizFormat.id} />}
+        {isOwner && quizFormat?.id && (
+          <CreateQuiz
+            studySetID={quizFormat.id}
+            studySetTitle={quizFormat.label}
+          />
+        )}
 
         <MovableSheet />
       </main>

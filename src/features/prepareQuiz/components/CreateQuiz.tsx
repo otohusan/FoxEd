@@ -6,10 +6,15 @@ import axios from "axios";
 
 type CreateQuizProps = {
   studySetID: string;
+  studySetTitle: string;
   closeCreateQuiz?: () => void;
 };
 
-const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
+const CreateQuiz = ({
+  studySetID,
+  closeCreateQuiz,
+  studySetTitle,
+}: CreateQuizProps) => {
   const { addQuiz } = useQuizContext();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -84,7 +89,8 @@ const CreateQuiz = ({ studySetID, closeCreateQuiz }: CreateQuizProps) => {
     簡潔に50文字程度を目安にしてください。
     回答以外の余計な文章は必要ないです。
     あなたの返答ではなく、ユーザー自身が書いた回答のように出力してください。
-    "です"といった言葉で文章を終わるのは、今回は自然ではないので、体言止めを中心に文章をしめて。
+    "です"といった言葉で文章を終わるのは、今回は自然ではないので、体言止めを中心に文章をしめてください。
+    この問題は${studySetTitle}というデータセットに含まれるので、それをふまえた回答をしてください。
     `;
 
     try {
