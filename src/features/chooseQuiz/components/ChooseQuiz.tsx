@@ -15,6 +15,7 @@ import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 import DefaultStudySets from "./DefaultStudySets.tsx";
 import StudySetOverview from "./StudySetOverview.tsx";
 import React from "react";
+import KonwalkGoodsList from "../../../components/ad/KonwalkGoodsList.tsx";
 const SelectedStudySetsByKonwalk = React.lazy(
   () => import("./SelectedStudySetsByKonwalk")
 );
@@ -170,6 +171,9 @@ function ChooseQuiz() {
             handleClickMenu={handleClickMenu}
           />
         )}
+        <Suspense fallback={<div>Loading...</div>}>
+          <KonwalkGoodsList />
+        </Suspense>
 
         {/* Konwalk作成の学習セット */}
         <DefaultStudySets setQuizFormat={setQuizFormat} />
