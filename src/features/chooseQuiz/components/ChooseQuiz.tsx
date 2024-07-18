@@ -171,7 +171,6 @@ function ChooseQuiz() {
             handleClickMenu={handleClickMenu}
           />
         )}
-
         <Suspense fallback={<div>Loading...</div>}>
           <KonwalkGoodsList />
         </Suspense>

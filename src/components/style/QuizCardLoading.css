@@ -1,0 +1,7 @@
+.quiz-card-loading-container {
+  width: 375px;
+  max-width: 350px;
+  height: auto;
+  aspect-ratio: 16 /12;
+  background-color: gray;
+}
