@@ -24,7 +24,7 @@ function MakeStudySet({ studySetQuantity }: MakeStudySetProps) {
     if (
       user?.ID != import.meta.env.VITE_ADMIN_ID &&
       studySetQuantity &&
-      studySetQuantity >= 1
+      studySetQuantity >= 10
     ) {
       alert("学習セットは10個までしか作れないよ");
       return;
