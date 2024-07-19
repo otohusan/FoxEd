@@ -33,7 +33,7 @@ function SelectedStudySetsByKonwalk({
     categoryTitle,
   }: SelectedStudySetsByKonwalkContainerProps) {
     const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-    const url = `${BASE_BACKEND_URL}/studysets/search?title=${searchTerm}`;
+    const url = `${BASE_BACKEND_URL}/studysets/search?keyword=${searchTerm}`;
     const response = useFetch<StudySet[]>(url);
 
     return (
