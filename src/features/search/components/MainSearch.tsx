@@ -40,7 +40,7 @@ function MainSearch() {
 
     try {
       const response = await axios.get(
-        `${BASE_BACKEND_URL}/studysets/search?title=${searchTerm}`
+        `${BASE_BACKEND_URL}/studysets/search?keyword=${searchTerm}`
       );
 
       if (!response.data || response.data.length === 0) {
