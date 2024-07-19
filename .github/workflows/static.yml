@@ -41,6 +41,7 @@ jobs:
         run: npm run generate
         env:
           VITE_IMAGE_WITH_SHARE_URL: ${{ secrets.VITE_IMAGE_WITH_SHARE_URL }}
+          VITE_ADMIN_ID: ${{ secrets.VITE_ADMIN_ID }}
           VITE_GOOGLE_CLIENT_ID: ${{secrets.VITE_GOOGLE_CLIENT_ID}}
           VITE_EMAILJS_SERVICE_ID: ${{secrets.VITE_EMAILJS_SERVICE_ID}}
           VITE_EMAILJS_TEMPLATE_ID: ${{secrets.VITE_EMAILJS_TEMPLATE_ID}}
