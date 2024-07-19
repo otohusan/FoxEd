@@ -21,6 +21,7 @@ function MakeStudySet({ studySetQuantity }: MakeStudySetProps) {
   // 学習セットの作成を行い、その学習セットのページに遷移する
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // 管理者は無制限で作れるようにしてる
     if (
       user?.ID != import.meta.env.VITE_ADMIN_ID &&
       studySetQuantity &&
