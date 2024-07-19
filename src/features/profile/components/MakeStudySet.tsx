@@ -21,8 +21,8 @@ function MakeStudySet({ studySetQuantity }: MakeStudySetProps) {
   // 学習セットの作成を行い、その学習セットのページに遷移する
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (studySetQuantity && studySetQuantity >= 5) {
-      alert("学習セットは5個までしか作れないよ");
+    if (studySetQuantity && studySetQuantity >= 10) {
+      alert("学習セットは10個までしか作れないよ");
       return;
     }
 
