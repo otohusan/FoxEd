@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import "./style/AdAboveNavBar.css";
+import { useAuth } from "../auth/useAuth";
 
 const AdAboveNavBar: React.FC = () => {
+  const { user } = useAuth();
+  if (user?.ID == import.meta.env.VITE_ADMIN_ID) {
+    return;
+  }
+
   const adRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
