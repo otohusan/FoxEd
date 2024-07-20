@@ -145,9 +145,19 @@ const CreateQuiz = ({
   return (
     <div className="create-quiz-container">
       <h2>クイズを追加</h2>
-      <form onSubmit={handleSubmit}>
+      <>
         <div>
-          <label>問題</label>
+          <div className="label-and-ai-btn-container">
+            <label>問題</label>
+            <button
+              className="write-with-ai-btn"
+              onClick={(e) => {
+                handleGenerateQuestionWithAI(e, generateQuestionPrompt);
+              }}
+            >
+              書いてもらう
+            </button>
+          </div>
           <textarea
             value={isGeneratingQuestion ? "問題を考え中..." : question}
             onChange={(e) => setQuestion(e.target.value)}
@@ -158,7 +168,17 @@ const CreateQuiz = ({
           />
         </div>
         <div>
-          <label>答え</label>
+          <div className="label-and-ai-btn-container">
+            <label>答え</label>
+            <button
+              className="write-with-ai-btn"
+              onClick={(e) => {
+                handleGenerateAnswerWithAI(e, generateAnswerPrompt);
+              }}
+            >
+              書いてもらう
+            </button>
+          </div>
           <textarea
             value={isGeneratingAnswer ? "答えを考え中..." : answer}
             onChange={(e) => setAnswer(e.target.value)}
@@ -169,11 +189,15 @@ const CreateQuiz = ({
           />
         </div>
 
-        <button type="submit" className="quiz-create-submit-btn">
+        <button
+          type="submit"
+          className="quiz-create-submit-btn"
+          onClick={handleSubmit}
+        >
           クイズを作成
         </button>
-      </form>
-
+      </>
+      {/* 
       <button
         onClick={(e) => {
           handleGenerateAnswerWithAI(e, generateAnswerPrompt);
@@ -192,7 +216,7 @@ const CreateQuiz = ({
       </button>
       <p className="generate-apologize-words">
         間違うこともあるから、参考程度に使ってみてね
-      </p>
+      </p> */}
     </div>
   );
 };
