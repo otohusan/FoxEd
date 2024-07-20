@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../style/CreateQuiz.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import { postQuiz } from "../../../api";
-import axios from "axios";
+import handleGenerateWithAI from "../api/handleGenerateWithAI";
 
 type CreateQuizProps = {
   studySetID: string;
@@ -72,69 +72,6 @@ const CreateQuiz = ({
   "です"といった言葉で文章を終わるのは、今回は自然ではないので、体言止めを中心に文章をしめてください。
   この問題は${studySetTitle}というデータセットに含まれるので、それをふまえた回答をしてください。
   `;
-
-  const generateQuestionPrompt = `回答: ${answer} 
-    
-  上にある、回答に対する問題を作成してください。
-
-  出力要件:
-  問題以外の余計な文章は必要ないです。
-  回答の繰り返しのように思える問題は避けてください。
-  あなたの返答ではなく、ユーザー自身が書いた問題のように出力してください。
-  この問題は${studySetTitle}というデータセットに含まれるので、それをふまえた問題を作成してください。
-  `;
-
-  async function handleGenerateQuestionWithAI(
-    e: React.MouseEvent,
-    prompt: string
-  ) {
-    e.stopPropagation();
-
-    if (answer.length > 500) {
-      alert("入力が長すぎるよ");
-      return;
-    }
-
-    if (!answer) {
-      alert("答えを入力してね");
-      return;
-    }
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("ログインしてね");
-      return;
-    }
-
-    setIsGeneratingQuestion(true);
-
-    try {
-      const response = await axios.post(
-        `${BASE_BACKEND_URL}/flashcards/generate`,
-        {
-          question: prompt,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status !== 200) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = response.data;
-      setQuestion(data.answer);
-    } catch (error) {
-      alert("問題を生成できませんでした。");
-    } finally {
-      setIsGeneratingQuestion(false);
-    }
-  }
-
   async function handleGenerateAnswerWithAI(
     e: React.MouseEvent,
     prompt: string
@@ -151,38 +88,57 @@ const CreateQuiz = ({
       return;
     }
 
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("ログインしてね");
-      return;
-    }
-
     setIsGeneratingAnswer(true);
 
     try {
-      const response = await axios.post(
-        `${BASE_BACKEND_URL}/flashcards/generate`,
-        {
-          question: prompt,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await handleGenerateWithAI(prompt);
 
-      if (response.status !== 200) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = response.data;
+      const data = response?.data;
       setAnswer(data.answer);
     } catch (error) {
-      alert("答えを生成できませんでした。");
+      alert("回答を生成できませんでした。");
     } finally {
       setIsGeneratingAnswer(false);
+    }
+  }
+
+  const generateQuestionPrompt = `回答: ${answer} 
+    
+  上にある、回答に対する問題を作成してください。
+
+  出力要件:
+  問題以外の余計な文章は必要ないです。
+  回答の繰り返しのように思える問題は避けてください。
+  あなたの返答ではなく、ユーザー自身が書いた問題のように出力してください。
+  この問題は${studySetTitle}というデータセットに含まれるので、それをふまえた問題を作成してください。
+  `;
+  async function handleGenerateQuestionWithAI(
+    e: React.MouseEvent,
+    prompt: string
+  ) {
+    e.stopPropagation();
+
+    if (answer.length > 500) {
+      alert("入力が長すぎるよ");
+      return;
+    }
+
+    if (!answer) {
+      alert("答えを入力してね");
+      return;
+    }
+
+    setIsGeneratingQuestion(true);
+
+    try {
+      const response = await handleGenerateWithAI(prompt);
+      const data = response?.data;
+
+      setQuestion(data.answer);
+    } catch (error) {
+      alert("問題を生成できませんでした。");
+    } finally {
+      setIsGeneratingQuestion(false);
     }
   }
 
