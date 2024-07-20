@@ -9,7 +9,7 @@
 
 .create-quiz-container h2 {
   text-align: start;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-size: 25px;
 }
 
@@ -35,7 +35,7 @@
 .create-quiz-container input {
   width: 100%; /* テキストエリアと入力フィールドを親コンテナの幅に合わせる */
   background-color: var(--main-color);
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   padding: 8px;
   border: 2px solid var(--gray-border-color);
   border-radius: 8px;
@@ -45,7 +45,26 @@
   color: var(--text-color-2);
 }
 
-.create-quiz-container button {
+.label-and-ai-btn-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.write-with-ai-btn {
+  background-color: var(--background-color);
+  color: var(--key-color);
+  border: 1px solid var(--key-color-2);
+  font-size: 12px;
+  padding: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 10px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.create-quiz-container > button {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -60,6 +79,15 @@
   color: #fff;
   border: none;
   background-color: var(--key-color);
+
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center; /* ボタンを中央に揃える */
+  width: 100%;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
 }
 
 .answer-generate-btn {
