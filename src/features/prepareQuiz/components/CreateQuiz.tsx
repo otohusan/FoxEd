@@ -18,7 +18,8 @@ const CreateQuiz = ({
   const { addQuiz } = useQuizContext();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isGeneratingAnswer, setIsGeneratingAnswer] = useState(false);
+  const [isGeneratingQuestion, setIsGeneratingQuestion] = useState(false);
 
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
@@ -60,7 +61,84 @@ const CreateQuiz = ({
     }
   };
 
-  async function handleGenerateAnswerWithAI(e: React.MouseEvent) {
+  const generateAnswerPrompt = `問題: ${question} 
+    
+  上にある、問題に対する回答を出力してください。
+
+  出力要件:
+  回答以外の余計な文章は必要ないです。
+  問題の繰り返しのように思える回答は避けてください。
+  あなたの返答ではなく、ユーザー自身が書いた回答のように出力してください。
+  "です"といった言葉で文章を終わるのは、今回は自然ではないので、体言止めを中心に文章をしめてください。
+  この問題は${studySetTitle}というデータセットに含まれるので、それをふまえた回答をしてください。
+  `;
+
+  const generateQuestionPrompt = `回答: ${answer} 
+    
+  上にある、回答に対する問題を作成してください。
+
+  出力要件:
+  問題以外の余計な文章は必要ないです。
+  回答の繰り返しのように思える問題は避けてください。
+  あなたの返答ではなく、ユーザー自身が書いた問題のように出力してください。
+  この問題は${studySetTitle}というデータセットに含まれるので、それをふまえた問題を作成してください。
+  `;
+
+  async function handleGenerateQuestionWithAI(
+    e: React.MouseEvent,
+    prompt: string
+  ) {
+    e.stopPropagation();
+
+    if (answer.length > 500) {
+      alert("入力が長すぎるよ");
+      return;
+    }
+
+    if (!answer) {
+      alert("答えを入力してね");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("ログインしてね");
+      return;
+    }
+
+    setIsGeneratingQuestion(true);
+
+    try {
+      const response = await axios.post(
+        `${BASE_BACKEND_URL}/flashcards/generate`,
+        {
+          question: prompt,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = response.data;
+      setQuestion(data.answer);
+    } catch (error) {
+      alert("問題を生成できませんでした。");
+    } finally {
+      setIsGeneratingQuestion(false);
+    }
+  }
+
+  async function handleGenerateAnswerWithAI(
+    e: React.MouseEvent,
+    prompt: string
+  ) {
     e.stopPropagation();
 
     if (question.length > 500) {
@@ -79,19 +157,7 @@ const CreateQuiz = ({
       return;
     }
 
-    setIsGenerating(true);
-
-    const prompt = `問題: ${question} 
-    
-    上にある、問題に対する回答を出力してください。
-
-    出力要件:
-    回答以外の余計な文章は必要ないです。
-    問題の繰り返しのように思える回答は避けてください。
-    あなたの返答ではなく、ユーザー自身が書いた回答のように出力してください。
-    "です"といった言葉で文章を終わるのは、今回は自然ではないので、体言止めを中心に文章をしめてください。
-    この問題は${studySetTitle}というデータセットに含まれるので、それをふまえた回答をしてください。
-    `;
+    setIsGeneratingAnswer(true);
 
     try {
       const response = await axios.post(
@@ -116,7 +182,7 @@ const CreateQuiz = ({
     } catch (error) {
       alert("答えを生成できませんでした。");
     } finally {
-      setIsGenerating(false);
+      setIsGeneratingAnswer(false);
     }
   }
 
@@ -127,7 +193,7 @@ const CreateQuiz = ({
         <div>
           <label>問題</label>
           <textarea
-            value={question}
+            value={isGeneratingQuestion ? "問題を考え中..." : question}
             onChange={(e) => setQuestion(e.target.value)}
             required
             rows={5} // テキストエリアの初期行数を設定
@@ -138,7 +204,7 @@ const CreateQuiz = ({
         <div>
           <label>答え</label>
           <textarea
-            value={isGenerating ? "答えを考え中..." : answer}
+            value={isGeneratingAnswer ? "答えを考え中..." : answer}
             onChange={(e) => setAnswer(e.target.value)}
             required
             rows={5} // テキストエリアの初期行数を設定
@@ -153,10 +219,20 @@ const CreateQuiz = ({
       </form>
 
       <button
-        onClick={handleGenerateAnswerWithAI}
+        onClick={(e) => {
+          handleGenerateAnswerWithAI(e, generateAnswerPrompt);
+        }}
         className="answer-generate-btn"
       >
         答えを書いてもらう
+      </button>
+      <button
+        onClick={(e) => {
+          handleGenerateQuestionWithAI(e, generateQuestionPrompt);
+        }}
+        className="answer-generate-btn"
+      >
+        問題を書いてもらう
       </button>
       <p className="generate-apologize-words">
         間違うこともあるから、参考程度に使ってみてね
