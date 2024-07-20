@@ -24,6 +24,10 @@ function SelectedStudySetsByKonwalk({
         searchTerm="IT"
         categoryTitle="IT用語"
       />
+      <SelectedStudySetsByKonwalkContainer
+        searchTerm="日本史"
+        categoryTitle="日本史"
+      />
     </div>
   );
 
