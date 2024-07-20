@@ -27,6 +27,16 @@ const CreateQuiz = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!question) {
+      alert("問題を入力してください");
+      return;
+    }
+
+    if (!answer) {
+      alert("答えを入力してください");
+      return;
+    }
+
     // DB更新に成功したらstate更新
     try {
       // クイズデータをバックエンドに送信
