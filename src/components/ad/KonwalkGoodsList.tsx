@@ -18,11 +18,11 @@ function KonwalkGoodsList() {
         width="375"
         src="https://suzuri.jp/Konwalk/16246414/one-point-t-shirt/l/white/embed"
       ></iframe>
-      <iframe
+      {/* <iframe
         height="162"
         width="375"
         src="https://suzuri.jp/Konwalk/16259296/backpack/free/navy/embed"
-      ></iframe>
+      ></iframe> */}
     </div>
   );
 }
