@@ -91,7 +91,7 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                           );
                       }}
                     >
-                      <FaRegCopy size={"23px"} />
+                      <FaRegCopy size={"21px"} />
                     </button>
                   )}
                 </div>
