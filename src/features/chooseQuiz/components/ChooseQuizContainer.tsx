@@ -1,15 +1,15 @@
 import "../style/ChooseQuizContainer.css";
 import { QuizFormat } from "../../../../type/index.ts";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import InfoBadge from "../../../components/InfoBadge.tsx";
-import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
+// import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
 
 type ChooseQuizContainerProps = {
   quizFormat: QuizFormat;
 };
 
 function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
-  const { setQuizFormat } = useQuizContext();
+  // const { setQuizFormat } = useQuizContext();
 
   return (
     <div className="ChooseQuizContainer">
@@ -21,7 +21,7 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
         />
       </div>
 
-      <Link
+      {/* <Link
         className="ChooseQuizContainerOpen"
         to={"/PrepareQuiz"}
         onClick={(e) => {
@@ -30,7 +30,7 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
         }}
       >
         <div className="ChooseQuizContainerOpenSentence">覚える</div>
-      </Link>
+      </Link> */}
     </div>
   );
 }
