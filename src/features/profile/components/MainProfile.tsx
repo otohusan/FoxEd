@@ -54,7 +54,6 @@ function MainProfile() {
       created_at: studyset.created_at,
       updated_at: studyset.updated_at,
     });
-    navigate("/PrepareQuiz");
   };
 
   return (
@@ -93,7 +92,10 @@ function MainProfile() {
                   .reverse()
                   .map((studyset) => (
                     <div
-                      onClick={() => handleQuizSelect(studyset)}
+                      onClick={() => {
+                        handleQuizSelect(studyset);
+                        navigate("/PrepareQuiz");
+                      }}
                       className="ChooseQuizContainerWrapper"
                       key={studyset.id}
                     >

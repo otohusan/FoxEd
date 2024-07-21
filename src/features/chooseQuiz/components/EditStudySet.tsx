@@ -51,6 +51,9 @@ const EditStudySet: React.FC<EditStudySetProps> = ({
             rows={3}
             cols={50}
             placeholder="タイトルを入力"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           />
         </div>
         <div className="edit-study-set-each-content">
@@ -62,6 +65,9 @@ const EditStudySet: React.FC<EditStudySetProps> = ({
             rows={3}
             cols={50}
             placeholder="説明を入力"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           />
         </div>
         <button className="saveBtn" onClick={(e) => handleSave(e)}>

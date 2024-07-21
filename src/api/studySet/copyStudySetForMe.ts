@@ -1,6 +1,7 @@
 import axios from "axios";
 import { User } from "../../../type";
 
+// TODO: コピーしても更新がページを移動した後になってるから、直したい
 async function handleCopy(
   e: React.MouseEvent,
   title: string,
