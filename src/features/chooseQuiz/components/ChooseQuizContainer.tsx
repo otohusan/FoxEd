@@ -14,11 +14,13 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
   return (
     <div className="ChooseQuizContainer">
       <div className="ChooseQuizContent">
-        <div className="ChooseQuizLabel">{quizFormat.label}</div>
+        <a className="ChooseQuizLabel">{quizFormat.label}</a>
         {/* 収録単語数の表示 */}
-        <InfoBadge
-          text={`${quizFormat.body ? quizFormat.body.length : 0}用語`}
-        />
+        <div>
+          <InfoBadge
+            text={`${quizFormat.body ? quizFormat.body.length : 0}用語`}
+          />
+        </div>
       </div>
 
       {/* <Link
