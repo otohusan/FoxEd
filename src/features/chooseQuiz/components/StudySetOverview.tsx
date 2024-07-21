@@ -6,7 +6,7 @@ import FavoriteButton from "./FavoriteButton.tsx";
 import { RxDotsHorizontal } from "react-icons/rx";
 import "../style/ChooseQuizContainer.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import handleCopy from "../../../api/studySet/copyStudySetForMe.ts";
 
 type StudySetListProps = {
   title: string;
@@ -14,6 +14,7 @@ type StudySetListProps = {
   user: User | null;
   handleClickStudySet: (studyset: StudySet) => void;
   handleClickMenu: (e: React.MouseEvent) => void;
+  userStudySetQuantity: number;
 };
 
 const StudySetOverview: React.FC<StudySetListProps> = ({
@@ -22,41 +23,9 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
   user,
   handleClickStudySet,
   handleClickMenu,
+  userStudySetQuantity,
 }) => {
   const navigate = useNavigate();
-
-  async function handleCopy(
-    e: React.MouseEvent,
-    title: string,
-    description: string,
-    studySetId: string
-  ) {
-    e.stopPropagation();
-    e.preventDefault();
-
-    const token = localStorage.getItem("token");
-    const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-
-    try {
-      await axios.post(
-        `${VITE_BASE_BACKEND_URL}/studysets/copy/${user?.ID}`,
-        {
-          title: title,
-          description: description,
-          id: studySetId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      alert("コピーが完了しました");
-    } catch (error) {
-      alert("コピーに失敗");
-    }
-  }
 
   return (
     <>
@@ -90,12 +59,15 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                 />
                 <button
                   onClick={(e) => {
-                    handleCopy(
-                      e,
-                      studyset.title,
-                      studyset.description,
-                      studyset.id
-                    );
+                    user &&
+                      handleCopy(
+                        e,
+                        studyset.title,
+                        studyset.description,
+                        studyset.id,
+                        user,
+                        userStudySetQuantity
+                      );
                   }}
                 >
                   コピー
