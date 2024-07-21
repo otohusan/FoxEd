@@ -36,7 +36,7 @@ async function handleCopy(
 
   const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
-  const isConfirmed = window.confirm("学習セットをコピーしますか？");
+  const isConfirmed = window.confirm("この学習セットをコピーする？");
   if (!isConfirmed) {
     return;
   }
