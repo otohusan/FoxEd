@@ -7,6 +7,7 @@ import { RxDotsHorizontal } from "react-icons/rx";
 import "../style/ChooseQuizContainer.css";
 import { useNavigate } from "react-router-dom";
 import handleCopy from "../../../api/studySet/copyStudySetForMe.ts";
+import { FaRegCopy } from "react-icons/fa6";
 
 type StudySetListProps = {
   title: string;
@@ -57,21 +58,7 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                     updated_at: studyset.updated_at,
                   }}
                 />
-                <button
-                  onClick={(e) => {
-                    user &&
-                      handleCopy(
-                        e,
-                        studyset.title,
-                        studyset.description,
-                        studyset.id,
-                        user,
-                        userStudySetQuantity
-                      );
-                  }}
-                >
-                  コピー
-                </button>
+
                 <div className="choose-quiz-menus">
                   <FavoriteButton studySet={studyset} IconSize="25px" />
                   {studyset.id &&
@@ -89,6 +76,24 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                         <RxDotsHorizontal size={"23px"} />
                       </button>
                     )}
+                  {user?.ID != studyset.user_id && (
+                    <button
+                      className="studyset-copy-btn"
+                      onClick={(e) => {
+                        user &&
+                          handleCopy(
+                            e,
+                            studyset.title,
+                            studyset.description,
+                            studyset.id,
+                            user,
+                            userStudySetQuantity
+                          );
+                      }}
+                    >
+                      <FaRegCopy size={"23px"} />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
