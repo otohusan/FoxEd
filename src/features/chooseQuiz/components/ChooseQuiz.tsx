@@ -159,6 +159,7 @@ function ChooseQuiz() {
             user={user}
             handleClickStudySet={handleClickStudySet}
             handleClickMenu={handleClickMenu}
+            userStudySetQuantity={data.length}
           />
         )}
 
@@ -169,6 +170,7 @@ function ChooseQuiz() {
             user={user}
             handleClickStudySet={handleClickStudySet}
             handleClickMenu={handleClickMenu}
+            userStudySetQuantity={data ? data.length : 0}
           />
         )}
         <Suspense fallback={<div>Loading...</div>}>
@@ -183,6 +185,7 @@ function ChooseQuiz() {
             handleClickStudySet={handleClickStudySet}
             handleClickMenu={handleClickMenu}
             user={user}
+            userStudySetQuantity={data ? data.length : 0}
           />
         </Suspense>
 

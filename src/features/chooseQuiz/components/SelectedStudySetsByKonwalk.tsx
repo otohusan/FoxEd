@@ -7,6 +7,7 @@ type SelectedStudySetsByKonwalkProps = {
   handleClickStudySet: (studyset: StudySet) => void;
   handleClickMenu: (e: React.MouseEvent<Element, MouseEvent>) => void;
   user: User | null;
+  userStudySetQuantity: number;
 };
 
 type SelectedStudySetsByKonwalkContainerProps = {
@@ -15,12 +16,14 @@ type SelectedStudySetsByKonwalkContainerProps = {
   handleClickStudySet: (studyset: StudySet) => void;
   handleClickMenu: (e: React.MouseEvent<Element, MouseEvent>) => void;
   user: User | null;
+  userStudySetQuantity: number;
 };
 
 function SelectedStudySetsByKonwalk({
   handleClickStudySet,
   handleClickMenu,
   user,
+  userStudySetQuantity,
 }: SelectedStudySetsByKonwalkProps) {
   return (
     <div>
@@ -30,6 +33,7 @@ function SelectedStudySetsByKonwalk({
         handleClickStudySet={handleClickStudySet}
         handleClickMenu={handleClickMenu}
         user={user}
+        userStudySetQuantity={userStudySetQuantity}
       />
       <SelectedStudySetsByKonwalkContainer
         searchTerm="日本史"
@@ -37,6 +41,7 @@ function SelectedStudySetsByKonwalk({
         handleClickStudySet={handleClickStudySet}
         handleClickMenu={handleClickMenu}
         user={user}
+        userStudySetQuantity={userStudySetQuantity}
       />
       <SelectedStudySetsByKonwalkContainer
         searchTerm="世界史"
@@ -44,6 +49,7 @@ function SelectedStudySetsByKonwalk({
         handleClickStudySet={handleClickStudySet}
         handleClickMenu={handleClickMenu}
         user={user}
+        userStudySetQuantity={userStudySetQuantity}
       />
     </div>
   );
@@ -56,6 +62,7 @@ function SelectedStudySetsByKonwalkContainer({
   handleClickStudySet,
   handleClickMenu,
   user,
+  userStudySetQuantity,
 }: SelectedStudySetsByKonwalkContainerProps) {
   const [studySets, setStudySets] = useState<StudySet[] | null>(null);
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
@@ -85,6 +92,7 @@ function SelectedStudySetsByKonwalkContainer({
           user={user || null}
           handleClickStudySet={handleClickStudySet}
           handleClickMenu={handleClickMenu}
+          userStudySetQuantity={userStudySetQuantity}
         />
       )}
     </div>

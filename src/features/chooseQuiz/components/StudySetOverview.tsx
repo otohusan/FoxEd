@@ -6,6 +6,8 @@ import FavoriteButton from "./FavoriteButton.tsx";
 import { RxDotsHorizontal } from "react-icons/rx";
 import "../style/ChooseQuizContainer.css";
 import { useNavigate } from "react-router-dom";
+import handleCopy from "../../../api/studySet/copyStudySetForMe.ts";
+import { FaRegCopy } from "react-icons/fa6";
 
 type StudySetListProps = {
   title: string;
@@ -13,6 +15,7 @@ type StudySetListProps = {
   user: User | null;
   handleClickStudySet: (studyset: StudySet) => void;
   handleClickMenu: (e: React.MouseEvent) => void;
+  userStudySetQuantity: number;
 };
 
 const StudySetOverview: React.FC<StudySetListProps> = ({
@@ -21,8 +24,10 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
   user,
   handleClickStudySet,
   handleClickMenu,
+  userStudySetQuantity,
 }) => {
   const navigate = useNavigate();
+
   return (
     <>
       {studySets.length > 0 && (
@@ -53,6 +58,7 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                     updated_at: studyset.updated_at,
                   }}
                 />
+
                 <div className="choose-quiz-menus">
                   <FavoriteButton studySet={studyset} IconSize="25px" />
                   {studyset.id &&
@@ -70,6 +76,24 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                         <RxDotsHorizontal size={"23px"} />
                       </button>
                     )}
+                  {user?.ID != studyset.user_id && (
+                    <button
+                      className="studyset-copy-btn"
+                      onClick={(e) => {
+                        user &&
+                          handleCopy(
+                            e,
+                            studyset.title,
+                            studyset.description,
+                            studyset.id,
+                            user,
+                            userStudySetQuantity
+                          );
+                      }}
+                    >
+                      <FaRegCopy size={"21px"} />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
