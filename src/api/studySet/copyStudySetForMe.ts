@@ -55,7 +55,7 @@ async function handleCopy(
       }
     );
 
-    alert("コピーが完了しました");
+    alert("コピーができたよ、プロフィールで確認してみて");
   } catch (error) {
     alert("コピーに失敗");
   }
