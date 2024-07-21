@@ -6,6 +6,7 @@ import FavoriteButton from "./FavoriteButton.tsx";
 import { RxDotsHorizontal } from "react-icons/rx";
 import "../style/ChooseQuizContainer.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 type StudySetListProps = {
   title: string;
@@ -23,6 +24,40 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
   handleClickMenu,
 }) => {
   const navigate = useNavigate();
+
+  async function handleCopy(
+    e: React.MouseEvent,
+    title: string,
+    description: string,
+    studySetId: string
+  ) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    const VITE_BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+
+    try {
+      await axios.post(
+        `${VITE_BASE_BACKEND_URL}/studysets/copy/${user?.ID}`,
+        {
+          title: title,
+          description: description,
+          id: studySetId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      alert("コピーが完了しました");
+    } catch (error) {
+      alert("コピーに失敗");
+    }
+  }
+
   return (
     <>
       {studySets.length > 0 && (
@@ -53,6 +88,18 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                     updated_at: studyset.updated_at,
                   }}
                 />
+                <button
+                  onClick={(e) => {
+                    handleCopy(
+                      e,
+                      studyset.title,
+                      studyset.description,
+                      studyset.id
+                    );
+                  }}
+                >
+                  コピー
+                </button>
                 <div className="choose-quiz-menus">
                   <FavoriteButton studySet={studyset} IconSize="25px" />
                   {studyset.id &&
