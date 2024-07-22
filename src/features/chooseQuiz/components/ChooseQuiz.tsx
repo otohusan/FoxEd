@@ -176,12 +176,13 @@ function ChooseQuiz() {
             userStudySetQuantity={userStudySets ? userStudySets.length : 0}
           />
         )}
-        <Suspense fallback={<div>Loading...</div>}>
-          <KonwalkGoodsList />
-        </Suspense>
 
         {/* Konwalk作成の学習セット */}
         <DefaultStudySets setQuizFormat={setQuizFormat} />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <KonwalkGoodsList />
+        </Suspense>
 
         <Suspense fallback={<div>Loading...</div>}>
           <SelectedStudySetsByKonwalk
