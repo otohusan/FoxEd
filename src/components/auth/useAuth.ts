@@ -5,6 +5,7 @@ import { AuthContext } from "./AuthContext";
 interface AuthContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  userStudySets: StudySet[] | null;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
   logout: () => void;

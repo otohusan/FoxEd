@@ -8,6 +8,7 @@ import {
   getUserFavorite,
   getUserInfoWithToken,
 } from "../../api";
+import getUserStudySets from "../../api/studySet/getUserStudySets";
 
 type AuthContextProps = {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ type AuthContextProps = {
 type AuthContextType = {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  userStudySets: StudySet[] | null;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => void;
   logout: () => void;
@@ -42,6 +44,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [favoriteItems, setFavoriteItems] = useState<StudySet[] | null>([]);
+  const [userStudySets, setUserStudySets] = useState<StudySet[] | null>([]);
 
   const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
@@ -66,6 +69,8 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
         // 取得したトークンから、ユーザー情報を取得して割り当て
         const userInfo = await getUserInfoWithToken(token);
         setUser(userInfo);
+
+        setUserStudySets(await getUserStudySets(userInfo.ID));
 
         // お気に入り学習セットを取得
         setFavoriteItems(await getUserFavorite(userInfo.ID));
@@ -92,6 +97,8 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       // 取得したトークンから、ユーザー情報を取得して割り当て
       const userInfo = await getUserInfoWithToken(token);
       setUser(userInfo);
+
+      setUserStudySets(await getUserStudySets(userInfo.ID));
 
       // お気に入り学習セットを取得
       setFavoriteItems(await getUserFavorite(userInfo.ID));
@@ -167,6 +174,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       value={{
         user,
         setUser,
+        userStudySets,
         loading,
         loginWithEmail,
         logout,

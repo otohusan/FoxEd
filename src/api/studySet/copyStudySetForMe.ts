@@ -5,9 +5,9 @@ import { User } from "../../../type";
 async function handleCopy(
   e: React.MouseEvent,
   title: string,
-  description: string,
+  description: string | undefined,
   studySetId: string,
-  user: User,
+  user: User | null,
   userStudySetQuantity: number
 ) {
   e.stopPropagation();
