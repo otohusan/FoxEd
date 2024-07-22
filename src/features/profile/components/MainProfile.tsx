@@ -3,44 +3,49 @@ import { StudySet } from "../../../../type";
 import { Footer, HeadDataHelmet, Header } from "../../../components";
 import LoginPrompt from "../../../components/LoginPrompt";
 import { useAuth } from "../../../components/auth/useAuth";
-import { useFetch } from "../../../hooks";
 import ChooseQuizContainer from "../../chooseQuiz/components/ChooseQuizContainer";
 import "../style/MainProfile.css";
 import { useQuizContext } from "../../../components/quiz/useQuizContext";
 import MakeStudySet from "./MakeStudySet";
-import axios from "axios";
 import OwnerStudySetMenu from "../../chooseQuiz/components/OwnerStudySetMenu";
 import { useNavigate } from "react-router-dom";
+import getUserStudySets from "../../../api/studySet/getUserStudySets";
 
 function MainProfile() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { user } = useAuth();
+  const { user, userStudySets, setUserStudySets } = useAuth();
   const { setQuizFormat } = useQuizContext();
   const navigate = useNavigate();
 
-  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  const fetchUrl = user
-    ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
-    : null;
+  // const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+  // const fetchUrl = user
+  //   ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
+  //   : null;
 
-  const { data: studySets, setData: setStudySets } =
-    useFetch<StudySet[]>(fetchUrl);
+  // const { data: studySets, setData: setStudySets } =
+  //   useFetch<StudySet[]>(fetchUrl);
 
   // クイズに編集があった時、明示的にデータ更新するため
   const handleNewStudySet = async () => {
-    if (user) {
-      try {
-        const response = await axios.get(
-          `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
-        );
-        setStudySets(response.data);
-      } catch (error) {
-        console.error("学習セットの取得に失敗しました", error);
-      }
+    // if (user) {
+    //   try {
+    //     const response = await axios.get(
+    //       `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
+    //     );
+    //     setStudySets(response.data);
+    //   } catch (error) {
+    //     console.error("学習セットの取得に失敗しました", error);
+    //   }
+    // }
+
+    if (!user) {
+      return;
     }
+
+    setUserStudySets(await getUserStudySets(user?.ID));
   };
 
   // クイズがクリックされた時にそのデータを割り当てるのに使う
@@ -77,17 +82,17 @@ function MainProfile() {
             </div>
           </div>
 
-          {(!studySets || studySets.length === 0) && (
+          {(!userStudySets || userStudySets.length === 0) && (
             <p className="profile-message-prompt-make">
               自分だけの学習セット作ってみよう！
             </p>
           )}
 
-          {studySets && studySets.length > 0 && (
+          {userStudySets && userStudySets.length > 0 && (
             <>
               <div className="ChooseQuizListTitle">あなたの学習セット</div>
               <div className="ChooseQuizDataList">
-                {studySets
+                {userStudySets
                   .slice()
                   .reverse()
                   .map((studyset) => (
@@ -120,7 +125,7 @@ function MainProfile() {
               </div>
             </>
           )}
-          <MakeStudySet studySetQuantity={studySets?.length} />
+          <MakeStudySet studySetQuantity={userStudySets?.length} />
         </>
       )}
       <Footer />
