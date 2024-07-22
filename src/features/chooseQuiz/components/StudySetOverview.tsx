@@ -45,7 +45,6 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                 new Date(b.created_at).getTime() -
                 new Date(a.created_at).getTime()
             )
-            .reverse()
             .map((studyset) => (
               <div
                 onClick={() => {
