@@ -3,7 +3,8 @@
   border: none;
   color: var(--favorite-color);
   cursor: pointer;
-  margin-top: 4px;
+
+  margin: 0;
 }
 
 .favorite-btn:active {
