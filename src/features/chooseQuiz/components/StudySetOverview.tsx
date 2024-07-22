@@ -8,6 +8,7 @@ import "../style/ChooseQuizContainer.css";
 import { useNavigate } from "react-router-dom";
 import handleCopy from "../../../api/studySet/copyStudySetForMe.ts";
 import { FaRegCopy } from "react-icons/fa6";
+import { useAuth } from "../../../components/auth/useAuth.ts";
 
 type StudySetListProps = {
   title: string;
@@ -27,6 +28,8 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
   userStudySetQuantity,
 }) => {
   const navigate = useNavigate();
+
+  const { setUserStudySets } = useAuth();
 
   return (
     <>
@@ -87,7 +90,8 @@ const StudySetOverview: React.FC<StudySetListProps> = ({
                             studyset.description,
                             studyset.id,
                             user,
-                            userStudySetQuantity
+                            userStudySetQuantity,
+                            setUserStudySets
                           );
                       }}
                     >
