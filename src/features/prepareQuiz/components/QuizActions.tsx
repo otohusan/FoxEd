@@ -115,7 +115,7 @@ function QuizActions({
         <span className="quiz-action-btn-label">反転</span>
       </div>
 
-      {quizFormat && isFlashcardArray(quizFormat.body) && (
+      {!isOwner && quizFormat && isFlashcardArray(quizFormat.body) && (
         <div className="quiz-action-btn-container">
           <button
             className="quiz-action-btn"
