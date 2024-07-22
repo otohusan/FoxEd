@@ -4,6 +4,9 @@ import { Flashcard, QuizFormat } from "../../../../type";
 import { FiPlus } from "react-icons/fi";
 import "../style/QuizActions.css";
 import FavoriteButton from "../../chooseQuiz/components/FavoriteButton";
+import { FaRegCopy } from "react-icons/fa6";
+import handleCopy from "../../../api/studySet/copyStudySetForMe";
+import { useAuth } from "../../../components/auth/useAuth";
 
 type QuizActionsProps = {
   setQuizFormat: React.Dispatch<React.SetStateAction<QuizFormat | null>>;
@@ -19,6 +22,7 @@ function QuizActions({
   isOwner,
 }: QuizActionsProps) {
   const quizzes = quizFormat ? quizFormat.body : [];
+  const { user, userStudySets, setUserStudySets } = useAuth();
 
   // WARN: 簡易的にガード型を作成してる
   // WARN: undefinedを使う方が良いとも見たけど、理解しきれてない
@@ -110,6 +114,37 @@ function QuizActions({
         </button>
         <span className="quiz-action-btn-label">反転</span>
       </div>
+
+      {!isOwner && quizFormat && isFlashcardArray(quizFormat.body) && (
+        <div className="quiz-action-btn-container">
+          <button
+            className="quiz-action-btn"
+            onClick={(e) => {
+              if (
+                quizFormat?.label &&
+                quizFormat?.description &&
+                quizFormat.id &&
+                userStudySets?.length !== undefined
+              ) {
+                handleCopy(
+                  e,
+                  quizFormat.label,
+                  quizFormat.description,
+                  quizFormat.id,
+                  user,
+                  userStudySets.length,
+                  setUserStudySets
+                );
+              } else {
+                console.error("必須のデータが不足しています");
+              }
+            }}
+          >
+            <FaRegCopy size={"16px"} />
+          </button>
+          <span className="quiz-action-btn-label">コピー</span>
+        </div>
+      )}
     </div>
   );
 }
