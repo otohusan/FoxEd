@@ -94,6 +94,11 @@ function MainProfile() {
               <div className="ChooseQuizDataList">
                 {userStudySets
                   .slice()
+                  .sort(
+                    (a, b) =>
+                      new Date(b.created_at).getTime() -
+                      new Date(a.created_at).getTime()
+                  )
                   .reverse()
                   .map((studyset) => (
                     <div
