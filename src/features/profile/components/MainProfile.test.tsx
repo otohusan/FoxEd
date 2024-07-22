@@ -74,7 +74,10 @@ const renderComponent = () => {
 
 describe("MainProfile", () => {
   beforeEach(() => {
-    mockUseAuth.mockReturnValue({ user: { ID: 1, name: "Test User" } });
+    mockUseAuth.mockReturnValue({
+      user: { ID: 1, name: "Test User" },
+      userStudySets: mockStudySets,
+    });
     mockUseFetch.mockReturnValue({ data: mockStudySets, setData: vi.fn() });
     vi.clearAllMocks();
   });
@@ -96,7 +99,10 @@ describe("MainProfile", () => {
   });
 
   test("ユーザーが学習セットを持っていない場合、プロンプトが表示される", async () => {
-    mockUseFetch.mockReturnValue({ data: [], setData: vi.fn() });
+    mockUseAuth.mockReturnValue({
+      user: { ID: 1, name: "Test User" },
+      userStudySets: [],
+    });
     renderComponent();
     expect(
       await screen.findByText(/自分だけの学習セット作ってみよう！/)
