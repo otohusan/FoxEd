@@ -20,27 +20,8 @@ function MainProfile() {
   const { setQuizFormat } = useQuizContext();
   const navigate = useNavigate();
 
-  // const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-  // const fetchUrl = user
-  //   ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
-  //   : null;
-
-  // const { data: studySets, setData: setStudySets } =
-  //   useFetch<StudySet[]>(fetchUrl);
-
   // クイズに編集があった時、明示的にデータ更新するため
   const handleNewStudySet = async () => {
-    // if (user) {
-    //   try {
-    //     const response = await axios.get(
-    //       `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
-    //     );
-    //     setStudySets(response.data);
-    //   } catch (error) {
-    //     console.error("学習セットの取得に失敗しました", error);
-    //   }
-    // }
-
     if (!user) {
       return;
     }
