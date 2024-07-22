@@ -9,8 +9,6 @@ type ChooseQuizContainerProps = {
 };
 
 function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
-  // const { setQuizFormat } = useQuizContext();
-
   return (
     <div className="ChooseQuizContainer">
       <div className="ChooseQuizContent">
@@ -22,17 +20,6 @@ function ChooseQuizContainer({ quizFormat }: ChooseQuizContainerProps) {
           />
         </div>
       </div>
-
-      {/* <Link
-        className="ChooseQuizContainerOpen"
-        to={"/PrepareQuiz"}
-        onClick={(e) => {
-          e.preventDefault();
-          setQuizFormat(quizFormat);
-        }}
-      >
-        <div className="ChooseQuizContainerOpenSentence">覚える</div>
-      </Link> */}
     </div>
   );
 }
