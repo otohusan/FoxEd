@@ -22,7 +22,7 @@ function QuizActions({
   isOwner,
 }: QuizActionsProps) {
   const quizzes = quizFormat ? quizFormat.body : [];
-  const { user, userStudySets } = useAuth();
+  const { user, userStudySets, setUserStudySets } = useAuth();
 
   // WARN: 簡易的にガード型を作成してる
   // WARN: undefinedを使う方が良いとも見たけど、理解しきれてない
@@ -132,7 +132,8 @@ function QuizActions({
                   quizFormat.description,
                   quizFormat.id,
                   user,
-                  userStudySets.length
+                  userStudySets.length,
+                  setUserStudySets
                 );
               } else {
                 console.error("必須のデータが不足しています");

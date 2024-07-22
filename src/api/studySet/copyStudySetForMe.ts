@@ -1,5 +1,6 @@
 import axios from "axios";
-import { User } from "../../../type";
+import { StudySet, User } from "../../../type";
+import getUserStudySets from "./getUserStudySets";
 
 // TODO: コピーしても更新がページを移動した後になってるから、直したい
 async function handleCopy(
@@ -8,7 +9,8 @@ async function handleCopy(
   description: string | undefined,
   studySetId: string,
   user: User | null,
-  userStudySetQuantity: number
+  userStudySetQuantity: number,
+  setUserStudySets: React.Dispatch<React.SetStateAction<StudySet[] | null>>
 ) {
   e.stopPropagation();
   e.preventDefault();
@@ -55,6 +57,8 @@ async function handleCopy(
         },
       }
     );
+
+    setUserStudySets(await getUserStudySets(user.ID));
 
     alert("コピーができたよ、プロフィールで確認してみて");
   } catch (error) {
