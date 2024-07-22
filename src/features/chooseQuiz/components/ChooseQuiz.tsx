@@ -2,9 +2,7 @@ import { Header, Footer, HeadDataHelmet, PopupMenu } from "../../../components";
 import "../style/ChooseQuizContainer.css";
 import { StudySet } from "../../../../type/index.ts";
 import Introduction from "../introduction/Introduction.tsx";
-import useFetch from "../../../hooks/useFetch.ts";
 import { useQuizContext } from "../../../components/quiz/useQuizContext.ts";
-import axios from "axios";
 import LoginPrompt from "../../../components/LoginPrompt.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +14,7 @@ import DefaultStudySets from "./DefaultStudySets.tsx";
 import StudySetOverview from "./StudySetOverview.tsx";
 import React from "react";
 import KonwalkGoodsList from "../../../components/ad/KonwalkGoodsList.tsx";
+import getUserStudySets from "../../../api/studySet/getUserStudySets.ts";
 const SelectedStudySetsByKonwalk = React.lazy(
   () => import("./SelectedStudySetsByKonwalk")
 );
@@ -73,29 +72,33 @@ function ChooseQuiz() {
   };
 
   // ユーザ周りのデータを取得
-  const { user, favoriteItems } = useAuth();
+  const { user, userStudySets, setUserStudySets, favoriteItems } = useAuth();
 
-  const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+  // const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
 
-  // userがない場合にはFetchを行わないように
-  // nullの場合はuseFetch内でFetchが実行されないようになってる
-  const fetchUrl = user
-    ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
-    : null;
+  // // userがない場合にはFetchを行わないように
+  // // nullの場合はuseFetch内でFetchが実行されないようになってる
+  // const fetchUrl = user
+  //   ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
+  //   : null;
 
-  // ユーザの学習セットを検索
-  const { data, setData } = useFetch<StudySet[]>(fetchUrl);
+  // // ユーザの学習セットを検索
+  // const { data, setData } = useFetch<StudySet[]>(fetchUrl);
 
   // 明示的にデータを更新するために使う
   const handleNewStudySet = async () => {
-    try {
-      const response = await axios.get(
-        `${BASE_BACKEND_URL}/studysets/user/${user?.ID}`
-      );
-      setData(response.data);
-    } catch (error) {
-      console.error("学習セットの取得に失敗しました", error);
+    // try {
+    //   const response = await axios.get(
+    //     `${BASE_BACKEND_URL}/studysets/user/${user?.ID}`
+    //   );
+    //   setData(response.data);
+    // } catch (error) {
+    //   console.error("学習セットの取得に失敗しました", error);
+    // }
+    if (!user?.ID) {
+      return;
     }
+    setUserStudySets(await getUserStudySets(user?.ID));
   };
 
   // ユーザやお気に入りの学習セットがクリックされた時に使う関数
@@ -138,7 +141,7 @@ function ChooseQuiz() {
           />
         )}
 
-        {user && (!data || data?.length === 0) && (
+        {user && (!userStudySets || userStudySets?.length === 0) && (
           <p className="choose-quiz-make-prompt">
             <span
               className="choose-quiz-make-prompt-url"
@@ -152,14 +155,14 @@ function ChooseQuiz() {
           </p>
         )}
 
-        {user && data && data.length > 0 && (
+        {user && userStudySets && userStudySets.length > 0 && (
           <StudySetOverview
             title="学習セット"
-            studySets={data}
+            studySets={userStudySets}
             user={user}
             handleClickStudySet={handleClickStudySet}
             handleClickMenu={handleClickMenu}
-            userStudySetQuantity={data.length}
+            userStudySetQuantity={userStudySets.length}
           />
         )}
 
@@ -170,7 +173,7 @@ function ChooseQuiz() {
             user={user}
             handleClickStudySet={handleClickStudySet}
             handleClickMenu={handleClickMenu}
-            userStudySetQuantity={data ? data.length : 0}
+            userStudySetQuantity={userStudySets ? userStudySets.length : 0}
           />
         )}
         <Suspense fallback={<div>Loading...</div>}>
@@ -185,7 +188,7 @@ function ChooseQuiz() {
             handleClickStudySet={handleClickStudySet}
             handleClickMenu={handleClickMenu}
             user={user}
-            userStudySetQuantity={data ? data.length : 0}
+            userStudySetQuantity={userStudySets ? userStudySets.length : 0}
           />
         </Suspense>
 
