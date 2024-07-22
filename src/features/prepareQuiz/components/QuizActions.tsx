@@ -72,6 +72,27 @@ function QuizActions({
     });
   };
 
+  const handleClickCopy = (e: React.MouseEvent<Element, MouseEvent>) => {
+    if (
+      quizFormat?.label &&
+      quizFormat?.description &&
+      quizFormat.id &&
+      userStudySets?.length !== undefined
+    ) {
+      handleCopy(
+        e,
+        quizFormat.label,
+        quizFormat.description,
+        quizFormat.id,
+        user,
+        userStudySets.length,
+        setUserStudySets
+      );
+    } else {
+      console.error("必須のデータが不足しています");
+    }
+  };
+
   return (
     <div className="quiz-actions">
       {quizFormat && isFlashcardArray(quizFormat.body) && (
@@ -120,24 +141,7 @@ function QuizActions({
           <button
             className="quiz-action-btn"
             onClick={(e) => {
-              if (
-                quizFormat?.label &&
-                quizFormat?.description &&
-                quizFormat.id &&
-                userStudySets?.length !== undefined
-              ) {
-                handleCopy(
-                  e,
-                  quizFormat.label,
-                  quizFormat.description,
-                  quizFormat.id,
-                  user,
-                  userStudySets.length,
-                  setUserStudySets
-                );
-              } else {
-                console.error("必須のデータが不足しています");
-              }
+              handleClickCopy(e);
             }}
           >
             <FaRegCopy size={"16px"} />

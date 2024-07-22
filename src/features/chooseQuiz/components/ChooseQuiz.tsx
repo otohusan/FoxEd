@@ -74,27 +74,8 @@ function ChooseQuiz() {
   // ユーザ周りのデータを取得
   const { user, userStudySets, setUserStudySets, favoriteItems } = useAuth();
 
-  // const BASE_BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
-
-  // // userがない場合にはFetchを行わないように
-  // // nullの場合はuseFetch内でFetchが実行されないようになってる
-  // const fetchUrl = user
-  //   ? `${BASE_BACKEND_URL}/studysets/user/${user.ID}`
-  //   : null;
-
-  // // ユーザの学習セットを検索
-  // const { data, setData } = useFetch<StudySet[]>(fetchUrl);
-
   // 明示的にデータを更新するために使う
   const handleNewStudySet = async () => {
-    // try {
-    //   const response = await axios.get(
-    //     `${BASE_BACKEND_URL}/studysets/user/${user?.ID}`
-    //   );
-    //   setData(response.data);
-    // } catch (error) {
-    //   console.error("学習セットの取得に失敗しました", error);
-    // }
     if (!user?.ID) {
       return;
     }
@@ -176,12 +157,13 @@ function ChooseQuiz() {
             userStudySetQuantity={userStudySets ? userStudySets.length : 0}
           />
         )}
-        <Suspense fallback={<div>Loading...</div>}>
-          <KonwalkGoodsList />
-        </Suspense>
 
         {/* Konwalk作成の学習セット */}
         <DefaultStudySets setQuizFormat={setQuizFormat} />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <KonwalkGoodsList />
+        </Suspense>
 
         <Suspense fallback={<div>Loading...</div>}>
           <SelectedStudySetsByKonwalk
