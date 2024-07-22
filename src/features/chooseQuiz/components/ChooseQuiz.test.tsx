@@ -81,6 +81,7 @@ describe("ChooseQuiz", () => {
     mockUseAuth.mockReturnValue({
       user: { ID: 1, name: "Test User" },
       favoriteItems: mockStudySets,
+      userStudySets: mockStudySets,
     });
     mockUseQuizContext.mockReturnValue({
       quizFormat: mockStudySets,
@@ -137,7 +138,10 @@ describe("ChooseQuiz", () => {
       quizFormat: [],
       setQuizFormat: vi.fn(),
     });
-    mockUseFetch.mockReturnValue({ data: [], setData: vi.fn() });
+    mockUseAuth.mockReturnValue({
+      user: { ID: 1, name: "Test User" },
+      userStudySets: [],
+    });
 
     renderComponent();
 

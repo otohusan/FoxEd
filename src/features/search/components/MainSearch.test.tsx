@@ -134,6 +134,8 @@ describe("MainSearch", () => {
             value={{
               user: mockUser,
               setUser: vi.fn(),
+              userStudySets: [],
+              setUserStudySets: vi.fn(),
               loading: false,
               loginWithEmail: vi.fn(),
               logout: vi.fn(),
