@@ -109,7 +109,10 @@ function QuizActions({
   };
 
   return (
-    <div className="quiz-actions">
+    <div
+      className="quiz-actions"
+      style={!quizFormat?.id ? { justifyContent: "center" } : {}}
+    >
       {quizFormat && isFlashcardArray(quizFormat.body) && (
         <div className="quiz-action-btn-container">
           <div className="quiz-action-btn">
