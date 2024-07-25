@@ -13,3 +13,5 @@ const getQueryParam = (key: string): string | null => {
 // 使用例
 // const userId = getQueryParam("userId");
 // console.log("User ID:", userId);
+
+export default getQueryParam;
