@@ -9,7 +9,7 @@ import {
 } from "../../../components";
 import MovableSheet from "./MovableSheet";
 import { CgArrowsExchange } from "react-icons/cg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HorizontalScroll from "../../../components/HorizontalScroll.tsx";
 import { useAuth } from "../../../components/auth/useAuth.ts";
@@ -35,6 +35,14 @@ function PrepareQuizzes() {
     handleClosePopupMenu,
   } = usePopupMenu();
 
+  const queryStudySetID = getQueryParam("studySetID");
+
+  useEffect(() => {
+    if (queryStudySetID) {
+      getQueryStudySet(queryStudySetID);
+    }
+  }, [queryStudySetID]);
+
   async function getQueryStudySet(queryStudySetID: string) {
     const res = await getStudySetById(queryStudySetID);
     setQuizFormat({
@@ -46,12 +54,6 @@ function PrepareQuizzes() {
       created_at: res.created_at,
       updated_at: res.updated_at,
     });
-  }
-
-  const queryStudySetID = getQueryParam("studySetID");
-
-  if (queryStudySetID) {
-    getQueryStudySet(queryStudySetID);
   }
 
   // 学習セットのオーナーであるかを判定
