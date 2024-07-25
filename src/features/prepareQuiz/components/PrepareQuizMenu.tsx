@@ -38,10 +38,14 @@ function PrepareQuizMenu({
 
   // share機能
   const handleShare = () => {
+    let shareURL = quizFormat?.id
+      ? `https://konwalk.jp/PrepareQuiz?studySetID=${quizFormat?.id}`
+      : "https://konwalk.jp";
+
     shareContent({
       title: "Konwalk",
       text: `コンウォークで、${quizFormat?.label}を勉強中！`,
-      url: `https://konwalk.jp/PrepareQuiz?studySetID=${quizFormat?.id}`,
+      url: shareURL,
     });
   };
 
