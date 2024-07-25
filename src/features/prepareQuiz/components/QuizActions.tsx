@@ -5,8 +5,10 @@ import { FiPlus } from "react-icons/fi";
 import "../style/QuizActions.css";
 import FavoriteButton from "../../chooseQuiz/components/FavoriteButton";
 import { FaRegCopy } from "react-icons/fa6";
+import { MdIosShare } from "react-icons/md";
 import handleCopy from "../../../api/studySet/copyStudySetForMe";
 import { useAuth } from "../../../components/auth/useAuth";
+import shareContent from "../../../api/shareContent";
 
 type QuizActionsProps = {
   setQuizFormat: React.Dispatch<React.SetStateAction<QuizFormat | null>>;
@@ -93,6 +95,19 @@ function QuizActions({
     }
   };
 
+  // share機能
+  const handleShare = () => {
+    let shareURL = quizFormat?.id
+      ? `https://konwalk.jp/PrepareQuiz?studySetID=${quizFormat?.id}`
+      : "https://konwalk.jp";
+
+    shareContent({
+      title: "Konwalk",
+      text: `コンウォークで、${quizFormat?.label}を勉強中！`,
+      url: shareURL,
+    });
+  };
+
   return (
     <div className="quiz-actions">
       {quizFormat && isFlashcardArray(quizFormat.body) && (
@@ -149,6 +164,13 @@ function QuizActions({
           <span className="quiz-action-btn-label">コピー</span>
         </div>
       )}
+
+      <div className="quiz-action-btn-container">
+        <button className="quiz-action-btn" onClick={handleShare}>
+          <MdIosShare size={"18px"} />
+        </button>
+        <span className="quiz-action-btn-label">共有</span>
+      </div>
     </div>
   );
 }
