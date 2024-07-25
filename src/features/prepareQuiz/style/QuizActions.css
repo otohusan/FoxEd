@@ -1,7 +1,9 @@
 .quiz-actions {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-bottom: 40px;
+  overflow-x: auto; /* 修正: 横スクロールを許可 */
+  white-space: nowrap; /* 修正: 子要素を横並びに */
 }
 
 .quiz-action-btn-container {
