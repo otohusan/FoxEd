@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 40px;
+  margin-inline: 20px;
   overflow-x: auto; /* 修正: 横スクロールを許可 */
   white-space: nowrap; /* 修正: 子要素を横並びに */
 }
