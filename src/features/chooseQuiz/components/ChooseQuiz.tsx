@@ -15,7 +15,6 @@ import StudySetOverview from "./StudySetOverview.tsx";
 import React from "react";
 import KonwalkGoodsList from "../../../components/ad/KonwalkGoodsList.tsx";
 import getUserStudySets from "../../../api/studySet/getUserStudySets.ts";
-import getQueryParam from "../../../utils/getQueryParam.ts";
 const SelectedStudySetsByKonwalk = React.lazy(
   () => import("./SelectedStudySetsByKonwalk")
 );
@@ -96,16 +95,12 @@ function ChooseQuiz() {
     });
   };
 
-  const res = getQueryParam("id");
-
   return (
     <div>
       <HeadDataHelmet pageTitle="選択ページ" />
       <Header HeaderTitle="Home" />
       <main>
         <Introduction />
-
-        <p>{res}は</p>
 
         <PopupMenu
           isOpen={isPopupMenuOpen}

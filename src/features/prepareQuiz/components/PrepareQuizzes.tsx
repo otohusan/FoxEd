@@ -22,6 +22,8 @@ import QuizActions from "./QuizActions.tsx";
 import usePopupMenu from "../../../hooks/usePopupMenu.ts";
 import React from "react";
 import AdListType from "../../../components/ad/AdListType.tsx";
+import getQueryParam from "../../../utils/getQueryParam.ts";
+import getStudySetById from "../../../api/studySet/getStudySetById.ts";
 
 function PrepareQuizzes() {
   const { user } = useAuth();
@@ -32,6 +34,25 @@ function PrepareQuizzes() {
     handleOpenPopupMenu,
     handleClosePopupMenu,
   } = usePopupMenu();
+
+  async function getQueryStudySet(queryStudySetID: string) {
+    const res = await getStudySetById(queryStudySetID);
+    setQuizFormat({
+      id: res.id,
+      user_id: res.user_id,
+      label: res.title,
+      description: res.description,
+      body: res.flashcards,
+      created_at: res.created_at,
+      updated_at: res.updated_at,
+    });
+  }
+
+  const queryStudySetID = getQueryParam("studySetID");
+
+  if (queryStudySetID) {
+    getQueryStudySet(queryStudySetID);
+  }
 
   // 学習セットのオーナーであるかを判定
   // userも学習セットもidがnullの場合があるから、userの有無で場合分けしてる
