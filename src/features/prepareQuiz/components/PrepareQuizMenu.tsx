@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import shareContent from "../../../api/shareContent";
 import { RxDotsHorizontal } from "react-icons/rx";
+import { useQuizContext } from "../../../components/quiz/useQuizContext";
 
 type PrepareQuizMenuProps = {
   isOwner: boolean;
@@ -33,12 +34,18 @@ function PrepareQuizMenu({
 
   const navigate = useNavigate();
 
+  const { quizFormat } = useQuizContext();
+
   // share機能
   const handleShare = () => {
+    let shareURL = quizFormat?.id
+      ? `https://konwalk.jp/PrepareQuiz?studySetID=${quizFormat?.id}`
+      : "https://konwalk.jp";
+
     shareContent({
       title: "Konwalk",
-      text: "歩く時間を無駄にしない単語帳",
-      url: "https://konwalk.jp",
+      text: `コンウォークで、${quizFormat?.label}を勉強中！`,
+      url: shareURL,
     });
   };
 
