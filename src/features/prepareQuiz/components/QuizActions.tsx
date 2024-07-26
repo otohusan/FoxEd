@@ -103,7 +103,7 @@ function QuizActions({
 
     shareContent({
       title: "Konwalk",
-      text: `コンウォークで、${quizFormat?.label}を勉強中！`,
+      text: `コンウォークで、『${quizFormat?.label}』を勉強中！`,
       url: shareURL,
     });
   };
