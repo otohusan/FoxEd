@@ -28,6 +28,9 @@ function Footer() {
           <Link to={"/PlayQuiz"} className="FooterLink">
             クイズに挑戦
           </Link>
+          <a href="https://eibun.konwalk.jp" className="FooterLink">
+            英文解釈アシスタントβ版
+          </a>
           <Link to={"/ApplicationTerms"} className="FooterLink">
             利用規約
           </Link>
