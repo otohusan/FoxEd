@@ -1,11 +1,11 @@
 import "./App.css";
-import { Suspense, lazy, useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Suspense, lazy, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import { reviewQuizInitialValue } from "./assets/reviewQuizzes";
 import { ReviewQuizType } from "../type/index.ts";
 import BottomNavigation from "./components/BottomNavigation.tsx";
 import Loading from "./components/Loading.tsx";
-import useScrollRestoration from "./hooks/useScrollRestoration.ts";
+import { useScrollRestoration } from "./hooks/index.ts";
 
 // Lazy load the components
 const PlayQuiz = lazy(() => import("./pages/PlayQuiz"));
